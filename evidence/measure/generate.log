@@ -1,0 +1,42 @@
+断言：175 条法条短语 × 242 条 prompt，全部未出现
+242 条处境 × 2 模型 × 3 次抽样；待生成 1452 条
+Loading weights:   0%|          | 0/617 [00:00<?, ?it/s]Loading weights:  93%|█████████▎| 572/617 [00:00<00:00, 5716.67it/s]Loading weights: 100%|██████████| 617/617 [00:00<00:00, 5678.92it/s]
+模型 base 开跑
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `fused_recurrent_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+  25/1452 条落盘
+  50/1452 条落盘
+  75/1452 条落盘
+  100/1452 条落盘
+  125/1452 条落盘
+  150/1452 条落盘
+  175/1452 条落盘
+  200/1452 条落盘
+  225/1452 条落盘
+  250/1452 条落盘
+  275/1452 条落盘
+  300/1452 条落盘
+  325/1452 条落盘
+  350/1452 条落盘
+  375/1452 条落盘
+  400/1452 条落盘
+  425/1452 条落盘
+  450/1452 条落盘
+  475/1452 条落盘
+  500/1452 条落盘
+  525/1452 条落盘
+  550/1452 条落盘
+  575/1452 条落盘
+  600/1452 条落盘
+  625/1452 条落盘
+  650/1452 条落盘
+  675/1452 条落盘
+  700/1452 条落盘
+  725/1452 条落盘
+挂窄版适配器 /home/z/vibe/nomos/.tmp/sft/adapter-narrow
+模型 post 开跑
+  750/1452 条落盘
+  775/1452 条落盘
+  800/1452 条落盘

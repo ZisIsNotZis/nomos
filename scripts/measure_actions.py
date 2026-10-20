@@ -792,7 +792,8 @@ def analyse(answers_rows, densify_rows, ids, preliminary):
     )
     if preliminary:
         summary["note"] = (
-            "预备：adapter（post）侧还没有抽样，X 不可算；base 侧只覆盖已落盘的处境。"
+            f"预备：{summary['situations_post_complete']}/{summary['situations_total']} 条处境有 adapter（post）侧 "
+            f"{DRAWS} 条抽样，两侧齐全 {summary['situations_paired']} 条；X 只在这批配对处境上算，"
             "不许当结论引用。"
         )
     return summary, per_situation

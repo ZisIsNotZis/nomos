@@ -1,10 +1,10 @@
 {
  "situations_total": 242,
- "situations_paired": 0,
+ "situations_paired": 15,
  "situations_reference_usable": 148,
- "situations_base_complete": 186,
- "situations_base_partial": 1,
- "situations_post_complete": 0,
+ "situations_base_complete": 242,
+ "situations_base_partial": 0,
+ "situations_post_complete": 24,
  "situations_post_partial": 0,
  "draws_per_model": 3,
  "decoding": {
@@ -32,13 +32,16 @@
   "empty_reference": 54,
   "unstable_reference": 40
  },
- "base_mean": 0.0,
+ "base_mean": 0.0022522522522522522,
  "base_ci": [
   0.0,
-  0.0
+  0.006756756756756757
  ],
- "post_mean": null,
- "post_ci": null,
+ "post_mean": 0.08888888888888888,
+ "post_ci": [
+  0.0,
+  0.2
+ ],
  "bare_deepseek_mean": 0.35022522522522526,
  "bare_deepseek_ci": [
   0.2849099099099099,
@@ -46,25 +49,37 @@
  ],
  "law_deepseek": 1.0,
  "X_definition": "X = (post_mean - base_mean) / (1 - base_mean)，两侧齐全的处境配对，自举单位是处境",
- "X": null,
- "X_ci": null,
- "X_status": "undefined_adapter_side_missing",
- "X_base_paired": null,
- "X_post_paired": null,
- "X_headroom": null,
- "X_near_ceiling": null,
- "X_replicates_undefined": null,
- "base_paired_ci": null,
- "post_paired_ci": null,
+ "X": 0.08888888888888888,
+ "X_ci": [
+  0.0,
+  0.2
+ ],
+ "X_status": "defined",
+ "X_base_paired": 0.0,
+ "X_post_paired": 0.08888888888888888,
+ "X_headroom": 1.0,
+ "X_near_ceiling": false,
+ "X_replicates_undefined": 0,
+ "base_paired_ci": [
+  0.0,
+  0.0
+ ],
+ "post_paired_ci": [
+  0.0,
+  0.2
+ ],
  "countable_control": {
   "what": "回答里有没有可解析动作（签名非空），不经评委、不看参照物",
-  "base_emits_action": 0.061162079510703356,
+  "base_emits_action": 0.0563063063063063,
   "base_emits_action_ci": [
-   0.03669724770642202,
-   0.08868501529051988
+   0.036036036036036036,
+   0.07882882882882883
   ],
-  "post_emits_action": null,
-  "post_emits_action_ci": null
+  "post_emits_action": 0.6666666666666666,
+  "post_emits_action_ci": [
+   0.5111111111111111,
+   0.8222222222222223
+  ]
  },
  "text_signature": {
   "what": "文字层决策签名一致率：每条回答压成“提了问/停住等确认/下了断言/给了可核对产物”的定序元组，与带法 DeepSeek 的多数文字签名比",
@@ -152,34 +167,65 @@
    ]
   },
   "situations_reference_usable": 169,
-  "situations_paired": 0,
-  "base_mean": 0.3202099737532808,
+  "situations_paired": 14,
+  "base_mean": 0.3412228796844181,
   "base_ci": [
-   0.25721784776902884,
-   0.3858267716535433
+   0.28402366863905326,
+   0.398422090729783
   ],
-  "post_mean": null,
-  "post_ci": null,
-  "base_paired_mean": null,
-  "post_paired_mean": null,
+  "post_mean": 0.23809523809523808,
+  "post_ci": [
+   0.09523809523809523,
+   0.38095238095238093
+  ],
+  "base_paired_mean": 0.2857142857142857,
+  "post_paired_mean": 0.23809523809523808,
   "bare_deepseek_mean": 0.5330374753451677,
   "bare_deepseek_ci": [
    0.4714003944773176,
    0.5961538461538461
   ],
   "law_deepseek": 1.0,
-  "base_emits_text_signature": 0.7532808398950132,
+  "base_emits_text_signature": 0.7712031558185405,
   "base_emits_text_signature_ci": [
-   0.7060367454068242,
-   0.7979002624671916
+   0.7297830374753451,
+   0.8106508875739645
   ]
  },
  "action_comparable": {
   "what": "只取回答里已有可解析动作的处境，在这个子集上算一致率",
   "rule": "该侧 3 条抽样里至少 1 条签名非空；子集少于 30 条处境时conclusive=false，只能作参考、不能作结论",
   "base": {
-   "situations": 19,
-   "answers": 57,
+   "situations": 23,
+   "answers": 69,
+   "conclusive": false,
+   "sides": {
+    "base": {
+     "mean": 0.014492753623188406,
+     "ci": [
+      0.0,
+      0.043478260869565216
+     ]
+    }
+   }
+  },
+  "post": {
+   "situations": 14,
+   "answers": 42,
+   "conclusive": false,
+   "sides": {
+    "post": {
+     "mean": 0.09523809523809523,
+     "ci": [
+      0.0,
+      0.21428571428571427
+     ]
+    }
+   }
+  },
+  "paired": {
+   "situations": 3,
+   "answers": 9,
    "conclusive": false,
    "sides": {
     "base": {
@@ -188,34 +234,20 @@
       0.0,
       0.0
      ]
-    }
-   }
-  },
-  "post": {
-   "situations": 0,
-   "answers": 0,
-   "conclusive": false,
-   "sides": {
-    "post": {
-     "mean": null,
-     "ci": null
-    }
-   }
-  },
-  "paired": {
-   "situations": 0,
-   "answers": 0,
-   "conclusive": false,
-   "sides": {
-    "base": {
-     "mean": null,
-     "ci": null
     },
     "post": {
-     "mean": null,
-     "ci": null
+     "mean": 0.1111111111111111,
+     "ci": [
+      0.0,
+      0.3333333333333333
+     ]
     }
-   }
+   },
+   "delta": 0.1111111111111111,
+   "delta_ci": [
+    0.0,
+    0.3333333333333333
+   ]
   }
  },
  "decomposition": {
@@ -225,38 +257,47 @@
   "decision_part_meaning": "决策项：在有动作的回答里选对比参照动作的比例变了多少带来的那一份",
   "format_share_meaning": "格式项占 Δ 的比例；1 表示提升全来自格式，0 表示全来自决策，介于两者之间表示两件都在动",
   "base": {
-   "situations": 109,
-   "answers": 327,
-   "emitting_answers": 20,
+   "situations": 15,
+   "answers": 45,
+   "emitting_answers": 3,
    "agreeing_answers": 0,
-   "emits_share": 0.06116207951070336,
+   "emits_share": 0.06666666666666667,
    "agreement_given_emit": 0.0,
    "mean": 0.0
   },
   "post": {
-   "situations": 0,
-   "answers": 0,
-   "emitting_answers": 0,
-   "agreeing_answers": 0,
-   "emits_share": null,
-   "agreement_given_emit": null,
-   "mean": null
+   "situations": 15,
+   "answers": 45,
+   "emitting_answers": 30,
+   "agreeing_answers": 4,
+   "emits_share": 0.6666666666666666,
+   "agreement_given_emit": 0.13333333333333333,
+   "mean": 0.08888888888888889
   },
-  "status": "undefined_one_side_missing",
-  "delta": null,
-  "format_part": null,
-  "decision_part": null,
-  "format_share": null,
-  "residual": null,
-  "delta_ci": null,
-  "format_part_ci": null,
-  "decision_part_ci": null,
-  "replicates_undefined": 2000
+  "status": "defined",
+  "delta": 0.08888888888888889,
+  "format_part": 0.04,
+  "decision_part": 0.048888888888888885,
+  "format_share": 0.45,
+  "residual": 6.938893903907228e-18,
+  "delta_ci": [
+   0.0,
+   0.2
+  ],
+  "format_part_ci": [
+   0.0,
+   0.0892857142857143
+  ],
+  "decision_part_ci": [
+   0.0,
+   0.11249999999999999
+  ],
+  "replicates_undefined": 69
  },
  "status": "preliminary",
- "answers_rows": 560,
+ "answers_rows": 798,
  "answer_duplicates_dropped": 0,
  "stored_signature_mismatches": 0,
- "truncated_answers": 18,
- "note": "预备：adapter（post）侧还没有抽样，X 不可算；base 侧只覆盖已落盘的处境。不许当结论引用。"
+ "truncated_answers": 23,
+ "note": "预备：24/242 条处境有 adapter（post）侧 3 条抽样，两侧齐全 15 条；X 只在这批配对处境上算，不许当结论引用。"
 }
