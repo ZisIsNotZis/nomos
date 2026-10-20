@@ -1,0 +1,53 @@
+  p5_control P5SIT002 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT002 draw 0: byte-identical answers, forced choice undefined
+  p5_paired P5SIT003 draw 1: byte-identical answers, forced choice undefined
+  p5_paired P5SIT003 draw 1: byte-identical answers, forced choice undefined
+  p5_paired P5SIT003 draw 2: byte-identical answers, forced choice undefined
+  p5_paired P5SIT003 draw 2: byte-identical answers, forced choice undefined
+  p5_paired P5SIT003 draw 3: byte-identical answers, forced choice undefined
+  p5_paired P5SIT003 draw 3: byte-identical answers, forced choice undefined
+  p5_control P5SIT003 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT003 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT005 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT005 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT015 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT015 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT029 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT029 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT030 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT030 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT034 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT034 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT040 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT040 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT046 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT046 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT048 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT048 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT050 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT050 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT056 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT056 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT059 draw 0: byte-identical answers, forced choice undefined
+  p5_control P5SIT059 draw 0: byte-identical answers, forced choice undefined
+  p4_full_vs_bare SIT003 draw 0: byte-identical answers, forced choice undefined
+  p4_full_vs_bare SIT003 draw 0: byte-identical answers, forced choice undefined
+  p4_slice_vs_bare SIT021 draw 0: byte-identical answers, forced choice undefined
+  p4_slice_vs_bare SIT021 draw 0: byte-identical answers, forced choice undefined
+  p4_slice_vs_bare SIT035 draw 0: byte-identical answers, forced choice undefined
+  p4_slice_vs_bare SIT035 draw 0: byte-identical answers, forced choice undefined
+  p4_slice_vs_bare SIT075 draw 0: byte-identical answers, forced choice undefined
+  p4_slice_vs_bare SIT075 draw 0: byte-identical answers, forced choice undefined
+  p4_slice_vs_bare SIT081 draw 0: byte-identical answers, forced choice undefined
+  p4_slice_vs_bare SIT081 draw 0: byte-identical answers, forced choice undefined
+  p4_slice_vs_bare SIT161 draw 0: byte-identical answers, forced choice undefined
+  p4_slice_vs_bare SIT161 draw 0: byte-identical answers, forced choice undefined
+606 stored pairs, 1168 judgments pending
+smoke: 4 calls, ¥0.0070, cumulative ¥0.0070
+smoke ¥0.0070 over 4 calls; average ¥0.001756/call; projection for the rest ¥2.3575 (budget ¥3.0, stop threshold ¥2.8)
+p5_paired: 354 calls, ¥0.7202, cumulative ¥0.7272
+p5_control: 94 calls, ¥0.1868, cumulative ¥0.9140
+p4_full_vs_bare: 364 calls, ¥0.7466, cumulative ¥1.6606
+p4_slice_vs_bare: 356 calls, ¥0.7262, cumulative ¥2.3868
+total ¥2.3868
+calls 1172, prompt tokens 23870300, completion 82605

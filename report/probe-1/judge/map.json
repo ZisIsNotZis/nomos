@@ -1,0 +1,26 @@
+{
+ "SIT1": {
+  "X": "nolaw",
+  "Y": "law"
+ },
+ "SIT2": {
+  "X": "nolaw",
+  "Y": "law"
+ },
+ "SIT3": {
+  "X": "nolaw",
+  "Y": "law"
+ },
+ "SIT4": {
+  "X": "law",
+  "Y": "nolaw"
+ },
+ "SIT5": {
+  "X": "law",
+  "Y": "nolaw"
+ },
+ "SIT6": {
+  "X": "nolaw",
+  "Y": "law"
+ }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "behavior-reason-preference-sentence",
+  "description": "A behavior leaf whose class_reason quotes a preference sentence cannot carry the verdict; it warns (the gate may not overrule the audit) while the build still exits 0. Warnings are the baseline's two plus this reason's one.",
+  "mutation": {
+    "dot_path": "intent.risk.preserve_work",
+    "set_class_reason": "Prefer depth over breadth."
+  },
+  "expect": {
+    "violations": 0,
+    "warnings": 3,
+    "build_exit": 0
+  }
+}

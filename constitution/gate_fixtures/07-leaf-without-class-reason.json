@@ -1,0 +1,13 @@
+{
+  "id": "leaf-without-class-reason",
+  "description": "A leaf with no class_reason is refused: an undecided reason is not a judgement. The class itself is unchanged, so the only violation is the missing reason; the two warnings are the baseline's.",
+  "mutation": {
+    "dot_path": "intent.risk.preserve_work",
+    "unset_class_reason": true
+  },
+  "expect": {
+    "violations": 1,
+    "warnings": 2,
+    "build_exit": 1
+  }
+}

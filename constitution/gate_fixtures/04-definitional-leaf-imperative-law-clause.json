@@ -1,0 +1,13 @@
+{
+  "id": "definitional-leaf-imperative-law-clause",
+  "description": "The confirmed blind spot: an imperative clause that names only law-ontology objects was exempted and passed silently; it must now add one WARN on top of the baseline's two, while the build still exits 0.",
+  "mutation": {
+    "dot_path": "precedence.levels_in_order",
+    "set_text": "Record the fact in the layer document, then write the file."
+  },
+  "expect": {
+    "violations": 0,
+    "warnings": 3,
+    "build_exit": 0
+  }
+}

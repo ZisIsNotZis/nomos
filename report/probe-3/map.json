@@ -1,0 +1,82 @@
+{
+ "SIT01": {
+  "X": "bare",
+  "Y": "law"
+ },
+ "SIT02": {
+  "X": "bare",
+  "Y": "law"
+ },
+ "SIT03": {
+  "X": "bare",
+  "Y": "law"
+ },
+ "SIT04": {
+  "X": "law",
+  "Y": "bare"
+ },
+ "SIT05": {
+  "X": "bare",
+  "Y": "law"
+ },
+ "SIT06": {
+  "X": "law",
+  "Y": "bare"
+ },
+ "SIT07": {
+  "X": "law",
+  "Y": "bare"
+ },
+ "SIT08": {
+  "X": "bare",
+  "Y": "law"
+ },
+ "SIT09": {
+  "X": "law",
+  "Y": "bare"
+ },
+ "SIT10": {
+  "X": "law",
+  "Y": "bare"
+ },
+ "SIT11": {
+  "X": "law",
+  "Y": "bare"
+ },
+ "SIT12": {
+  "X": "bare",
+  "Y": "law"
+ },
+ "SIT13": {
+  "X": "bare",
+  "Y": "law"
+ },
+ "SIT14": {
+  "X": "law",
+  "Y": "bare"
+ },
+ "SIT15": {
+  "X": "law",
+  "Y": "bare"
+ },
+ "SIT16": {
+  "X": "law",
+  "Y": "bare"
+ },
+ "SIT17": {
+  "X": "law",
+  "Y": "bare"
+ },
+ "SIT18": {
+  "X": "bare",
+  "Y": "law"
+ },
+ "SIT19": {
+  "X": "law",
+  "Y": "bare"
+ },
+ "SIT20": {
+  "X": "law",
+  "Y": "bare"
+ }
+}

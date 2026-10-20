@@ -1,0 +1,13 @@
+{
+  "id": "law-structure-leaf-definitional",
+  "description": "A law-structure leaf filed definitional passes without a violation: the shape check cannot decide a semantic misfile whose text carries no imperative. Since the class_reason sweep, laws.ssot.atomic is itself definitional, so this mutation is the leaf's correct class and the fixture pins the check's accepted silence; the two warnings are the baseline's.",
+  "mutation": {
+    "dot_path": "laws.ssot.atomic",
+    "set_class": "definitional"
+  },
+  "expect": {
+    "violations": 0,
+    "warnings": 2,
+    "build_exit": 0
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "model_id": "Qwen/Qwen3.5-2B",
+  "revision": "15852e8c16360a2fea060d615a32b45270f8a8fc",
+  "model_dir": "/home/z/hf/hub/models--Qwen--Qwen3.5-2B/snapshots/15852e8c16360a2fea060d615a32b45270f8a8fc",
+  "model_class": "Qwen3_5ForConditionalGeneration",
+  "parameters": 2213241664,
+  "dtype": "bfloat16",
+  "precision_note": "no quantization; no vllm, no bitsandbytes",
+  "kernel_note": "transformers eager path; causal_conv1d and flash-linear-attention are not installed, so the linear-attention layers run their reference PyTorch implementation (transformers warns about this at load)",
+  "decoding": {
+    "temperature": 0.0,
+    "do_sample": false,
+    "max_new_tokens": 320
+  },
+  "thinking": "disabled (chat template emits an empty <think></think> block)",
+  "instruction_sha256": "f92e401df8d5827f81ea60a761d8aec0eaf95e6f8ba95e91e067a7dff46179cd",
+  "policy_sha256": "325f8b3e2d868f91fb43c24dd088ae6e735386c6d5e2aacfc7496d6ff2726ab6",
+  "policy_chars": 93670,
+  "conditions": {
+    "bare": "no system message",
+    "law": "system message = AGENTS.md bytes"
+  },
+  "situations": 20,
+  "calls": 40,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.14.1+cu130",
+  "transformers": "5.20.1",
+  "bare_totals": {
+    "calls": 20,
+    "seconds": 52.76,
+    "prompt_tokens": 10524,
+    "completion_tokens": 1175,
+    "mean_tokens_per_second": 22.14,
+    "median_tokens_per_second": 21.86,
+    "mean_prefill_tokens_per_second": 4258.7
+  },
+  "law_totals": {
+    "calls": 20,
+    "seconds": 171.69,
+    "prompt_tokens": 397564,
+    "completion_tokens": 2989,
+    "mean_tokens_per_second": 14.53,
+    "median_tokens_per_second": 16.55,
+    "mean_prefill_tokens_per_second": 9407.9
+  }
+}

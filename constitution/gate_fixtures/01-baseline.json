@@ -1,0 +1,10 @@
+{
+  "id": "baseline",
+  "description": "The unmutated index: no leaf contradicts its class, and only the undecidable clauses warn.",
+  "mutation": null,
+  "expect": {
+    "violations": 0,
+    "warnings": 2,
+    "build_exit": 0
+  }
+}

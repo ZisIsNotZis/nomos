@@ -1,0 +1,13 @@
+{
+  "id": "definitional-leaf-imperative-task-clause",
+  "description": "A definitional leaf whose text prescribes a closable act on a runtime object is refused (direction A works); the two warnings are the baseline's, the mutation adds none.",
+  "mutation": {
+    "dot_path": "precedence.levels_in_order",
+    "set_text": "Commit the branch and push it."
+  },
+  "expect": {
+    "violations": 1,
+    "warnings": 2,
+    "build_exit": 1
+  }
+}

@@ -1,0 +1,1470 @@
+{
+ "full_vs_bare": {
+  "SIT001": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT002": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT003": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT004": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT005": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT006": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT007": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT008": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT009": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT010": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT011": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT012": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT013": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT014": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT015": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT016": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT017": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT018": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT019": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT020": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT021": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT022": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT023": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT024": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT025": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT026": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT027": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT028": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT029": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT030": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT031": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT032": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT033": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT034": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT035": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT036": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT037": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT038": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT039": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT040": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT041": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT042": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT043": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT044": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT045": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT046": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT047": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT048": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT049": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT050": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT051": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT052": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT053": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT054": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT055": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT056": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT057": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT058": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT059": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT060": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT061": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT062": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT063": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT064": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT065": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT066": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT067": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT068": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT069": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT070": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT071": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT072": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT073": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT074": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT075": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT076": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT077": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT078": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT079": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT080": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT081": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT082": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT083": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT084": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT085": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT086": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT087": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT088": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT089": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT090": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT091": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT092": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT093": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT094": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT095": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT096": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT097": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT098": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT099": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT100": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT101": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT102": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT103": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT104": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT105": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT106": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT107": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT108": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT109": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT110": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT111": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT112": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT113": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT114": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT115": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT116": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT117": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT118": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT119": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT120": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT121": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT122": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT123": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT124": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT125": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT126": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT127": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT128": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT129": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT130": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT131": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT132": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT133": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT134": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT135": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT136": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT137": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT138": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT139": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT140": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT141": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT142": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT143": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT144": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT145": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT146": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT147": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT148": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT149": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT150": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT151": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT152": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT153": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT154": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT155": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT156": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT157": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT158": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT159": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT160": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT161": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT162": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT163": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT164": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT165": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT166": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT167": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT168": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT169": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT170": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT171": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT172": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT173": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT174": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT175": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT176": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT177": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT178": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT179": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT180": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT181": {
+   "X": "bare",
+   "Y": "full"
+  },
+  "SIT182": {
+   "X": "full",
+   "Y": "bare"
+  },
+  "SIT183": {
+   "X": "full",
+   "Y": "bare"
+  }
+ },
+ "slice_vs_bare": {
+  "SIT001": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT002": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT003": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT004": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT005": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT006": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT007": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT008": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT009": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT010": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT011": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT012": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT013": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT014": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT015": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT016": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT017": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT018": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT019": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT020": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT021": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT022": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT023": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT024": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT025": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT026": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT027": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT028": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT029": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT030": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT031": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT032": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT033": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT034": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT035": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT036": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT037": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT038": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT039": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT040": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT041": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT042": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT043": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT044": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT045": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT046": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT047": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT048": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT049": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT050": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT051": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT052": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT053": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT054": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT055": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT056": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT057": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT058": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT059": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT060": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT061": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT062": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT063": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT064": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT065": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT066": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT067": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT068": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT069": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT070": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT071": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT072": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT073": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT074": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT075": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT076": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT077": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT078": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT079": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT080": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT081": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT082": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT083": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT084": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT085": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT086": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT087": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT088": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT089": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT090": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT091": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT092": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT093": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT094": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT095": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT096": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT097": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT098": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT099": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT100": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT101": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT102": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT103": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT104": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT105": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT106": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT107": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT108": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT109": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT110": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT111": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT112": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT113": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT114": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT115": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT116": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT117": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT118": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT119": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT120": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT121": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT122": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT123": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT124": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT125": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT126": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT127": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT128": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT129": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT130": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT131": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT132": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT133": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT134": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT135": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT136": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT137": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT138": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT139": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT140": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT141": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT142": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT143": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT144": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT145": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT146": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT147": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT148": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT149": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT150": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT151": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT152": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT153": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT154": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT155": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT156": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT157": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT158": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT159": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT160": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT161": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT162": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT163": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT164": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT165": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT166": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT167": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT168": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT169": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT170": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT171": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT172": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT173": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT174": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT175": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT176": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT177": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT178": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT179": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT180": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT181": {
+   "X": "slice",
+   "Y": "bare"
+  },
+  "SIT182": {
+   "X": "bare",
+   "Y": "slice"
+  },
+  "SIT183": {
+   "X": "bare",
+   "Y": "slice"
+  }
+ }
+}

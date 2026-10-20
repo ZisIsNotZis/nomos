@@ -1,0 +1,23 @@
+{
+ "endpoint": "https://api.deepseek.com/v1/chat/completions",
+ "model": "deepseek-flash",
+ "thinking": "disabled",
+ "policy_path": "/home/z/vibe/AGENTS.md",
+ "policy_chars": 93670,
+ "policy_sha256": "325f8b3e2d868f91fb43c24dd088ae6e735386c6d5e2aacfc7496d6ff2726ab6",
+ "price_usd_per_mtok": {
+  "peak": {
+   "cache_hit": 0.006,
+   "cache_miss": 0.3,
+   "output": 1.2
+  },
+  "off_peak": {
+   "cache_hit": 0.003,
+   "cache_miss": 0.15,
+   "output": 0.6
+  }
+ },
+ "usd_cny": 6.693661,
+ "price_source": "https://api-docs.deepseek.com/quick_start/pricing read 2026-10-20",
+ "fx_source": "open.er-api.com 2026-10-20 00:02 UTC"
+}

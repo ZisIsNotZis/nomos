@@ -1,0 +1,13 @@
+{
+  "id": "behavior-leaf-statement",
+  "description": "A behavior leaf whose text names no action form and no observable object is refused (direction B works); the two warnings are the baseline's.",
+  "mutation": {
+    "dot_path": "intent.risk.preserve_work",
+    "set_text": "Absence is a state, not a gap to fill."
+  },
+  "expect": {
+    "violations": 1,
+    "warnings": 2,
+    "build_exit": 1
+  }
+}
