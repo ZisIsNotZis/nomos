@@ -1,0 +1,18 @@
+{
+  "steps": 54,
+  "epochs": 3,
+  "max_length": 1088,
+  "train_rows": 288,
+  "val_rows": 78,
+  "train_loss": 1.437573,
+  "train_ppl": 4.2105,
+  "val_loss": 1.797156,
+  "val_ppl": 6.0325,
+  "baseline_val_loss": 2.428494,
+  "baseline_val_ppl": 11.3418,
+  "adapter_sha256": "5be6a2f38752025930e6dbca80d3e0092bbfb905c731fbff2f275e1658176a72",
+  "adapter_size_bytes": 43675104,
+  "peak_allocated_gib": 8.74,
+  "peak_reserved_gib": 9.982,
+  "wall_clock_s": 828.6
+}

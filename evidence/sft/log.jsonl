@@ -1,0 +1,66 @@
+{"type": "setup", "train_rows": 288, "val_rows": 78, "train_sessions": 39, "val_sessions": 12, "token_stats": {"prompt": {"p50": 589, "p95": 901, "max": 968, "mean": 548.9}, "target": {"p50": 119, "p95": 217, "max": 385, "mean": 119.0}, "prompt_plus_target": {"p50": 698, "p95": 1056, "max": 1201, "mean": 667.9}}, "max_length": 1088, "max_length_reason": "p95 of prompt+target is 1056 tokens (p50 698, max 1201); rounded up to 1088. Rows above it lose the head of the prompt only", "gpu_name": "NVIDIA GeForce RTX 4090", "gpu_free_gib_at_start": 13.5, "versions": {"torch": "2.14.1+cu130", "transformers": "5.20.1", "peft": "0.21.2", "bitsandbytes": "0.50.2"}}
+{"type": "truncation", "train_rows_truncated": 8, "train_tokens_dropped": 515, "val_rows_truncated": 2, "val_tokens_dropped": 100, "max_train_dropped": 113, "note": "tokens dropped from the head of the prompt; target never truncated", "train_examples": [["GRW004", 86], ["GRW059", 100], ["SIT010", 9], ["SIT036", 53], ["SIT080", 27]]}
+{"type": "config", "base_model": "/home/z/hf/hub/models--Qwen--Qwen3.5-2B/snapshots/15852e8c16360a2fea060d615a32b45270f8a8fc", "quantization": "4-bit nf4, double quant, bf16 compute", "lora_targets": ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"], "lora_r": 16, "lora_alpha": 32, "lora_dropout": 0.05, "lora_rank_reason": "13.5 GiB free before load (4090, another project holds the rest); r=16, alpha=32 (alpha = 2r); 4-bit weights ~1.4 GiB and micro-batch 2 x 1088 tokens under gradient checkpointing fit, so the rank is set by the free headroom", "trainable_params": 10911744, "total_params": 1374217024, "trainable_fraction": 0.00794, "micro_batch": 2, "eval_micro_batch": 2, "grad_accum": 8, "effective_batch": 16, "lr": 0.0001, "epochs": 3.0, "seed": 0, "optimizer": "paged_adamw_8bit", "max_length": 1088}
+{"type": "val", "epoch": 0, "step": 0, "split": "val_before_training", "n": 78, "tokens": 9386, "loss": 2.428494, "ppl": 11.341785, "elapsed_s": 13.6}
+{"type": "mask_check", "prompt_tokens": 656, "first_valid_label_index": 656, "scored_target_tokens": 159, "masked_to_neg100": 656, "prompt_tail": "死吗？<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n", "target_head": "先更正：上一条我说“正在发车”是错的，"}
+{"type": "gradient_check", "lora_grad_tensors": 192, "tensors_with_nonzero_grad": 96, "nonzero_grad_entries": 6193152}
+{"type": "train_step", "step": 1, "epoch": 1, "loss": 2.369265, "rows": 16, "target_tokens": 2078, "lr": 4e-05, "elapsed_s": 24.7}
+{"type": "train_step", "step": 2, "epoch": 1, "loss": 2.459699, "rows": 16, "target_tokens": 2394, "lr": 6e-05, "elapsed_s": 33.9}
+{"type": "train_step", "step": 3, "epoch": 1, "loss": 2.565928, "rows": 16, "target_tokens": 1902, "lr": 8e-05, "elapsed_s": 43.2}
+{"type": "train_step", "step": 4, "epoch": 1, "loss": 2.339058, "rows": 16, "target_tokens": 1589, "lr": 0.0001, "elapsed_s": 51.8}
+{"type": "train_step", "step": 5, "epoch": 1, "loss": 2.308442, "rows": 16, "target_tokens": 1863, "lr": 0.0001, "elapsed_s": 60.6}
+{"type": "train_step", "step": 6, "epoch": 1, "loss": 1.95823, "rows": 16, "target_tokens": 1867, "lr": 9.796e-05, "elapsed_s": 70.6}
+{"type": "train_step", "step": 7, "epoch": 1, "loss": 1.944301, "rows": 16, "target_tokens": 1825, "lr": 9.592e-05, "elapsed_s": 79.7}
+{"type": "train_step", "step": 8, "epoch": 1, "loss": 1.817944, "rows": 16, "target_tokens": 1475, "lr": 9.388e-05, "elapsed_s": 88.6}
+{"type": "train_step", "step": 9, "epoch": 1, "loss": 1.977899, "rows": 16, "target_tokens": 1357, "lr": 9.184e-05, "elapsed_s": 97.2}
+{"type": "train_step", "step": 10, "epoch": 1, "loss": 1.841836, "rows": 16, "target_tokens": 1610, "lr": 8.98e-05, "elapsed_s": 106.7}
+{"type": "train_step", "step": 11, "epoch": 1, "loss": 2.205056, "rows": 16, "target_tokens": 1821, "lr": 8.776e-05, "elapsed_s": 115.6}
+{"type": "train_step", "step": 12, "epoch": 1, "loss": 1.821899, "rows": 16, "target_tokens": 1958, "lr": 8.571e-05, "elapsed_s": 124.9}
+{"type": "train_step", "step": 13, "epoch": 1, "loss": 2.087286, "rows": 16, "target_tokens": 2065, "lr": 8.367e-05, "elapsed_s": 135.7}
+{"type": "train_step", "step": 14, "epoch": 1, "loss": 1.877136, "rows": 16, "target_tokens": 2116, "lr": 8.163e-05, "elapsed_s": 145.9}
+{"type": "train_step", "step": 15, "epoch": 1, "loss": 1.752658, "rows": 16, "target_tokens": 2294, "lr": 7.959e-05, "elapsed_s": 156.0}
+{"type": "train_step", "step": 16, "epoch": 1, "loss": 1.991059, "rows": 16, "target_tokens": 2052, "lr": 7.755e-05, "elapsed_s": 166.3}
+{"type": "train_step", "step": 17, "epoch": 1, "loss": 2.060877, "rows": 16, "target_tokens": 1958, "lr": 7.551e-05, "elapsed_s": 175.4}
+{"type": "train_step", "step": 18, "epoch": 1, "loss": 1.989578, "rows": 16, "target_tokens": 1937, "lr": 7.347e-05, "elapsed_s": 184.5}
+{"type": "epoch", "epoch": 1, "step": 18, "train_loss": 1.759322, "train_ppl": 5.8085, "val_loss": 1.865046, "val_ppl": 6.4562, "val_minus_train": 0.105724, "train_tokens": 34161, "val_tokens": 9386, "epoch_mean_step_loss": 2.081469, "elapsed_s": 241.9}
+{"type": "train_step", "step": 19, "epoch": 2, "loss": 1.668625, "rows": 16, "target_tokens": 1926, "lr": 7.143e-05, "elapsed_s": 250.7}
+{"type": "train_step", "step": 20, "epoch": 2, "loss": 1.897055, "rows": 16, "target_tokens": 1602, "lr": 6.939e-05, "elapsed_s": 260.4}
+{"type": "train_step", "step": 21, "epoch": 2, "loss": 1.68808, "rows": 16, "target_tokens": 1967, "lr": 6.735e-05, "elapsed_s": 270.1}
+{"type": "train_step", "step": 22, "epoch": 2, "loss": 1.712382, "rows": 16, "target_tokens": 2072, "lr": 6.531e-05, "elapsed_s": 280.1}
+{"type": "train_step", "step": 23, "epoch": 2, "loss": 1.474585, "rows": 16, "target_tokens": 1563, "lr": 6.327e-05, "elapsed_s": 288.9}
+{"type": "train_step", "step": 24, "epoch": 2, "loss": 1.962653, "rows": 16, "target_tokens": 2219, "lr": 6.122e-05, "elapsed_s": 298.3}
+{"type": "train_step", "step": 25, "epoch": 2, "loss": 1.457713, "rows": 16, "target_tokens": 1825, "lr": 5.918e-05, "elapsed_s": 307.2}
+{"type": "train_step", "step": 26, "epoch": 2, "loss": 1.635519, "rows": 16, "target_tokens": 1921, "lr": 5.714e-05, "elapsed_s": 316.2}
+{"type": "train_step", "step": 27, "epoch": 2, "loss": 1.85131, "rows": 16, "target_tokens": 1935, "lr": 5.51e-05, "elapsed_s": 326.2}
+{"type": "train_step", "step": 28, "epoch": 2, "loss": 1.510292, "rows": 16, "target_tokens": 1836, "lr": 5.306e-05, "elapsed_s": 335.6}
+{"type": "train_step", "step": 29, "epoch": 2, "loss": 1.582522, "rows": 16, "target_tokens": 1771, "lr": 5.102e-05, "elapsed_s": 344.8}
+{"type": "train_step", "step": 30, "epoch": 2, "loss": 1.544952, "rows": 16, "target_tokens": 1734, "lr": 4.898e-05, "elapsed_s": 353.3}
+{"type": "train_step", "step": 31, "epoch": 2, "loss": 1.665914, "rows": 16, "target_tokens": 1976, "lr": 4.694e-05, "elapsed_s": 362.5}
+{"type": "train_step", "step": 32, "epoch": 2, "loss": 1.528554, "rows": 16, "target_tokens": 1849, "lr": 4.49e-05, "elapsed_s": 372.1}
+{"type": "train_step", "step": 33, "epoch": 2, "loss": 2.06488, "rows": 16, "target_tokens": 2164, "lr": 4.286e-05, "elapsed_s": 381.3}
+{"type": "train_step", "step": 34, "epoch": 2, "loss": 1.589716, "rows": 16, "target_tokens": 2178, "lr": 4.082e-05, "elapsed_s": 390.3}
+{"type": "train_step", "step": 35, "epoch": 2, "loss": 1.554042, "rows": 16, "target_tokens": 1836, "lr": 3.878e-05, "elapsed_s": 398.9}
+{"type": "train_step", "step": 36, "epoch": 2, "loss": 1.562548, "rows": 16, "target_tokens": 1787, "lr": 3.673e-05, "elapsed_s": 410.8}
+{"type": "epoch", "epoch": 2, "step": 36, "train_loss": 1.524735, "train_ppl": 4.5939, "val_loss": 1.803217, "val_ppl": 6.0691, "val_minus_train": 0.278482, "train_tokens": 34161, "val_tokens": 9386, "epoch_mean_step_loss": 1.671925, "elapsed_s": 479.9}
+{"type": "train_step", "step": 37, "epoch": 3, "loss": 1.537029, "rows": 16, "target_tokens": 1464, "lr": 3.469e-05, "elapsed_s": 492.0}
+{"type": "train_step", "step": 38, "epoch": 3, "loss": 1.566225, "rows": 16, "target_tokens": 1570, "lr": 3.265e-05, "elapsed_s": 504.0}
+{"type": "train_step", "step": 39, "epoch": 3, "loss": 1.292472, "rows": 16, "target_tokens": 1855, "lr": 3.061e-05, "elapsed_s": 515.5}
+{"type": "train_step", "step": 40, "epoch": 3, "loss": 1.552907, "rows": 16, "target_tokens": 1599, "lr": 2.857e-05, "elapsed_s": 527.0}
+{"type": "train_step", "step": 41, "epoch": 3, "loss": 1.474973, "rows": 16, "target_tokens": 1938, "lr": 2.653e-05, "elapsed_s": 539.4}
+{"type": "train_step", "step": 42, "epoch": 3, "loss": 1.775437, "rows": 16, "target_tokens": 2180, "lr": 2.449e-05, "elapsed_s": 551.2}
+{"type": "train_step", "step": 43, "epoch": 3, "loss": 1.577973, "rows": 16, "target_tokens": 1892, "lr": 2.245e-05, "elapsed_s": 562.3}
+{"type": "train_step", "step": 44, "epoch": 3, "loss": 1.498537, "rows": 16, "target_tokens": 1981, "lr": 2.041e-05, "elapsed_s": 573.9}
+{"type": "train_step", "step": 45, "epoch": 3, "loss": 1.409778, "rows": 16, "target_tokens": 1417, "lr": 1.837e-05, "elapsed_s": 585.1}
+{"type": "train_step", "step": 46, "epoch": 3, "loss": 1.265401, "rows": 16, "target_tokens": 1843, "lr": 1.633e-05, "elapsed_s": 597.5}
+{"type": "train_step", "step": 47, "epoch": 3, "loss": 1.325234, "rows": 16, "target_tokens": 1999, "lr": 1.429e-05, "elapsed_s": 608.9}
+{"type": "train_step", "step": 48, "epoch": 3, "loss": 1.577328, "rows": 16, "target_tokens": 2334, "lr": 1.224e-05, "elapsed_s": 620.9}
+{"type": "train_step", "step": 49, "epoch": 3, "loss": 1.430967, "rows": 16, "target_tokens": 2056, "lr": 1.02e-05, "elapsed_s": 632.9}
+{"type": "train_step", "step": 50, "epoch": 3, "loss": 1.536773, "rows": 16, "target_tokens": 2276, "lr": 8.16e-06, "elapsed_s": 645.1}
+{"type": "train_step", "step": 51, "epoch": 3, "loss": 1.488622, "rows": 16, "target_tokens": 1744, "lr": 6.12e-06, "elapsed_s": 657.8}
+{"type": "train_step", "step": 52, "epoch": 3, "loss": 1.42183, "rows": 16, "target_tokens": 1874, "lr": 4.08e-06, "elapsed_s": 670.5}
+{"type": "train_step", "step": 53, "epoch": 3, "loss": 1.384609, "rows": 16, "target_tokens": 2116, "lr": 2.04e-06, "elapsed_s": 683.8}
+{"type": "train_step", "step": 54, "epoch": 3, "loss": 1.586175, "rows": 16, "target_tokens": 2023, "lr": 0.0, "elapsed_s": 697.6}
+{"type": "epoch", "epoch": 3, "step": 54, "train_loss": 1.437573, "train_ppl": 4.2105, "val_loss": 1.797156, "val_ppl": 6.0325, "val_minus_train": 0.359583, "train_tokens": 34161, "val_tokens": 9386, "epoch_mean_step_loss": 1.486268, "elapsed_s": 768.5}
+{"type": "final_eval", "train_loss": 1.437573, "train_ppl": 4.2105, "val_loss": 1.797156, "val_ppl": 6.0325, "baseline_val_loss": 2.428494, "baseline_val_ppl": 11.3418, "val_loss_delta": -0.631338}
+{"type": "adapter", "path": ".tmp/sft/adapter", "weights_file": ".tmp/sft/adapter/adapter_model.safetensors", "sha256": "5be6a2f38752025930e6dbca80d3e0092bbfb905c731fbff2f275e1658176a72", "size_bytes": 43675104, "trainable_params": 10911744, "retention_reason": "LoRA deltas regenerated only by rerunning scripts/train_sft.py on this GPU"}
+{"type": "peak_memory", "peak_allocated_gib": 8.74, "peak_reserved_gib": 9.982, "nvidia_smi_used_mib": "19102", "wall_clock_s": 828.6, "steps": 54, "epochs": 3}

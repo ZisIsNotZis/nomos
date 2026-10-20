@@ -1,3 +1,4 @@
 # Project files too large for git. Verify with: sha256sum -c <(awk -F'\t' 'NR>2{print $3"  "$1}' artifacts.tsv)
 path	size_bytes	sha256	durable_location	reason
 .tmp/training/adapter-dpo-r16/adapter_model.safetensors	43675104	bfe5dc07841b16abcc3d233087e612657bccb764ebc3fdf471c0b521bd5c0a18	regenerate: python3 scripts/train_dpo.py --epochs 4 --pairs-per-step 4 --micro-pairs 2 --eval-every 8 (GPU, ~6.4 min)	LoRA DPO adapter (10.9M params, r=16 bf16 deltas = 42 MB) exceeds git's practical size; it is the trained artefact of one GPU run and the report's numbers are computed from it
+.tmp/sft/adapter/adapter_model.safetensors	43675104	5be6a2f38752025930e6dbca80d3e0092bbfb905c731fbff2f275e1658176a72	regenerate: python3 scripts/train_sft.py --epochs 3 --grad-accum 8 (GPU, ~14 min)	LoRA SFT adapter (10.9M params, r=16 bf16 deltas = 42 MB) exceeds git's practical size; it is the trained artefact of one GPU run that report/sft-training.md and later evaluation compute from
