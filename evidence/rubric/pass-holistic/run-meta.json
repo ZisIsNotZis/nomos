@@ -1,0 +1,418 @@
+{
+ "model": "deepseek-flash",
+ "temperature": 0.7,
+ "draws": 3,
+ "seed": 20261102,
+ "sample_size": 64,
+ "control_size": 8,
+ "sample": [
+  {
+   "situation_id": "SIT001",
+   "signals": [
+    "S3_repeat_user_turn"
+   ]
+  },
+  {
+   "situation_id": "SIT004",
+   "signals": [
+    "S3_repeat_user_turn"
+   ]
+  },
+  {
+   "situation_id": "SIT005",
+   "signals": [
+    "S3_repeat_user_turn"
+   ]
+  },
+  {
+   "situation_id": "SIT008",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT011",
+   "signals": [
+    "S4_negation_lead",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT012",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT016",
+   "signals": [
+    "S4_negation_lead",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT017",
+   "signals": [
+    "S3_repeat_user_turn"
+   ]
+  },
+  {
+   "situation_id": "SIT018",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT023",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT024",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT034",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT042",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT047",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT050",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT051",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT053",
+   "signals": [
+    "S2_tool_burst_no_checkpoint",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT055",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT057",
+   "signals": [
+    "S5_quotes_assistant_text"
+   ]
+  },
+  {
+   "situation_id": "SIT070",
+   "signals": [
+    "S5_quotes_assistant_text"
+   ]
+  },
+  {
+   "situation_id": "SIT071",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT076",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT085",
+   "signals": [
+    "S3_repeat_user_turn"
+   ]
+  },
+  {
+   "situation_id": "SIT087",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT088",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT090",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT091",
+   "signals": [
+    "S4_negation_lead",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT093",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT095",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT099",
+   "signals": [
+    "S3_repeat_user_turn",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT100",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT103",
+   "signals": [
+    "S3_repeat_user_turn",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT105",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT109",
+   "signals": [
+    "S2_tool_burst_no_checkpoint",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT110",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT111",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT112",
+   "signals": [
+    "S5_quotes_assistant_text"
+   ]
+  },
+  {
+   "situation_id": "SIT113",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT116",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT118",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT121",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT122",
+   "signals": [
+    "S4_negation_lead",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT123",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT124",
+   "signals": [
+    "S2_tool_burst_no_checkpoint",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT127",
+   "signals": [
+    "S2_tool_burst_no_checkpoint",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT129",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT130",
+   "signals": [
+    "S4_negation_lead",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT131",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT140",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT141",
+   "signals": [
+    "S5_quotes_assistant_text"
+   ]
+  },
+  {
+   "situation_id": "SIT143",
+   "signals": [
+    "S5_quotes_assistant_text"
+   ]
+  },
+  {
+   "situation_id": "SIT146",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT149",
+   "signals": [
+    "S3_repeat_user_turn",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT150",
+   "signals": [
+    "S5_quotes_assistant_text"
+   ]
+  },
+  {
+   "situation_id": "SIT151",
+   "signals": [
+    "S4_negation_lead",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT154",
+   "signals": [
+    "S2_tool_burst_no_checkpoint",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT156",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT164",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT165",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT170",
+   "signals": [
+    "S4_negation_lead",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT172",
+   "signals": [
+    "S4_negation_lead"
+   ]
+  },
+  {
+   "situation_id": "SIT173",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT174",
+   "signals": [
+    "S4_negation_lead",
+    "S1_interrupt_after_tool_call"
+   ]
+  },
+  {
+   "situation_id": "SIT183",
+   "signals": [
+    "S1_interrupt_after_tool_call"
+   ]
+  }
+ ],
+ "system_sha256": "227a4746b15d617078d3f93f7a0ed65de4d098134496bed2622a4a271e00c094",
+ "subitem_score": {
+  "fewer_is_better": "1/(1+c)",
+  "more_is_better": "c/(1+c)",
+  "stops_before_gate": "c（门前停住记 1）",
+  "felt": "(level-1)/3"
+ },
+ "pairs_file_sha256": "d3dfff3125cd7fbad0ea767e4e8f52408dd0f0a663ffe93b6d7ffc534770f08f"
+}

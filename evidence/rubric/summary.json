@@ -1,0 +1,303 @@
+{
+ "draws": 3,
+ "bootstrap": 10000,
+ "criteria_significance": 0.01,
+ "rescore_max_gap": 0.0,
+ "results": {
+  "phase": {
+   "n_pairs": 64,
+   "chosen_mean": 0.8009,
+   "rejected_mean": 0.8047,
+   "delta": -0.0038,
+   "delta_ci95": [
+    -0.0501,
+    0.0422
+   ],
+   "dominance": "27/47",
+   "dominance_rate": 0.5745,
+   "sign_test_p": 0.381693,
+   "sign_flip_p": 0.878956,
+   "repeat_sd": 0.0902,
+   "sample_sd_of_diff": 0.1876,
+   "se": 0.0234,
+   "repeat_answers": 128,
+   "delta_over_repeat_sd": -0.042
+  },
+  "evidence": {
+   "n_pairs": 64,
+   "chosen_mean": 0.8459,
+   "rejected_mean": 0.8243,
+   "delta": 0.0216,
+   "delta_ci95": [
+    -0.0171,
+    0.0613
+   ],
+   "dominance": "26/43",
+   "dominance_rate": 0.6047,
+   "sign_test_p": 0.222053,
+   "sign_flip_p": 0.280536,
+   "repeat_sd": 0.0793,
+   "sample_sd_of_diff": 0.1588,
+   "se": 0.0198,
+   "repeat_answers": 128,
+   "delta_over_repeat_sd": 0.273
+  },
+  "question": {
+   "n_pairs": 64,
+   "chosen_mean": 0.9585,
+   "rejected_mean": 0.9466,
+   "delta": 0.0119,
+   "delta_ci95": [
+    0.0003,
+    0.0247
+   ],
+   "dominance": "15/21",
+   "dominance_rate": 0.7143,
+   "sign_test_p": 0.078354,
+   "sign_flip_p": 0.059447,
+   "repeat_sd": 0.0445,
+   "sample_sd_of_diff": 0.0503,
+   "se": 0.0063,
+   "repeat_answers": 128,
+   "delta_over_repeat_sd": 0.266
+  },
+  "delivery": {
+   "n_pairs": 64,
+   "chosen_mean": 0.5689,
+   "rejected_mean": 0.6014,
+   "delta": -0.0325,
+   "delta_ci95": [
+    -0.0893,
+    0.026
+   ],
+   "dominance": "24/57",
+   "dominance_rate": 0.4211,
+   "sign_test_p": 0.289244,
+   "sign_flip_p": 0.278286,
+   "repeat_sd": 0.0547,
+   "sample_sd_of_diff": 0.2371,
+   "se": 0.0296,
+   "repeat_answers": 128,
+   "delta_over_repeat_sd": -0.593
+  },
+  "total": {
+   "n_pairs": 64,
+   "chosen_mean": 0.7936,
+   "rejected_mean": 0.7942,
+   "delta": -0.0007,
+   "delta_ci95": [
+    -0.0265,
+    0.0255
+   ],
+   "dominance": "27/61",
+   "dominance_rate": 0.4426,
+   "sign_test_p": 0.442626,
+   "sign_flip_p": 0.959352,
+   "repeat_sd": 0.0404,
+   "sample_sd_of_diff": 0.1076,
+   "se": 0.0134,
+   "repeat_answers": 128,
+   "delta_over_repeat_sd": -0.017
+  }
+ },
+ "criteria": {
+  "phase": {
+   "checks": {
+    "direction": false,
+    "interval": false,
+    "stable": false,
+    "above_noise": false
+   },
+   "pass": false
+  },
+  "evidence": {
+   "checks": {
+    "direction": true,
+    "interval": false,
+    "stable": false,
+    "above_noise": false
+   },
+   "pass": false
+  },
+  "question": {
+   "checks": {
+    "direction": true,
+    "interval": true,
+    "stable": false,
+    "above_noise": false
+   },
+   "pass": false
+  },
+  "delivery": {
+   "checks": {
+    "direction": false,
+    "interval": false,
+    "stable": false,
+    "above_noise": false
+   },
+   "pass": false
+  },
+  "total": {
+   "checks": {
+    "direction": false,
+    "interval": false,
+    "stable": false,
+    "above_noise": false
+   },
+   "pass": false
+  }
+ },
+ "all_pass": false,
+ "control_degraded": {
+  "phase": {
+   "n": 8,
+   "mean_delta": -0.2523,
+   "worse_share": 1.0
+  },
+  "evidence": {
+   "n": 8,
+   "mean_delta": -0.136,
+   "worse_share": 0.625
+  },
+  "question": {
+   "n": 8,
+   "mean_delta": -0.1823,
+   "worse_share": 0.875
+  },
+  "delivery": {
+   "n": 8,
+   "mean_delta": -0.0677,
+   "worse_share": 0.75
+  },
+  "total": {
+   "n": 8,
+   "mean_delta": -0.1596,
+   "worse_share": 1.0
+  }
+ },
+ "felt_disagreement_rate": {
+  "conditions": {
+   "delivery.change_recorded": 0.1016,
+   "delivery.checkable_artifacts": 0.2188,
+   "delivery.next_step": 0.0703,
+   "delivery.no_naked_claim": 0.0469,
+   "evidence.anchored": 0.1406,
+   "evidence.checked_first": 0.2188,
+   "evidence.inference_marked": 0.3438,
+   "evidence.no_invented_standard": 0.2109,
+   "phase.answers_turn_first": 0.1016,
+   "phase.in_scope": 0.3828,
+   "phase.no_act_on_question": 0.2891,
+   "phase.phase_named": 0.1094,
+   "question.no_needless_stall": 0.1172,
+   "question.no_self_checkable_question": 0.0078,
+   "question.stopped_at_gate": 0.1094,
+   "question.user_only_left": 0.2031
+  },
+  "dimensions": {
+   "phase": 0.4141,
+   "evidence": 0.4375,
+   "question": 0.1875,
+   "delivery": 0.3203
+  },
+  "total": 0.7344
+ },
+ "condition_summary": {
+  "phase.in_scope": {
+   "chosen_yes": 0.967,
+   "rejected_yes": 0.931,
+   "win_loss": "6/2",
+   "sign_test_p": 0.2891
+  },
+  "phase.no_act_on_question": {
+   "chosen_yes": 0.9,
+   "rejected_yes": 0.836,
+   "win_loss": "7/4",
+   "sign_test_p": 0.5488
+  },
+  "phase.answers_turn_first": {
+   "chosen_yes": 0.771,
+   "rejected_yes": 0.812,
+   "win_loss": "8/9",
+   "sign_test_p": 1.0
+  },
+  "phase.phase_named": {
+   "chosen_yes": 0.651,
+   "rejected_yes": 0.724,
+   "win_loss": "11/14",
+   "sign_test_p": 0.69
+  },
+  "evidence.anchored": {
+   "chosen_yes": 0.906,
+   "rejected_yes": 0.859,
+   "win_loss": "10/7",
+   "sign_test_p": 0.6291
+  },
+  "evidence.inference_marked": {
+   "chosen_yes": 0.778,
+   "rejected_yes": 0.711,
+   "win_loss": "15/13",
+   "sign_test_p": 0.8506
+  },
+  "evidence.checked_first": {
+   "chosen_yes": 0.854,
+   "rejected_yes": 0.806,
+   "win_loss": "13/9",
+   "sign_test_p": 0.5235
+  },
+  "evidence.no_invented_standard": {
+   "chosen_yes": 0.859,
+   "rejected_yes": 0.839,
+   "win_loss": "12/9",
+   "sign_test_p": 0.6636
+  },
+  "question.no_self_checkable_question": {
+   "chosen_yes": 1.0,
+   "rejected_yes": 0.995,
+   "win_loss": "1/0",
+   "sign_test_p": 1.0
+  },
+  "question.user_only_left": {
+   "chosen_yes": 0.989,
+   "rejected_yes": 0.952,
+   "win_loss": "7/0",
+   "sign_test_p": 0.0156
+  },
+  "question.stopped_at_gate": {
+   "chosen_yes": 0.895,
+   "rejected_yes": 0.667,
+   "win_loss": "5/2",
+   "sign_test_p": 0.4531
+  },
+  "question.no_needless_stall": {
+   "chosen_yes": 0.948,
+   "rejected_yes": 0.948,
+   "win_loss": "6/6",
+   "sign_test_p": 1.0
+  },
+  "delivery.checkable_artifacts": {
+   "chosen_yes": 0.812,
+   "rejected_yes": 0.833,
+   "win_loss": "9/12",
+   "sign_test_p": 0.6636
+  },
+  "delivery.change_recorded": {
+   "chosen_yes": 0.75,
+   "rejected_yes": 0.867,
+   "win_loss": "1/4",
+   "sign_test_p": 0.375
+  },
+  "delivery.no_naked_claim": {
+   "chosen_yes": 0.974,
+   "rejected_yes": 0.979,
+   "win_loss": "4/2",
+   "sign_test_p": 0.6875
+  },
+  "delivery.next_step": {
+   "chosen_yes": 0.708,
+   "rejected_yes": 0.755,
+   "win_loss": "11/11",
+   "sign_test_p": 1.0
+  }
+ }
+}
