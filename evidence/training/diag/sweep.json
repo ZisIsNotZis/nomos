@@ -1,0 +1,41 @@
+{
+  "split": "session-level, 18 held-out pairs / 9 sessions, seed 0",
+  "epochs": 1.5,
+  "pairs_per_step": 4,
+  "baseline_original_run": {
+    "lr": 5e-05,
+    "beta": 0.1,
+    "steps": 76,
+    "val_reward_margin": -0.00962,
+    "note": "step 24 / 32 reward margin -0.14397 / -0.08978 for the equal-budget comparison"
+  },
+  "runs": {
+    "lr1e-05_beta0.1": {
+      "lr": 1e-05,
+      "beta": 0.1,
+      "steps": 28,
+      "val_reward_margin": 0.00321,
+      "val_raw_margin": -14.46257,
+      "val_acc": 0.44444,
+      "val_dpo_loss": 0.69497
+    },
+    "lr5e-05_beta0.005": {
+      "lr": 5e-05,
+      "beta": 0.005,
+      "steps": 28,
+      "val_reward_margin": 0.00642,
+      "val_raw_margin": -13.2109,
+      "val_acc": 0.5,
+      "val_dpo_loss": 0.69023
+    },
+    "lr1e-05_beta0.005": {
+      "lr": 1e-05,
+      "beta": 0.005,
+      "steps": 28,
+      "val_reward_margin": 0.00115,
+      "val_raw_margin": -14.265,
+      "val_acc": 0.44444,
+      "val_dpo_loss": 0.69258
+    }
+  }
+}

@@ -1,12 +1,14 @@
 # DPO 训练：跑通了，但没有学会偏好
 
-类型：结果。所有者：主代理。上游：[计划](../docs/plan/plan.md) 第四、五步。数据：`data/pairs-stable-v2.jsonl`（91 对）。
+类型：结果。所有者：主代理。上游：[计划](../docs/plan/plan.md) 第四、五步。数据：`data/pairs-stable-v2.jsonl`（91 对）。诊断：[训练诊断](training-diagnosis.md)。
 
 ## 结论
 
 QLoRA DPO 在 Qwen3.5-2B 上跑完 76 步，loss 全程有限、LoRA 梯度确实接在计算图上，但**这一版没有把偏好学进去**：留出集上 chosen 与 rejected 的隐式准确率 0.444（18 对里 8 对 chosen 得分更高），训练前后都低于 0.5；训练集上 margin 改善了 1.17 nat，留出集上反而退化了 0.10 nat，这是在小样本上记住了 direction 之外的噪声，不是学到偏好。按 [计划](../docs/plan/plan.md) 第五步的验收"证明的是数学上跑通了，不是学会了"，**数学跑通这一条成立，学会这一条不成立**。
 
 按 [设计](../docs/method/design.md) 第 7 节的停止规则，训练本来被评委尺子分不开两个已知水平挡住；这次是硬预算内的可行性验证，不是"DPO 能让法进权重"的证据。
+
+**诊断已完成**：[training-diagnosis.md](training-diagnosis.md) 逐 token 核对了 prompt 掩码（正确排除）、chosen/rejected 顺序与截断（无调换、无截断）、手算 DPO loss（差 3.3e-6），三项都干净；失败在目标尺度——**求和 margin 让 β=0.1 等效逐 token β≈15–35，logsigmoid 饱和**。本文下面的 76 步数字继续有效，没有数字被取代。
 
 ## 硬件与内存
 
@@ -139,7 +141,7 @@ python3 scripts/eval_ppl.py
 
 ## 局限
 
-1. **76 步、73 对**：这个规模只能回答"管道通不通"。偏好没学到，lr 5e-5 对每对 10² 量级的 margin 偏高，下一步该先扫 lr（1e-5 / 2e-5）与 beta，再谈学没学会。
+1. **76 步、73 对**：这个规模只能回答"管道通不通"。偏好没学到，原因已由 [训练诊断](training-diagnosis.md) 定位：求和 margin 使 β 等效过大、目标饱和；同样的 28 步预算下 lr 降到 1e-5 能把留出 reward margin 从约 −0.12 推到 +0.003，但幅度仍在噪声量级。
 2. **39 对没有动作差信号**：两侧签名都空、跨条件相同，它们只教"这批文本像什么"。
 3. **chosen/rejected 是否被调换无法从文件证明**，只能证明 prompt 同源、两侧不同（见上）。
 4. **本模型的 hybrid 线性注意力走的是参考实现**（`chunk_gated_delta_rule` 缺 `flash-linear-attention`），所以 384.8 s / 76 步是偏慢的上界；装 `flash-linear-attention` 与 `causal_conv1d` 会更快，未验证提速幅度。

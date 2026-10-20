@@ -291,6 +291,11 @@ def main():
     parser.add_argument("--eval-every", type=int, default=5)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--limit", type=int, default=0, help="smoke run: cap training pairs")
+    parser.add_argument(
+        "--skip-train-eval",
+        action="store_true",
+        help="sweep runs: skip the final 73-pair train evaluation, keep the held-out one",
+    )
     parser.add_argument("--out-dir", default=OUT_DIR)
     args = parser.parse_args()
 
@@ -489,8 +494,14 @@ def main():
     peak_reserved = torch.cuda.max_memory_reserved() / 2**30
 
     final_val = evaluate(model, tokenizer, [r for r, _ in val_encoded], max_length, args.beta)
-    final_train = evaluate(model, tokenizer, [r for r, _ in encoded], max_length, args.beta)
+    final_train = (
+        evaluate(model, tokenizer, [r for r, _ in encoded], max_length, args.beta)
+        if not args.skip_train_eval
+        else None
+    )
     for name, part in (("val", final_val), ("train", final_train)):
+        if part is None:
+            continue
         log(
             {
                 "type": "final_eval",
@@ -526,8 +537,12 @@ def main():
         }
     )
     totals = {
-        "train": {k: final_train[k] for k in ("n", "dpo_loss", "margin", "acc", "reward_margin")},
         "val": {k: final_val[k] for k in ("n", "dpo_loss", "margin", "acc", "reward_margin")},
+        "train": (
+            {k: final_train[k] for k in ("n", "dpo_loss", "margin", "acc", "reward_margin")}
+            if final_train
+            else None
+        ),
         "peak_allocated_gib": round(peak_alloc, 2),
         "peak_reserved_gib": round(peak_reserved, 2),
         "steps": step,

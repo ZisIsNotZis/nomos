@@ -1,0 +1,75 @@
+Loading weights:   0%|          | 0/617 [00:00<?, ?it/s]Loading weights:   0%|          | 1/617 [00:00<01:29,  6.85it/s]Loading weights:   4%|▎         | 22/617 [00:00<00:05, 106.89it/s]Loading weights:  12%|█▏        | 71/617 [00:00<00:02, 264.98it/s]Loading weights:  19%|█▉        | 120/617 [00:00<00:01, 347.63it/s]Loading weights:  29%|██▉       | 178/617 [00:00<00:01, 427.95it/s]Loading weights:  38%|███▊      | 234/617 [00:00<00:00, 464.47it/s]Loading weights:  47%|████▋     | 290/617 [00:00<00:00, 491.83it/s]Loading weights:  62%|██████▏   | 382/617 [00:00<00:00, 623.91it/s]Loading weights:  87%|████████▋ | 538/617 [00:00<00:00, 909.86it/s]Loading weights: 100%|██████████| 617/617 [00:01<00:00, 606.26it/s]
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+{
+  "beta": 0.1,
+  "max_length": 1280,
+  "pair": "SIT085",
+  "sides": {
+    "chosen": {
+      "prompt_tokens": 799,
+      "completion_tokens": 186,
+      "completion_logp": -718.6090698242188,
+      "per_token_logp": -3.8634896227108535,
+      "ref_completion_logp": -721.6453857421875,
+      "prompt_plus_completion_logp": -2945.6279296875
+    },
+    "rejected": {
+      "prompt_tokens": 799,
+      "completion_tokens": 185,
+      "completion_logp": -459.383544921875,
+      "per_token_logp": -2.483154296875,
+      "ref_completion_logp": -463.99066162109375,
+      "prompt_plus_completion_logp": -2686.40234375
+    }
+  },
+  "pipeline": {
+    "scored_tokens_per_side": 186,
+    "policy_chosen": -718.93603515625,
+    "policy_rejected": -458.6903076171875,
+    "ref_chosen": -721.6735229492188,
+    "ref_rejected": -463.1285400390625,
+    "logratio_chosen": 2.73748779296875,
+    "logratio_rejected": 4.438232421875,
+    "hand_loss": 0.7817957280772673,
+    "dpo_step_loss": 0.7817990779876709,
+    "loss_abs_diff": 3.3499104036271987e-06,
+    "logp_abs_diff_vs_hand": [
+      0.32696533203125,
+      0.6932373046875
+    ],
+    "raw_margin": -260.2457275390625,
+    "raw_margin_per_token": -1.4029419274342991,
+    "reward_margin": -0.170074462890625
+  },
+  "batch_order": {
+    "logged_index": [
+      -719.7915649414062,
+      -458.8373107910156,
+      -308.73809814453125,
+      -265.887939453125
+    ],
+    "recomputed_single": {
+      "0:SIT085:chosen": -718.6090698242188,
+      "1:SIT085:rejected": -459.383544921875,
+      "2:SIT014:chosen": -308.9110107421875,
+      "3:SIT014:rejected": -265.8671569824219
+    },
+    "max_abs_diff": 1.1824951171875,
+    "pol_c_index0": -719.7915649414062,
+    "pol_r_index_n": -308.73809814453125,
+    "paired_margin": -411.053466796875
+  },
+  "logged_val_pair": {
+    "chosen_logp": -718.3406982421875,
+    "rejected_logp": -457.4070739746094,
+    "ref_chosen_logp": -721.9719848632812,
+    "ref_rejected_logp": -463.8028869628906,
+    "reproduced_abs_diff": [
+      0.5953369140625,
+      1.283233642578125,
+      0.2984619140625,
+      0.674346923828125
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "val": {
+    "n": 18,
+    "dpo_loss": 0.6925820708274841,
+    "margin": -14.264997482299805,
+    "acc": 0.4444444477558136,
+    "reward_margin": 0.001148055773228407
+  },
+  "train": null,
+  "peak_allocated_gib": 7.83,
+  "peak_reserved_gib": 17.31,
+  "steps": 28,
+  "max_length": 1280,
+  "token_stats": {
+    "prompt": {
+      "p50": 494,
+      "p95": 874,
+      "max": 930,
+      "mean": 503.9
+    },
+    "chosen": {
+      "p50": 116,
+      "p95": 187,
+      "max": 347,
+      "mean": 113.7
+    },
+    "rejected": {
+      "p50": 122,
+      "p95": 187,
+      "max": 354,
+      "mean": 113.6
+    },
+    "prompt_plus_max": {
+      "p50": 631,
+      "p95": 1031,
+      "max": 1205,
+      "mean": 631.3
+    }
+  }
+}

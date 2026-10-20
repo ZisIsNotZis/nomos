@@ -1,0 +1,48 @@
+Loading weights:   0%|          | 0/617 [00:00<?, ?it/s]Loading weights:   0%|          | 1/617 [00:00<01:31,  6.70it/s]Loading weights:   4%|▍         | 25/617 [00:00<00:04, 119.78it/s]Loading weights:  13%|█▎        | 78/617 [00:00<00:01, 286.16it/s]Loading weights:  21%|██▏       | 132/617 [00:00<00:01, 373.01it/s]Loading weights:  30%|██▉       | 184/617 [00:00<00:01, 419.96it/s]Loading weights:  38%|███▊      | 235/617 [00:00<00:00, 447.77it/s]Loading weights:  47%|████▋     | 287/617 [00:00<00:00, 469.25it/s]Loading weights:  59%|█████▉    | 364/617 [00:00<00:00, 561.65it/s]Loading weights:  80%|████████  | 494/617 [00:00<00:00, 786.47it/s]Loading weights: 100%|██████████| 617/617 [00:01<00:00, 584.82it/s]
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+/home/z/.venv/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1548: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+/home/z/.venv/lib/python3.12/site-packages/torch/utils/checkpoint.py:242: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  check_backward_validity(args)
+{
+  "val": {
+    "n": 18,
+    "dpo_loss": 0.6925820708274841,
+    "margin": -14.264997482299805,
+    "acc": 0.4444444477558136,
+    "reward_margin": 0.001148055773228407
+  },
+  "train": null,
+  "peak_allocated_gib": 7.83,
+  "peak_reserved_gib": 17.31,
+  "steps": 28,
+  "max_length": 1280,
+  "token_stats": {
+    "prompt": {
+      "p50": 494,
+      "p95": 874,
+      "max": 930,
+      "mean": 503.9
+    },
+    "chosen": {
+      "p50": 116,
+      "p95": 187,
+      "max": 347,
+      "mean": 113.7
+    },
+    "rejected": {
+      "p50": 122,
+      "p95": 187,
+      "max": 354,
+      "mean": 113.6
+    },
+    "prompt_plus_max": {
+      "p50": 631,
+      "p95": 1031,
+      "max": 1205,
+      "mean": 631.3
+    }
+  }
+}
