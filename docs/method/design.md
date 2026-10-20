@@ -1,6 +1,6 @@
 # 设计
 
-类型：方法。所有者：主代理。上游：`/home/z/vibe/AGENTS.yaml`（冻结件见 `constitution/`）。
+类型：方法。所有者：主代理。上游：本工作区 `agent-policy` 仓库里的 `AGENTS.yaml`（冻结件见 `constitution/`）。
 
 ## 1 主张
 

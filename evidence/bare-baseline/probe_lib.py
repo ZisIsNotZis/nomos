@@ -11,7 +11,9 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
-AGENTS_MD = Path("/home/z/vibe/AGENTS.md")
+# The law lives in the workspace's agent-policy submodule; the run records under
+# evidence/ pin the sha256 they actually used, so reruns against a newer law are honest.
+AGENTS_MD = REPO.parent / "agent-policy" / "AGENTS.md"
 ENDPOINT = "https://api.deepseek.com/v1/chat/completions"
 MODEL = "deepseek-flash"  # exact id from GET /v1/models; operated with thinking disabled
 
