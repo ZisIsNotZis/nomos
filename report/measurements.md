@@ -11,12 +11,13 @@
 
 ## 双答样本
 
-- 183 条处境各两次回答（带法 / 不带法），其中 **45% 两条实质不同**。
-- 证据：`data/pairs.jsonl`、`evidence/slice-contrast/answers.jsonl`。
+- 183 条处境各两次回答（带法 / 不带法），落 `data/pairs.jsonl`；筛掉两侧同动作 6 条与坏件 3 条后，**174 条**入账，落 `data/pairs-filtered.jsonl`。判据、逐条丢弃与覆盖计数见 [数据质量](data-quality.md)。
+- 早先 20 条处境的对照探针里，两条回答实质不同的 9/20 = **45%**；证据：`evidence/bare-baseline/analyse.py`。
 
 ## 法的覆盖
 
 - 叶子节点 264；可训练 175，不可训练 89（工具/宿主绑定 28，概念与定义 61）；两可 32。
+- 覆盖计数与标注：见 [数据质量](data-quality.md)，数据落 `data/coverage.json`、`data/coverage-counts.json`。
 - 证据：`constitution/nodes.json`，重算 `python3 constitution/build_nodes.py`。
 
 ## 冲突审计
@@ -41,4 +42,4 @@
 
 ## 花费
 
-- 全部 API 调用合计 954 次、约 ¥2.72；单价与逐次 usage 在 `evidence/*/calls.jsonl`。
+- 全部 API 调用合计 1504 次、约 ¥4.37；其中 550 次、¥1.65 是覆盖标注（`evidence/coverage/`、`evidence/coverage-cap8/`、`evidence/coverage-uncapped/`）。单价与逐次 usage 在 `evidence/*/calls.jsonl`。

@@ -22,8 +22,8 @@
 - 同一处境问两次：DeepSeek 带 `AGENTS.md`，与 DeepSeek 不带。前者是 chosen，后者是 rejected。
 - prompt **不含法条原文**；评测时上下文里也不放。这一行是整个实验的成立条件。
 - 每条处境声明它想覆盖哪些规则；覆盖由程序计数，分布允许不平衡。
-- 现有规模：242 条合格处境（来自 51 个会话），其中 183 条已生成两条回答，落 `data/pairs.jsonl`。
-- 两条回答完全相同或坏件（截断、复读、回显）的对不入账，丢了多少记进数据质量报告。
+- 现有规模：242 条合格处境（来自 51 个会话），其中 183 条已生成两条回答，落 `data/pairs.jsonl`；筛掉两侧同动作与坏件后 **174 条**入账，落 `data/pairs-filtered.jsonl`。
+- 两条回答完全相同或坏件（截断、复读、回显）的对不入账；判据、逐条丢弃与覆盖计数见 [数据质量](../../report/data-quality.md)，标注落 `data/coverage.json`，计数落 `data/coverage-counts.json`。
 
 ## 4 rubric
 

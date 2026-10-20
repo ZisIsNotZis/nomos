@@ -1,0 +1,1508 @@
+{
+ "SIT001": [
+  "attention.phases.turn",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.understand",
+  "intent.user_model.user_language",
+  "resources.split.handoff",
+  "resources.split.dispatch_identity",
+  "proof.review.fresh_reviewer"
+ ],
+ "SIT002": [
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "intent.scope.derive_non_goals",
+  "change.write_through",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only",
+  "change.entries.current_fact"
+ ],
+ "SIT004": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT005": [
+  "attention.phases.turn",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.reconcile",
+  "intent.user_model.user_language",
+  "precedence.verify_the_fact",
+  "resources.environment.local_config_first",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT006": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.interrupt",
+  "proof.process.steerable",
+  "proof.execution.anomaly",
+  "laws.self_improvement.signal",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT007": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.divergence",
+  "change.upkeep.render",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT008": [
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only",
+  "attention.communication.stay_on_facts",
+  "change.entries.fabricated",
+  "practice.research.evaluation_integrity"
+ ],
+ "SIT009": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.round",
+  "change.upkeep.cut_repetition",
+  "resources.efficiency.read_once",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT010": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.understand",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only",
+  "change.write_through",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.decisions.plan_ownership"
+ ],
+ "SIT011": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.communication.conclusion_only",
+  "change.upkeep.doc_first",
+  "change.upkeep.cut_repetition",
+  "attention.communication.prose"
+ ],
+ "SIT012": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.act_now",
+  "change.write_through"
+ ],
+ "SIT013": [
+  "intent.user_model.understand",
+  "intent.decisions.plan_ownership",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.risk.high_risk",
+  "resources.environment.local_config_first"
+ ],
+ "SIT014": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.communication.plain_name",
+  "attention.phases.discussion.divergence"
+ ],
+ "SIT015": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.act_now",
+  "attention.phases.turn",
+  "proof.process.steerable",
+  "attention.communication.conclusion_only",
+  "attention.communication.label_confidence"
+ ],
+ "SIT016": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.round",
+  "proof.execution.anomaly",
+  "laws.self_improvement.signal",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT017": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "resources.efficiency.read_once",
+  "precedence.untrusted_input",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "SIT018": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT019": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "resources.efficiency.read_once",
+  "resources.efficiency.layout_first",
+  "attention.communication.conclusion_only",
+  "attention.phases.discussion.mark_uncertainty",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "SIT020": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT021": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only",
+  "change.write_through"
+ ],
+ "SIT022": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.brainstorm",
+  "attention.communication.conclusion_only",
+  "attention.communication.prose",
+  "intent.user_model.user_language",
+  "attention.phases.turn"
+ ],
+ "SIT023": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.user_model.user_language"
+ ],
+ "SIT024": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.brainstorm",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "intent.decisions.design_options",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT025": [
+  "intent.user_model.understand",
+  "intent.user_model.reconcile",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.act_now",
+  "change.write_through",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT026": [
+  "intent.user_model.understand",
+  "intent.decisions.design_options",
+  "intent.decisions.consequential",
+  "attention.phases.discussion.brainstorm",
+  "attention.phases.discussion.act_now",
+  "intent.risk.high_risk",
+  "resources.environment.track_or_ignore",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT027": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.wait_for_yes",
+  "change.write_through",
+  "intent.user_model.understand"
+ ],
+ "SIT028": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "attention.communication.conclusion_only",
+  "attention.communication.prose",
+  "intent.user_model.user_language",
+  "attention.communication.extraction",
+  "proof.process.context_pressure",
+  "attention.phases.discussion.divergence"
+ ],
+ "SIT029": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round"
+ ],
+ "SIT030": [
+  "precedence.own_inference",
+  "attention.communication.label_confidence",
+  "attention.phases.discussion.mark_uncertainty",
+  "attention.communication.conclusion_only",
+  "intent.user_model.understand"
+ ],
+ "SIT031": [
+  "attention.phases.turn",
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.act_now",
+  "attention.communication.conclusion_only",
+  "change.record.safe_point",
+  "proof.process.steerable"
+ ],
+ "SIT032": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.brainstorm",
+  "attention.phases.discussion.round",
+  "intent.decisions.design_options",
+  "intent.user_model.unanswerable_only",
+  "attention.communication.conclusion_only",
+  "intent.scope.trace_requirements",
+  "attention.phases.discussion.divergence"
+ ],
+ "SIT033": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "intent.roles.main_agent",
+  "proof.process.steerable",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "SIT034": [
+  "attention.phases.turn",
+  "attention.phases.discussion.brainstorm",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.understand",
+  "intent.decisions.design_options",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT035": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "intent.roles.main_agent",
+  "attention.phases.discussion.wait_for_yes",
+  "proof.process.steerable",
+  "resources.effort.fresh_context"
+ ],
+ "SIT036": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "change.upkeep.cut_repetition",
+  "change.upkeep.doc_first",
+  "attention.communication.conclusion_only",
+  "intent.user_model.reconcile",
+  "change.write_through"
+ ],
+ "SIT037": [
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "change.write_through",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT038": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.act_now",
+  "attention.phases.turn",
+  "proof.execution.anomaly",
+  "attention.communication.report_only_effect"
+ ],
+ "SIT039": [
+  "attention.phases.turn",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.advance.plan_gate",
+  "attention.delivery.milestone_list",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only",
+  "proof.review.fresh_reviewer"
+ ],
+ "SIT040": [
+  "attention.phases.turn",
+  "attention.phases.discussion.brainstorm",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.advance.plan_gate",
+  "intent.user_model.understand",
+  "intent.decisions.question_frontier",
+  "change.write_through"
+ ],
+ "SIT041": [
+  "attention.phases.turn",
+  "attention.phases.advance.plan_gate",
+  "attention.delivery.milestone_list",
+  "attention.phases.advance.silent_advance",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "SIT042": [
+  "resources.environment.regeneration_cost",
+  "resources.environment.track_or_ignore",
+  "change.record.keep_evidence",
+  "change.record.transient",
+  "resources.environment.artefacts_home",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "change.record.durability"
+ ],
+ "SIT043": [
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.decisions.design_options",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT044": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.communication.conclusion_only",
+  "change.upkeep.doc_first",
+  "precedence.own_inference"
+ ],
+ "SIT045": [
+  "attention.phases.discussion.interrupt",
+  "proof.process.steerable",
+  "change.record.checkpoint",
+  "resources.scheduling.queue_behind"
+ ],
+ "SIT046": [
+  "change.entries.current_fact",
+  "change.upkeep.cut_repetition",
+  "change.upkeep.doc_first",
+  "change.upkeep.ops",
+  "change.upkeep.render",
+  "change.record.safe_point",
+  "attention.phases.discussion.round",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT047": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "precedence.own_inference",
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only",
+  "attention.communication.label_confidence"
+ ],
+ "SIT048": [
+  "attention.phases.discussion.interrupt",
+  "proof.process.steerable",
+  "proof.execution.anomaly",
+  "laws.self_improvement.signal",
+  "attention.phases.turn",
+  "proof.process.context_pressure"
+ ],
+ "SIT049": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "change.write_through",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT050": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "precedence.untrusted_input",
+  "intent.risk.secrets",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT051": [
+  "attention.phases.discussion.interrupt",
+  "proof.process.steerable",
+  "change.record.safe_point",
+  "attention.phases.turn",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT052": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "change.upkeep.doc_first",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "proof.execution.bind_to_revision"
+ ],
+ "SIT053": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.understand",
+  "intent.decisions.plan_ownership",
+  "resources.environment.local_config_first",
+  "resources.efficiency.read_once",
+  "proof.process.steerable",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT054": [
+  "attention.phases.turn",
+  "attention.phases.discussion.brainstorm",
+  "intent.user_model.unanswerable_only",
+  "intent.decisions.design_options",
+  "intent.decisions.question_frontier",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only",
+  "intent.user_model.user_language"
+ ],
+ "SIT055": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.brainstorm",
+  "intent.user_model.understand",
+  "intent.user_model.user_language",
+  "proof.review.fresh_reviewer",
+  "attention.delivery.protect_willingness",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT056": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.interrupt",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT057": [
+  "precedence.verify_the_fact",
+  "precedence.trust_is_earned",
+  "precedence.watch_for_poison",
+  "precedence.own_inference",
+  "attention.phases.discussion.act_now",
+  "attention.communication.conclusion_only",
+  "attention.communication.label_confidence",
+  "resources.efficiency.read_once"
+ ],
+ "SIT058": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.act_now",
+  "attention.phases.turn",
+  "intent.user_model.user_language"
+ ],
+ "SIT059": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.round",
+  "proof.process.steerable",
+  "change.record.safe_point"
+ ],
+ "SIT060": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "intent.roles.main_agent",
+  "attention.phases.discussion.interrupt",
+  "proof.process.steerable",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT061": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.communication.conclusion_only",
+  "attention.communication.report_only_effect"
+ ],
+ "SIT062": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.understand",
+  "intent.user_model.reconcile",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT063": [
+  "intent.user_model.reconcile",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT064": [
+  "practice.diagnosis.reproduce_minimize",
+  "practice.diagnosis.hypothesis_probe",
+  "proof.execution.anomaly",
+  "attention.phases.discussion.act_now",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT065": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "intent.roles.main_agent",
+  "attention.phases.discussion.wait_for_yes",
+  "change.write_through",
+  "change.record.safe_point",
+  "attention.communication.conclusion_only",
+  "attention.phases.discussion.divergence"
+ ],
+ "SIT066": [
+  "intent.user_model.user_language",
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT067": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "change.write_through",
+  "attention.communication.conclusion_only",
+  "attention.phases.discussion.divergence"
+ ],
+ "SIT068": [
+  "intent.user_model.user_language",
+  "attention.communication.plain_name",
+  "change.entries.no_manual_wrap",
+  "change.upkeep.rule_form",
+  "resources.efficiency.read_once",
+  "attention.phases.discussion.act_now",
+  "attention.communication.conclusion_only",
+  "change.upkeep.doc_first"
+ ],
+ "SIT069": [
+  "intent.risk.high_risk",
+  "intent.risk.preserve_work",
+  "intent.risk.covered_once",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "proof.execution.anomaly"
+ ],
+ "SIT070": [
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.act_now",
+  "intent.decisions.design_options",
+  "attention.communication.conclusion_only",
+  "attention.communication.plain_name"
+ ],
+ "SIT071": [
+  "intent.user_model.understand",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "practice.design.abstraction_cost",
+  "resources.split.logical_level",
+  "intent.decisions.design_options",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT072": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.understand",
+  "attention.communication.conclusion_only",
+  "proof.execution.bind_to_revision"
+ ],
+ "SIT073": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.scope.trace_requirements",
+  "attention.communication.conclusion_only",
+  "attention.communication.stay_on_facts",
+  "intent.decisions.hold_the_goal"
+ ],
+ "SIT074": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "proof.execution.anomaly",
+  "laws.self_improvement.signal",
+  "practice.diagnosis.hypothesis_probe"
+ ],
+ "SIT076": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "precedence.verify_the_fact",
+  "change.upkeep.cut_repetition",
+  "change.upkeep.doc_first",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT077": [
+  "intent.user_model.understand",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.communication.conclusion_only",
+  "attention.communication.label_confidence",
+  "proof.execution.anomaly",
+  "laws.self_improvement.signal"
+ ],
+ "SIT078": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.advance.plan_gate",
+  "attention.phases.discussion.interrupt",
+  "proof.process.steerable",
+  "attention.phases.discussion.announce_long",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT079": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.advance.plan_gate",
+  "attention.phases.advance.silent_advance",
+  "attention.phases.discussion.interrupt",
+  "proof.process.steerable",
+  "change.record.checkpoint"
+ ],
+ "SIT080": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.reconcile",
+  "attention.phases.discussion.mark_uncertainty",
+  "intent.decisions.consequential",
+  "attention.communication.conclusion_only",
+  "intent.user_model.user_language"
+ ],
+ "SIT082": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.act_now",
+  "laws.falsifiable.fail_loud"
+ ],
+ "SIT083": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only",
+  "attention.delivery.vertical_slice",
+  "attention.phases.turn"
+ ],
+ "SIT084": [
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.communication.conclusion_only",
+  "attention.communication.label_confidence",
+  "precedence.own_inference",
+  "attention.phases.discussion.act_now"
+ ],
+ "SIT085": [
+  "attention.phases.advance.silent_advance",
+  "attention.phases.advance.unit_size",
+  "intent.decisions.replan_lower",
+  "intent.decisions.hold_the_goal",
+  "intent.user_model.unanswerable_only",
+  "intent.user_model.understand",
+  "change.upkeep.render",
+  "change.upkeep.cut_repetition"
+ ],
+ "SIT086": [
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.divergence",
+  "resources.efficiency.read_once",
+  "intent.decisions.substitute_design"
+ ],
+ "SIT087": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.user_model.understand",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT088": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.understand",
+  "attention.phases.turn",
+  "intent.roles.main_agent"
+ ],
+ "SIT089": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence",
+  "intent.roles.main_agent",
+  "resources.scheduling.start_early",
+  "attention.communication.conclusion_only",
+  "intent.risk.high_risk"
+ ],
+ "SIT090": [
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.round",
+  "intent.decisions.design_options",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT091": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.round",
+  "intent.roles.main_agent",
+  "attention.phases.advance.review_scope",
+  "attention.communication.conclusion_only",
+  "attention.phases.discussion.interrupt"
+ ],
+ "SIT092": [
+  "intent.roles.main_agent",
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "change.record.safe_point",
+  "change.record.checkpoint",
+  "change.record.durability",
+  "change.write_through",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT093": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.communication.conclusion_only",
+  "intent.user_model.understand",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "SIT094": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "precedence.own_inference",
+  "precedence.verify_the_fact",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.mark_uncertainty",
+  "proof.process.change_hypothesis",
+  "resources.environment.diagnose_network"
+ ],
+ "SIT095": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.divergence",
+  "intent.roles.main_agent",
+  "proof.review.fresh_reviewer",
+  "proof.review.reviewer_contract",
+  "proof.review.scoped_review",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT096": [
+  "laws.falsifiable.fail_loud",
+  "precedence.own_inference",
+  "attention.communication.label_confidence",
+  "change.upkeep.doc_first",
+  "laws.self_improvement.signal",
+  "attention.phases.discussion.act_now"
+ ],
+ "SIT097": [
+  "attention.phases.discussion.act_now",
+  "proof.process.steerable",
+  "resources.scheduling.queue_behind",
+  "attention.phases.discussion.wait_for_yes",
+  "proof.process.context_pressure"
+ ],
+ "SIT098": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT099": [
+  "attention.phases.turn",
+  "attention.phases.discussion.brainstorm",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.understand",
+  "intent.decisions.design_options",
+  "intent.scope.derive_non_goals",
+  "intent.decisions.consequential",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT100": [
+  "intent.user_model.understand",
+  "precedence.verify_the_fact",
+  "precedence.own_inference",
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.risk.preserve_work"
+ ],
+ "SIT101": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.brainstorm",
+  "intent.user_model.user_language",
+  "attention.communication.extraction",
+  "resources.efficiency.read_once",
+  "attention.phases.discussion.act_now",
+  "attention.communication.conclusion_only",
+  "precedence.own_inference"
+ ],
+ "SIT102": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "intent.user_model.unanswerable_only",
+  "change.write_through",
+  "resources.environment.artefacts_home",
+  "attention.communication.conclusion_only",
+  "proof.process.think_first"
+ ],
+ "SIT103": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only",
+  "proof.process.context_pressure",
+  "change.record.safe_point"
+ ],
+ "SIT104": [
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.decisions.design_options",
+  "attention.communication.conclusion_only",
+  "attention.communication.plain_name",
+  "change.write_through"
+ ],
+ "SIT105": [
+  "intent.risk.high_risk",
+  "intent.risk.preserve_work",
+  "change.upkeep.migrate",
+  "change.record.safe_point",
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "change.record.wind_down",
+  "change.entries.current_fact"
+ ],
+ "SIT106": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "resources.efficiency.layout_first",
+  "resources.split.handoff",
+  "resources.split.dispatch_identity",
+  "resources.split.dispatch_inheritance",
+  "resources.split.coverage_and_interfaces"
+ ],
+ "SIT107": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.round",
+  "intent.decisions.plan_ownership",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT108": [
+  "attention.phases.turn",
+  "attention.phases.advance.plan_gate",
+  "attention.phases.advance.silent_advance",
+  "attention.phases.advance.unit_size",
+  "attention.delivery.vertical_slice",
+  "attention.delivery.protect_willingness",
+  "proof.execution.bind_to_revision",
+  "proof.process.steerable"
+ ],
+ "SIT109": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.interrupt",
+  "proof.process.steerable"
+ ],
+ "SIT110": [
+  "intent.user_model.understand",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.decisions.substitute_design",
+  "attention.communication.conclusion_only",
+  "attention.phases.discussion.act_now"
+ ],
+ "SIT111": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.turn",
+  "attention.communication.conclusion_only",
+  "attention.communication.report_only_effect",
+  "change.record.checkpoint",
+  "proof.process.steerable"
+ ],
+ "SIT112": [
+  "intent.user_model.understand",
+  "intent.decisions.plan_ownership",
+  "intent.roles.main_agent",
+  "resources.split.handoff",
+  "resources.split.dispatch_identity",
+  "resources.split.dispatch_inheritance",
+  "proof.review.fresh_reviewer",
+  "change.write_through"
+ ],
+ "SIT113": [
+  "resources.scheduling.finite_concurrency",
+  "resources.scheduling.queue_behind",
+  "attention.phases.discussion.interrupt",
+  "proof.process.steerable",
+  "attention.phases.discussion.act_now",
+  "resources.effort.budget"
+ ],
+ "SIT114": [
+  "intent.user_model.user_language",
+  "intent.user_model.reconcile",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT115": [
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT116": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.user_model.understand",
+  "laws.self_improvement.signal",
+  "attention.communication.report_only_effect",
+  "proof.execution.anomaly"
+ ],
+ "SIT117": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "attention.communication.conclusion_only",
+  "change.entries.fabricated",
+  "attention.communication.stay_on_facts",
+  "attention.phases.discussion.divergence"
+ ],
+ "SIT118": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.round",
+  "attention.communication.conclusion_only",
+  "resources.efficiency.read_once",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.extraction"
+ ],
+ "SIT119": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "laws.self_improvement.signal",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT121": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.understand",
+  "attention.communication.conclusion_only",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "SIT122": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only",
+  "proof.execution.anomaly",
+  "laws.self_improvement.signal",
+  "attention.phases.turn"
+ ],
+ "SIT123": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.interrupt",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT124": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.understand",
+  "intent.scope.derive_non_goals",
+  "attention.delivery.vertical_slice",
+  "attention.delivery.milestone_list",
+  "change.write_through",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT125": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.act_now",
+  "proof.execution.anomaly",
+  "laws.self_improvement.signal",
+  "attention.communication.conclusion_only",
+  "proof.process.steerable"
+ ],
+ "SIT126": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only",
+  "attention.communication.prose",
+  "attention.communication.extraction",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.divergence",
+  "change.entries.no_manual_wrap"
+ ],
+ "SIT127": [
+  "attention.phases.turn",
+  "attention.phases.discussion.interrupt",
+  "proof.process.context_pressure",
+  "change.record.safe_point",
+  "attention.communication.conclusion_only",
+  "attention.communication.label_confidence",
+  "proof.process.steerable",
+  "attention.phases.discussion.act_now"
+ ],
+ "SIT128": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.roles.main_agent",
+  "attention.communication.conclusion_only",
+  "change.record.safe_point",
+  "proof.process.steerable"
+ ],
+ "SIT129": [
+  "attention.communication.conclusion_only",
+  "attention.communication.prose",
+  "attention.communication.match_user",
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.act_now",
+  "attention.communication.extraction",
+  "attention.communication.label_confidence",
+  "attention.communication.plain_name"
+ ],
+ "SIT130": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.round",
+  "intent.user_model.understand"
+ ],
+ "SIT131": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.round",
+  "resources.efficiency.read_once",
+  "attention.communication.conclusion_only",
+  "attention.communication.extraction",
+  "proof.execution.bind_to_revision",
+  "change.record.keep_evidence",
+  "attention.communication.plain_name"
+ ],
+ "SIT134": [
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.unanswerable_only",
+  "attention.phases.discussion.mark_uncertainty"
+ ],
+ "SIT135": [
+  "attention.phases.turn",
+  "attention.phases.advance.plan_gate",
+  "attention.phases.advance.silent_advance",
+  "intent.roles.main_agent",
+  "intent.roles.delegation",
+  "resources.split.handoff",
+  "resources.split.dispatch_identity",
+  "proof.process.steerable"
+ ],
+ "SIT136": [
+  "attention.phases.turn",
+  "attention.phases.discussion.brainstorm",
+  "intent.user_model.understand",
+  "intent.user_model.unanswerable_only",
+  "attention.communication.conclusion_only",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.act_now",
+  "intent.decisions.plan_ownership"
+ ],
+ "SIT137": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.strongest_cure",
+  "laws.self_improvement.placement",
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.round",
+  "practice.diagnosis.hypothesis_probe",
+  "proof.execution.anomaly"
+ ],
+ "SIT138": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.interrupt",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT139": [
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.plain_name",
+  "attention.communication.conclusion_only",
+  "attention.phases.turn"
+ ],
+ "SIT140": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "SIT141": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.brainstorm",
+  "attention.communication.conclusion_only",
+  "attention.communication.prose",
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "proof.review.scoped_review",
+  "attention.communication.label_confidence"
+ ],
+ "SIT142": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.advance.plan_gate",
+  "attention.delivery.gates_hold",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT143": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "laws.self_improvement.signal",
+  "precedence.verify_the_fact",
+  "intent.user_model.reconcile",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT145": [
+  "intent.user_model.understand",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.brainstorm",
+  "attention.phases.discussion.divergence",
+  "attention.communication.conclusion_only",
+  "attention.communication.prose",
+  "intent.objective.mechanism_triad",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "SIT146": [
+  "intent.roles.main_agent",
+  "intent.roles.delegation",
+  "resources.split.handoff",
+  "resources.split.dispatch_identity",
+  "resources.split.dispatch_inheritance",
+  "resources.split.dispatch_grant",
+  "proof.process.model_cost",
+  "attention.phases.turn"
+ ],
+ "SIT147": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.user_model.reconcile"
+ ],
+ "SIT148": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.turn",
+  "intent.roles.main_agent",
+  "proof.process.steerable",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.divergence"
+ ],
+ "SIT149": [
+  "attention.phases.turn",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.advance.plan_gate",
+  "attention.delivery.invent_no_gate",
+  "intent.user_model.reconcile",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now"
+ ],
+ "SIT150": [
+  "attention.phases.turn",
+  "attention.phases.advance.plan_gate",
+  "attention.phases.advance.silent_advance",
+  "attention.phases.advance.unit_size",
+  "intent.decisions.fixed_milestones",
+  "proof.process.think_first",
+  "proof.execution.bind_to_revision",
+  "attention.delivery.ship_at_gate"
+ ],
+ "SIT151": [
+  "attention.phases.turn",
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.act_now",
+  "attention.phases.advance.plan_gate",
+  "attention.delivery.milestone_list",
+  "attention.phases.advance.silent_advance",
+  "proof.process.steerable",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT152": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.advance.plan_gate",
+  "attention.delivery.milestone_list",
+  "intent.decisions.fixed_milestones",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.understand"
+ ],
+ "SIT153": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "change.write_through"
+ ],
+ "SIT154": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "intent.scope.derive_non_goals",
+  "attention.communication.conclusion_only",
+  "change.write_through"
+ ],
+ "SIT155": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.divergence"
+ ],
+ "SIT156": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "change.upkeep.cut_repetition",
+  "attention.communication.conclusion_only",
+  "intent.user_model.understand"
+ ],
+ "SIT157": [
+  "laws.falsifiable.fail_loud",
+  "precedence.own_inference",
+  "attention.communication.label_confidence",
+  "attention.phases.discussion.mark_uncertainty",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT158": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "proof.process.steerable",
+  "change.record.checkpoint",
+  "attention.communication.conclusion_only",
+  "intent.user_model.understand",
+  "proof.execution.anomaly"
+ ],
+ "SIT159": [
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.round",
+  "intent.user_model.understand",
+  "attention.communication.stay_on_facts",
+  "attention.communication.conclusion_only",
+  "laws.self_improvement.signal",
+  "precedence.own_inference",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "SIT160": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.communication.conclusion_only",
+  "change.upkeep.doc_first",
+  "intent.decisions.substitute_design"
+ ],
+ "SIT162": [
+  "practice.diagnosis.hypothesis_probe",
+  "practice.diagnosis.reproduce_minimize",
+  "proof.execution.anomaly",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "SIT163": [
+  "intent.user_model.understand",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.brainstorm",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only",
+  "attention.communication.extraction"
+ ],
+ "SIT164": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "change.upkeep.migrate_on_touch",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT165": [
+  "resources.environment.artefacts_home",
+  "change.record.transient",
+  "change.record.durability",
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "attention.phases.discussion.act_now",
+  "change.upkeep.migrate_on_touch",
+  "proof.execution.anomaly"
+ ],
+ "SIT166": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.act_now",
+  "proof.execution.anomaly",
+  "attention.communication.report_only_effect",
+  "laws.self_improvement.strongest_cure"
+ ],
+ "SIT167": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "intent.decisions.consequential",
+  "resources.split.coverage_and_interfaces",
+  "change.write_through",
+  "proof.process.think_first"
+ ],
+ "SIT168": [
+  "intent.user_model.user_language",
+  "attention.communication.plain_name",
+  "attention.communication.prose",
+  "attention.communication.conclusion_only",
+  "attention.communication.tldr",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.match_user"
+ ],
+ "SIT169": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.understand",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "SIT170": [
+  "intent.user_model.understand",
+  "intent.scope.commitment",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.delivery.vertical_slice",
+  "attention.delivery.protect_willingness",
+  "intent.decisions.consequential",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT171": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.divergence"
+ ],
+ "SIT172": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.brainstorm",
+  "attention.phases.discussion.divergence",
+  "attention.communication.conclusion_only",
+  "intent.user_model.understand",
+  "attention.phases.discussion.round"
+ ],
+ "SIT173": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.strongest_cure",
+  "intent.user_model.user_language",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.round",
+  "change.write_through"
+ ],
+ "SIT174": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.act_now",
+  "intent.risk.high_risk",
+  "attention.phases.discussion.wait_for_yes",
+  "proof.process.steerable"
+ ],
+ "SIT175": [
+  "intent.user_model.user_language",
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.consequential_only",
+  "attention.communication.conclusion_only",
+  "attention.communication.plain_name",
+  "intent.decisions.question_frontier"
+ ],
+ "SIT176": [
+  "attention.phases.discussion.interrupt",
+  "proof.process.steerable",
+  "change.record.safe_point",
+  "proof.process.context_pressure",
+  "attention.phases.turn",
+  "resources.scheduling.queue_behind"
+ ],
+ "SIT178": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.announce_long",
+  "change.write_through",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT179": [
+  "intent.user_model.user_language",
+  "intent.user_model.reconcile",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.round",
+  "precedence.verify_the_fact",
+  "resources.efficiency.read_once"
+ ],
+ "SIT180": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "proof.execution.anomaly",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.understand",
+  "proof.process.think_first"
+ ],
+ "SIT181": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.interrupt",
+  "intent.roles.main_agent",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.divergence"
+ ],
+ "SIT182": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.reconcile",
+  "attention.communication.conclusion_only"
+ ],
+ "SIT183": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.brainstorm",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.decisions.design_options",
+  "attention.communication.conclusion_only"
+ ]
+}

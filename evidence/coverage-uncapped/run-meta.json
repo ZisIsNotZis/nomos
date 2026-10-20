@@ -1,0 +1,13 @@
+{
+ "model": "deepseek-flash",
+ "endpoint": "https://api.deepseek.com/v1/chat/completions",
+ "temperature": 0.0,
+ "thinking": "disabled",
+ "max_tokens": 2000,
+ "max_tags": 0,
+ "system_message_sha256": "a8cc8a48c10bd4153e190817ab4ec6673b71927aefe55f7e21fa4ce6632254cd",
+ "rules_block_sha256": "58facf9111d539ecd62617e16dc7ac3cc68e870fa036799863a44fcdfaddf8b3",
+ "rules": 175,
+ "pairs_sha256": "d3dfff3125cd7fbad0ea767e4e8f52408dd0f0a663ffe93b6d7ffc534770f08f",
+ "started": "2026-10-20T06:42:45Z"
+}
