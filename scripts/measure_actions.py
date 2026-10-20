@@ -12,13 +12,16 @@ report/sft-measurement.md 的「口径」一节。
                与按处境重采样的区间，外加三个并列口径与一个分解：动作签名一致率（主指标）、
                文字层决策签名一致率（不看工具语法）、动作可比子集上的一致率（只有回答里
                真出现动作的处境），以及主指标变化里格式项与决策项各占多少。
-               只在两侧齐全时写终版输出。
+               只在全部处境两侧都生成齐全时写终版输出，并强制报出 n_pairs 与覆盖率。
+  --allow-partial-pairs 配 --analyse：生成还没跑满时也允许写终版，只在两侧已经齐全的处境子集上算，
+               输出里照样强制带 n_pairs 与覆盖率。默认关闭。
   --preliminary 同上，但只写 evidence/measure/preliminary.*，标 status=preliminary，绝不写终版路径。
   --check      假数据自检 X、区间与格式/决策分解，写 evidence/measure/selftest.json。
 
 用法：
   python3 scripts/measure_actions.py --generate
   python3 scripts/measure_actions.py --analyse
+  python3 scripts/measure_actions.py --analyse --allow-partial-pairs
   python3 scripts/measure_actions.py --analyse --preliminary
   python3 scripts/measure_actions.py --check
 """
@@ -61,6 +64,8 @@ MIN_REFERENCE_VOTES = 2  # 带法侧至少 2 条抽样给出同一签名，参�
 NEAR_CEILING_HEADROOM = 0.2  # 1 - base 小于这个值时报出 X 但标为接近满值
 # 动作可比子集少于这个处境数时只作参考：n 小时比例的区间宽到分不清「格式」与「决策」
 MIN_CONCLUSIVE_SITUATIONS = 30
+# 两侧齐全的可用处境（n_pairs）少于这个数时，本页任何数字只作方向参考，不当结论
+MIN_CONCLUSIVE_PAIRS = 60
 
 
 def load_module(name, path):
@@ -576,8 +581,8 @@ def bootstrap_decomposition(rows, seed):
     }
 
 
-def bootstrap_delta(rows, seed):
-    """配对自举的一致率差 Δ = post_mean - base_mean（重抽单位是处境）。"""
+def bootstrap_delta(rows, seed, keys=("base", "post")):
+    """配对自举的一致率差 Δ = 后一列 − 前一列（重抽单位是处境）。"""
     if len(rows) < 2:
         return None
     rng = random.Random(seed)
@@ -587,7 +592,7 @@ def bootstrap_delta(rows, seed):
         total = 0.0
         for _ in range(n):
             row = rows[rng.randrange(n)]  # 同一处境的两侧一起进来，差值才成对
-            total += row["post"] - row["base"]
+            total += row[keys[1]] - row[keys[0]]
         samples.append(total / n)
     return percentile_interval(samples)
 
@@ -682,6 +687,11 @@ def text_judgement(per_situation):
         "post_ci": bootstrap_mean(post_values, SEED + 13),
         "base_paired_mean": mean([row["base_text"] for row in paired]) if paired else None,
         "post_paired_mean": mean([row["post_text"] for row in paired]) if paired else None,
+        "delta": (
+            mean([row["post_text"] for row in paired]) - mean([row["base_text"] for row in paired])
+            if paired else None
+        ),
+        "delta_ci": bootstrap_delta(paired, SEED + 16, ("base_text", "post_text")) if paired else None,
         "bare_deepseek_mean": mean(bare),
         "bare_deepseek_ci": bootstrap_mean(bare, SEED + 14),
         "law_deepseek": 1.0,
@@ -696,6 +706,8 @@ def summarise(per_situation, situations_total):
     """把逐处境行汇总成终版或预备版的结果。X 用两侧都齐全的处境配对算。"""
     used = [row for row in per_situation if row["reference_usable"]]
     paired = [row for row in used if row["base"] is not None and row["post"] is not None]
+    # 两侧都生成齐全的处境数，与参照物是否可用无关：用来分开「生成没跑完」与「参照物定不下来」
+    both_complete = sum(1 for row in per_situation if row["base"] is not None and row["post"] is not None)
     base_paired = mean([row["base"] for row in paired])
     post_paired = mean([row["post"] for row in paired])
     headroom = None if base_paired is None else 1.0 - base_paired
@@ -728,6 +740,15 @@ def summarise(per_situation, situations_total):
         "situations_base_partial": sum(1 for row in per_situation if row[f"base_partial"]),
         "situations_post_complete": sum(1 for row in per_situation if row["post"] is not None),
         "situations_post_partial": sum(1 for row in per_situation if row[f"post_partial"]),
+        "situations_both_complete": both_complete,
+        "generation_complete": both_complete == situations_total,
+        "n_pairs": len(paired),
+        "coverage": len(paired) / situations_total if situations_total else None,
+        "coverage_definition": "coverage = n_pairs / situations_total；n_pairs 是参照物可用且两侧各 "
+                               f"{DRAWS} 条齐全的处境数，所以覆盖率不足 1 有一部分来自参照物定不下来"
+                               "（见 reference_selection），不是生成缺失",
+        "n_pairs_insufficient": len(paired) < MIN_CONCLUSIVE_PAIRS,
+        "n_pairs_insufficient_below": MIN_CONCLUSIVE_PAIRS,
         "draws_per_model": DRAWS,
         "decoding": {"temperature": TEMPERATURE, "top_p": TOP_P, "max_new_tokens": MAX_NEW_TOKENS},
         "models": {"base": str(BASE_MODEL), "post": str(ADAPTER)},
@@ -811,18 +832,19 @@ def write_outputs(summary, per_situation, preliminary):
     return summary_path
 
 
-def run_analyse(preliminary=False):
+def run_analyse(preliminary=False, allow_partial_pairs=False):
     ids = [row["id"] for row in situations()]
     summary, per_situation = analyse(load_jsonl(ANSWERS), load_jsonl(DENSIFY_ANSWERS), ids, preliminary)
     print(
-        f"{summary['situations_paired']}/{len(ids)} 条处境两侧各 {DRAWS} 条齐全；"
+        f"n_pairs {summary['n_pairs']}/{summary['situations_total']}（覆盖率 {summary['coverage']:.3f}）；"
+        f"两侧都齐全 {summary['situations_both_complete']}/{summary['situations_total']}；"
         f"参照物可用 {summary['situations_reference_usable']} 条；"
         f"文字层参照物可用 {summary['text_signature']['situations_reference_usable']} 条"
     )
-    if not preliminary and summary["situations_paired"] != len(ids):
+    if not summary["generation_complete"] and not allow_partial_pairs:
         raise SystemExit(
-            f"只有 {summary['situations_paired']}/{len(ids)} 条处境两侧齐全，不写终版输出；"
-            "先跑 --generate，要看已落盘的部分用 --analyse --preliminary"
+            f"两侧都齐全的处境只有 {summary['situations_both_complete']}/{summary['situations_total']}，"
+            "不写终版输出；先跑 --generate，或确认要在子集上出终版时加 --allow-partial-pairs"
         )
     write_outputs(summary, per_situation, preliminary)
     print(json.dumps(summary, ensure_ascii=False, indent=1))
@@ -1081,18 +1103,25 @@ def main():
     parser.add_argument("--analyse", action="store_true", help="纯本地统计，不调模型")
     parser.add_argument("--preliminary", action="store_true", help="写 preliminary.* 而不是终版输出")
     parser.add_argument("--check", action="store_true", help="假数据自检 X、区间与格式/决策分解")
+    parser.add_argument(
+        "--allow-partial-pairs",
+        action="store_true",
+        help="生成没跑满时也写终版，只在两侧齐全的处境子集上算（输出强制带 n_pairs 与覆盖率）",
+    )
     args = parser.parse_args()
     chosen = [name for name in ("generate", "analyse", "check") if getattr(args, name)]
     if len(chosen) != 1:
         raise SystemExit("选一个：--generate、--analyse 或 --check")
     if args.preliminary and not args.analyse:
         raise SystemExit("--preliminary 只跟 --analyse 一起用")
+    if args.allow_partial_pairs and not args.analyse:
+        raise SystemExit("--allow-partial-pairs 只跟 --analyse 一起用")
     if args.generate:
         run_generate()
     elif args.check:
         run_check()
     else:
-        run_analyse(args.preliminary)
+        run_analyse(args.preliminary, args.allow_partial_pairs)
 
 
 if __name__ == "__main__":

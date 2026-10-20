@@ -1,11 +1,18 @@
 {
  "situations_total": 242,
- "situations_paired": 15,
+ "situations_paired": 148,
  "situations_reference_usable": 148,
  "situations_base_complete": 242,
  "situations_base_partial": 0,
- "situations_post_complete": 24,
+ "situations_post_complete": 242,
  "situations_post_partial": 0,
+ "situations_both_complete": 242,
+ "generation_complete": true,
+ "n_pairs": 148,
+ "coverage": 0.6115702479338843,
+ "coverage_definition": "coverage = n_pairs / situations_total；n_pairs 是参照物可用且两侧各 3 条齐全的处境数，所以覆盖率不足 1 有一部分来自参照物定不下来（见 reference_selection），不是生成缺失",
+ "n_pairs_insufficient": false,
+ "n_pairs_insufficient_below": 60,
  "draws_per_model": 3,
  "decoding": {
   "temperature": 0.7,
@@ -37,10 +44,10 @@
   0.0,
   0.006756756756756757
  ],
- "post_mean": 0.08888888888888888,
+ "post_mean": 0.09684684684684684,
  "post_ci": [
-  0.0,
-  0.2
+  0.060810810810810814,
+  0.13738738738738737
  ],
  "bare_deepseek_mean": 0.35022522522522526,
  "bare_deepseek_ci": [
@@ -49,24 +56,24 @@
  ],
  "law_deepseek": 1.0,
  "X_definition": "X = (post_mean - base_mean) / (1 - base_mean)，两侧齐全的处境配对，自举单位是处境",
- "X": 0.08888888888888888,
+ "X": 0.0948081264108352,
  "X_ci": [
-  0.0,
-  0.2
+  0.056433408577878104,
+  0.13318284424379231
  ],
  "X_status": "defined",
- "X_base_paired": 0.0,
- "X_post_paired": 0.08888888888888888,
- "X_headroom": 1.0,
+ "X_base_paired": 0.0022522522522522522,
+ "X_post_paired": 0.09684684684684684,
+ "X_headroom": 0.9977477477477478,
  "X_near_ceiling": false,
  "X_replicates_undefined": 0,
  "base_paired_ci": [
   0.0,
-  0.0
+  0.006756756756756757
  ],
  "post_paired_ci": [
-  0.0,
-  0.2
+  0.05855855855855856,
+  0.13738738738738737
  ],
  "countable_control": {
   "what": "回答里有没有可解析动作（签名非空），不经评委、不看参照物",
@@ -75,10 +82,10 @@
    0.036036036036036036,
    0.07882882882882883
   ],
-  "post_emits_action": 0.6666666666666666,
+  "post_emits_action": 0.7522522522522522,
   "post_emits_action_ci": [
-   0.5111111111111111,
-   0.8222222222222223
+   0.7027027027027027,
+   0.8018018018018018
   ]
  },
  "text_signature": {
@@ -167,19 +174,24 @@
    ]
   },
   "situations_reference_usable": 169,
-  "situations_paired": 14,
+  "situations_paired": 169,
   "base_mean": 0.3412228796844181,
   "base_ci": [
    0.28402366863905326,
    0.398422090729783
   ],
-  "post_mean": 0.23809523809523808,
+  "post_mean": 0.2938856015779093,
   "post_ci": [
-   0.09523809523809523,
-   0.38095238095238093
+   0.24063116370808676,
+   0.34714003944773175
   ],
-  "base_paired_mean": 0.2857142857142857,
-  "post_paired_mean": 0.23809523809523808,
+  "base_paired_mean": 0.3412228796844181,
+  "post_paired_mean": 0.2938856015779093,
+  "delta": -0.04733727810650884,
+  "delta_ci": [
+   -0.10848126232741613,
+   0.011834319526627234
+  ],
   "bare_deepseek_mean": 0.5330374753451677,
   "bare_deepseek_ci": [
    0.4714003944773176,
@@ -210,43 +222,43 @@
    }
   },
   "post": {
-   "situations": 14,
-   "answers": 42,
-   "conclusive": false,
+   "situations": 137,
+   "answers": 411,
+   "conclusive": true,
    "sides": {
     "post": {
-     "mean": 0.09523809523809523,
+     "mean": 0.10462287104622871,
      "ci": [
-      0.0,
-      0.21428571428571427
+      0.06569343065693431,
+      0.1484184914841849
      ]
     }
    }
   },
   "paired": {
-   "situations": 3,
-   "answers": 9,
+   "situations": 22,
+   "answers": 66,
    "conclusive": false,
    "sides": {
     "base": {
-     "mean": 0.0,
+     "mean": 0.015151515151515152,
      "ci": [
       0.0,
-      0.0
+      0.045454545454545456
      ]
     },
     "post": {
-     "mean": 0.1111111111111111,
+     "mean": 0.12121212121212122,
      "ci": [
-      0.0,
-      0.3333333333333333
+      0.045454545454545456,
+      0.22727272727272727
      ]
     }
    },
-   "delta": 0.1111111111111111,
+   "delta": 0.10606060606060606,
    "delta_ci": [
-    0.0,
-    0.3333333333333333
+    0.0303030303030303,
+    0.18181818181818185
    ]
   }
  },
@@ -257,47 +269,46 @@
   "decision_part_meaning": "决策项：在有动作的回答里选对比参照动作的比例变了多少带来的那一份",
   "format_share_meaning": "格式项占 Δ 的比例；1 表示提升全来自格式，0 表示全来自决策，介于两者之间表示两件都在动",
   "base": {
-   "situations": 15,
-   "answers": 45,
-   "emitting_answers": 3,
-   "agreeing_answers": 0,
-   "emits_share": 0.06666666666666667,
-   "agreement_given_emit": 0.0,
-   "mean": 0.0
+   "situations": 148,
+   "answers": 444,
+   "emitting_answers": 25,
+   "agreeing_answers": 1,
+   "emits_share": 0.05630630630630631,
+   "agreement_given_emit": 0.04,
+   "mean": 0.0022522522522522522
   },
   "post": {
-   "situations": 15,
-   "answers": 45,
-   "emitting_answers": 30,
-   "agreeing_answers": 4,
-   "emits_share": 0.6666666666666666,
-   "agreement_given_emit": 0.13333333333333333,
-   "mean": 0.08888888888888889
+   "situations": 148,
+   "answers": 444,
+   "emitting_answers": 334,
+   "agreeing_answers": 43,
+   "emits_share": 0.7522522522522522,
+   "agreement_given_emit": 0.12874251497005987,
+   "mean": 0.09684684684684684
   },
   "status": "defined",
-  "delta": 0.08888888888888889,
-  "format_part": 0.04,
-  "decision_part": 0.048888888888888885,
-  "format_share": 0.45,
+  "delta": 0.09459459459459459,
+  "format_part": 0.05871783460106813,
+  "decision_part": 0.03587675999352645,
+  "format_share": 0.6207313943541488,
   "residual": 6.938893903907228e-18,
   "delta_ci": [
-   0.0,
-   0.2
+   0.058558558558558564,
+   0.13513513513513514
   ],
   "format_part_ci": [
-   0.0,
-   0.0892857142857143
+   0.02940363676559996,
+   0.10410726382948603
   ],
   "decision_part_ci": [
-   0.0,
-   0.11249999999999999
+   -0.000715894465894469,
+   0.06579593612303893
   ],
-  "replicates_undefined": 69
+  "replicates_undefined": 0
  },
- "status": "preliminary",
- "answers_rows": 798,
+ "status": "final",
+ "answers_rows": 1452,
  "answer_duplicates_dropped": 0,
  "stored_signature_mismatches": 0,
- "truncated_answers": 23,
- "note": "预备：24/242 条处境有 adapter（post）侧 3 条抽样，两侧齐全 15 条；X 只在这批配对处境上算，不许当结论引用。"
+ "truncated_answers": 30
 }
