@@ -1,0 +1,55 @@
+Loading weights:   0%|          | 0/617 [00:00<?, ?it/s]Loading weights:   0%|          | 1/617 [00:00<01:30,  6.79it/s]Loading weights:   4%|▍         | 26/617 [00:00<00:04, 125.25it/s]Loading weights:  12%|█▏        | 77/617 [00:00<00:01, 282.98it/s]Loading weights:  21%|██        | 131/617 [00:00<00:01, 376.98it/s]Loading weights:  30%|██▉       | 185/617 [00:00<00:01, 428.11it/s]Loading weights:  39%|███▉      | 240/617 [00:00<00:00, 462.69it/s]Loading weights:  49%|████▉     | 302/617 [00:00<00:00, 509.87it/s]Loading weights:  67%|██████▋   | 412/617 [00:00<00:00, 690.04it/s]Loading weights:  91%|█████████▏| 564/617 [00:00<00:00, 943.13it/s]Loading weights: 100%|██████████| 617/617 [00:01<00:00, 615.62it/s]
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+/home/z/.venv/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1548: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+/home/z/.venv/lib/python3.12/site-packages/torch/utils/checkpoint.py:242: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  check_backward_validity(args)
+[W1020 17:04:11.568808710 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 4840226816 bytes (free: 4548853760, total: 25278742528).
+{
+  "train": {
+    "n": 73,
+    "dpo_loss": 0.7160587310791016,
+    "margin": -15.843534469604492,
+    "acc": 0.5205479264259338,
+    "reward_margin": 0.11731347441673279
+  },
+  "val": {
+    "n": 18,
+    "dpo_loss": 0.7079532146453857,
+    "margin": -14.590763092041016,
+    "acc": 0.4444444477558136,
+    "reward_margin": -0.009615057148039341
+  },
+  "peak_allocated_gib": 12.8,
+  "peak_reserved_gib": 16.53,
+  "steps": 76,
+  "max_length": 1280,
+  "token_stats": {
+    "prompt": {
+      "p50": 494,
+      "p95": 874,
+      "max": 930,
+      "mean": 503.9
+    },
+    "chosen": {
+      "p50": 116,
+      "p95": 187,
+      "max": 347,
+      "mean": 113.7
+    },
+    "rejected": {
+      "p50": 122,
+      "p95": 187,
+      "max": 354,
+      "mean": 113.6
+    },
+    "prompt_plus_max": {
+      "p50": 631,
+      "p95": 1031,
+      "max": 1205,
+      "mean": 631.3
+    }
+  }
+}

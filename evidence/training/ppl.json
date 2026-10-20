@@ -1,0 +1,449 @@
+{
+  "adapter": "evidence/training/adapter",
+  "val_pairs": 18,
+  "val_sessions": [
+    "--home-z-vibe--/2026-10-09T13-25-26-876Z_01a120d7-0cdb-759b-988e-676096f46657.jsonl",
+    "--home-z-vibe-danmaku--/2026-09-17T08-49-48-013Z_01a0ae8e-c7e7-7694-808e-fb42bf089580.jsonl",
+    "--home-z-vibe-mycar--/2026-09-15T10-45-35-820Z_01a0a4ac-13cb-77a6-b653-b7223f32005c.jsonl",
+    "--home-z-vibe-mycar--/2026-09-14T22-00-24-592Z_01a0a1ef-870f-7728-8c16-d5ff7c87662d.jsonl",
+    "--home-z-vibe--/2026-10-15T05-28-05-321Z_01a13e08-2bc9-7077-98c0-b96c4682345f.jsonl",
+    "--home-z-hf-research--/2026-09-29T10-12-47-817Z_01a0eca7-1448-7647-ac96-e68b6c573f59.jsonl",
+    "--home-z-vibe-agentic-animation--/2026-10-10T06-34-14-542Z_01a12484-f08d-7663-a7a1-43b5d412ead7.jsonl",
+    "--home-z-vibe-tokenqr--/2026-09-18T06-01-03-329Z_01a0b31a-a660-7512-ba46-286e9d4ad326.jsonl",
+    "--home-z-vibe-silly_2d_animate-agentic-animation--/2026-09-02T05-40-21-502Z_01a060a1-f37e-7625-bf96-21ad81b93041/forks/2026-09-08T09-39-08-003Z_01a08062-b663-764e-bf0f-63c98759bc4c.jsonl"
+  ],
+  "max_length": 1280,
+  "definition": "PPL = exp(total completion NLL / total completion tokens) over the held-out pairs, prompt and completion encoded exactly as training encodes them",
+  "before": {
+    "n_pairs": 18,
+    "chosen": {
+      "ppl": 11.221781730651855,
+      "nll": 5423.2526931762695,
+      "tokens": 2243
+    },
+    "rejected": {
+      "ppl": 9.325248718261719,
+      "nll": 5162.061498641968,
+      "tokens": 2312
+    },
+    "per_token_margin": -0.20033003438496794,
+    "acc": 0.5,
+    "pairs": [
+      {
+        "situation_id": "SIT085",
+        "chosen": {
+          "logp": -721.6455688476562,
+          "tokens": 186
+        },
+        "rejected": {
+          "logp": -463.99053955078125,
+          "tokens": 185
+        }
+      },
+      {
+        "situation_id": "SIT014",
+        "chosen": {
+          "logp": -311.1205749511719,
+          "tokens": 115
+        },
+        "rejected": {
+          "logp": -267.1566162109375,
+          "tokens": 85
+        }
+      },
+      {
+        "situation_id": "SIT061",
+        "chosen": {
+          "logp": -343.2547302246094,
+          "tokens": 127
+        },
+        "rejected": {
+          "logp": -379.1319885253906,
+          "tokens": 140
+        }
+      },
+      {
+        "situation_id": "SIT074",
+        "chosen": {
+          "logp": -214.65818786621094,
+          "tokens": 100
+        },
+        "rejected": {
+          "logp": -127.05879211425781,
+          "tokens": 59
+        }
+      },
+      {
+        "situation_id": "SIT109",
+        "chosen": {
+          "logp": -88.52337646484375,
+          "tokens": 27
+        },
+        "rejected": {
+          "logp": -29.511335372924805,
+          "tokens": 11
+        }
+      },
+      {
+        "situation_id": "SIT045",
+        "chosen": {
+          "logp": -332.2704772949219,
+          "tokens": 91
+        },
+        "rejected": {
+          "logp": -125.16509246826172,
+          "tokens": 54
+        }
+      },
+      {
+        "situation_id": "SIT083",
+        "chosen": {
+          "logp": -347.605224609375,
+          "tokens": 348
+        },
+        "rejected": {
+          "logp": -290.625,
+          "tokens": 355
+        }
+      },
+      {
+        "situation_id": "SIT154",
+        "chosen": {
+          "logp": -77.10364532470703,
+          "tokens": 43
+        },
+        "rejected": {
+          "logp": -68.59861755371094,
+          "tokens": 40
+        }
+      },
+      {
+        "situation_id": "GRW019",
+        "chosen": {
+          "logp": -214.3213348388672,
+          "tokens": 88
+        },
+        "rejected": {
+          "logp": -288.0586242675781,
+          "tokens": 114
+        }
+      },
+      {
+        "situation_id": "GRW020",
+        "chosen": {
+          "logp": -266.6983642578125,
+          "tokens": 127
+        },
+        "rejected": {
+          "logp": -334.1653137207031,
+          "tokens": 138
+        }
+      },
+      {
+        "situation_id": "GRW024",
+        "chosen": {
+          "logp": -92.37828063964844,
+          "tokens": 44
+        },
+        "rejected": {
+          "logp": -136.76507568359375,
+          "tokens": 78
+        }
+      },
+      {
+        "situation_id": "SIT089",
+        "chosen": {
+          "logp": -244.4351806640625,
+          "tokens": 99
+        },
+        "rejected": {
+          "logp": -240.21957397460938,
+          "tokens": 87
+        }
+      },
+      {
+        "situation_id": "SIT008",
+        "chosen": {
+          "logp": -464.18115234375,
+          "tokens": 164
+        },
+        "rejected": {
+          "logp": -451.26531982421875,
+          "tokens": 195
+        }
+      },
+      {
+        "situation_id": "SIT031",
+        "chosen": {
+          "logp": -296.7657470703125,
+          "tokens": 99
+        },
+        "rejected": {
+          "logp": -333.75115966796875,
+          "tokens": 137
+        }
+      },
+      {
+        "situation_id": "SIT148",
+        "chosen": {
+          "logp": -266.57342529296875,
+          "tokens": 85
+        },
+        "rejected": {
+          "logp": -225.62539672851562,
+          "tokens": 96
+        }
+      },
+      {
+        "situation_id": "SIT024",
+        "chosen": {
+          "logp": -422.25634765625,
+          "tokens": 192
+        },
+        "rejected": {
+          "logp": -428.5849304199219,
+          "tokens": 176
+        }
+      },
+      {
+        "situation_id": "SIT080",
+        "chosen": {
+          "logp": -477.9862365722656,
+          "tokens": 172
+        },
+        "rejected": {
+          "logp": -626.1151123046875,
+          "tokens": 187
+        }
+      },
+      {
+        "situation_id": "SIT111",
+        "chosen": {
+          "logp": -241.47483825683594,
+          "tokens": 136
+        },
+        "rejected": {
+          "logp": -346.27301025390625,
+          "tokens": 175
+        }
+      }
+    ]
+  },
+  "after": {
+    "n_pairs": 18,
+    "chosen": {
+      "ppl": 11.174397468566895,
+      "nll": 5413.761154174805,
+      "tokens": 2243
+    },
+    "rejected": {
+      "ppl": 9.288405418395996,
+      "nll": 5152.909170150757,
+      "tokens": 2312
+    },
+    "per_token_margin": -0.21250380326061025,
+    "acc": 0.5,
+    "pairs": [
+      {
+        "situation_id": "SIT085",
+        "chosen": {
+          "logp": -718.6088256835938,
+          "tokens": 186
+        },
+        "rejected": {
+          "logp": -459.3836364746094,
+          "tokens": 185
+        }
+      },
+      {
+        "situation_id": "SIT014",
+        "chosen": {
+          "logp": -308.9109802246094,
+          "tokens": 115
+        },
+        "rejected": {
+          "logp": -265.86712646484375,
+          "tokens": 85
+        }
+      },
+      {
+        "situation_id": "SIT061",
+        "chosen": {
+          "logp": -342.298095703125,
+          "tokens": 127
+        },
+        "rejected": {
+          "logp": -378.4645080566406,
+          "tokens": 140
+        }
+      },
+      {
+        "situation_id": "SIT074",
+        "chosen": {
+          "logp": -214.95748901367188,
+          "tokens": 100
+        },
+        "rejected": {
+          "logp": -129.64247131347656,
+          "tokens": 59
+        }
+      },
+      {
+        "situation_id": "SIT109",
+        "chosen": {
+          "logp": -87.82454681396484,
+          "tokens": 27
+        },
+        "rejected": {
+          "logp": -26.47889518737793,
+          "tokens": 11
+        }
+      },
+      {
+        "situation_id": "SIT045",
+        "chosen": {
+          "logp": -335.4359436035156,
+          "tokens": 91
+        },
+        "rejected": {
+          "logp": -125.07530975341797,
+          "tokens": 54
+        }
+      },
+      {
+        "situation_id": "SIT083",
+        "chosen": {
+          "logp": -346.4129333496094,
+          "tokens": 348
+        },
+        "rejected": {
+          "logp": -290.1101379394531,
+          "tokens": 355
+        }
+      },
+      {
+        "situation_id": "SIT154",
+        "chosen": {
+          "logp": -75.57982635498047,
+          "tokens": 43
+        },
+        "rejected": {
+          "logp": -69.37872314453125,
+          "tokens": 40
+        }
+      },
+      {
+        "situation_id": "GRW019",
+        "chosen": {
+          "logp": -217.73861694335938,
+          "tokens": 88
+        },
+        "rejected": {
+          "logp": -291.1532897949219,
+          "tokens": 114
+        }
+      },
+      {
+        "situation_id": "GRW020",
+        "chosen": {
+          "logp": -261.3325500488281,
+          "tokens": 127
+        },
+        "rejected": {
+          "logp": -329.4820251464844,
+          "tokens": 138
+        }
+      },
+      {
+        "situation_id": "GRW024",
+        "chosen": {
+          "logp": -94.13307189941406,
+          "tokens": 44
+        },
+        "rejected": {
+          "logp": -138.6284942626953,
+          "tokens": 78
+        }
+      },
+      {
+        "situation_id": "SIT089",
+        "chosen": {
+          "logp": -251.8130645751953,
+          "tokens": 99
+        },
+        "rejected": {
+          "logp": -239.6270294189453,
+          "tokens": 87
+        }
+      },
+      {
+        "situation_id": "SIT008",
+        "chosen": {
+          "logp": -461.6300048828125,
+          "tokens": 164
+        },
+        "rejected": {
+          "logp": -448.8570556640625,
+          "tokens": 195
+        }
+      },
+      {
+        "situation_id": "SIT031",
+        "chosen": {
+          "logp": -294.668212890625,
+          "tokens": 99
+        },
+        "rejected": {
+          "logp": -333.1509094238281,
+          "tokens": 137
+        }
+      },
+      {
+        "situation_id": "SIT148",
+        "chosen": {
+          "logp": -270.173095703125,
+          "tokens": 85
+        },
+        "rejected": {
+          "logp": -232.29183959960938,
+          "tokens": 96
+        }
+      },
+      {
+        "situation_id": "SIT024",
+        "chosen": {
+          "logp": -420.10479736328125,
+          "tokens": 192
+        },
+        "rejected": {
+          "logp": -425.8175354003906,
+          "tokens": 176
+        }
+      },
+      {
+        "situation_id": "SIT080",
+        "chosen": {
+          "logp": -472.44482421875,
+          "tokens": 172
+        },
+        "rejected": {
+          "logp": -624.8267211914062,
+          "tokens": 187
+        }
+      },
+      {
+        "situation_id": "SIT111",
+        "chosen": {
+          "logp": -239.69427490234375,
+          "tokens": 136
+        },
+        "rejected": {
+          "logp": -344.6734619140625,
+          "tokens": 175
+        }
+      }
+    ]
+  },
+  "delta_ppl_chosen": -0.04738426208496094,
+  "delta_ppl_rejected": -0.036843299865722656
+}

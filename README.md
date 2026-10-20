@@ -13,6 +13,7 @@
 - [rubric 与分辨力](report/rubric.md)：四维判据、评委协议、分不开的结论与噪声
 - [稳定对子集](report/stable-pairs.md)：两侧可复现的对、它上面的跨条件差与判读复测
 - [增长批次](report/grow-pairs.md)：59 条未用处境补跑四次抽样，新增 25 条稳定对，合并 v2 91 条；零覆盖规则 98 → 91
+- [DPO 训练](report/training.md)：76 步跑完、梯度接通，但留出集隐式准确率 0.444，偏好没学进去
 - [边界](docs/method/limits.md)：法不覆盖什么、本研究不能声称什么
 - [冲突审计](docs/method/conflicts.md)：68 对，真冲突 0
 - [法的冻结件](constitution/)：264 个叶子，可训练 175
