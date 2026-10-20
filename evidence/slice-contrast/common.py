@@ -23,8 +23,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 NOMOS = REPO
-AGENTS_MD = Path("/home/z/vibe/AGENTS.md")
-AGENTS_YAML = Path("/home/z/vibe/AGENTS.yaml")
+AGENTS_MD = Path(__file__).resolve().parents[3] / "agent-policy" / "AGENTS.md"
+AGENTS_YAML = Path(__file__).resolve().parents[3] / "agent-policy" / "AGENTS.yaml"
 CANDIDATES = NOMOS / "mining" / "candidates.jsonl"
 
 SITUATIONS = HERE / "situations.jsonl"

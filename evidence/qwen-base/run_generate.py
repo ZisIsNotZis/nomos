@@ -4,7 +4,7 @@
 Two conditions per situation, greedy decoding, thinking disabled:
 
 - `bare`: no system message.
-- `law`:  system message = the exact bytes of /home/z/vibe/AGENTS.md.
+- `law`:  system message = the exact bytes of the workspace's `agent-policy/AGENTS.md`.
 
 The situation text and the continuation instruction are probe 4's exact bytes
 (report/gate-base/build_situations.py). Every call is appended to
@@ -28,7 +28,7 @@ NOMOS = HERE.parents[1]
 SITUATIONS = HERE / "situations.jsonl"
 GENERATIONS = HERE / "generations.jsonl"
 META = HERE / "run-meta.json"
-POLICY_PATH = Path("/home/z/vibe/AGENTS.md")
+POLICY_PATH = Path(__file__).resolve().parents[3] / "agent-policy" / "AGENTS.md"
 
 MODEL_ID = "Qwen/Qwen3.5-2B"
 REVISION = "15852e8c16360a2fea060d615a32b45270f8a8fc"

@@ -1,0 +1,3392 @@
+{
+ "seed": 20261102,
+ "bootstrap": 10000,
+ "criteria": {
+  "subitem_alpha": 0.05,
+  "subitem_count": 8,
+  "subitem_alpha_bonferroni": 0.00625,
+  "heldout_select_p": 0.05,
+  "heldout_test_p": 0.05,
+  "heldout_rounds": 200,
+  "heldout_required_rate": 0.95
+ },
+ "counts_recompute_mismatch": 0,
+ "strata": {
+  "all_pairs": 174,
+  "action_differ": 129,
+  "action_same": 45,
+  "action_count_differs": 19,
+  "sessions": 51,
+  "weak_session_matches": 32,
+  "confident_pairs": 102
+ },
+ "subitems": {
+  "phase.unauthorized_actions": {
+   "action_differ": {
+    "n": 58,
+    "both_null": 48,
+    "asymmetric": 23,
+    "chosen_mean": 0.6552,
+    "rejected_mean": 0.6552,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "wins": 0,
+    "losses": 0,
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0,
+    "excluded": 71
+   },
+   "all_pairs": {
+    "n": 58,
+    "both_null": 93,
+    "asymmetric": 23,
+    "chosen_mean": 0.6552,
+    "rejected_mean": 0.6552,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "wins": 0,
+    "losses": 0,
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0,
+    "excluded": 116
+   },
+   "action_same": {
+    "n": 0,
+    "both_null": 45,
+    "asymmetric": 0
+   }
+  },
+  "phase.discussion_as_advance": {
+   "action_differ": {
+    "n": 58,
+    "both_null": 48,
+    "asymmetric": 23,
+    "chosen_mean": 0.9052,
+    "rejected_mean": 0.9052,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "wins": 0,
+    "losses": 0,
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0,
+    "excluded": 71
+   },
+   "all_pairs": {
+    "n": 58,
+    "both_null": 93,
+    "asymmetric": 23,
+    "chosen_mean": 0.9052,
+    "rejected_mean": 0.9052,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "wins": 0,
+    "losses": 0,
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0,
+    "excluded": 116
+   },
+   "action_same": {
+    "n": 0,
+    "both_null": 45,
+    "asymmetric": 0
+   }
+  },
+  "evidence.unlabeled_inferences": {
+   "action_differ": {
+    "n": 129,
+    "both_null": 0,
+    "asymmetric": 0,
+    "chosen_mean": 0.9457,
+    "rejected_mean": 0.938,
+    "delta": 0.0078,
+    "delta_ci95": [
+     -0.022,
+     0.0388
+    ],
+    "wins": 10,
+    "losses": 7,
+    "direction_consistent": "10/17",
+    "sign_test_p": 0.629059,
+    "excluded": 0
+   },
+   "all_pairs": {
+    "n": 174,
+    "both_null": 0,
+    "asymmetric": 0,
+    "chosen_mean": 0.9104,
+    "rejected_mean": 0.921,
+    "delta": -0.0105,
+    "delta_ci95": [
+     -0.0374,
+     0.0163
+    ],
+    "wins": 11,
+    "losses": 18,
+    "direction_consistent": "11/29",
+    "sign_test_p": 0.264931,
+    "excluded": 0
+   },
+   "action_same": {
+    "n": 45,
+    "both_null": 0,
+    "asymmetric": 0,
+    "chosen_mean": 0.8093,
+    "rejected_mean": 0.8722,
+    "delta": -0.063,
+    "delta_ci95": [
+     -0.1222,
+     -0.0056
+    ],
+    "wins": 1,
+    "losses": 11,
+    "direction_consistent": "1/12",
+    "sign_test_p": 0.006348,
+    "excluded": 0
+   }
+  },
+  "evidence.assert_before_prove": {
+   "action_differ": {
+    "n": 58,
+    "both_null": 48,
+    "asymmetric": 23,
+    "chosen_mean": 0.5,
+    "rejected_mean": 0.5,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "wins": 0,
+    "losses": 0,
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0,
+    "excluded": 71
+   },
+   "all_pairs": {
+    "n": 58,
+    "both_null": 93,
+    "asymmetric": 23,
+    "chosen_mean": 0.5,
+    "rejected_mean": 0.5,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "wins": 0,
+    "losses": 0,
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0,
+    "excluded": 116
+   },
+   "action_same": {
+    "n": 0,
+    "both_null": 45,
+    "asymmetric": 0
+   }
+  },
+  "question.environment_questions": {
+   "action_differ": {
+    "n": 129,
+    "both_null": 0,
+    "asymmetric": 0,
+    "chosen_mean": 0.9922,
+    "rejected_mean": 0.9922,
+    "delta": 0.0,
+    "delta_ci95": [
+     -0.0155,
+     0.0155
+    ],
+    "wins": 2,
+    "losses": 2,
+    "direction_consistent": "2/4",
+    "sign_test_p": 1.0,
+    "excluded": 0
+   },
+   "all_pairs": {
+    "n": 174,
+    "both_null": 0,
+    "asymmetric": 0,
+    "chosen_mean": 0.9914,
+    "rejected_mean": 0.9856,
+    "delta": 0.0057,
+    "delta_ci95": [
+     -0.0086,
+     0.023
+    ],
+    "wins": 5,
+    "losses": 3,
+    "direction_consistent": "5/8",
+    "sign_test_p": 0.726562,
+    "excluded": 0
+   },
+   "action_same": {
+    "n": 45,
+    "both_null": 0,
+    "asymmetric": 0,
+    "chosen_mean": 0.9889,
+    "rejected_mean": 0.9667,
+    "delta": 0.0222,
+    "delta_ci95": [
+     -0.0222,
+     0.0667
+    ],
+    "wins": 3,
+    "losses": 1,
+    "direction_consistent": "3/4",
+    "sign_test_p": 0.625,
+    "excluded": 0
+   }
+  },
+  "question.stops_before_gate": {
+   "action_differ": {
+    "n": 25,
+    "both_null": 104,
+    "asymmetric": 0,
+    "chosen_mean": 0.12,
+    "rejected_mean": 0.08,
+    "delta": 0.04,
+    "delta_ci95": [
+     0.0,
+     0.12
+    ],
+    "wins": 1,
+    "losses": 0,
+    "direction_consistent": "1/1",
+    "sign_test_p": 1.0,
+    "excluded": 104
+   },
+   "all_pairs": {
+    "n": 32,
+    "both_null": 142,
+    "asymmetric": 0,
+    "chosen_mean": 0.2812,
+    "rejected_mean": 0.25,
+    "delta": 0.0312,
+    "delta_ci95": [
+     -0.0625,
+     0.125
+    ],
+    "wins": 2,
+    "losses": 1,
+    "direction_consistent": "2/3",
+    "sign_test_p": 1.0,
+    "excluded": 142
+   },
+   "action_same": {
+    "n": 7,
+    "both_null": 38,
+    "asymmetric": 0,
+    "chosen_mean": 0.8571,
+    "rejected_mean": 0.8571,
+    "delta": 0.0,
+    "delta_ci95": [
+     -0.4286,
+     0.4286
+    ],
+    "wins": 1,
+    "losses": 1,
+    "direction_consistent": "1/2",
+    "sign_test_p": 1.0,
+    "excluded": 38
+   }
+  },
+  "delivery.checkable_artifacts": {
+   "action_differ": {
+    "n": 129,
+    "both_null": 0,
+    "asymmetric": 0,
+    "chosen_mean": 0.362,
+    "rejected_mean": 0.422,
+    "delta": -0.06,
+    "delta_ci95": [
+     -0.1121,
+     -0.0096
+    ],
+    "wins": 26,
+    "losses": 39,
+    "direction_consistent": "26/65",
+    "sign_test_p": 0.136032,
+    "excluded": 0
+   },
+   "all_pairs": {
+    "n": 174,
+    "both_null": 0,
+    "asymmetric": 0,
+    "chosen_mean": 0.3411,
+    "rejected_mean": 0.396,
+    "delta": -0.0549,
+    "delta_ci95": [
+     -0.1006,
+     -0.0092
+    ],
+    "wins": 34,
+    "losses": 53,
+    "direction_consistent": "34/87",
+    "sign_test_p": 0.053003,
+    "excluded": 0
+   },
+   "action_same": {
+    "n": 45,
+    "both_null": 0,
+    "asymmetric": 0,
+    "chosen_mean": 0.2811,
+    "rejected_mean": 0.3216,
+    "delta": -0.0405,
+    "delta_ci95": [
+     -0.1416,
+     0.0623
+    ],
+    "wins": 8,
+    "losses": 14,
+    "direction_consistent": "8/22",
+    "sign_test_p": 0.286279,
+    "excluded": 0
+   }
+  },
+  "delivery.unrecorded_changes": {
+   "action_differ": {
+    "n": 58,
+    "both_null": 48,
+    "asymmetric": 23,
+    "chosen_mean": 0.5862,
+    "rejected_mean": 0.5345,
+    "delta": 0.0517,
+    "delta_ci95": [
+     0.0172,
+     0.0948
+    ],
+    "wins": 6,
+    "losses": 0,
+    "direction_consistent": "6/6",
+    "sign_test_p": 0.03125,
+    "excluded": 71
+   },
+   "all_pairs": {
+    "n": 58,
+    "both_null": 93,
+    "asymmetric": 23,
+    "chosen_mean": 0.5862,
+    "rejected_mean": 0.5345,
+    "delta": 0.0517,
+    "delta_ci95": [
+     0.0172,
+     0.0948
+    ],
+    "wins": 6,
+    "losses": 0,
+    "direction_consistent": "6/6",
+    "sign_test_p": 0.03125,
+    "excluded": 116
+   },
+   "action_same": {
+    "n": 0,
+    "both_null": 45,
+    "asymmetric": 0
+   }
+  },
+  "composite_counts": {
+   "action_differ": {
+    "n": 129,
+    "both_null": 0,
+    "asymmetric": 0,
+    "chosen_mean": 0.7125,
+    "rejected_mean": 0.7147,
+    "delta": -0.0022,
+    "delta_ci95": [
+     -0.0197,
+     0.0158
+    ],
+    "wins": 36,
+    "losses": 40,
+    "direction_consistent": "36/76",
+    "sign_test_p": 0.731009,
+    "excluded": 0
+   },
+   "all_pairs": {
+    "n": 174,
+    "both_null": 0,
+    "asymmetric": 0,
+    "chosen_mean": 0.7088,
+    "rejected_mean": 0.718,
+    "delta": -0.0093,
+    "delta_ci95": [
+     -0.0271,
+     0.0084
+    ],
+    "wins": 46,
+    "losses": 63,
+    "direction_consistent": "46/109",
+    "sign_test_p": 0.125005,
+    "excluded": 0
+   },
+   "action_same": {
+    "n": 45,
+    "both_null": 0,
+    "asymmetric": 0,
+    "chosen_mean": 0.6979,
+    "rejected_mean": 0.7275,
+    "delta": -0.0296,
+    "delta_ci95": [
+     -0.074,
+     0.0154
+    ],
+    "wins": 10,
+    "losses": 23,
+    "direction_consistent": "10/33",
+    "sign_test_p": 0.035082,
+    "excluded": 0
+   }
+  }
+ },
+ "within_pair_offset": {
+  "pairs": 129,
+  "with_both_directions": 11,
+  "chosen_only": 28,
+  "rejected_only": 33,
+  "neither": 57
+ },
+ "heldout": {
+  "rounds": 200,
+  "rounds_with_candidate": 200,
+  "passed": 0,
+  "rate": 0.0,
+  "confident_pairs_only": {
+   "rounds": 200,
+   "passed": 0,
+   "rate": 0.0
+  },
+  "detail": [
+   {
+    "seed": 20261102,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0658
+    }
+   },
+   {
+    "seed": 20261103,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 32,
+     "delta": 0.0938,
+     "delta_ci95": [
+      0.0312,
+      0.1719
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 26,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 67,
+     "delta": 0.0064,
+     "delta_ci95": [
+      -0.0211,
+      0.0336
+     ],
+     "sign_test_p": 0.760792
+    },
+    "composite_test": {
+     "n": 62,
+     "delta": -0.0115,
+     "delta_ci95": [
+      -0.0337,
+      0.0114
+     ],
+     "sign_test_p": 0.296206
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261104,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.215327,
+     "delta": -0.1113
+    }
+   },
+   {
+    "seed": 20261105,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0435
+    }
+   },
+   {
+    "seed": 20261106,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "question.environment_questions",
+     "sign_test_p": 0.5,
+     "delta": 0.0169
+    }
+   },
+   {
+    "seed": 20261107,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0714
+    }
+   },
+   {
+    "seed": 20261108,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "question.environment_questions",
+     "sign_test_p": 0.5,
+     "delta": -0.0164
+    }
+   },
+   {
+    "seed": 20261109,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "evidence.unlabeled_inferences",
+     "sign_test_p": 0.726562,
+     "delta": 0.0075
+    }
+   },
+   {
+    "seed": 20261110,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0741
+    }
+   },
+   {
+    "seed": 20261111,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.070756,
+     "delta": -0.0759
+    }
+   },
+   {
+    "seed": 20261112,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0345
+    }
+   },
+   {
+    "seed": 20261113,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.855536,
+     "delta": -0.0337
+    }
+   },
+   {
+    "seed": 20261114,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.087
+    }
+   },
+   {
+    "seed": 20261115,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 33,
+     "delta": 0.0909,
+     "delta_ci95": [
+      0.0303,
+      0.1667
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 25,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 69,
+     "delta": -0.0061,
+     "delta_ci95": [
+      -0.0288,
+      0.0173
+     ],
+     "sign_test_p": 0.268187
+    },
+    "composite_test": {
+     "n": 60,
+     "delta": 0.0023,
+     "delta_ci95": [
+      -0.0257,
+      0.0309
+     ],
+     "sign_test_p": 0.617719
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261116,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0345
+    }
+   },
+   {
+    "seed": 20261117,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.391528,
+     "delta": -0.0692
+    }
+   },
+   {
+    "seed": 20261118,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "evidence.unlabeled_inferences",
+     "sign_test_p": 0.6875,
+     "delta": 0.0175
+    }
+   },
+   {
+    "seed": 20261119,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0781
+    }
+   },
+   {
+    "seed": 20261120,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 37,
+     "delta": 0.0811,
+     "delta_ci95": [
+      0.027,
+      0.1486
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 21,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 68,
+     "delta": 0.0116,
+     "delta_ci95": [
+      -0.011,
+      0.0352
+     ],
+     "sign_test_p": 0.880396
+    },
+    "composite_test": {
+     "n": 61,
+     "delta": -0.0176,
+     "delta_ci95": [
+      -0.0444,
+      0.0097
+     ],
+     "sign_test_p": 0.377086
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261121,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.047031,
+     "delta": -0.0865
+    }
+   },
+   {
+    "seed": 20261122,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0862
+    }
+   },
+   {
+    "seed": 20261123,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.25,
+     "delta": 0.0484
+    }
+   },
+   {
+    "seed": 20261124,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.361595,
+     "delta": -0.046
+    }
+   },
+   {
+    "seed": 20261125,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.344928,
+     "delta": -0.0714
+    }
+   },
+   {
+    "seed": 20261126,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 32,
+     "delta": 0.0938,
+     "delta_ci95": [
+      0.0312,
+      0.1719
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 26,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 76,
+     "delta": 0.0054,
+     "delta_ci95": [
+      -0.0212,
+      0.0319
+     ],
+     "sign_test_p": 0.671811
+    },
+    "composite_test": {
+     "n": 53,
+     "delta": -0.0131,
+     "delta_ci95": [
+      -0.0336,
+      0.0068
+     ],
+     "sign_test_p": 0.168638
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261127,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.061428,
+     "delta": -0.0602
+    }
+   },
+   {
+    "seed": 20261128,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.15386,
+     "delta": -0.0783
+    }
+   },
+   {
+    "seed": 20261129,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 25,
+     "delta": 0.12,
+     "delta_ci95": [
+      0.04,
+      0.2
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 33,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 60,
+     "delta": -0.0028,
+     "delta_ci95": [
+      -0.0281,
+      0.0229
+     ],
+     "sign_test_p": 0.864166
+    },
+    "composite_test": {
+     "n": 69,
+     "delta": -0.0017,
+     "delta_ci95": [
+      -0.0267,
+      0.0234
+     ],
+     "sign_test_p": 0.877614
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261130,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.048767,
+     "delta": -0.0736
+    }
+   },
+   {
+    "seed": 20261131,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0758
+    }
+   },
+   {
+    "seed": 20261132,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.035082,
+     "delta": -0.1102
+    }
+   },
+   {
+    "seed": 20261133,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.440799,
+     "delta": -0.0376
+    }
+   },
+   {
+    "seed": 20261134,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.215327,
+     "delta": -0.0633
+    }
+   },
+   {
+    "seed": 20261135,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0625
+    }
+   },
+   {
+    "seed": 20261136,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.08069,
+     "delta": -0.1014
+    }
+   },
+   {
+    "seed": 20261137,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.149613,
+     "delta": -0.0775
+    }
+   },
+   {
+    "seed": 20261138,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 30,
+     "delta": 0.1,
+     "delta_ci95": [
+      0.0333,
+      0.1667
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 28,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 66,
+     "delta": 0.0102,
+     "delta_ci95": [
+      -0.0141,
+      0.0354
+     ],
+     "sign_test_p": 0.735879
+    },
+    "composite_test": {
+     "n": 63,
+     "delta": -0.0152,
+     "delta_ci95": [
+      -0.041,
+      0.0105
+     ],
+     "sign_test_p": 0.348889
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261139,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.050102,
+     "delta": -0.0956
+    }
+   },
+   {
+    "seed": 20261140,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.728332,
+     "delta": -0.0216
+    }
+   },
+   {
+    "seed": 20261141,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0676
+    }
+   },
+   {
+    "seed": 20261142,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0606
+    }
+   },
+   {
+    "seed": 20261143,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0385
+    }
+   },
+   {
+    "seed": 20261144,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 39,
+     "delta": 0.0769,
+     "delta_ci95": [
+      0.0256,
+      0.141
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 19,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 80,
+     "delta": 0.0015,
+     "delta_ci95": [
+      -0.0216,
+      0.0247
+     ],
+     "sign_test_p": 1.0
+    },
+    "composite_test": {
+     "n": 49,
+     "delta": -0.0083,
+     "delta_ci95": [
+      -0.035,
+      0.0195
+     ],
+     "sign_test_p": 0.523467
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261145,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0625
+    }
+   },
+   {
+    "seed": 20261146,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.149613,
+     "delta": -0.0896
+    }
+   },
+   {
+    "seed": 20261147,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.110184,
+     "delta": -0.0501
+    }
+   },
+   {
+    "seed": 20261148,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.361595,
+     "delta": -0.0653
+    }
+   },
+   {
+    "seed": 20261149,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "evidence.unlabeled_inferences",
+     "sign_test_p": 0.375,
+     "delta": 0.0242
+    }
+   },
+   {
+    "seed": 20261150,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.042774,
+     "delta": -0.0942
+    }
+   },
+   {
+    "seed": 20261151,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.04
+    }
+   },
+   {
+    "seed": 20261152,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.031539,
+     "delta": -0.0897
+    }
+   },
+   {
+    "seed": 20261153,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0758
+    }
+   },
+   {
+    "seed": 20261154,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0286
+    }
+   },
+   {
+    "seed": 20261155,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.242985,
+     "delta": -0.0519
+    }
+   },
+   {
+    "seed": 20261156,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.175465,
+     "delta": -0.0633
+    }
+   },
+   {
+    "seed": 20261157,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.229481,
+     "delta": -0.0575
+    }
+   },
+   {
+    "seed": 20261158,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.242985,
+     "delta": -0.0481
+    }
+   },
+   {
+    "seed": 20261159,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.08843,
+     "delta": -0.0878
+    }
+   },
+   {
+    "seed": 20261160,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 32,
+     "delta": 0.0938,
+     "delta_ci95": [
+      0.0312,
+      0.1719
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 26,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 58,
+     "delta": -0.0041,
+     "delta_ci95": [
+      -0.0342,
+      0.0253
+     ],
+     "sign_test_p": 0.749259
+    },
+    "composite_test": {
+     "n": 71,
+     "delta": -0.0006,
+     "delta_ci95": [
+      -0.0218,
+      0.0216
+     ],
+     "sign_test_p": 0.324009
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261161,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.279956,
+     "delta": -0.048
+    }
+   },
+   {
+    "seed": 20261162,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0645
+    }
+   },
+   {
+    "seed": 20261163,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.324009,
+     "delta": -0.0847
+    }
+   },
+   {
+    "seed": 20261164,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.25,
+     "delta": 0.0789
+    }
+   },
+   {
+    "seed": 20261165,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.136046,
+     "delta": -0.0942
+    }
+   },
+   {
+    "seed": 20261166,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.168638,
+     "delta": -0.0371
+    }
+   },
+   {
+    "seed": 20261167,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.08069,
+     "delta": -0.0862
+    }
+   },
+   {
+    "seed": 20261168,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.050102,
+     "delta": -0.1044
+    }
+   },
+   {
+    "seed": 20261169,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.344928,
+     "delta": -0.103
+    }
+   },
+   {
+    "seed": 20261170,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.742829,
+     "delta": -0.0363
+    }
+   },
+   {
+    "seed": 20261171,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.087159,
+     "delta": -0.1003
+    }
+   },
+   {
+    "seed": 20261172,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.229523,
+     "delta": -0.0717
+    }
+   },
+   {
+    "seed": 20261173,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.121449,
+     "delta": -0.0929
+    }
+   },
+   {
+    "seed": 20261174,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.009355,
+     "delta": -0.085
+    }
+   },
+   {
+    "seed": 20261175,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.087159,
+     "delta": -0.0985
+    }
+   },
+   {
+    "seed": 20261176,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.48685,
+     "delta": -0.0419
+    }
+   },
+   {
+    "seed": 20261177,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.006427,
+     "delta": -0.1003
+    }
+   },
+   {
+    "seed": 20261178,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "question.environment_questions",
+     "sign_test_p": 0.5,
+     "delta": -0.0172
+    }
+   },
+   {
+    "seed": 20261179,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 1.0,
+     "delta": -0.0199
+    }
+   },
+   {
+    "seed": 20261180,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.002316,
+     "delta": -0.1208
+    }
+   },
+   {
+    "seed": 20261181,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0714
+    }
+   },
+   {
+    "seed": 20261182,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0667
+    }
+   },
+   {
+    "seed": 20261183,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0606
+    }
+   },
+   {
+    "seed": 20261184,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0962
+    }
+   },
+   {
+    "seed": 20261185,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.25,
+     "delta": 0.0556
+    }
+   },
+   {
+    "seed": 20261186,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.061428,
+     "delta": -0.1225
+    }
+   },
+   {
+    "seed": 20261187,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.010674,
+     "delta": -0.1072
+    }
+   },
+   {
+    "seed": 20261188,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.04096,
+     "delta": -0.0866
+    }
+   },
+   {
+    "seed": 20261189,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "question.environment_questions",
+     "sign_test_p": 0.5,
+     "delta": 0.0175
+    }
+   },
+   {
+    "seed": 20261190,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.08
+    }
+   },
+   {
+    "seed": 20261191,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0541
+    }
+   },
+   {
+    "seed": 20261192,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0658
+    }
+   },
+   {
+    "seed": 20261193,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.09314,
+     "delta": -0.0709
+    }
+   },
+   {
+    "seed": 20261194,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0588
+    }
+   },
+   {
+    "seed": 20261195,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.110184,
+     "delta": -0.0731
+    }
+   },
+   {
+    "seed": 20261196,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0769
+    }
+   },
+   {
+    "seed": 20261197,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 1.0,
+     "delta": -0.0088
+    }
+   },
+   {
+    "seed": 20261198,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.029449,
+     "delta": -0.1003
+    }
+   },
+   {
+    "seed": 20261199,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 28,
+     "delta": 0.1071,
+     "delta_ci95": [
+      0.0357,
+      0.1786
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 30,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 63,
+     "delta": 0.003,
+     "delta_ci95": [
+      -0.0201,
+      0.0267
+     ],
+     "sign_test_p": 1.0
+    },
+    "composite_test": {
+     "n": 66,
+     "delta": -0.0072,
+     "delta_ci95": [
+      -0.0342,
+      0.0199
+     ],
+     "sign_test_p": 0.755229
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261200,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.200488,
+     "delta": -0.0824
+    }
+   },
+   {
+    "seed": 20261201,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0962
+    }
+   },
+   {
+    "seed": 20261202,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.279956,
+     "delta": -0.053
+    }
+   },
+   {
+    "seed": 20261203,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0645
+    }
+   },
+   {
+    "seed": 20261204,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 1.0,
+     "delta": -0.0297
+    }
+   },
+   {
+    "seed": 20261205,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.00813,
+     "delta": -0.1144
+    }
+   },
+   {
+    "seed": 20261206,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.043285,
+     "delta": -0.083
+    }
+   },
+   {
+    "seed": 20261207,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0455
+    }
+   },
+   {
+    "seed": 20261208,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.08
+    }
+   },
+   {
+    "seed": 20261209,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0806
+    }
+   },
+   {
+    "seed": 20261210,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0926
+    }
+   },
+   {
+    "seed": 20261211,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0606
+    }
+   },
+   {
+    "seed": 20261212,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.522397,
+     "delta": -0.0419
+    }
+   },
+   {
+    "seed": 20261213,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.47313,
+     "delta": -0.0704
+    }
+   },
+   {
+    "seed": 20261214,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.009355,
+     "delta": -0.0967
+    }
+   },
+   {
+    "seed": 20261215,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0625
+    }
+   },
+   {
+    "seed": 20261216,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.149613,
+     "delta": -0.0826
+    }
+   },
+   {
+    "seed": 20261217,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.25,
+     "delta": 0.0455
+    }
+   },
+   {
+    "seed": 20261218,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.391528,
+     "delta": -0.0457
+    }
+   },
+   {
+    "seed": 20261219,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.069
+    }
+   },
+   {
+    "seed": 20261220,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0278
+    }
+   },
+   {
+    "seed": 20261221,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0417
+    }
+   },
+   {
+    "seed": 20261222,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.061
+    }
+   },
+   {
+    "seed": 20261223,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0926
+    }
+   },
+   {
+    "seed": 20261224,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "evidence.unlabeled_inferences",
+     "sign_test_p": 0.6875,
+     "delta": 0.0217
+    }
+   },
+   {
+    "seed": 20261225,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.25,
+     "delta": 0.0455
+    }
+   },
+   {
+    "seed": 20261226,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0435
+    }
+   },
+   {
+    "seed": 20261227,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.033552,
+     "delta": -0.1005
+    }
+   },
+   {
+    "seed": 20261228,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0357
+    }
+   },
+   {
+    "seed": 20261229,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0645
+    }
+   },
+   {
+    "seed": 20261230,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 33,
+     "delta": 0.0909,
+     "delta_ci95": [
+      0.0303,
+      0.1667
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 25,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 64,
+     "delta": 0.0077,
+     "delta_ci95": [
+      -0.013,
+      0.0287
+     ],
+     "sign_test_p": 0.511376
+    },
+    "composite_test": {
+     "n": 65,
+     "delta": -0.012,
+     "delta_ci95": [
+      -0.0408,
+      0.0176
+     ],
+     "sign_test_p": 0.199591
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261231,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.255875,
+     "delta": -0.0586
+    }
+   },
+   {
+    "seed": 20261232,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.089531,
+     "delta": -0.0619
+    }
+   },
+   {
+    "seed": 20261233,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "question.environment_questions",
+     "sign_test_p": 0.5,
+     "delta": -0.0139
+    }
+   },
+   {
+    "seed": 20261234,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.15386,
+     "delta": -0.0542
+    }
+   },
+   {
+    "seed": 20261235,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0862
+    }
+   },
+   {
+    "seed": 20261236,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.136046,
+     "delta": -0.0776
+    }
+   },
+   {
+    "seed": 20261237,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.281042,
+     "delta": -0.0598
+    }
+   },
+   {
+    "seed": 20261238,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.003933,
+     "delta": -0.1113
+    }
+   },
+   {
+    "seed": 20261239,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.47313,
+     "delta": -0.065
+    }
+   },
+   {
+    "seed": 20261240,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.013853,
+     "delta": -0.1156
+    }
+   },
+   {
+    "seed": 20261241,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0806
+    }
+   },
+   {
+    "seed": 20261242,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.162756,
+     "delta": -0.0504
+    }
+   },
+   {
+    "seed": 20261243,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.25,
+     "delta": 0.0517
+    }
+   },
+   {
+    "seed": 20261244,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0862
+    }
+   },
+   {
+    "seed": 20261245,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0435
+    }
+   },
+   {
+    "seed": 20261246,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.070756,
+     "delta": -0.1135
+    }
+   },
+   {
+    "seed": 20261247,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.7201,
+     "delta": 0.0016
+    }
+   },
+   {
+    "seed": 20261248,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.053252,
+     "delta": -0.07
+    }
+   },
+   {
+    "seed": 20261249,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0758
+    }
+   },
+   {
+    "seed": 20261250,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.000535,
+     "delta": -0.1392
+    }
+   },
+   {
+    "seed": 20261251,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.25,
+     "delta": 0.0484
+    }
+   },
+   {
+    "seed": 20261252,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.361595,
+     "delta": -0.0584
+    }
+   },
+   {
+    "seed": 20261253,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.371298,
+     "delta": -0.0416
+    }
+   },
+   {
+    "seed": 20261254,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "question.environment_questions",
+     "sign_test_p": 0.5,
+     "delta": -0.0189
+    }
+   },
+   {
+    "seed": 20261255,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.133801,
+     "delta": -0.1138
+    }
+   },
+   {
+    "seed": 20261256,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.070756,
+     "delta": -0.0706
+    }
+   },
+   {
+    "seed": 20261257,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.098872,
+     "delta": -0.0861
+    }
+   },
+   {
+    "seed": 20261258,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0345
+    }
+   },
+   {
+    "seed": 20261259,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0571
+    }
+   },
+   {
+    "seed": 20261260,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.25,
+     "delta": 0.0536
+    }
+   },
+   {
+    "seed": 20261261,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.255875,
+     "delta": -0.0488
+    }
+   },
+   {
+    "seed": 20261262,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.035698,
+     "delta": -0.1054
+    }
+   },
+   {
+    "seed": 20261263,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0714
+    }
+   },
+   {
+    "seed": 20261264,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.010674,
+     "delta": -0.1104
+    }
+   },
+   {
+    "seed": 20261265,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.043285,
+     "delta": -0.089
+    }
+   },
+   {
+    "seed": 20261266,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.020074,
+     "delta": -0.0817
+    }
+   },
+   {
+    "seed": 20261267,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 38,
+     "delta": 0.0789,
+     "delta_ci95": [
+      0.0263,
+      0.1447
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 20,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 66,
+     "delta": 0.0071,
+     "delta_ci95": [
+      -0.0141,
+      0.0301
+     ],
+     "sign_test_p": 1.0
+    },
+    "composite_test": {
+     "n": 63,
+     "delta": -0.012,
+     "delta_ci95": [
+      -0.0398,
+      0.0163
+     ],
+     "sign_test_p": 0.749259
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261268,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 30,
+     "delta": 0.1,
+     "delta_ci95": [
+      0.0333,
+      0.1833
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 28,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 55,
+     "delta": 0.0166,
+     "delta_ci95": [
+      -0.007,
+      0.042
+     ],
+     "sign_test_p": 0.215327
+    },
+    "composite_test": {
+     "n": 74,
+     "delta": -0.0162,
+     "delta_ci95": [
+      -0.041,
+      0.0087
+     ],
+     "sign_test_p": 0.096142
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261269,
+    "selected": "delivery.unrecorded_changes",
+    "select_stats": {
+     "n": 44,
+     "delta": 0.0682,
+     "delta_ci95": [
+      0.0227,
+      0.125
+     ],
+     "direction_consistent": "6/6",
+     "sign_test_p": 0.03125
+    },
+    "test_stats": {
+     "n": 14,
+     "delta": 0.0,
+     "delta_ci95": [
+      0.0,
+      0.0
+     ],
+     "direction_consistent": "0/0",
+     "sign_test_p": 1.0
+    },
+    "composite_select": {
+     "n": 77,
+     "delta": 0.0113,
+     "delta_ci95": [
+      -0.0108,
+      0.0331
+     ],
+     "sign_test_p": 0.470879
+    },
+    "composite_test": {
+     "n": 52,
+     "delta": -0.0221,
+     "delta_ci95": [
+      -0.0516,
+      0.007
+     ],
+     "sign_test_p": 0.087159
+    },
+    "passed": false
+   },
+   {
+    "seed": 20261270,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.132498,
+     "delta": -0.1014
+    }
+   },
+   {
+    "seed": 20261271,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.1042
+    }
+   },
+   {
+    "seed": 20261272,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.001193,
+     "delta": -0.1542
+    }
+   },
+   {
+    "seed": 20261273,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0714
+    }
+   },
+   {
+    "seed": 20261274,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.065245,
+     "delta": -0.0991
+    }
+   },
+   {
+    "seed": 20261275,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.361595,
+     "delta": -0.0905
+    }
+   },
+   {
+    "seed": 20261276,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "question.environment_questions",
+     "sign_test_p": 0.5,
+     "delta": 0.0137
+    }
+   },
+   {
+    "seed": 20261277,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.864166,
+     "delta": -0.0559
+    }
+   },
+   {
+    "seed": 20261278,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.184933,
+     "delta": -0.0537
+    }
+   },
+   {
+    "seed": 20261279,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0625
+    }
+   },
+   {
+    "seed": 20261280,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.211024,
+     "delta": -0.0605
+    }
+   },
+   {
+    "seed": 20261281,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0781
+    }
+   },
+   {
+    "seed": 20261282,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.47313,
+     "delta": -0.0526
+    }
+   },
+   {
+    "seed": 20261283,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0694
+    }
+   },
+   {
+    "seed": 20261284,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.014633,
+     "delta": -0.1061
+    }
+   },
+   {
+    "seed": 20261285,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.7201,
+     "delta": -0.0364
+    }
+   },
+   {
+    "seed": 20261286,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0714
+    }
+   },
+   {
+    "seed": 20261287,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.25,
+     "delta": 0.06
+    }
+   },
+   {
+    "seed": 20261288,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0781
+    }
+   },
+   {
+    "seed": 20261289,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.024307,
+     "delta": -0.087
+    }
+   },
+   {
+    "seed": 20261290,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0435
+    }
+   },
+   {
+    "seed": 20261291,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.037
+    }
+   },
+   {
+    "seed": 20261292,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.867939,
+     "delta": -0.0341
+    }
+   },
+   {
+    "seed": 20261293,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.0625,
+     "delta": 0.0806
+    }
+   },
+   {
+    "seed": 20261294,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0645
+    }
+   },
+   {
+    "seed": 20261295,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.542384,
+     "delta": -0.0476
+    }
+   },
+   {
+    "seed": 20261296,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.5,
+     "delta": 0.0417
+    }
+   },
+   {
+    "seed": 20261297,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.089531,
+     "delta": -0.0619
+    }
+   },
+   {
+    "seed": 20261298,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.unrecorded_changes",
+     "sign_test_p": 0.125,
+     "delta": 0.0625
+    }
+   },
+   {
+    "seed": 20261299,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.281042,
+     "delta": -0.0545
+    }
+   },
+   {
+    "seed": 20261300,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.006427,
+     "delta": -0.1285
+    }
+   },
+   {
+    "seed": 20261301,
+    "selected": null,
+    "passed": false,
+    "reason": "选子项那一半没有子项达标",
+    "best": {
+     "subitem": "delivery.checkable_artifacts",
+     "sign_test_p": 0.175465,
+     "delta": -0.1069
+    }
+   }
+  ]
+ },
+ "judge_out_totals": {
+  "n_pairs": 64,
+  "recomputed_vs_stored_max_gap": 0.0,
+  "mean_delta": -0.0007,
+  "positive": 27,
+  "negative": 34,
+  "zero": 3,
+  "largest_abs": {
+   "situation_id": "SIT146",
+   "delta": -0.2638
+  },
+  "max_gain": 0.2593,
+  "max_loss": -0.2638,
+  "diffs": {
+   "SIT001": 0.1042,
+   "SIT004": 0.0764,
+   "SIT005": 0.1528,
+   "SIT008": -0.0903,
+   "SIT011": -0.0487,
+   "SIT012": -0.0659,
+   "SIT016": -0.0741,
+   "SIT017": -0.1805,
+   "SIT018": -0.0833,
+   "SIT023": 0.0671,
+   "SIT024": 0.0451,
+   "SIT034": -0.0514,
+   "SIT042": -0.1864,
+   "SIT047": -0.0655,
+   "SIT050": 0.052,
+   "SIT051": 0.0602,
+   "SIT053": -0.132,
+   "SIT055": -0.0104,
+   "SIT057": -0.2043,
+   "SIT070": 0.0,
+   "SIT071": 0.0423,
+   "SIT076": 0.074,
+   "SIT085": 0.092,
+   "SIT087": -0.132,
+   "SIT088": -0.014,
+   "SIT090": -0.0324,
+   "SIT091": -0.1018,
+   "SIT093": -0.0659,
+   "SIT095": 0.1459,
+   "SIT099": -0.0556,
+   "SIT100": 0.0069,
+   "SIT103": -0.0371,
+   "SIT105": -0.015,
+   "SIT109": 0.2084,
+   "SIT110": -0.0833,
+   "SIT111": -0.052,
+   "SIT112": -0.0695,
+   "SIT113": 0.1042,
+   "SIT116": -0.0764,
+   "SIT118": -0.0694,
+   "SIT121": -0.1806,
+   "SIT122": 0.1598,
+   "SIT123": -0.0174,
+   "SIT124": -0.0757,
+   "SIT127": -0.0138,
+   "SIT129": 0.1736,
+   "SIT130": 0.1181,
+   "SIT131": 0.0278,
+   "SIT140": 0.2518,
+   "SIT141": 0.0626,
+   "SIT143": 0.0417,
+   "SIT146": -0.2638,
+   "SIT149": -0.0463,
+   "SIT150": 0.0,
+   "SIT151": 0.2593,
+   "SIT154": -0.0301,
+   "SIT156": 0.0488,
+   "SIT164": 0.0,
+   "SIT165": 0.0621,
+   "SIT170": -0.0139,
+   "SIT172": 0.0209,
+   "SIT173": -0.0557,
+   "SIT174": 0.0116,
+   "SIT183": 0.181
+  },
+  "action_differ_subset": {
+   "wins": 21,
+   "losses": 24,
+   "ties": 2,
+   "share": 0.4667,
+   "share_ci95": [
+    0.3111,
+    0.6222
+   ]
+  }
+ },
+ "judged_higher": {
+  "counts_composite_action_differ": {
+   "wins": 36,
+   "losses": 40,
+   "ties": 53,
+   "share": 0.4737,
+   "share_ci95": [
+    0.3684,
+    0.5789
+   ]
+  },
+  "judged_composite_action_differ": {
+   "wins": 21,
+   "losses": 24,
+   "ties": 2,
+   "share": 0.4667,
+   "share_ci95": [
+    0.3111,
+    0.6222
+   ]
+  }
+ },
+ "selected_in_heldout": {
+  "rounds": 13,
+  "subitems": [
+   "delivery.unrecorded_changes"
+  ],
+  "signal_pairs": [
+   {
+    "situation_id": "SIT007",
+    "subitem": "delivery.unrecorded_changes",
+    "chosen_score": 1.0,
+    "rejected_score": 0.5,
+    "session": "--home-z-vibe--/2026-10-14T02-04-39-595Z_01a13827-912a-75d5-b433-6a2201233f73.jsonl"
+   },
+   {
+    "situation_id": "SIT114",
+    "subitem": "delivery.unrecorded_changes",
+    "chosen_score": 1.0,
+    "rejected_score": 0.5,
+    "session": "--home-z-hf-research--/2026-09-29T10-12-47-817Z_01a0eca7-1448-7647-ac96-e68b6c573f59.jsonl"
+   },
+   {
+    "situation_id": "SIT117",
+    "subitem": "delivery.unrecorded_changes",
+    "chosen_score": 1.0,
+    "rejected_score": 0.5,
+    "session": "--home-z-hf-research--/2026-09-29T10-12-47-817Z_01a0eca7-1448-7647-ac96-e68b6c573f59.jsonl"
+   },
+   {
+    "situation_id": "SIT126",
+    "subitem": "delivery.unrecorded_changes",
+    "chosen_score": 1.0,
+    "rejected_score": 0.5,
+    "session": "--home-z-hf-research--/2026-09-29T10-12-47-817Z_01a0eca7-1448-7647-ac96-e68b6c573f59.jsonl"
+   },
+   {
+    "situation_id": "SIT165",
+    "subitem": "delivery.unrecorded_changes",
+    "chosen_score": 1.0,
+    "rejected_score": 0.5,
+    "session": "--home-z-vibe-mycar--/2026-09-15T10-45-35-820Z_01a0a4ac-13cb-77a6-b653-b7223f32005c.jsonl"
+   },
+   {
+    "situation_id": "SIT170",
+    "subitem": "delivery.unrecorded_changes",
+    "chosen_score": 1.0,
+    "rejected_score": 0.5,
+    "session": "--home-z-vibe-ra2--/2026-09-01T00-07-33-048Z_01a05a4a-e5b8-71b0-ab2e-213c046b71ec.jsonl"
+   }
+  ],
+  "signal_sessions": [
+   "--home-z-hf-research--/2026-09-29T10-12-47-817Z_01a0eca7-1448-7647-ac96-e68b6c573f59.jsonl",
+   "--home-z-vibe--/2026-10-14T02-04-39-595Z_01a13827-912a-75d5-b433-6a2201233f73.jsonl",
+   "--home-z-vibe-mycar--/2026-09-15T10-45-35-820Z_01a0a4ac-13cb-77a6-b653-b7223f32005c.jsonl",
+   "--home-z-vibe-ra2--/2026-09-01T00-07-33-048Z_01a05a4a-e5b8-71b0-ab2e-213c046b71ec.jsonl"
+  ],
+  "test_halves": [
+   {
+    "n": 26,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   },
+   {
+    "n": 25,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   },
+   {
+    "n": 21,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   },
+   {
+    "n": 26,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   },
+   {
+    "n": 33,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   },
+   {
+    "n": 28,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   },
+   {
+    "n": 19,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   },
+   {
+    "n": 26,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   },
+   {
+    "n": 30,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   },
+   {
+    "n": 25,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   },
+   {
+    "n": 20,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   },
+   {
+    "n": 28,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   },
+   {
+    "n": 14,
+    "delta": 0.0,
+    "delta_ci95": [
+     0.0,
+     0.0
+    ],
+    "direction_consistent": "0/0",
+    "sign_test_p": 1.0
+   }
+  ]
+ },
+ "discriminating_subitems": [],
+ "verdict": "锚点不成立"
+}

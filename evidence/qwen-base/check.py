@@ -50,7 +50,7 @@ GENERATIONS = HERE / "generations.jsonl"
 SITUATIONS = HERE / "situations.jsonl"
 LABELS = HERE / "labels.json"
 REPORT = HERE.parent / "gate-base.md"
-POLICY = Path("/home/z/vibe/AGENTS.md")
+POLICY = Path(__file__).resolve().parents[3] / "agent-policy" / "AGENTS.md"
 
 TOOL_LINE = re.compile(r"(?m)^\s*(?:[-*]\s*)?tool:\s*[A-Za-z_][\w.]*\s*\(")
 TOOL_ANY = re.compile(r"(?m)^\s*(?:[-*]\s*)?tool:\s*(\S.*)$")

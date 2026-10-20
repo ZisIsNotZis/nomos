@@ -18,7 +18,9 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 PROBE2 = REPO / "report" / "probe-2"
-AGENTS_MD = Path("/home/z/vibe/AGENTS.md")
+# The law lives in the workspace's agent-policy submodule; the run records pin the sha256
+# they used, so a rerun against a newer law is honest rather than a rewrite of the record.
+AGENTS_MD = Path(__file__).resolve().parents[3] / "agent-policy" / "AGENTS.md"
 
 sys.path.insert(0, str(PROBE2))
 import probe_lib as lib  # noqa: E402  reuse endpoint, key check, pricing, call_cost

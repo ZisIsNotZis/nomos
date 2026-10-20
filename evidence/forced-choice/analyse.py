@@ -164,7 +164,7 @@ def main():
     check(requests_ok, "every request hash/chars rebuilds from excerpt + two answers + question")
     check(blind_ok, "no user prompt contains the words bare, law, or arm")
     check(policy_sha == "325f8b3e2d868f91fb43c24dd088ae6e735386c6d5e2aacfc7496d6ff2726ab6",
-          "system message is the exact /home/z/vibe/AGENTS.md bytes probe 2 recorded")
+          "system message is the exact agent-policy/AGENTS.md bytes probe 2 recorded")
 
     recomputed_usd = sum(lib.call_cost(row["usage"], row["created"])["usd"] for row in calls)
     spent_usd = sum(row["cost"]["usd"] for row in calls)
