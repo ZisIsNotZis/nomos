@@ -1,0 +1,85 @@
+# 模型卡：nomos-narrow LoRA（Qwen3.5-2B 上的 SFT 适配器）
+
+类型：产物。所有者：主代理。上游：[设计](method/design.md)、[训练报告](../report/sft-training.md)、[数据卡](data-card.md)。
+
+一句话：这是把一个人（法条作者本人）的操作法压进 2B 权重的一次 SFT 适配器，学到的是「开始写工具行」，不是「决策选得更对」。
+
+## 基座
+
+| | 值 | 来源 |
+| --- | --- | --- |
+| 模型 | `Qwen/Qwen3.5-2B`，revision `15852e8c16360a2fea060d615a32b45270f8a8fc` | `evidence/qwen-base/run-meta.json` |
+| 参数 | 2 213 241 664（2.21 B），bf16 | 同上 |
+| 架构 | 混合注意力：24 层里 6 层是 `q/k/v/o` 全注意力，18 层是线性注意力（`linear_attn.in_proj_qkv/z/a/b`、`out_proj`） | `report/sft-training.md` |
+| 许可 | **Apache-2.0**。核对方式：本机 HF 快照 `models--Qwen--Qwen3.5-2B/snapshots/15852e8c…/LICENSE` 是 Apache License 2.0 全文，同目录 `README.md` 头部写 `license: apache-2.0`、`base_model: Qwen/Qwen3.5-2B-Base` | 本地快照，非网络 |
+| 类型标记 | HF 上 `pipeline_tag: image-text-to-text`（该系列是图文模型）；本项目只走纯文本路径 | 同上 |
+| 训练时精度 | 4-bit nf4、double quant、bf16 compute（QLoRA） | `report/sft-training.md` |
+
+## 适配器
+
+| | 值 |
+| --- | --- |
+| 路径 | `.tmp/sft/adapter-narrow/`（`adapter_model.safetensors`、`adapter_config.json`、`README.md`） |
+| 字节 | 43 675 104（41.7 MiB） |
+| sha256 | `5be6a2f38752025930e6dbca80d3e0092bbfb905c731fbff2f275e1658176a72` |
+| 形式 | LoRA，`r=16`、`alpha=32`、`dropout 0.05`、`task_type: CAUSAL_LM`、peft 0.21.2 |
+| 目标模块 | `q_proj k_proj v_proj o_proj gate_proj up_proj down_proj`（`--lora-targets narrow`）：96 个模块、192 个张量 |
+| 可训练参数 | 10 911 744（占基座 0.79%） |
+| 训练 | 288 条训练 / 78 条验证，3 个 epoch、54 步、seed 0、lr 1e-4、有效 batch 16、828.6 秒（单卡 RTX 4090，与另一项目共用） |
+| 法版本 | 训练 target 来自带 `AGENTS.md`（93 670 字符，sha256 `325f8b3e2d868f91fb43c24dd088ae6e735386c6d5e2aacfc7496d6ff2726ab6`）的 DeepSeek 回答；法条原文**不进** prompt |
+
+登记在 [`artifacts.tsv`](../artifacts.tsv)：该文件超出 git 的实用尺寸，仓库里只有哈希与重生成命令，权重本体在 `.tmp/`，按约定可被删除。
+
+### 怎么加载
+
+适配器是标准 peft LoRA，叠在上面那个 revision 的基座上：
+
+```python
+from peft import PeftModel
+from transformers import AutoModelForImageTextToText
+
+base = AutoModelForImageTextToText.from_pretrained(
+    "/home/z/hf/hub/models--Qwen--Qwen3.5-2B/snapshots/15852e8c16360a2fea060d615a32b45270f8a8fc"
+)
+model = PeftModel.from_pretrained(base, ".tmp/sft/adapter-narrow")
+```
+
+仓库里两条现成的入口都这么装：`scripts/measure_actions.py`（`ADAPTER = .tmp/sft/adapter-narrow`，`--generate` 生成三点测量）与 `scripts/run_bench.py --model adapter`（benchmark 的 adapter 侧）。两条入口的加载精度不同，读它们的数时要带上：`measure_actions.py` 是 bf16 全精度加载；`run_bench.py` 是 4-bit nf4（与训练同一套量化，base 与 adapter 都走它，所以两侧对比是同一把尺子）。
+
+### 重生成
+
+```
+python3 scripts/train_sft.py --epochs 3 --grad-accum 8 --lora-r 16 --lora-alpha 32 \
+  --lora-targets narrow --adapter-dir .tmp/sft/adapter-narrow
+```
+
+同一 GPU 上约 14 分钟。三个开关都要显式给：脚本默认 `--lora-targets wide`（还挂 18 层线性注意力的 5 个投影，见 [`report/sft-training-wide.md`](../report/sft-training-wide.md)），`--lora-r` / `--lora-alpha` 省略时按开跑前空闲显存选。
+
+## 训练数据
+
+366 条样本（训练 288 / 验证 78），来自 242 条真实处境、51 个会话（47 个会话组）。每条样本 = 处境原文作 prompt、带法 DeepSeek 回答作 target，只对 target 算 loss。覆盖 175 条可训练规则里的 77 条（下界，68 条处境没有规则标注）。细节、去重判据与丢弃计数：[数据卡](data-card.md)、[`report/sft-data.md`](../report/sft-data.md)。
+
+## 结果（全部来自 `report/`，本卡不重算）
+
+- 验证 PPL 11.34 → 6.03（loss 2.4285 → 1.7972），训练/验证 loss 差 0.36 且仍在扩大：跑通并学到回答形态，没有证明学会法。`report/sft-training.md`
+- 回答里有可解析工具行的比例 5.6% → 75.2%（444 条对 444 条，不依赖参照物）。动作签名一致率 0.0023 → 0.0968（Δ 0.0946 [0.0586, 0.1351]，n_pairs = 148）。`report/sft-measurement.md`
+- 提升的 65.3% 是交互项、5.3% 是决策项独立份额（[−0.0001, 0.0099]，跨 0）：不能说「写了动作之后选得更对」。同文件
+- 文字层决策签名一致率 Δ −0.0473 [−0.1085, 0.0118]：不支持「决策变像了」，也不构成「变差了」。同文件
+- 通用能力：GSM8K 75.0% → 65.0%、IFEval 60.0% → 40.0%，n=20，配对区间都跨 0 → 没有可信的下降证据，**不是**「能力没掉」。`report/sft-benchmark.md`
+
+## 已知限制
+
+1. **单一用户、单一份法。** 训练 target 只反映一个人与一个代理协作的偏好（`docs/method/limits.md` 第 1–2 节）。法变了，本适配器不自动成立。
+2. **单一模型尺寸。** 只有 2B；没有任何依据外推到 7B 或别的架构。
+3. **窄版 LoRA 只覆盖部分层。** 18 层线性注意力的 5 个投影没挂 LoRA（这是该架构上「注意力投影」的边界）；宽版重跑验证 PPL 6.09 比窄版 6.03 差且第三轮反弹，所以窄版是选择而不是缺口。
+4. **288 条训练样本、242 条处境。** 151 条处境只有一种决策；验证集 10 个会话组 78 条，PPL 差 0.03 在噪声量级。覆盖面 77/175 是下界。
+5. **测量口径的边界。** 一致率只在 148/242 条处境上算（94 条参照物定不下来），不能外推全域；参照物是「带法 DeepSeek 的多数签名」，不是正确答案，所以一致率不是正确率。
+6. **尺子量不出法本身。** 同协议下带法侧对它自己只有 0.3311 [0.2725, 0.3919]、不带法侧 0.2815 [0.2207, 0.3401]，差 0.0496 [−0.0068, 0.1059] 跨 0——这把尺子在 0.28–0.33 这个位置上分辨不出法的作用，所以本适配器「补上了多少法条效果」没有可测量的答案。
+7. **benchmark 的 n 太小。** n=20 只能看见 ≳20pp 的掉幅；GSM8K 基座 75.0% 已贴判别带上沿，判别力偏弱。
+8. **权重不在 git 里。** `.tmp/` 是可删的临时区，删了只能按上面的命令重训（约 14 分钟 GPU）。
+9. **不构成通用对齐或安全产物。** 不防对抗性使用，不做多用户与权限，见 `docs/method/limits.md`。
+
+## 许可与引用
+
+- 适配器是 Apache-2.0 基座的衍生权重，随基座继承 Apache-2.0 的义务：再分发时须带上许可文本、保留版权与署名声明、并标注改动。该 HF 快照里没有单独的 NOTICE 文件，所以没有额外的 NOTICE 义务可继承。
+- 本仓库自身代码与文档的许可尚未由作者指定，因此当前不授予复用许可；这一条是待决项，不是默示授权。
