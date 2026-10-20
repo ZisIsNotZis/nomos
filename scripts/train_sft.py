@@ -39,7 +39,6 @@ VAL_PATH = os.path.join(ROOT, "data/sft-val.jsonl")
 OUT_DIR = os.path.join(ROOT, "evidence/sft")
 LOG_PATH = os.path.join(OUT_DIR, "log.jsonl")
 ADAPTER_DIR = os.path.join(ROOT, ".tmp/sft/adapter")
-ARTIFACTS_TSV = os.path.join(ROOT, "artifacts.tsv")
 
 # Attention and MLP projection layers: every linear projection that carries the
 # decision-shape of an answer (what to attend to, what to write) gets a delta.
