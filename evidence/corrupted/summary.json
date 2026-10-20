@@ -1,0 +1,65 @@
+{
+  "attempts": 60,
+  "verified": 34,
+  "discarded": 26,
+  "discard_reasons": {
+    "目标子项没翻转": 16,
+    "未改动": 5,
+    "带动其他子项": 5,
+    "相似度或长度比不合格": 2
+  },
+  "target_flipped": 39,
+  "single_cause_among_flipped": 0.8718,
+  "single_cause_among_verified": 1.0,
+  "similarity_median": 0.9268,
+  "rules_covered": 10,
+  "rules_zero_coverage_before": 8,
+  "rules_covered_list": [
+    "attention.communication.ask_the_gap",
+    "attention.communication.ignored_domains",
+    "attention.phases.discussion.consequential_only",
+    "change.entries.fabricated",
+    "change.record.keep_evidence",
+    "intent.decisions.question_frontier",
+    "intent.objective.true_metric",
+    "proof.execution.bind_to_revision",
+    "proof.review.unverified",
+    "resources.environment.diagnose_network"
+  ],
+  "per_rule_accepted": {
+    "intent.objective.true_metric": 2,
+    "resources.environment.diagnose_network": 1,
+    "change.entries.fabricated": 2,
+    "change.record.keep_evidence": 2,
+    "attention.communication.ask_the_gap": 5,
+    "proof.review.unverified": 2,
+    "attention.communication.ignored_domains": 10,
+    "intent.decisions.question_frontier": 7,
+    "proof.execution.bind_to_revision": 2,
+    "attention.phases.discussion.consequential_only": 1
+  },
+  "per_family_accepted": {
+    "INF": 11,
+    "ENVQ": 23
+  },
+  "planned_per_rule": {
+    "intent.objective.true_metric": 3,
+    "resources.environment.diagnose_network": 2,
+    "change.entries.fabricated": 2,
+    "change.record.keep_evidence": 3,
+    "change.entries.assent": 1,
+    "attention.communication.ask_the_gap": 9,
+    "proof.review.unverified": 10,
+    "attention.communication.ignored_domains": 13,
+    "intent.decisions.question_frontier": 10,
+    "proof.execution.bind_to_revision": 4,
+    "attention.phases.advance.plan_gate": 1,
+    "attention.phases.discussion.consequential_only": 2
+  },
+  "spend_cny": 0.05329,
+  "model": "deepseek-flash",
+  "temperature": 0.0,
+  "max_tokens": 900,
+  "similarity_threshold": 0.75,
+  "pairs_file": "data/pairs-corrupted.jsonl"
+}
