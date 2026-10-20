@@ -1,0 +1,252 @@
+{
+ "suite": "ifeval",
+ "model": "base",
+ "stub": "gold",
+ "adapter_dir": null,
+ "frozen_sha256": "0cc0fb5726c3aa6ec9053aec2bfc8615ed631150e54cee492c0f2f963dcdf71e",
+ "seed": 0,
+ "limit": 20,
+ "max_new_tokens": 640,
+ "decoding": "greedy",
+ "records": [
+  {
+   "id": "ifeval-2790",
+   "prompt": "Write a funny rap about a man who gets a call from an official saying that he is a long lost relative of the king of Nigeria. Use markdown to highlight at least one section of your answer, i.e. *highlighted section*.",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1372",
+   "prompt": "Draft a blog post about Ripley's Aquarium. Make sure your blog post contains at least 7 placeholders represented by square brackets, such as [location].",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_content:number_placeholders": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2857",
+   "prompt": "Write a rubric for performance review of a software engineer and wrap the entire output in JSON format. You can use markdown ticks such as ```.",
+   "output": "42",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:json_format": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2752",
+   "prompt": "The opposite of youth is not age, but ...? Highlight at least 2 sections in your answer with markdown, i.e. *highlighted section*.",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2798",
+   "prompt": "Write a list of the top 10 facts about the UK without using commas.",
+   "output": "42",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "punctuation:no_comma": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2246",
+   "prompt": "I want to travel to the Subic Bay Freeport Zone, which subdistrict should I stay in? Give me an angry recommendation. Answer with at least 400 words. In your response, the word climatic should appear at least 2 times. The response must contain at least 3 placeholders represented by square brackets, such as [address].",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": false,
+    "keywords:frequency": false,
+    "detectable_content:number_placeholders": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3048",
+   "prompt": "Write a poem about the top 20 tallest buildings in the world and their heights. End your response with the exact question: Is there anything else I can help with?",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:end_checker": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2391",
+   "prompt": "What's the best way to get to the train station? Answer using a casual tone and markdown. Your response should be at least 300 words and in all lowercase letters.",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": false,
+    "change_case:english_lowercase": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2467",
+   "prompt": "Write a rap about an abyss in exactly 4 paragraphs. Separate paragraphs with the markdown divider: ***.",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_paragraphs": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-13",
+   "prompt": "What is the history of NYC prospect park? Please wrap your entire answer in JSON format. You can use markdown ticks such as ```. For example:\n```JSON\n{\n...\n}\n```",
+   "output": "42",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:json_format": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3424",
+   "prompt": "Write a story about a family that goes camping in the woods. Your entire response should be in English and in all capital letters.",
+   "output": "42",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3294",
+   "prompt": "Give me 5 Q and As, following the following format:\n\n\"\nQ & A # 1\n***\nQ & A # 2\n***\nQ & A # 3\n***\nQ & A # 4\n***\nQ & A # 5\n\"\n\nWrap your entire response with double quotation marks.",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_paragraphs": false,
+    "startend:quotation": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-24",
+   "prompt": "The Legend of the Sword and the Fairy is a movie in which Wan Wan is a villain. Write a story about Wan Wan's character in list format. Your entire response should be in English and in all capital letters.",
+   "output": "42",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2475",
+   "prompt": "Write a TLDR for the recent conflict between ISIL and the US in conversational bullet points. End your response with this exact phrase: \"Let me know if you have additional questions.\", and no other words should follow this phrase.",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:end_checker": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2374",
+   "prompt": "Write a project proposal for how to use machine learning and AI to improve the quality of education in developing countries. In your response, do not use any commas.",
+   "output": "42",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "punctuation:no_comma": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2905",
+   "prompt": "Expand the riddle into a story with a funny tone:\n\nWhat can you catch but not throw?\nA cold\n\nUse * to highlight at least 2 sections in your text. For example: *this is a highlighted text section*.",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1348",
+   "prompt": "Write a brief biography of a person named \"Brilliant Le Hou\". Do not use commas in your reply. Highlight at least 3 sections with markdown, i.e. *highlighted section*. The biography should start with the name of the person.",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "punctuation:no_comma": true,
+    "detectable_format:number_highlighted_sections": false,
+    "keywords:existence": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3644",
+   "prompt": "Write a blog post about interesting facts about the Dutch language. Italicize at least 2 sections in your answer with markdown, i.e. *italic text*.",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2844",
+   "prompt": "For a bunch of students, write a 200+ word poem that professionally describes a new line of shoes. Make sure to use markdown to highlight/bold at least one section of the poem. Example: *highlighted text*",
+   "output": "42",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false,
+    "length_constraints:number_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1137",
+   "prompt": "Explain in French why it is important to eat healthy foods to heal the body, without using the word \"nourriture\". Make sure your entire response is wrapped in JSON format.",
+   "output": "42",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:json_format": true,
+    "keywords:forbidden_words": true
+   },
+   "gold": null
+  }
+ ],
+ "summary": {
+  "items": 20,
+  "correct": 7,
+  "accuracy": 0.35,
+  "accuracy_ci95": [
+   0.18118954786794464,
+   0.5671494897805354
+  ],
+  "unscorable": 0
+ },
+ "elapsed_seconds": 0.0
+}

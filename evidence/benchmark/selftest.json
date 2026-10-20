@@ -1,0 +1,314 @@
+{
+ "what_this_proves": "the scoring and aggregation code is correct and runs end to end on the frozen items with a fixed-output stub; it does not measure any model, and no real model was run, so headroom remains unmeasured",
+ "gpu_used": false,
+ "instruction_types_checked": [
+  "change_case:english_capital",
+  "change_case:english_lowercase",
+  "combination:two_responses",
+  "detectable_content:number_placeholders",
+  "detectable_format:json_format",
+  "detectable_format:number_highlighted_sections",
+  "detectable_format:title",
+  "keywords:existence",
+  "keywords:forbidden_words",
+  "keywords:frequency",
+  "length_constraints:number_paragraphs",
+  "length_constraints:number_words",
+  "punctuation:no_comma",
+  "startend:end_checker",
+  "startend:quotation"
+ ],
+ "extractor_cases": [
+  {
+   "case": "gsm8k marker",
+   "got": "7",
+   "want": "7",
+   "passed": true
+  },
+  {
+   "case": "gsm8k commas",
+   "got": "1200",
+   "want": "1200",
+   "passed": true
+  },
+  {
+   "case": "gsm8k decimal",
+   "got": "0.5",
+   "want": "0.5",
+   "passed": true
+  },
+  {
+   "case": "gsm8k no marker",
+   "got": "12",
+   "want": "12",
+   "passed": true
+  },
+  {
+   "case": "gsm8k marker after prose",
+   "got": "15",
+   "want": "15",
+   "passed": true
+  },
+  {
+   "case": "gsm8k no number",
+   "got": null,
+   "want": null,
+   "passed": true
+  }
+ ],
+ "checker_cases": [
+  {
+   "case": "no_comma true",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "no_comma false",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "lowercase true",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "lowercase false",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "capital true",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "capital false",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "existence true",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "existence false",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "forbidden true",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "forbidden false",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "frequency at least",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "frequency less than",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "words at least",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "words at least short",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "paragraphs exact",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "paragraphs exact false",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "highlights",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "highlights short",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "title",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "title absent",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "json",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "json broken",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "placeholder",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "end_checker",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "end_checker false",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "quotation",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "quotation false",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "two_responses",
+   "got": true,
+   "want": true,
+   "passed": true
+  },
+  {
+   "case": "two_responses false",
+   "got": false,
+   "want": false,
+   "passed": true
+  },
+  {
+   "case": "empty output satisfies nothing",
+   "got": [
+    false,
+    false
+   ],
+   "want": [
+    false,
+    false
+   ],
+   "passed": true
+  }
+ ],
+ "pipeline_runs": [
+  {
+   "suite": "gsm8k",
+   "stub": "gold",
+   "items": 20,
+   "accuracy": 1.0,
+   "accuracy_ci95": [
+    0.8388698745050667,
+    1.0
+   ],
+   "unscorable": 0,
+   "expectation": "accuracy 1.0, unscorable 0"
+  },
+  {
+   "suite": "gsm8k",
+   "stub": "wrong",
+   "items": 20,
+   "accuracy": 0.0,
+   "accuracy_ci95": [
+    0.0,
+    0.16113012549493322
+   ],
+   "unscorable": 0,
+   "expectation": "accuracy 0.0, unscorable 0"
+  },
+  {
+   "suite": "gsm8k",
+   "stub": "garbage",
+   "items": 20,
+   "accuracy": 0.0,
+   "accuracy_ci95": [
+    0.0,
+    0.16113012549493322
+   ],
+   "unscorable": 20,
+   "expectation": "accuracy 0.0, unscorable 20"
+  },
+  {
+   "suite": "ifeval",
+   "stub": "hand-computed",
+   "items": 2,
+   "accuracy": 0.5,
+   "accuracy_ci95": [
+    0.09452865480086614,
+    0.9054713451991339
+   ],
+   "unscorable": 0,
+   "expectation": "1 of 2 correct: syn-pass passes, syn-fail fails change_case:english_lowercase"
+  },
+  {
+   "suite": "ifeval",
+   "stub": "empty-output",
+   "items": 20,
+   "accuracy": 0.0,
+   "accuracy_ci95": [
+    0.0,
+    0.16113012549493322
+   ],
+   "unscorable": 0,
+   "expectation": "an empty output satisfies no instruction, so 0 of 20"
+  }
+ ],
+ "counts": {
+  "extractor_cases": 6,
+  "checker_cases": 30,
+  "pipeline_runs": 5
+ }
+}

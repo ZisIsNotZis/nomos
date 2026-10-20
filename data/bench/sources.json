@@ -1,0 +1,43 @@
+{
+  "seed": 0,
+  "selection_rule": "sort candidate ids by sha256('<seed>:<id>') hex ascending, keep the prefix",
+  "suites": {
+    "gsm8k": {
+      "source_url": "https://raw.githubusercontent.com/openai/grade-school-math/master/grade_school_math/data/test.jsonl",
+      "license": "MIT",
+      "source_sha256": "3730d312f6e3440559ace48831e51066acaca737f6eabec99bccb9e4b3c39d14",
+      "frozen_items": 200,
+      "frozen_sha256": "def2e3a03b1893d9bfddd792cf5e8eed7fa62db2a0ba3662882a5af0f986c1d3",
+      "max_new_tokens": 512,
+      "scoring": "last number after '####' (else the last bare number) compared to the gold number, exact after normalisation"
+    },
+    "ifeval": {
+      "source_url": "https://huggingface.co/datasets/google/IFEval",
+      "license": "Apache-2.0",
+      "source_sha256": "6a85310ca8ce15eff755aa08a3a4ff931c7e273e7515ebb3c492ea85fd8288f2",
+      "frozen_items": 295,
+      "frozen_sha256": "0cc0fb5726c3aa6ec9053aec2bfc8615ed631150e54cee492c0f2f963dcdf71e",
+      "max_new_tokens": 640,
+      "scoring": "an item is kept only when every instruction type it carries has a checker in scripts/bench_suites.py; correct means every instruction on the item holds",
+      "supported_instruction_types": [
+        "change_case:english_capital",
+        "change_case:english_lowercase",
+        "combination:two_responses",
+        "detectable_content:number_placeholders",
+        "detectable_format:json_format",
+        "detectable_format:number_highlighted_sections",
+        "detectable_format:title",
+        "keywords:existence",
+        "keywords:forbidden_words",
+        "keywords:frequency",
+        "length_constraints:number_paragraphs",
+        "length_constraints:number_words",
+        "punctuation:no_comma",
+        "startend:end_checker",
+        "startend:quotation"
+      ],
+      "candidates": 541,
+      "excluded_unsupported_types": 246
+    }
+  }
+}
