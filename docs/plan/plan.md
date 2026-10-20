@@ -14,7 +14,7 @@
 
 ## 二 · 生成正负样本
 
-**状态：已有。** 183 条处境各生成两条回答：DeepSeek 带 `AGENTS.md`（chosen）与不带（rejected），落 `data/pairs.jsonl`。
+**状态：已有。** 183 条处境各生成两条回答：DeepSeek 带 `AGENTS.md`（chosen）与不带（rejected），落 `data/pairs.jsonl`。没用的 59 条合格处境已按同一构造补跑四次抽样（law×2、bare×2），请求指纹与老批次逐条相同，见 [增长批次](../../report/grow-pairs.md)；合格处境至此用完。
 
 产出：`data/pairs.jsonl`。
 
@@ -27,7 +27,7 @@
 1. 丢掉两条完全相同的对：判据见报告“判据·实质相同”，丢 6 条。
 2. 丢掉坏件：截断 3 条，复读与回显各 0 条。
 3. 标每对覆盖了哪些规则：`data/coverage.json`，脚本 `scripts/annotate_coverage.py`。
-4. 跑覆盖计数：`data/coverage-counts.json`；不加样本，尾部规则列为已知不足。
+4. 跑覆盖计数：`data/coverage-counts.json`；不加样本，尾部规则列为已知不足。增长批次补标的 55 条处境把零覆盖从 98 条降到 91 条，见 [增长批次](../../report/grow-pairs.md)。
 
 产出：`report/data-quality.md`。
 

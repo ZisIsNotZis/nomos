@@ -1,0 +1,317 @@
+{
+ "GRW003": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "attention.phases.discussion.act_now",
+  "change.upkeep.doc_first"
+ ],
+ "GRW004": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.reconcile",
+  "attention.phases.discussion.act_now"
+ ],
+ "GRW001": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "change.upkeep.cut_repetition",
+  "change.upkeep.ops"
+ ],
+ "GRW002": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "attention.communication.conclusion_only",
+  "attention.communication.extraction"
+ ],
+ "GRW005": [
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.round",
+  "precedence.verify_the_fact",
+  "intent.user_model.user_language"
+ ],
+ "GRW008": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.understand",
+  "attention.communication.conclusion_only"
+ ],
+ "GRW006": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "resources.efficiency.read_once",
+  "attention.phases.discussion.act_now"
+ ],
+ "GRW007": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only"
+ ],
+ "GRW009": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.interrupt",
+  "attention.communication.conclusion_only",
+  "change.write_through"
+ ],
+ "GRW011": [
+  "intent.roles.main_agent",
+  "intent.roles.delegation",
+  "resources.split.handoff",
+  "proof.process.subagent_scope"
+ ],
+ "GRW012": [
+  "laws.falsifiable.fail_loud",
+  "proof.execution.anomaly",
+  "practice.diagnosis.reproduce_minimize",
+  "attention.phases.discussion.act_now"
+ ],
+ "GRW010": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.round",
+  "proof.execution.anomaly"
+ ],
+ "GRW013": [
+  "intent.roles.main_agent",
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "resources.split.handoff"
+ ],
+ "GRW014": [
+  "laws.self_improvement.signal",
+  "attention.phases.discussion.act_now",
+  "attention.communication.report_only_effect"
+ ],
+ "GRW015": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "GRW016": [
+  "laws.self_improvement.signal",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "attention.delivery.protect_willingness"
+ ],
+ "GRW017": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now"
+ ],
+ "GRW018": [
+  "attention.phases.discussion.interrupt",
+  "proof.process.steerable",
+  "proof.execution.anomaly",
+  "attention.communication.conclusion_only"
+ ],
+ "GRW019": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "proof.review.scoped_review"
+ ],
+ "GRW020": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.user_model.understand",
+  "attention.communication.conclusion_only"
+ ],
+ "GRW022": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.round",
+  "intent.user_model.understand",
+  "attention.phases.discussion.wait_for_yes"
+ ],
+ "GRW021": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.divergence",
+  "proof.execution.anomaly",
+  "attention.delivery.protect_willingness"
+ ],
+ "GRW023": [
+  "attention.phases.discussion.interrupt",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language",
+  "proof.execution.anomaly"
+ ],
+ "GRW024": [
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.act_now",
+  "attention.communication.conclusion_only"
+ ],
+ "GRW026": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "resources.efficiency.read_once",
+  "precedence.untrusted_input"
+ ],
+ "GRW027": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now"
+ ],
+ "GRW025": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "resources.efficiency.read_once",
+  "precedence.untrusted_input"
+ ],
+ "GRW028": [
+  "attention.phases.discussion.round",
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence"
+ ],
+ "GRW029": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.phases.discussion.divergence",
+  "attention.communication.conclusion_only"
+ ],
+ "GRW030": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "resources.efficiency.read_once"
+ ],
+ "GRW032": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "intent.roles.main_agent",
+  "attention.phases.discussion.interrupt"
+ ],
+ "GRW034": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.user_model.unanswerable_only"
+ ],
+ "GRW035": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "resources.efficiency.read_once",
+  "precedence.untrusted_input"
+ ],
+ "GRW033": [
+  "laws.self_improvement.strongest_cure",
+  "laws.self_improvement.placement",
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence"
+ ],
+ "GRW036": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.divergence"
+ ],
+ "GRW039": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence"
+ ],
+ "GRW037": [
+  "attention.phases.turn",
+  "attention.phases.discussion.act_now",
+  "resources.efficiency.read_once",
+  "precedence.untrusted_input"
+ ],
+ "GRW040": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.understand"
+ ],
+ "GRW041": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "attention.communication.conclusion_only",
+  "precedence.own_inference"
+ ],
+ "GRW042": [
+  "laws.self_improvement.signal",
+  "laws.self_improvement.placement",
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence"
+ ],
+ "GRW043": [
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.user_language"
+ ],
+ "GRW044": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.interrupt",
+  "intent.user_model.user_language",
+  "attention.communication.conclusion_only"
+ ],
+ "GRW046": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.divergence",
+  "change.upkeep.render"
+ ],
+ "GRW045": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence",
+  "laws.self_improvement.signal",
+  "change.upkeep.render"
+ ],
+ "GRW047": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.act_now",
+  "attention.communication.conclusion_only"
+ ],
+ "GRW048": [
+  "attention.phases.discussion.interrupt",
+  "proof.process.model_cost",
+  "attention.phases.discussion.act_now"
+ ],
+ "GRW049": [
+  "intent.user_model.understand",
+  "intent.decisions.substitute_design",
+  "attention.phases.discussion.divergence",
+  "practice.design.abstraction_cost"
+ ],
+ "GRW050": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.user_model.understand",
+  "attention.phases.discussion.round"
+ ],
+ "GRW051": [
+  "intent.user_model.understand",
+  "attention.phases.discussion.divergence",
+  "attention.phases.discussion.wait_for_yes",
+  "intent.risk.preserve_work"
+ ],
+ "GRW053": [
+  "attention.phases.discussion.act_now",
+  "attention.phases.discussion.divergence",
+  "attention.communication.conclusion_only"
+ ],
+ "GRW054": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now"
+ ],
+ "GRW055": [
+  "proof.process.model_cost",
+  "proof.process.steerable",
+  "attention.phases.discussion.act_now"
+ ],
+ "GRW058": [
+  "intent.user_model.user_language",
+  "attention.phases.discussion.round",
+  "attention.phases.discussion.act_now",
+  "change.write_through"
+ ],
+ "GRW057": [
+  "attention.phases.turn",
+  "attention.phases.discussion.brainstorm",
+  "attention.phases.discussion.act_now",
+  "intent.user_model.understand"
+ ],
+ "GRW059": [
+  "attention.phases.turn",
+  "attention.phases.discussion.round",
+  "intent.user_model.reconcile",
+  "proof.execution.anomaly"
+ ]
+}

@@ -1,0 +1,4 @@
+{"situation_id": "GRW031", "batch": "grow", "signals": ["S3_repeat_user_turn"], "reasons": [{"reason": "same_decision", "criterion": "A", "evidence": "归一化后两串完全相同"}]}
+{"situation_id": "GRW038", "batch": "grow", "signals": ["S3_repeat_user_turn"], "reasons": [{"reason": "same_decision", "criterion": "A", "evidence": "归一化后两串完全相同"}]}
+{"situation_id": "GRW052", "batch": "grow", "signals": ["S1_interrupt_after_tool_call"], "reasons": [{"reason": "same_decision", "criterion": "A", "evidence": "归一化后两串完全相同"}]}
+{"situation_id": "GRW056", "batch": "grow", "signals": ["S4_negation_lead", "S1_interrupt_after_tool_call"], "reasons": [{"reason": "same_decision", "criterion": "A", "evidence": "归一化后两串完全相同"}]}

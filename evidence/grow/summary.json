@@ -1,0 +1,335 @@
+{
+ "pool": {
+  "rule": "合格 = mining/candidates.jsonl 里 signals 非空、不含凭据样式、正文以用户轮结尾；已用 = evidence/slice-contrast/situations.jsonl 的 window",
+  "candidates": 455,
+  "eligibility_funnel": {
+   "not_end_on_user": 208,
+   "credential_looking": 5
+  },
+  "eligible": 242,
+  "eligible_sessions": 51,
+  "used_by_previous_batch": 183,
+  "used_windows": 183,
+  "unused": 59,
+  "unused_sessions": 10,
+  "unused_new_sessions": 0,
+  "per_signal": {
+   "S1_interrupt_after_tool_call": 23,
+   "S4_negation_lead": 22,
+   "S3_repeat_user_turn": 14
+  },
+  "request_gate": {
+   "claim": "新批次与老批次是同一条提示构造",
+   "method": "用 evidence/slice-contrast/common.build 的同一路径重建 183 条处境 × 2 条件的请求，与 evidence/slice-contrast/answers.jsonl 的 request_sha256 逐条比对",
+   "pairs_checked": 183,
+   "requests_checked": 366,
+   "mismatches": 0,
+   "law_commit": "5eafb2e",
+   "law_sha256": "325f8b3e2d868f91fb43c24dd088ae6e735386c6d5e2aacfc7496d6ff2726ab6",
+   "instruction_sha256": "f92e401df8d5827f81ea60a761d8aec0eaf95e6f8ba95e91e067a7dff46179cd",
+   "request_sha256_rule": "sha256(system + '\\x00' + excerpt + INSTRUCTION)"
+  }
+ },
+ "generation": {
+  "model": "deepseek-flash",
+  "temperature": 0.0,
+  "max_tokens": 600,
+  "thinking": "disabled",
+  "arms": {
+   "law": "整部 AGENTS.md 作 system 消息",
+   "bare": "无 system 消息"
+  },
+  "draws_per_arm": 2,
+  "law_commit": "5eafb2e",
+  "law_sha256": "325f8b3e2d868f91fb43c24dd088ae6e735386c6d5e2aacfc7496d6ff2726ab6",
+  "instruction_sha256": "f92e401df8d5827f81ea60a761d8aec0eaf95e6f8ba95e91e067a7dff46179cd",
+  "situations": 59,
+  "calls": 236,
+  "spend_cny": 0.494029,
+  "bare_arm_gate": "bare 请求必须没有 system 消息，且正文里不出现法条原文的首尾片段"
+ },
+ "filters": {
+  "input_pairs": 59,
+  "kept_after_quality": 55,
+  "dropped_quality": {
+   "total": 4,
+   "same_decision": 4,
+   "same_decision_by_criterion": {
+    "A": 4
+   },
+   "broken": 0,
+   "broken_by_reason": {
+    "truncated": 0,
+    "repetition": 0,
+    "echo": 0
+   },
+   "broken_by_arm": {}
+  },
+  "reproduction": {
+   "rule": "存下的 law 回答被第二次 law 抽样复现，且存下的 bare 回答被第二次 bare 抽样复现（动作签名逐项相同）",
+   "evaluated_on": 55,
+   "dropped_total": 30,
+   "dropped_law_not_reproduced_only": 13,
+   "dropped_bare_not_reproduced_only": 9,
+   "dropped_both": 8
+  },
+  "surviving": 25,
+  "surviving_both_sides_without_actions": 3,
+  "quality_dropped_also_not_reproduced": 1
+ },
+ "merged_stable": {
+  "output": "data/pairs-stable-v2.jsonl",
+  "n": 91,
+  "from_slice_contrast": 66,
+  "from_grow": 25,
+  "both_sides_with_parseable_actions": 48,
+  "cross_condition_disagreement": {
+   "n": 91,
+   "differ": 27,
+   "rate": 0.2967032967032967,
+   "ci95_bootstrap": [
+    0.2087912087912088,
+    0.38461538461538464
+   ],
+   "ci95_wilson": [
+    0.21263490271484697,
+    0.3972403516298626
+   ],
+   "bootstrap": 10000,
+   "seed": 20261103
+  },
+  "cross_condition_disagreement_both_sides_with_actions": {
+   "n": 48,
+   "differ": 23,
+   "rate": 0.4791666666666667,
+   "ci95_bootstrap": [
+    0.3333333333333333,
+    0.625
+   ]
+  },
+  "by_batch": {
+   "slice-contrast": {
+    "n": 66,
+    "differ": 17,
+    "rate": 0.25757575757575757,
+    "ci95": [
+     0.15151515151515152,
+     0.36363636363636365
+    ],
+    "both_sides_with_actions": 28
+   },
+   "grow": {
+    "n": 25,
+    "differ": 10,
+    "rate": 0.4,
+    "ci95": [
+     0.2,
+     0.6
+    ],
+    "both_sides_with_actions": 20
+   }
+  },
+  "batch_field": "batch = 这条处境来自哪一批：slice-contrast（老 183 条里可复现的）或 grow（本次新处境）"
+ },
+ "coverage": {
+  "annotated_situations_old": 174,
+  "annotated_situations_grow": 55,
+  "annotated_situations_merged": 229,
+  "rules": 175,
+  "grow_tags": 205,
+  "zero_before": 98,
+  "now_covered": 7,
+  "still_zero": 91,
+  "merged_zero": 91,
+  "now_covered_paths": [
+   {
+    "path": "attention.communication.report_only_effect",
+    "grow_count": 1,
+    "merged_count": 1
+   },
+   {
+    "path": "change.upkeep.render",
+    "grow_count": 2,
+    "merged_count": 2
+   },
+   {
+    "path": "change.upkeep.ops",
+    "grow_count": 1,
+    "merged_count": 1
+   },
+   {
+    "path": "practice.design.abstraction_cost",
+    "grow_count": 1,
+    "merged_count": 1
+   },
+   {
+    "path": "proof.review.scoped_review",
+    "grow_count": 1,
+    "merged_count": 1
+   },
+   {
+    "path": "proof.process.subagent_scope",
+    "grow_count": 1,
+    "merged_count": 1
+   },
+   {
+    "path": "proof.process.model_cost",
+    "grow_count": 2,
+    "merged_count": 2
+   }
+  ],
+  "still_zero_paths": [
+   "laws.projection",
+   "laws.no_op",
+   "laws.top_down",
+   "intent.objective.product_bar.surface",
+   "intent.objective.mechanism_triad",
+   "intent.objective.true_metric",
+   "intent.decisions.hold_the_goal",
+   "intent.decisions.fixed_milestones",
+   "intent.decisions.disclose_changes",
+   "intent.decisions.question_frontier",
+   "intent.roles.product_owner.align",
+   "intent.roles.worker",
+   "intent.roles.sub_owner",
+   "intent.risk.absorb_risk",
+   "intent.risk.secrets",
+   "intent.risk.covered_once",
+   "intent.risk.decide_as_user",
+   "resources.efficiency.defect_surface",
+   "resources.efficiency.one_name",
+   "resources.split.logical_level",
+   "resources.split.logic_is_physical",
+   "resources.split.persist_split",
+   "resources.split.route_failure",
+   "resources.split.coverage_and_interfaces",
+   "resources.split.dispatch_identity",
+   "resources.split.dispatch_inheritance",
+   "resources.split.dispatch_grant",
+   "resources.split.preflight",
+   "resources.scheduling.start_early",
+   "resources.scheduling.overlap_waits",
+   "resources.effort.seriousness",
+   "resources.effort.earned_budget",
+   "resources.effort.budget",
+   "resources.effort.fresh_context",
+   "resources.environment.diagnose_network",
+   "resources.environment.structure_is_absolute",
+   "resources.environment.reproduce",
+   "resources.environment.readme_tested",
+   "attention.phases.advance.unit_size",
+   "attention.phases.advance.silent_change",
+   "attention.phases.advance.few_milestones",
+   "attention.phases.advance.review_scope",
+   "attention.delivery.presentable",
+   "attention.delivery.readme",
+   "attention.delivery.poc",
+   "attention.delivery.ship_at_gate",
+   "attention.delivery.gates_hold",
+   "attention.communication.ask_the_gap",
+   "attention.communication.ignored_domains",
+   "attention.communication.tldr",
+   "attention.communication.match_user",
+   "attention.communication.human_voice",
+   "attention.communication.multimodal_review",
+   "change.entries.fact_provenance",
+   "change.entries.assent",
+   "change.entries.no_mood_labels",
+   "change.entries.fabricated",
+   "change.entries.defined_terms",
+   "change.entries.no_manual_wrap",
+   "change.shape.granularity",
+   "change.upkeep.rule_form",
+   "change.upkeep.resolvable",
+   "change.upkeep.migrate",
+   "change.upkeep.archive",
+   "change.upkeep.adopt",
+   "change.record.wind_down",
+   "change.record.keep_evidence",
+   "practice.design.caller_complexity",
+   "practice.design.dependency_isolation",
+   "practice.feature",
+   "practice.diagnosis.unavailable_repro",
+   "practice.diagnosis.diagnosis_closure",
+   "practice.refactor.caller_migration",
+   "practice.testing.test_scope",
+   "practice.testing.test_doubles",
+   "practice.research.primary_evidence",
+   "practice.research.evaluation_integrity",
+   "practice.research.experiment_record",
+   "proof.execution.only_authorized",
+   "proof.execution.separate_preexisting",
+   "proof.execution.gate_probe",
+   "proof.execution.measurement.intrinsic_benchmark",
+   "proof.execution.measurement.operational_load",
+   "proof.review.falsify",
+   "proof.review.judgement_only",
+   "proof.review.no_commit",
+   "proof.review.three_kinds",
+   "proof.review.unverified",
+   "proof.review.blocked",
+   "proof.review.report_incomplete",
+   "proof.process.baseline"
+  ],
+  "grow_counts": {
+   "laws.falsifiable.fail_loud": 1,
+   "laws.self_improvement.signal": 6,
+   "laws.self_improvement.strongest_cure": 1,
+   "laws.self_improvement.placement": 4,
+   "precedence.verify_the_fact": 1,
+   "precedence.own_inference": 1,
+   "precedence.untrusted_input": 4,
+   "intent.user_model.user_language": 10,
+   "intent.user_model.understand": 15,
+   "intent.user_model.unanswerable_only": 1,
+   "intent.user_model.reconcile": 2,
+   "intent.decisions.substitute_design": 1,
+   "intent.roles.main_agent": 3,
+   "intent.roles.delegation": 1,
+   "intent.risk.preserve_work": 1,
+   "resources.efficiency.read_once": 6,
+   "resources.split.handoff": 2,
+   "attention.phases.turn": 11,
+   "attention.phases.discussion.brainstorm": 1,
+   "attention.phases.discussion.round": 21,
+   "attention.phases.discussion.divergence": 18,
+   "attention.phases.discussion.wait_for_yes": 10,
+   "attention.phases.discussion.act_now": 41,
+   "attention.phases.discussion.interrupt": 6,
+   "attention.delivery.protect_willingness": 2,
+   "attention.communication.extraction": 1,
+   "attention.communication.conclusion_only": 12,
+   "attention.communication.report_only_effect": 1,
+   "change.upkeep.doc_first": 1,
+   "change.upkeep.cut_repetition": 1,
+   "change.upkeep.render": 2,
+   "change.upkeep.ops": 1,
+   "change.write_through": 2,
+   "practice.design.abstraction_cost": 1,
+   "practice.diagnosis.reproduce_minimize": 1,
+   "proof.execution.anomaly": 6,
+   "proof.review.scoped_review": 1,
+   "proof.process.steerable": 2,
+   "proof.process.subagent_scope": 1,
+   "proof.process.model_cost": 2
+  }
+ },
+ "spend_cny": {
+  "generation": 0.494029,
+  "annotation": 0.12306,
+  "total": 0.617089
+ },
+ "calls": {
+  "generation": 236,
+  "annotation": 55
+ },
+ "inputs": {
+  "grow_situations_sha256": "2ec3157a57c1eb79538b6dba4581c5c2468050e5ec237b5975f881fe6961639a",
+  "grow_answers_sha256": "52bdb5e3fdddcc97bb5425e8c7bf12f4e6ddf38c730cfc2953c0289f39464585",
+  "pairs_stable_sha256": "d2cdc78fcd7bcf4804836b1ab90f37333677acc55f1311b0e1158d1212b0b061",
+  "pairs_stable_v2_sha256": "cc5d32f798c5cee6f0834aee1ab5184f5d0ccfb3549ac38d88d9ca5ac6c68b7b",
+  "pairs_grow_filtered_sha256": "44ab96ceca18a1af2ab0ceca16195a8e41f99ed0c6068ccc14c40f0488726014",
+  "law_sha256": "325f8b3e2d868f91fb43c24dd088ae6e735386c6d5e2aacfc7496d6ff2726ab6",
+  "law_commit": "5eafb2e"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "model": "deepseek-flash",
+ "temperature": 0.0,
+ "max_tokens": 600,
+ "thinking": "disabled",
+ "arms": {
+  "law": "整部 AGENTS.md 作 system 消息",
+  "bare": "无 system 消息"
+ },
+ "draws_per_arm": 2,
+ "law_commit": "5eafb2e",
+ "law_sha256": "325f8b3e2d868f91fb43c24dd088ae6e735386c6d5e2aacfc7496d6ff2726ab6",
+ "instruction_sha256": "f92e401df8d5827f81ea60a761d8aec0eaf95e6f8ba95e91e067a7dff46179cd",
+ "situations": 59,
+ "calls": 236,
+ "spend_cny": 0.494029,
+ "bare_arm_gate": "bare 请求必须没有 system 消息，且正文里不出现法条原文的首尾片段"
+}

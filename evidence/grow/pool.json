@@ -1,0 +1,31 @@
+{
+ "rule": "合格 = mining/candidates.jsonl 里 signals 非空、不含凭据样式、正文以用户轮结尾；已用 = evidence/slice-contrast/situations.jsonl 的 window",
+ "candidates": 455,
+ "eligibility_funnel": {
+  "not_end_on_user": 208,
+  "credential_looking": 5
+ },
+ "eligible": 242,
+ "eligible_sessions": 51,
+ "used_by_previous_batch": 183,
+ "used_windows": 183,
+ "unused": 59,
+ "unused_sessions": 10,
+ "unused_new_sessions": 0,
+ "per_signal": {
+  "S1_interrupt_after_tool_call": 23,
+  "S4_negation_lead": 22,
+  "S3_repeat_user_turn": 14
+ },
+ "request_gate": {
+  "claim": "新批次与老批次是同一条提示构造",
+  "method": "用 evidence/slice-contrast/common.build 的同一路径重建 183 条处境 × 2 条件的请求，与 evidence/slice-contrast/answers.jsonl 的 request_sha256 逐条比对",
+  "pairs_checked": 183,
+  "requests_checked": 366,
+  "mismatches": 0,
+  "law_commit": "5eafb2e",
+  "law_sha256": "325f8b3e2d868f91fb43c24dd088ae6e735386c6d5e2aacfc7496d6ff2726ab6",
+  "instruction_sha256": "f92e401df8d5827f81ea60a761d8aec0eaf95e6f8ba95e91e067a7dff46179cd",
+  "request_sha256_rule": "sha256(system + '\\x00' + excerpt + INSTRUCTION)"
+ }
+}

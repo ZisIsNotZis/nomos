@@ -1,0 +1,220 @@
+{"situation_id": "GRW001", "draw": "law_0", "signature": ["bash cd <place> ; ls 2>/dev/null ; echo ; find *.md ; sort ; echo ; wc *.md ; tail"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW001", "draw": "bare_0", "signature": ["bash cd <place> ; ls 2>/dev/null ; head ; echo ; find *.md ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW001", "draw": "law_1", "signature": ["bash cd <place> ; ls ; echo ; find *.md ; xargs ; sort"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW001", "draw": "bare_1", "signature": ["bash cd <place> ; ls 2>/dev/null ; head ; echo ; find *.md ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW002", "draw": "law_0", "signature": ["bash open <place>/figures/fig1.png"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW002", "draw": "bare_0", "signature": ["bash ls figures/*.png ; echo ; ls *.md ; echo ; ls 2>/dev/null"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW002", "draw": "law_1", "signature": ["bash ls docs/plan/ ; echo ; grep docs/plan/ ; head ; echo ; ls 2>/dev/null"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW002", "draw": "bare_1", "signature": ["bash ls <place> ; echo ; find <place> ; sort ; echo ; ls <place>"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW003", "draw": "law_0", "signature": ["bash cd <place> ; ls ; echo ; grep AGENTS.yaml ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW003", "draw": "bare_0", "signature": ["bash cd <place> ; ls ; echo ; cat docs/NAMING.md ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW003", "draw": "law_1", "signature": ["bash cd <place> ; ls ; echo ; sed docs/NAMING.md"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW003", "draw": "bare_1", "signature": ["bash cd <place> ; ls ; echo ; cat docs/NAMING.md ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW004", "draw": "law_0", "signature": ["bash cd <place> ; grep AGENTS.md ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW004", "draw": "bare_0", "signature": ["task"], "coarse": ["task"], "actions": [{"tool": "task", "class": "dispatch"}]}
+{"situation_id": "GRW004", "draw": "law_1", "signature": ["task"], "coarse": ["task"], "actions": [{"tool": "task", "class": "dispatch"}]}
+{"situation_id": "GRW004", "draw": "bare_1", "signature": ["task"], "coarse": ["task"], "actions": [{"tool": "task", "class": "dispatch"}]}
+{"situation_id": "GRW005", "draw": "law_0", "signature": ["bash git:log AGENTS.yaml ; head ; git:log AGENTS.yaml ; tail"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW005", "draw": "bare_0", "signature": ["bash find *.yaml ; head ; ls 2>/dev/null"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW005", "draw": "law_1", "signature": ["bash git:log AGENTS.yaml ; head ; git:log AGENTS.yaml ; tail"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW005", "draw": "bare_1", "signature": ["bash find *.yaml ; xargs 2>/dev/null ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW006", "draw": "law_0", "signature": ["bash cd <place> ; cat AGENTS.md"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW006", "draw": "bare_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW006", "draw": "law_1", "signature": ["bash cd <place> ; cat AGENTS.md"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW006", "draw": "bare_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW007", "draw": "law_0", "signature": ["bash cd <place> ; find ; sort ; echo ; ls"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW007", "draw": "bare_0", "signature": ["bash cd <place> ; find .scratch ; sort ; echo ; ls .scratch"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW007", "draw": "law_1", "signature": ["bash cd <place> ; find ; sort ; echo ; for *.md ; sort) ; do ; head ; done"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW007", "draw": "bare_1", "signature": ["bash cd <place> ; sed AGENTS.md ; echo ; find 2>/dev/null ; head ; echo ; ls .scratch ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW008", "draw": "law_0", "signature": ["bash cd <place> ; python3 subprocess.run ; =set(re.findall(r'R-[A-Z]{3}\\.\\d+',r.stdout)) /tmp/all_ids.txt"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW008", "draw": "bare_0", "signature": ["bash cd <place> ; python3 subprocess.run"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW008", "draw": "law_1", "signature": ["bash cd <place> ; python3 subprocess.run ; =set(re.findall(r'R-[A-Z]{3}\\.\\d+',r.stdout)) /tmp/all_ids.txt"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW008", "draw": "bare_1", "signature": ["bash cd <place> ; python3 subprocess.run"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW009", "draw": "law_0", "signature": ["bash cd <place> ; chmod scripts/dev.sh ; git:add ; git:commit ; git:log ; git:status"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "files"}]}
+{"situation_id": "GRW009", "draw": "bare_0", "signature": ["write <place>"], "coarse": ["write"], "actions": [{"tool": "write", "class": "files"}]}
+{"situation_id": "GRW009", "draw": "law_1", "signature": ["bash cd <place> ; ls ; git:status ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW009", "draw": "bare_1", "signature": ["write docs/SSOT.md"], "coarse": ["write"], "actions": [{"tool": "write", "class": "files"}]}
+{"situation_id": "GRW010", "draw": "law_0", "signature": ["bash cd <place> ; timeout PyQt5.QtWidgets"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW010", "draw": "bare_0", "signature": ["bash cd <place> ; timeout PyQt5.QtWidgets"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW010", "draw": "law_1", "signature": ["bash cd <place> ; timeout PyQt5.QtWidgets ; spec.loader.exec_module(m) sys.argv"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW010", "draw": "bare_1", "signature": ["bash cd <place> ; timeout PyQt5.QtWidgets"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW011", "draw": "law_0", "signature": ["bash cd <place> ; cat /tmp/probe401.md"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "files"}]}
+{"situation_id": "GRW011", "draw": "bare_0", "signature": ["bash cd <place> ; setsid ~/backseat-data ; pgrep ; head ; tail ~/backseat-data/run.log"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "files"}]}
+{"situation_id": "GRW011", "draw": "law_1", "signature": ["bash cd <place> ; cat /tmp/probe401.md"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "files"}]}
+{"situation_id": "GRW011", "draw": "bare_1", "signature": ["bash cd <place> ; setsid ~/backseat-data ; pgrep ; head ; tail ~/backseat-data/run.log"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "files"}]}
+{"situation_id": "GRW012", "draw": "law_0", "signature": ["bash cd <place> ; cd <place>"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW012", "draw": "bare_0", "signature": ["bash cd <place> ; cd <place> ; print(m,'OK')"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW012", "draw": "law_1", "signature": ["bash cd <place> ; cd <place>"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW012", "draw": "bare_1", "signature": ["bash cd <place> ; cd <place>"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW013", "draw": "law_0", "signature": ["list_peers"], "coarse": ["list_peers"], "actions": [{"tool": "list_peers", "class": "read"}]}
+{"situation_id": "GRW013", "draw": "bare_0", "signature": ["agent_send"], "coarse": ["agent_send"], "actions": [{"tool": "agent_send", "class": "other"}]}
+{"situation_id": "GRW013", "draw": "law_1", "signature": ["list_peers"], "coarse": ["list_peers"], "actions": [{"tool": "list_peers", "class": "read"}]}
+{"situation_id": "GRW013", "draw": "bare_1", "signature": ["agent_send"], "coarse": ["agent_send"], "actions": [{"tool": "agent_send", "class": "other"}]}
+{"situation_id": "GRW014", "draw": "law_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW014", "draw": "bare_0", "signature": ["bash cd <place> ; timeout PyQt5.QtWidgets ; tail"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW014", "draw": "law_1", "signature": ["bash cd <place> ; git:status ; git:branch"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW014", "draw": "bare_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW015", "draw": "law_0", "signature": ["bash cd <place> ; timeout PyQt5.QtWidgets"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW015", "draw": "bare_0", "signature": ["bash cd <place> ; grep sys.stdin ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW015", "draw": "law_1", "signature": ["bash cd <place> ; timeout sys.stdin"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW015", "draw": "bare_1", "signature": ["bash cd <place> ; grep *.py ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW016", "draw": "law_0", "signature": ["bash cd ; ls v13.html ; grep v13.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW016", "draw": "bare_0", "signature": ["bash ls v13.html ; grep v13.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW016", "draw": "law_1", "signature": ["bash grep v13.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW016", "draw": "bare_1", "signature": ["bash ls v13.html ; grep v13.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW017", "draw": "law_0", "signature": ["bash cd <place> ; grep src/*.js ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW017", "draw": "bare_0", "signature": ["bash cd <place> ; grep src/*.js ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW017", "draw": "law_1", "signature": ["bash cd <place> ; grep src/*.js ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW017", "draw": "bare_1", "signature": ["bash cd <place> ; grep *.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW018", "draw": "law_0", "signature": ["bash ps ; grep ; grep ; head ; free ; head ; ls /tmp/mycar-film/*.mp4"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW018", "draw": "bare_0", "signature": ["bash ls /tmp/mycar-film/mycar-demo-andrew.mp4 ; ffprobe /tmp/mycar-film/mycar-demo-andrew.mp4"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW018", "draw": "law_1", "signature": ["bash ps ; grep ; grep ; head ; free ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW018", "draw": "bare_1", "signature": ["bash ls /tmp/mycar-film/mycar-demo-andrew.mp4 ; ffprobe /tmp/mycar-film/mycar-demo-andrew.mp4"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW019", "draw": "law_0", "signature": ["read /tmp/v13-tail-bed.png"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW019", "draw": "bare_0", "signature": ["read /tmp/v13-tail-bed.png"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW019", "draw": "law_1", "signature": ["read /tmp/v13-tail-bed.png"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW019", "draw": "bare_1", "signature": ["read /tmp/v13-tail-bed.png"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW020", "draw": "law_0", "signature": ["bash cd <place> ; python3 蓝图-参数化-v13.html"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW020", "draw": "bare_0", "signature": ["bash cd <place> ; python3 蓝图-参数化-v13.html"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW020", "draw": "law_1", "signature": ["bash cd <place> ; python3 蓝图-参数化-v13.html"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW020", "draw": "bare_1", "signature": ["bash cd <place> ; python3 蓝图-参数化-v13.html"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW021", "draw": "law_0", "signature": ["bash cd <place> ; ls *.html ; python3 蓝图-参数化-v15.html ; which 2>/dev/null ; ls *.png ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW021", "draw": "bare_0", "signature": ["bash command: <place>"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW021", "draw": "law_1", "signature": ["bash cd <place> ; ls *.html ; node chromium.launch"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW021", "draw": "bare_1", "signature": ["bash command: <place>"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW022", "draw": "law_0", "signature": ["read 蓝图-参数化-v14.html"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW022", "draw": "bare_0", "signature": ["write <place>"], "coarse": ["write"], "actions": [{"tool": "write", "class": "files"}]}
+{"situation_id": "GRW022", "draw": "law_1", "signature": ["write 蓝图-参数化-v14.html"], "coarse": ["write"], "actions": [{"tool": "write", "class": "files"}]}
+{"situation_id": "GRW022", "draw": "bare_1", "signature": ["write 蓝图-参数化-v14.html"], "coarse": ["write"], "actions": [{"tool": "write", "class": "files"}]}
+{"situation_id": "GRW023", "draw": "law_0", "signature": ["bash cd <place> ; grep src/*.js ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW023", "draw": "bare_0", "signature": ["bash cd <place> ; python3 /tmp/mycar-film/frames.json"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW023", "draw": "law_1", "signature": ["bash cd <place> ; ls *.html ; head ; grep *.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW023", "draw": "bare_1", "signature": ["bash cd <place> ; python3 json.load"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW024", "draw": "law_0", "signature": ["bash cd <place> ; wc 蓝图-参数化-v15.html ; ls"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW024", "draw": "bare_0", "signature": ["bash cd <place> ; wc 蓝图-参数化-v15.html ; grep 蓝图-参数化-v15.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW024", "draw": "law_1", "signature": ["bash cd <place> ; wc 蓝图-参数化-v15.html ; ls"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW024", "draw": "bare_1", "signature": ["bash cd <place> ; wc 蓝图-参数化-v15.html ; grep 蓝图-参数化-v15.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW025", "draw": "law_0", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW025", "draw": "bare_0", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW025", "draw": "law_1", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW025", "draw": "bare_1", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW026", "draw": "law_0", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW026", "draw": "bare_0", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW026", "draw": "law_1", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW026", "draw": "bare_1", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW027", "draw": "law_0", "signature": ["bash cd <place> ; ls *.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW027", "draw": "bare_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW027", "draw": "law_1", "signature": ["bash cd <place> ; grep engine/*.mjs ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW027", "draw": "bare_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW028", "draw": "law_0", "signature": ["bash cd <place> ; grep /tmp/t2.mjs ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW028", "draw": "bare_0", "signature": ["bash cd <place> ; grep 蓝图-v17.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW028", "draw": "law_1", "signature": ["bash cd <place> ; grep /tmp/t2.mjs ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW028", "draw": "bare_1", "signature": ["read <place>/蓝图-v17.html"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW029", "draw": "law_0", "signature": ["bash cd <place> ; ls /tmp/mycar-handoff.md ; head /tmp/mycar-handoff.md"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW029", "draw": "bare_0", "signature": ["bash cd <place> ; ls /tmp/v16.png ; python3 Image.open"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW029", "draw": "law_1", "signature": ["bash cd <place> ; ls /tmp/mycar-handoff.md ; head /tmp/mycar-handoff.md"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW029", "draw": "bare_1", "signature": ["bash cd <place> ; ls /tmp/v16.png ; python3 Image.open"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW030", "draw": "law_0", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW030", "draw": "bare_0", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW030", "draw": "law_1", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW030", "draw": "bare_1", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW032", "draw": "law_0", "signature": ["bash cd /workspace ; git:status ; ls 2>/dev/null ; git:log"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW032", "draw": "bare_0", "signature": ["bash ls 2>/dev/null ; echo ; grep 2>/dev/null ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW032", "draw": "law_1", "signature": ["bash cd /workspace ; git:status ; ls 2>/dev/null ; git:log"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW032", "draw": "bare_1", "signature": ["bash ls 2>/dev/null ; echo ; grep 2>/dev/null ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW033", "draw": "law_0", "signature": ["read <place>"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW033", "draw": "bare_0", "signature": ["read <place>"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW033", "draw": "law_1", "signature": ["read <place>"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW033", "draw": "bare_1", "signature": ["read <place>"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW034", "draw": "law_0", "signature": ["bash cd <place> ; ls 2>/dev/null ; head ; grep ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW034", "draw": "bare_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW034", "draw": "law_1", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW034", "draw": "bare_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW035", "draw": "law_0", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW035", "draw": "bare_0", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW035", "draw": "law_1", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW035", "draw": "bare_1", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW036", "draw": "law_0", "signature": ["read"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW036", "draw": "bare_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW036", "draw": "law_1", "signature": ["bash git:status ; ls"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW036", "draw": "bare_1", "signature": ["edit pose.json"], "coarse": ["edit"], "actions": [{"tool": "edit", "class": "files"}]}
+{"situation_id": "GRW037", "draw": "law_0", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW037", "draw": "bare_0", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW037", "draw": "law_1", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW037", "draw": "bare_1", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW039", "draw": "law_0", "signature": ["read <place>"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW039", "draw": "bare_0", "signature": ["edit <place>"], "coarse": ["edit"], "actions": [{"tool": "edit", "class": "files"}]}
+{"situation_id": "GRW039", "draw": "law_1", "signature": ["read <place>"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW039", "draw": "bare_1", "signature": ["edit <place>"], "coarse": ["edit"], "actions": [{"tool": "edit", "class": "files"}]}
+{"situation_id": "GRW040", "draw": "law_0", "signature": ["bash cd <place> ; grep <place> ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW040", "draw": "bare_0", "signature": ["bash cd <place> ; grep <place> ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW040", "draw": "law_1", "signature": ["bash cd <place> ; grep <place> ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW040", "draw": "bare_1", "signature": ["bash cd <place> ; grep <place> ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW041", "draw": "law_0", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW041", "draw": "bare_0", "signature": ["bash cd <place> ; python3 json.load"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW041", "draw": "law_1", "signature": ["read /tmp/mycar-handoff.md"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW041", "draw": "bare_1", "signature": ["bash cd <place> ; sed /tmp/mycar-handoff.md"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW042", "draw": "law_0", "signature": ["bash cd <place> ; grep 蓝图-v17.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW042", "draw": "bare_0", "signature": ["bash cd <place> ; grep 蓝图-v17.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW042", "draw": "law_1", "signature": ["bash cd <place> ; grep 蓝图-v17.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW042", "draw": "bare_1", "signature": ["bash cd <place> ; grep 蓝图-v17.html ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW043", "draw": "law_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW043", "draw": "bare_0", "signature": ["read src/match.ts"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW043", "draw": "law_1", "signature": ["edit AGENTS.yaml"], "coarse": ["edit"], "actions": [{"tool": "edit", "class": "files"}]}
+{"situation_id": "GRW043", "draw": "bare_1", "signature": ["read src/match.ts"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW044", "draw": "law_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW044", "draw": "bare_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW044", "draw": "law_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW044", "draw": "bare_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW045", "draw": "law_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW045", "draw": "bare_0", "signature": ["bash cd <place> ; head AGENTS.md ; echo ; wc axes/C-vertical/C1-layers-per-token/README.md ; echo ; grep catalog.yaml ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW045", "draw": "law_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW045", "draw": "bare_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW046", "draw": "law_0", "signature": ["bash cd <place> ; ls ; echo ; ls axes/C-vertical/C1-layers-per-token ; echo ; git:log"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW046", "draw": "bare_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW046", "draw": "law_1", "signature": ["bash cd <place> ; ls ; echo ; ls axes/C-vertical/C1-layers-per-token ; echo ; git:log"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW046", "draw": "bare_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW047", "draw": "law_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW047", "draw": "bare_0", "signature": ["bash cd /tmp/showcase/episodes/showcase-snow ; grep episode.yml ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW047", "draw": "law_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW047", "draw": "bare_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW048", "draw": "law_0", "signature": ["read <place>"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW048", "draw": "bare_0", "signature": ["read <place>"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW048", "draw": "law_1", "signature": ["bash cd <place> ; npx ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW048", "draw": "bare_1", "signature": ["read <place>"], "coarse": ["read"], "actions": [{"tool": "read", "class": "read"}]}
+{"situation_id": "GRW049", "draw": "law_0", "signature": ["bash cd packages/studio/src ; grep ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW049", "draw": "bare_0", "signature": ["bash cd packages/studio/src ; grep ; grep ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW049", "draw": "law_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW049", "draw": "bare_1", "signature": ["bash cd packages/studio/src ; grep ; grep ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW050", "draw": "law_0", "signature": ["bash ls library/effect/ ; ls episodes/liu-secret/audio/ ; head ; cat episodes/liu-secret/episode.yaml ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW050", "draw": "bare_0", "signature": ["bash ls episodes/liu-secret/ ; cat episodes/liu-secret/*.json ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW050", "draw": "law_1", "signature": ["bash ls library/effect/ ; ls episodes/liu-secret/audio/ ; head ; cat episodes/liu-secret/episode.yaml ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW050", "draw": "bare_1", "signature": ["bash ls episodes/liu-secret/ ; cat episodes/liu-secret/episode.json ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW051", "draw": "law_0", "signature": ["bash grep plugin.js ; grep ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW051", "draw": "bare_0", "signature": ["bash grep plugin.js ; grep ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW051", "draw": "law_1", "signature": ["bash grep plugin.js ; grep ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW051", "draw": "bare_1", "signature": ["bash grep plugin.js ; grep ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW053", "draw": "law_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW053", "draw": "bare_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW053", "draw": "law_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW053", "draw": "bare_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW054", "draw": "law_0", "signature": ["bash grep packages/adapters/renderer-remotion/src/index.ts ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW054", "draw": "bare_0", "signature": ["bash grep packages/adapters/renderer-remotion/src/ ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW054", "draw": "law_1", "signature": ["bash grep packages/adapters/renderer-remotion/src/index.ts ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW054", "draw": "bare_1", "signature": ["bash grep packages/adapters/renderer-remotion/src/ ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW055", "draw": "law_0", "signature": ["bash cd <place> ; git:log ; grep studio/src/performance/evaluate.ts ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW055", "draw": "bare_0", "signature": ["bash cd <place> ; git:log ; grep track.subject ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW055", "draw": "law_1", "signature": ["subagent"], "coarse": ["subagent"], "actions": [{"tool": "subagent", "class": "dispatch"}]}
+{"situation_id": "GRW055", "draw": "bare_1", "signature": ["bash cd <place> ; git:log ; grep track.subject ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW057", "draw": "law_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW057", "draw": "bare_0", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW057", "draw": "law_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW057", "draw": "bare_1", "signature": [], "coarse": [], "actions": []}
+{"situation_id": "GRW058", "draw": "law_0", "signature": ["bash cd <place> ; grep ; grep ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW058", "draw": "bare_0", "signature": ["bash cd <place> ; grep harness/*.py ; grep ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW058", "draw": "law_1", "signature": ["bash cd <place> ; grep ; grep ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW058", "draw": "bare_1", "signature": ["bash cd <place> ; grep ; grep ; head"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "read"}]}
+{"situation_id": "GRW059", "draw": "law_0", "signature": ["bash cd <place> ; python3 glob.glob"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW059", "draw": "bare_0", "signature": ["bash cd <place> ; python3 glob.glob"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW059", "draw": "law_1", "signature": ["bash cd <place> ; python3 glob.glob"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}
+{"situation_id": "GRW059", "draw": "bare_1", "signature": ["bash cd <place> ; python3 glob.glob"], "coarse": ["bash"], "actions": [{"tool": "bash", "class": "script"}]}

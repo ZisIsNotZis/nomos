@@ -1,0 +1,29 @@
+{
+ "input_pairs": 59,
+ "kept_after_quality": 55,
+ "dropped_quality": {
+  "total": 4,
+  "same_decision": 4,
+  "same_decision_by_criterion": {
+   "A": 4
+  },
+  "broken": 0,
+  "broken_by_reason": {
+   "truncated": 0,
+   "repetition": 0,
+   "echo": 0
+  },
+  "broken_by_arm": {}
+ },
+ "reproduction": {
+  "rule": "存下的 law 回答被第二次 law 抽样复现，且存下的 bare 回答被第二次 bare 抽样复现（动作签名逐项相同）",
+  "evaluated_on": 55,
+  "dropped_total": 30,
+  "dropped_law_not_reproduced_only": 13,
+  "dropped_bare_not_reproduced_only": 9,
+  "dropped_both": 8
+ },
+ "surviving": 25,
+ "surviving_both_sides_without_actions": 3,
+ "quality_dropped_also_not_reproduced": 1
+}
