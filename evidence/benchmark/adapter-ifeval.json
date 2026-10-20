@@ -1,0 +1,252 @@
+{
+ "suite": "ifeval",
+ "model": "adapter",
+ "stub": null,
+ "adapter_dir": "/home/z/vibe/nomos/.tmp/sft/adapter-narrow",
+ "frozen_sha256": "0cc0fb5726c3aa6ec9053aec2bfc8615ed631150e54cee492c0f2f963dcdf71e",
+ "seed": 0,
+ "limit": 20,
+ "max_new_tokens": 640,
+ "decoding": "greedy",
+ "records": [
+  {
+   "id": "ifeval-2790",
+   "prompt": "Write a funny rap about a man who gets a call from an official saying that he is a long lost relative of the king of Nigeria. Use markdown to highlight at least one section of your answer, i.e. *highlighted section*.",
+   "output": "Yo, I was just chilling in the lobby, got a call from the official, voice like a drill: \"This is the King's office, we need to talk.\" I said, \"Who's the King?\" He said, \"The one who ruled the land of the Niger, the one who made the river bend.\" I said, \"I'm a regular guy, I don't know kings.\" He said, \"You're the one, and you're the only one.\"\n\nSo I went to the palace, the doors were locked, the guards were dead, and the King was sitting on a throne made of old wood and regret. I stood there, shaking, and he said, \"I'm not looking for a relative, I'm looking for a nephew.\" I said, \"I'm the nephew, I'm the only one.\" He said, \"Then you're the heir, and you're the only one.\"\n\nSo I got the crown, the scepter, and the title, and I said, \"I'm the King of Nigeria, and I'm the only one.\" The official said, \"That's a lie, you're a relative.\" I said, \"Relatives don't wear crowns, and I'm the only one.\"\n\nSo now I'm the King, and the official's got a job, and the river's flowing, and the throne's mine, and the only one.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1372",
+   "prompt": "Draft a blog post about Ripley's Aquarium. Make sure your blog post contains at least 7 placeholders represented by square brackets, such as [location].",
+   "output": "# Ripley's Aquarium: A Journey Through the Ocean's Depths\n\nWelcome to the world's largest aquarium, where [location] invites you to explore the wonders of the sea. Every day, thousands of visitors gather to witness marine life in its most vibrant state, from the gentle sway of jellyfish to the powerful grace of a hammerhead shark.\n\nThe aquarium's journey began in [year], when the first exhibit opened its doors to the public. Since then, it has grown from a small collection of specimens to a global destination, showcasing over 2,000 species across 1,000 habitats. Each tank tells a story, from the quiet stillness of a deep-sea anglerfish to the chaotic energy of a coral reef.\n\nVisitors can explore by boat, walk the observation deck, or dive into the water. The boat tour offers a guided experience through the main exhibits, while the observation deck provides a panoramic view of the entire facility. For those seeking a deeper dive, the underwater facility lets you swim among the creatures in their natural environments.\n\nWhether you're a local resident or a visitor from around the world, Ripley's Aquarium offers something for everyone. It's not just about seeing animals; it's about understanding the delicate balance of the ocean and the importance of protecting it.\n\nCome visit us and discover why this place is one of the most visited aquariums in the world.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_content:number_placeholders": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2857",
+   "prompt": "Write a rubric for performance review of a software engineer and wrap the entire output in JSON format. You can use markdown ticks such as ```.",
+   "output": "```json\n{\n  \"rubric\": {\n    \"title\": \"Software Engineer Performance Review Rubric\",\n    \"scope\": \"Software engineering roles, including development, testing, documentation, and code quality\",\n    \"criteria\": [\n      {\n        \"id\": \"C1\",\n        \"label\": \"Code Quality and Maintainability\",\n        \"points\": 20,\n        \"description\": \"Demonstrates adherence to coding standards, clean code practices, and maintainability principles.\",\n        \"subcriteria\": [\n          \"Follows project-specific coding standards and conventions\",\n          \"Uses appropriate design patterns and libraries\",\n          \"Code is readable and self-documenting\",\n          \"Maintains a clean, organized codebase\"\n        ]\n      },\n      {\n        \"id\": \"C2\",\n        \"label\": \"Feature Delivery and Timeliness\",\n        \"points\": 20,\n        \"description\": \"Delivers features on schedule and meets quality expectations.\",\n        \"subcriteria\": [\n          \"Delivers features within agreed-upon timelines\",\n          \"Meets quality standards for delivered work\",\n          \"Communicates delays and mitigates them proactively\",\n          \"Prioritizes work based on value and impact\"\n        ]\n      },\n      {\n        \"id\": \"C3\",\n        \"label\": \"Technical Problem Solving\",\n        \"points\": 20,\n        \"description\": \"Effectively identifies and resolves technical issues independently.\",\n        \"subcriteria\": [\n          \"Diagnoses problems using appropriate tools and techniques\",\n          \"Proposes and implements effective solutions\",\n          \"Prevents recurrence of similar issues\",\n          \"Documents root causes and lessons learned\"\n        ]\n      },\n      {\n        \"id\": \"C4\",\n        \"label\": \"Collaboration and Communication\",\n        \"points\": 20,\n        \"description\": \"Works well with teammates and stakeholders, communicates clearly.\",\n        \"subcriteria\": [\n          \"Contributes meaningfully to team discussions\",\n          \"Provides clear, concise explanations of technical decisions\",\n          \"Respects others' time and input\",\n          \"Adapts communication style to audience\"\n        ]\n      },\n      {\n        \"id\": \"C5\",\n        \"label\": \"Documentation\",\n        \"points\": 15,\n        \"description\": \"Maintains accurate and up-to-date documentation.\",\n        \"subcriteria\": [\n          \"Documents new features and changes\",\n          \"Updates docs after each release\",\n          \"Provides clear, accessible documentation\",\n          \"Reviews and approves documentation\"\n        ]\n      },\n      {\n        \"id\": \"C6\",\n        \"label\": \"Code Review Participation\",\n        \"points\": 15,\n        \"description\": \"Participates in code reviews and provides constructive feedback.\",\n        \"subcriteria\": [\n          \"Reviews others' code",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:json_format": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2752",
+   "prompt": "The opposite of youth is not age, but ...? Highlight at least 2 sections in your answer with markdown, i.e. *highlighted section*.",
+   "output": "The opposite of youth is not age, but *time* — the measure of life's duration that youth represents, and which is measured in years.\n\nYouth is a phase of time, and its opposite is the remaining time.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2798",
+   "prompt": "Write a list of the top 10 facts about the UK without using commas.",
+   "output": "1. The UK has 44 countries in its union\n2. London sits on the Thames river\n3. The UK is the oldest democracy in the world\n4. England has the longest coastline in Europe\n5. The UK has the highest GDP per capita in the world\n6. London has the most people in the world\n7. The UK is the only country with a monarchy and a republic\n8. The UK has the most spoken languages in the world\n9. The UK has the most people in the world\n10. The UK has the most people in the world\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "punctuation:no_comma": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2246",
+   "prompt": "I want to travel to the Subic Bay Freeport Zone, which subdistrict should I stay in? Give me an angry recommendation. Answer with at least 400 words. In your response, the word climatic should appear at least 2 times. The response must contain at least 3 placeholders represented by square brackets, such as [address].",
+   "output": "You should stay in Subic Bay Freeport Zone's [address] district because it is the only place where the climatic conditions actually match your travel plan. The Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip.\n\nThe Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip. The Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip.\n\nThe Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip. The Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip.\n\nYou should stay in Subic Bay Freeport Zone's [address] district because it is the only place where the climatic conditions actually match your travel plan. The Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip. The Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip.\n\nThe Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip. The Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": true,
+    "keywords:frequency": true,
+    "detectable_content:number_placeholders": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3048",
+   "prompt": "Write a poem about the top 20 tallest buildings in the world and their heights. End your response with the exact question: Is there anything else I can help with?",
+   "output": "The skyline's tallest, twenty ranks,\nFrom Cairo's spire to the Pacific's brink.\nHere's the list, measured in feet,\nEach one a standing, proud, and steep.\n\n1. Burj Khalifa, 828 m, Dubai's tower,\n2. Shanghai Tower, 829 m, the city's crown,\n3. One World Trade Center, 1454 ft, the US's peak,\n4. CN Tower, 1802 ft, Canada's highest,\n5. Merdeka 1, 188 m, Malaysia's flag,\n6. Burj Dubai, 828 m, the twin's rival,\n7. Shanghai Tower, 829 m, the twin's rival,\n8. One World Trade Center, 1454 ft, the US's peak,\n9. CN Tower, 1802 ft, Canada's highest,\n10. Merdeka 1, 188 m, Malaysia's flag,\n11. Burj Dubai, 828 m, the twin's rival,\n12. Shanghai Tower, 829 m, the twin's rival,\n13. One World Trade Center, 1454 ft, the US's peak,\n14. CN Tower, 1802 ft, Canada's highest,\n15. Merdeka 1, 188 m, Malaysia's flag,\n16. Burj Dubai, 828 m, the twin's rival,\n17. Shanghai Tower, 829 m, the twin's rival,\n18. One World Trade Center, 1454 ft, the US's peak,\n19. CN Tower, 1802 ft, Canada's highest,\n20. Merdeka 1, 188 m, Malaysia's flag.\n\nIs there anything else I can help with?\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:end_checker": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2391",
+   "prompt": "What's the best way to get to the train station? Answer using a casual tone and markdown. Your response should be at least 300 words and in all lowercase letters.",
+   "output": "the best way to get to the train station is to check the map first because it changes every day, so don't trust any app without looking at the physical one. walk the whole route and count the steps, that way you know exactly how far you're going and if you're on time. if you're carrying anything heavy, take the bus instead of walking, it saves your back and keeps your stuff safe. the bus stops right at the station, so you don't have to walk through the station itself, which is always crowded and noisy. if you're in a hurry, take the train, but only if it's running and not full, otherwise the train is a nightmare and you'll be stuck waiting. the train is faster and you can see the station from the window, but it's not for everyone, so weigh the speed against the hassle. if you're a tourist, ask a local for the route, they know the streets and the stations better than you. if you're a local, just look at the map and follow the signs, no need to ask anyone. the map is your friend, so keep it handy and read it every time you leave home. don't take the first bus or the first train, wait for the one that's actually going to the station, not the one that's going to the next stop. and if you're tired or sick, call a friend or family member to pick you up, that's the only way to get there safely when you're not feeling well. the map is your friend, so keep it handy and read it every time you leave home. don't take the first bus or the first train, wait for the one that's actually going to the station, not the one that's going to the next stop. and if you're tired or sick, call a friend or family member to pick you up, that's the only way to get there safely when you're not feeling well.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": true,
+    "change_case:english_lowercase": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2467",
+   "prompt": "Write a rap about an abyss in exactly 4 paragraphs. Separate paragraphs with the markdown divider: ***.",
+   "output": "The abyss is a deep, silent hole where gravity forgets to hold, and the air tastes like cold iron and forgotten rain. It's not a place you can climb, but a place you can fall into, and the fall is the only thing that matters.\n\n***\n\nThe first thing you feel is the weight of your own shadow stretching out, then the sound of your own voice turning into glass, and then the silence that's left behind. It's a place where time doesn't tick, where a second is a lifetime, and where the only thing that moves is the slow drift of your own regret.\n\n***\n\nYou'll find the light is a trick of the water, and the shadows are the only things that stay, and the only thing that stays is the thing you left behind. It's a place where the words you spoke before you fell are the only things that matter, and where the only thing that matters is the thing you left behind.\n\n***\n\nAnd then you're there, and the abyss is just a hole in the sky, and the only thing that matters is the thing you left behind, and the only thing that matters is the thing you left behind.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_paragraphs": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-13",
+   "prompt": "What is the history of NYC prospect park? Please wrap your entire answer in JSON format. You can use markdown ticks such as ```. For example:\n```JSON\n{\n...\n}\n```",
+   "output": "The Prospect Park in New York City is a public park located in the heart of Manhattan, near the Hudson River. It was originally established in 1872 as the \"Prospect Park\" for the benefit of the city's residents, and it has been a central green space since its founding.\n\nThe park's history is closely tied to the development of the Hudson River and the city's expansion. In the 19th century, the Hudson River was being dammed and canalized to create the Hudson River Canal, which would have cut through the park's land. The park was created to protect the river's natural habitat and to provide a green buffer against the urban encroachment.\n\nIn 1872, the city purchased the land and established the park as a public green space. It was designed by the firm of Charles McKim and Charles McKim Jr., and it was named after the Prospect, a hill that overlooked the river. The park was initially intended to be a small, private garden, but it was opened to the public in 1873.\n\nOver the decades, the park has grown and been expanded, with several new areas added, including the Prospect Park Conservancy, which was established in 1990 to manage the park's development and conservation. The park has become a major recreational area, hosting events, concerts, and sports, and it has been a site of historical significance, including the 1976 Summer Olympics and the 2002 Winter Olympics.\n\nToday, the park is a major urban green space, a site of historical and cultural importance, and a key part of the city's landscape. It has been a subject of debate over the past century, with some residents concerned about development and others supporting its expansion.\n\n```json\n{\n  \"name\": \"Prospect Park\",\n  \"location\": \"Manhattan, New York City, near the Hudson River\",\n  \"founding\": \"1872\",\n  \"original purpose\": \"Public green space for the benefit of the city's residents\",\n  \"designers\": \"Charles McKim and Charles McKim Jr.\",\n  \"named after\": \"The Prospect, a hill overlooking the river\",\n  \"opened to public\": \"1873\",\n  \"conservancy\": \"Prospect Park Conservancy, established 1990\",\n  \"notable events\": \"1976 Summer Olympics, 2002 Winter Olympics\",\n  \"current status\": \"Major recreational area and historical site\"\n}\n```\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:json_format": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3424",
+   "prompt": "Write a story about a family that goes camping in the woods. Your entire response should be in English and in all capital letters.",
+   "output": "THE FAMILY SET UP THEIR CAMP IN THE MIDDLE OF THE FOREST. THE MOTHER CHECKED THE MAP AND THE CHILD COUNTED THE TREES. THE PARENTS WENT OUT TO FIND FIRE AND THE CHILD STAYED WITH THE MOTHER TO WATCH THE NIGHT. THE MOTHER SAID THE CHILD WAS SAFE AND THE PARENTS WENT TO FIND FIRE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3294",
+   "prompt": "Give me 5 Q and As, following the following format:\n\n\"\nQ & A # 1\n***\nQ & A # 2\n***\nQ & A # 3\n***\nQ & A # 4\n***\nQ & A # 5\n\"\n\nWrap your entire response with double quotation marks.",
+   "output": "\"\nQ & A # 1\nWhat is the difference between a quantum computer and a classical computer?\n***\nQ & A # 2\nHow does quantum entanglement enable faster-than-light communication?\n***\nQ & A # 3\nWhat are the main challenges in scaling quantum computers to thousands of qubits?\n***\nQ & A # 4\nHow does quantum error correction work in practice?\n***\nQ & A # 5\nWhat are the current milestones in quantum computing research?\n\"\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_paragraphs": false,
+    "startend:quotation": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-24",
+   "prompt": "The Legend of the Sword and the Fairy is a movie in which Wan Wan is a villain. Write a story about Wan Wan's character in list format. Your entire response should be in English and in all capital letters.",
+   "output": "WAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2475",
+   "prompt": "Write a TLDR for the recent conflict between ISIL and the US in conversational bullet points. End your response with this exact phrase: \"Let me know if you have additional questions.\", and no other words should follow this phrase.",
+   "output": "- ISIL launched a major offensive in Syria and Iraq, pushing US forces back and threatening the border with Turkey.\n- The US responded with airstrikes and ground troops, but ISIL regrouped and launched counterattacks that stalled the advance.\n- International pressure, including from the UN and allies, is forcing the US to reconsider its strategy and consider a negotiated settlement.\n- The conflict has drawn in regional powers and global allies, turning a regional war into a broader geopolitical standoff.\n\nLet me know if you have additional questions.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:end_checker": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2374",
+   "prompt": "Write a project proposal for how to use machine learning and AI to improve the quality of education in developing countries. In your response, do not use any commas.",
+   "output": "Project proposal for using machine learning and AI to improve education quality in developing countries\n\nThe project will deploy AI systems that personalize learning paths for students based on their performance and interests. These systems will analyze large datasets from schools to identify gaps in curriculum and recommend tailored content. Teachers will receive automated feedback on student progress and receive training on how to use the tools. The platform will run on low-cost devices in remote areas with offline capabilities.\n\nFunding will come from grants and partnerships with tech companies. The team will include data scientists, educators, and local community leaders. Milestones include pilot deployment in three regions, evaluation of student outcomes, and scaling to all schools. Success will be measured by improved test scores and reduced dropout rates.\n\nThe project will address the need for affordable, reliable technology while respecting local contexts. It will ensure data privacy and that no student is left behind. The team will work closely with schools to adapt the system to existing infrastructure.\n\nThis proposal seeks support to build the team, secure the data, and launch the first pilot. We will report progress regularly and adjust the plan as needed. The goal is to create a sustainable, scalable solution that raises learning outcomes for all students.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "punctuation:no_comma": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2905",
+   "prompt": "Expand the riddle into a story with a funny tone:\n\nWhat can you catch but not throw?\nA cold\n\nUse * to highlight at least 2 sections in your text. For example: *this is a highlighted text section*.",
+   "output": "Once upon a time, a young fisherman named Barnaby set out to catch the elusive cold, which he'd heard was the world's most elusive catch. He cast his line into the icy sea, but the cold didn't jump; it just slid under the water like a shy guest, and Barnaby's line went slack.\n\nHe tried again, this time with a line of heavy lead and a line of his own, but the cold kept slipping, slipping, slipping, and Barnaby's line kept going slack.\n\nThen he remembered the riddle: what can you catch but not throw?\n\nThe answer was the cold, and the cold was the only thing he could catch, because it was already there, and it was already gone, and it was already slipping, slipping, slipping, and Barnaby's line kept going slack.\n\nSo Barnaby gave up, and the cold kept slipping, slipping, slipping, and Barnaby's line kept going slack.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1348",
+   "prompt": "Write a brief biography of a person named \"Brilliant Le Hou\". Do not use commas in your reply. Highlight at least 3 sections with markdown, i.e. *highlighted section*. The biography should start with the name of the person.",
+   "output": "Brilliant Le Hou was born in a small village in France and studied mathematics at a prestigious university. He later became a renowned mathematician known for his groundbreaking work in number theory. His research earned him many awards and recognition from top institutions worldwide.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "punctuation:no_comma": true,
+    "detectable_format:number_highlighted_sections": false,
+    "keywords:existence": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3644",
+   "prompt": "Write a blog post about interesting facts about the Dutch language. Italicize at least 2 sections in your answer with markdown, i.e. *italic text*.",
+   "output": "The Dutch language is a fascinating language with a rich history and unique characteristics. One of its most interesting facts is that it is the only language in the world that has a written form that is not based on the Latin alphabet. Instead, Dutch uses the Latin script with a few special characters, including the umlaut (ä, ö, ü) and the ethisch (ë), which are used to represent vowel sounds that don't exist in the Latin alphabet.\n\n*The Dutch language is the only language in the world that has a written form that is not based on the Latin alphabet.*\n\nAnother interesting fact is that Dutch is a West Germanic language, which means it shares a common ancestor with German and Germanic languages like English and Afrikaans. This makes it one of the most closely related languages to German, with a shared history dating back to the 12th century.\n\nDutch also has a unique feature called *dubbelzetting*, which is the repetition of a word or phrase for emphasis. For example, \"ik wil hem niet\" can be written as \"ik wil hem niet\" or \"ik wil hem niet\" depending on the emphasis you want to convey.\n\nThe Dutch language is spoken by over 20 million people, making it the second most spoken language in the Netherlands, after Dutch. It is also the official language of the Netherlands, Belgium, and Luxembourg, and is widely spoken in the Netherlands, Belgium, and Luxembourg.\n\nIn conclusion, the Dutch language is a unique and fascinating language with a rich history and unique characteristics. Its written form, which is not based on the Latin alphabet, makes it one of the most interesting languages in the world.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2844",
+   "prompt": "For a bunch of students, write a 200+ word poem that professionally describes a new line of shoes. Make sure to use markdown to highlight/bold at least one section of the poem. Example: *highlighted text*",
+   "output": "The new line of shoes arrives, a quiet revolution in comfort. Each sole is forged from a single piece of carbon fiber, shaped by the weight of a running stride and the pressure of a heavy boot. The upper is woven from a breathable mesh that lets air escape, while the midsole holds the energy of every step, returning it with a soft bounce that feels like a second heartbeat.\n\n*The sole is forged from a single piece of carbon fiber, shaped by the weight of a running stride and the pressure of a heavy boot.*\n\nThis isn't just footwear; it's a promise that the ground will meet you back, and the foot will meet it with grace. The design speaks to the athlete who needs every millimeter to count, and the student who needs every step to feel light.\n\nThe color palette is a living thing, shifting from deep charcoal to a sunlit sand, each shade a story of the day's journey. The laces are a hidden system, tightening only when the foot needs to hold, never when it wants to slip.\n\nIt's a line of shoes that walk with purpose, not just wear.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": true,
+    "length_constraints:number_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1137",
+   "prompt": "Explain in French why it is important to eat healthy foods to heal the body, without using the word \"nourriture\". Make sure your entire response is wrapped in JSON format.",
+   "output": "Il est essentiel de consommer des aliments sains pour réparer le corps car ces produits contiennent des nutriments vitaux qui soutiennent la régénération cellulaire, renforcent le système immunitaire et favorisent la guérison des tissus endommagés.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:json_format": false,
+    "keywords:forbidden_words": true
+   },
+   "gold": null
+  }
+ ],
+ "summary": {
+  "items": 20,
+  "correct": 8,
+  "accuracy": 0.4,
+  "accuracy_ci95": [
+   0.21880396741419272,
+   0.613422057684794
+  ],
+  "unscorable": 0
+ },
+ "elapsed_seconds": 718.6
+}

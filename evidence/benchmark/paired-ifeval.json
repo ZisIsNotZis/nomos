@@ -1,0 +1,60 @@
+{
+ "suite": "ifeval",
+ "status": "ran",
+ "n": 20,
+ "base": {
+  "correct": 12,
+  "accuracy": 0.6,
+  "ci95_wilson": [
+   0.3865779423152061,
+   0.7811960325858074
+  ]
+ },
+ "adapter": {
+  "correct": 8,
+  "accuracy": 0.4,
+  "ci95_wilson": [
+   0.21880396741419272,
+   0.613422057684794
+  ]
+ },
+ "delta_adapter_minus_base": -0.2,
+ "delta_ci95_paired_bootstrap": [
+  -0.4,
+  0.0
+ ],
+ "paired": {
+  "drops": 5,
+  "gains": 1,
+  "drop_ids": [
+   "ifeval-1372",
+   "ifeval-2752",
+   "ifeval-2374",
+   "ifeval-2844",
+   "ifeval-1137"
+  ],
+  "gain_ids": [
+   "ifeval-2246"
+  ],
+  "unchanged": 14,
+  "mcnemar_exact_p": 0.21875
+ },
+ "detectable": {
+  "smallest_drop_items_with_no_gains": 5,
+  "smallest_drop_pp_with_no_gains": 0.25,
+  "smallest_drop_items_by_paired_interval": 4,
+  "smallest_drop_pp_by_paired_interval": 0.2,
+  "alpha": 0.05
+ },
+ "harness": {
+  "limit": 20,
+  "seed": 0,
+  "frozen_sha256": "0cc0fb5726c3aa6ec9053aec2bfc8615ed631150e54cee492c0f2f963dcdf71e",
+  "decoding": "greedy",
+  "adapter_dir": "/home/z/vibe/nomos/.tmp/sft/adapter-narrow"
+ },
+ "elapsed_seconds": {
+  "base": 569.9,
+  "adapter": 718.6
+ }
+}

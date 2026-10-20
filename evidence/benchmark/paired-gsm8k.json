@@ -1,0 +1,58 @@
+{
+ "suite": "gsm8k",
+ "status": "ran",
+ "n": 20,
+ "base": {
+  "correct": 15,
+  "accuracy": 0.75,
+  "ci95_wilson": [
+   0.5312949900419365,
+   0.888139947210597
+  ]
+ },
+ "adapter": {
+  "correct": 13,
+  "accuracy": 0.65,
+  "ci95_wilson": [
+   0.43285051021946463,
+   0.8188104521320554
+  ]
+ },
+ "delta_adapter_minus_base": -0.1,
+ "delta_ci95_paired_bootstrap": [
+  -0.3,
+  0.1
+ ],
+ "paired": {
+  "drops": 3,
+  "gains": 1,
+  "drop_ids": [
+   "gsm8k-test-170",
+   "gsm8k-test-922",
+   "gsm8k-test-735"
+  ],
+  "gain_ids": [
+   "gsm8k-test-292"
+  ],
+  "unchanged": 16,
+  "mcnemar_exact_p": 0.625
+ },
+ "detectable": {
+  "smallest_drop_items_with_no_gains": 5,
+  "smallest_drop_pp_with_no_gains": 0.25,
+  "smallest_drop_items_by_paired_interval": 4,
+  "smallest_drop_pp_by_paired_interval": 0.2,
+  "alpha": 0.05
+ },
+ "harness": {
+  "limit": 20,
+  "seed": 0,
+  "frozen_sha256": "def2e3a03b1893d9bfddd792cf5e8eed7fa62db2a0ba3662882a5af0f986c1d3",
+  "decoding": "greedy",
+  "adapter_dir": "/home/z/vibe/nomos/.tmp/sft/adapter-narrow"
+ },
+ "elapsed_seconds": {
+  "base": 536.9,
+  "adapter": 465.8
+ }
+}
