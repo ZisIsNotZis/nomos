@@ -1,0 +1,44 @@
+{
+ "situations": 242,
+ "target_draws": 5,
+ "modal_pairs": 139,
+ "modal_pair_share": 0.574,
+ "unanimous_both_sides": 68,
+ "unanimous_modal_pairs": 8,
+ "unanimous_modal_pairs_with_actions": 7,
+ "majority_modal_pairs": 68,
+ "majority_modal_pairs_with_actions": 56,
+ "action_bearing_modal_pairs": 114,
+ "conditions_without_tool_action": 119,
+ "vote_share_histogram": {
+  "law": {
+   "5/5": 94,
+   "4/5": 45,
+   "3/5": 46,
+   "2/5": 45,
+   "1/5": 12
+  },
+  "bare": {
+   "5/5": 105,
+   "4/5": 42,
+   "3/5": 52,
+   "2/5": 39,
+   "1/5": 4
+  }
+ },
+ "vote_share_mean": {
+  "law": 0.736,
+  "bare": 0.769
+ },
+ "modal_label_stability": {
+  "law": 0.808,
+  "bare": 0.843
+ },
+ "signature_rule": "动作签名 = resample_actions.signatures 的主签名列表（工具 + 程序:子命令 + 目标路径）；众数 = 出现次数最多的签名，并列时取字典序最小；票数占比 = 众数次数 / 5",
+ "majority_rule": "众数次数 ≥ 3/5 记为多数；只有 2/5 时众数只是并列后按字典序取到的那一个",
+ "share_mean_rule": "vote_share_mean = 单次抽样落在众数动作上的概率，对 242 条处境取平均；一次抽样与 5 抽众数标签的一致率就等于它",
+ "stability_rule": "modal_label_stability = 把每条处境每个条件观测到的 5 个签名有放回重采 5 个，众数仍是原众数的比例，每条件 2000 次、seed 20260903，再对 242 条处境取平均",
+ "modal_pair_rule": "保留 law 与 bare 的众数签名不同的处境；chosen/rejected 取各自最接近众数的抽样原文",
+ "spend_cny": 1.253489,
+ "output": "data/pairs-modal.jsonl"
+}

@@ -29,6 +29,7 @@ import argparse
 import collections
 import importlib.util
 import json
+import random
 import threading
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -53,6 +54,7 @@ SUMMARY = EVIDENCE / "summary.json"
 MODAL_PAIRS = REPO / "data" / "pairs-modal.jsonl"
 
 ARMS = ("law", "bare")
+NO_TOOL_ACTION = "(no tool action)"
 TARGET_DRAWS = 5
 WORKERS = 6
 MAX_CNY = 6.0
@@ -225,7 +227,7 @@ def run_generate():
 def signature_of(answer):
     """(签名键, 可读签名)：键用于比较，字符串写进 pairs-modal.jsonl。"""
     main = ra.signatures(answer)["signature"]
-    return tuple(main), (" ; ".join(main) if main else "(no tool action)")
+    return tuple(main), (" ; ".join(main) if main else NO_TOOL_ACTION)
 
 
 def modal(draws):
@@ -234,6 +236,24 @@ def modal(draws):
     winner, count = sorted(votes.items(), key=lambda item: (-item[1], item[0]))[0]
     closest = next(row for row in draws if signature_of(row["response"])[0] == winner)
     return winner, count / len(draws), closest
+
+
+def has_majority(share):
+    """5 次抽样里出现 3 次以上，众数才是多数；2 次是并列后按字典序取到的那一个。"""
+    return share * TARGET_DRAWS >= 3
+
+
+def stability(modal_key, keys, rounds=2000, seed=20260903):
+    """众数标签自身的稳定性：把观测到的 5 票有放回重采 5 票，众数仍是原众数的比例。
+
+    这是"同条件再抽 5 次、再取众数，会不会得到同一个动作"的估计，量的是标签噪声，不是法的作用。
+    """
+    rng = random.Random(seed)
+    hits = 0
+    for _ in range(rounds):
+        votes = collections.Counter(rng.choices(keys, k=len(keys)))
+        hits += sorted(votes.items(), key=lambda item: (-item[1], item[0]))[0][0] == modal_key
+    return hits / rounds
 
 
 def run_analyse():
@@ -247,6 +267,7 @@ def run_analyse():
         raise SystemExit(f"{len(short)} 个条件的抽样不足 5 次，先跑 --generate：{short[:5]}")
 
     pairs, law_shares, bare_shares = [], [], []
+    keys = {arm: [] for arm in ARMS}  # 每条处境的众数签名与观测到的 5 个签名，供稳定性重采样
     no_actions = 0
     for situation in rows:
         sid = situation["id"]
@@ -254,6 +275,8 @@ def run_analyse():
         bare_draws = draws_for(stored, own, sid, "bare")[:TARGET_DRAWS]
         law_key, law_share, law_answer = modal(law_draws)
         bare_key, bare_share, bare_answer = modal(bare_draws)
+        keys["law"].append((law_key, [signature_of(row["response"])[0] for row in law_draws]))
+        keys["bare"].append((bare_key, [signature_of(row["response"])[0] for row in bare_draws]))
         law_shares.append(law_share)
         bare_shares.append(bare_share)
         no_actions += (not law_key) + (not bare_key)
@@ -280,16 +303,38 @@ def run_analyse():
 
     unanimous = sum(1 for law_share, bare_share in zip(law_shares, bare_shares)
                     if law_share == 1.0 and bare_share == 1.0)
+    # 众数对里的可信子集：只有这两组数才谈得上"标签本身没噪声"或"至少过半数"。
+    pair_unanimous = [row for row in pairs
+                      if row["law_vote_share"] == 1.0 and row["bare_vote_share"] == 1.0]
+    pair_majority = [row for row in pairs
+                     if has_majority(row["law_vote_share"]) and has_majority(row["bare_vote_share"])]
+    both_actions = lambda subset: sum(1 for row in subset
+                                      if row["law_signature"] != NO_TOOL_ACTION
+                                      and row["bare_signature"] != NO_TOOL_ACTION)
     summary = {
         "situations": len(rows),
         "target_draws": TARGET_DRAWS,
         "modal_pairs": len(pairs),
         "modal_pair_share": round(len(pairs) / len(rows), 3),
         "unanimous_both_sides": unanimous,
+        "unanimous_modal_pairs": len(pair_unanimous),
+        "unanimous_modal_pairs_with_actions": both_actions(pair_unanimous),
+        "majority_modal_pairs": len(pair_majority),
+        "majority_modal_pairs_with_actions": both_actions(pair_majority),
+        "action_bearing_modal_pairs": both_actions(pairs),
         "conditions_without_tool_action": no_actions,
         "vote_share_histogram": {"law": histogram(law_shares), "bare": histogram(bare_shares)},
+        "vote_share_mean": {"law": round(sum(law_shares) / len(law_shares), 3),
+                            "bare": round(sum(bare_shares) / len(bare_shares), 3)},
+        "modal_label_stability": {arm: round(sum(stability(key, draws) for key, draws in keys[arm])
+                                             / len(keys[arm]), 3) for arm in ARMS},
         "signature_rule": "动作签名 = resample_actions.signatures 的主签名列表（工具 + 程序:子命令 + 目标路径）；"
                           "众数 = 出现次数最多的签名，并列时取字典序最小；票数占比 = 众数次数 / 5",
+        "majority_rule": "众数次数 ≥ 3/5 记为多数；只有 2/5 时众数只是并列后按字典序取到的那一个",
+        "share_mean_rule": "vote_share_mean = 单次抽样落在众数动作上的概率，对 242 条处境取平均；"
+                           "一次抽样与 5 抽众数标签的一致率就等于它",
+        "stability_rule": "modal_label_stability = 把每条处境每个条件观测到的 5 个签名有放回重采 5 个，"
+                          "众数仍是原众数的比例，每条件 2000 次、seed 20260903，再对 242 条处境取平均",
         "modal_pair_rule": "保留 law 与 bare 的众数签名不同的处境；chosen/rejected 取各自最接近众数的抽样原文",
         "spend_cny": round(sum(row["cost"]["cny"] for rows in own.values() for row in rows), 6),
         "output": str(MODAL_PAIRS.relative_to(REPO)),
@@ -297,10 +342,14 @@ def run_analyse():
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     SUMMARY.write_text(json.dumps(summary, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
-    print(f"众数不同的处境 {len(pairs)}/{len(rows)}，两侧都一致（{TARGET_DRAWS}/{TARGET_DRAWS}）{unanimous} 条")
+    print(f"众数不同的处境 {len(pairs)}/{len(rows)}，其中两侧都 {TARGET_DRAWS}/{TARGET_DRAWS} 的 {len(pair_unanimous)} 条，"
+          f"两侧都过半数的 {len(pair_majority)} 条（带动作 {both_actions(pair_majority)} 条）；"
+          f"全 {len(rows)} 条处境里两侧都一致 {unanimous} 条")
     for arm, shares in (("law", law_shares), ("bare", bare_shares)):
         print(f"{arm:4s} 众数票数 " + "  ".join(f"{key}:{value}"
                                                for key, value in histogram(shares).items()))
+    print("众数标签稳定性（同条件两次取众数一致率）：" +
+          "  ".join(f"{arm}:{summary['modal_label_stability'][arm]:.3f}" for arm in ARMS))
     print(f"任一侧众数为空动作 {no_actions} 个条件")
     print(f"写完 {MODAL_PAIRS.relative_to(REPO)}、{SUMMARY.name}")
 
