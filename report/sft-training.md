@@ -4,7 +4,7 @@
 
 288 条训练样本、3 个 epoch、54 步，验证集 PPL 从 11.34 降到 6.03（loss 2.4285 → 1.7972），训练集 PPL 4.21，训练/验证 loss 差 0.36 且仍在扩大——学到了数据里的回答形态，没有过拟合到掉头的程度，也没有证明学会了法。
 
-适配器：`.tmp/sft/adapter/adapter_model.safetensors`，43675104 字节，sha256 `5be6a2f38752025930e6dbca80d3e0092bbfb905c731fbff2f275e1658176a72`，已登记进 `artifacts.tsv`。
+适配器（窄目标版）：`.tmp/sft/adapter-narrow/adapter_model.safetensors`，43675104 字节，sha256 `5be6a2f38752025930e6dbca80d3e0092bbfb905c731fbff2f275e1658176a72`，已登记进 `artifacts.tsv`。
 
 全部数字由 `python3 scripts/train_sft.py --epochs 3 --grad-accum 8` 落在 `evidence/sft/log.jsonl`，本文件只引用那 66 行记录，不重算。
 
@@ -20,7 +20,7 @@
 | 种子 | 0（torch / numpy / random 同时固定） | 计划要求固定种子 |
 | 步数 | 18 步/epoch × 3 = 54 步 | 288 / 16 = 18 |
 
-注意这个基座是混合架构：24 层里只有每 4 层一层是 `q/k/v/o` 全注意力（共 6 层），另外 18 层是线性注意力（`linear_attn.in_proj_qkv`、`in_proj_z`、`in_proj_a`、`in_proj_b`、`out_proj`）。所以适配器里 192 个张量 = MLP 三类 × 24 层 + `q/k/v/o` × 6 层。线性注意力那几层的投影没有挂 LoRA，这是「注意力投影」在这个架构上的边界，不是漏配；要扩就把这五个名字加进 `LORA_TARGET_MODULES` 重跑。
+注意这个基座是混合架构：24 层里只有每 4 层一层是 `q/k/v/o` 全注意力（共 6 层），另外 18 层是线性注意力（`linear_attn.in_proj_qkv`、`in_proj_z`、`in_proj_a`、`in_proj_b`、`out_proj`）。所以适配器里 192 个张量 = MLP 三类 × 24 层 + `q/k/v/o` × 6 层。线性注意力那几层的投影没有挂 LoRA，这是「注意力投影」在这个架构上的边界，不是漏配；挂上它们重跑的结果见 `report/sft-training-wide.md`——验证 PPL 6.09 比这里的 6.03 差，所以后续测量仍用这一版。
 
 ## 显存：batch 与 rank 是怎么定的
 
@@ -88,6 +88,6 @@ python3 scripts/train_sft.py --epochs 3 --grad-accum 8
 ## 已知边界
 
 - 验证 PPL 用的是同一个 loss 口径（只算 target），与三点测量的动作一致率不是一回事。
-- LoRA 没有挂线性注意力的投影层（见配置一节）。
+- LoRA 没有挂 18 个线性注意力层的投影（见配置一节）；挂宽的重跑在 `report/sft-training-wide.md`，验证更差，所以这不是缺口而是本数据上的选择。
 - 三条与 `train_dpo.py` 相同的环境告警：`flash-linear-attention`、`causal_conv1d` 未安装，这两处走 PyTorch 参考实现；`use_cache` 与梯度检查点冲突，已被 transformers 关掉。三者都只影响速度，不影响数值口径——但要指望这两个内核，得装依赖后重跑。
 - 峰值显存 8.74 GiB（分配）/ 9.98 GiB（保留）是在另一个项目同时占卡的情况下测的，换独占的卡会更高、更快。

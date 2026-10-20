@@ -40,9 +40,91 @@ OUT_DIR = os.path.join(ROOT, "evidence/sft")
 LOG_PATH = os.path.join(OUT_DIR, "log.jsonl")
 ADAPTER_DIR = os.path.join(ROOT, ".tmp/sft/adapter")
 
-# Attention and MLP projection layers: every linear projection that carries the
-# decision-shape of an answer (what to attend to, what to write) gets a delta.
-LORA_TARGET_MODULES = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+# Every linear projection in the language model: the answer's decision shape is carried
+# by all of them, and this base is a hybrid. 6 of the 24 layers are full attention
+# (q/k/v/o), 18 are linear attention, whose in_proj_qkv (q,k,v), in_proj_z (gate),
+# in_proj_a and in_proj_b (decay scalars) and out_proj are the only projections that
+# layer has. The suffixes match by full-name suffix, so the vision tower's `proj`,
+# `qkv` and `linear_fc1/2` are not hit; report_lora_coverage() proves that at run time.
+LORA_TARGET_MODULES = [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj",
+    "in_proj_qkv",
+    "in_proj_z",
+    "in_proj_a",
+    "in_proj_b",
+    "out_proj",
+]
+
+
+def report_lora_coverage(model, log_fn):
+    """Count the modules that actually carry a LoRA delta, per projection name.
+
+    The expected count comes from the model's own `layer_types`, so a base whose hybrid
+    layout differs fails here instead of silently leaving layers uncovered: every full
+    attention layer owes q/k/v/o, every linear attention layer owes its five projections,
+    and every layer owes the three MLP projections. Anything matched outside those names
+    is a target suffix reaching into a part of the model it was not meant for.
+    """
+    layers = model.config.text_config.layer_types
+    n_layers = len(layers)
+    n_full = sum(1 for t in layers if t == "full_attention")
+    n_linear = sum(1 for t in layers if t == "linear_attention")
+    assert n_full + n_linear == n_layers, f"unknown layer type in {set(layers)}"
+    expected = {
+        "q_proj": n_full,
+        "k_proj": n_full,
+        "v_proj": n_full,
+        "o_proj": n_full,
+        "gate_proj": n_layers,
+        "up_proj": n_layers,
+        "down_proj": n_layers,
+        "in_proj_qkv": n_linear,
+        "in_proj_z": n_linear,
+        "in_proj_a": n_linear,
+        "in_proj_b": n_linear,
+        "out_proj": n_linear,
+    }
+    actual = {}
+    examples = {}
+    for name, module in model.named_modules():
+        if not hasattr(module, "lora_A") or not len(module.lora_A):
+            continue
+        leaf = name.split(".")[-1]
+        actual[leaf] = actual.get(leaf, 0) + 1
+        examples.setdefault(leaf, name)
+    assert actual == {k: v for k, v in expected.items() if v}, (
+        f"LoRA coverage {sorted(actual.items())} != expected {sorted(expected.items())}"
+    )
+    layer_coverage = {}
+    for leaf in actual:
+        owner = "linear_attn" if leaf in {"in_proj_qkv", "in_proj_z", "in_proj_a", "in_proj_b", "out_proj"} else (
+            "self_attn" if leaf in {"q_proj", "k_proj", "v_proj", "o_proj"} else "mlp"
+        )
+        layer_coverage[owner] = layer_coverage.get(owner, 0) + actual[leaf]
+    log_fn(
+        {
+            "type": "lora_coverage",
+            "modules_per_name": dict(sorted(actual.items())),
+            "modules_total": sum(actual.values()),
+            "lora_tensors": 2 * sum(actual.values()),
+            "example_module": dict(sorted(examples.items())),
+            "layer_types": {"linear_attention": n_linear, "full_attention": n_full},
+            "projections_by_owner": layer_coverage,
+            "expected_layers_covered": n_layers,
+        }
+    )
+    print(
+        f"LoRA modules {sum(actual.values())} = {dict(sorted(actual.items()))}; "
+        f"{n_linear} linear-attention layers x 5 projections + {n_full} full-attention "
+        f"layers x 4 + {n_layers} MLP x 3"
+    )
+    return actual
 
 
 def log(record):
@@ -230,14 +312,19 @@ def main():
     parser.add_argument("--grad-accum", type=int, default=4)
     parser.add_argument("--lr", type=float, default=1e-4)
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--lora-r", type=int, default=0, help="0 = choose from free VRAM")
+    parser.add_argument("--lora-alpha", type=int, default=0, help="0 = 2r")
     parser.add_argument("--eval-micro-batch", type=int, default=0, help="0 = same as micro-batch")
     parser.add_argument("--limit", type=int, default=0, help="smoke run: cap training rows")
     parser.add_argument("--out-dir", default=OUT_DIR)
+    parser.add_argument(
+        "--run-name", default="", help="suffix for the evidence files, so a run never overwrites another"
+    )
     parser.add_argument("--adapter-dir", default=ADAPTER_DIR)
     args = parser.parse_args()
 
     os.makedirs(args.out_dir, exist_ok=True)
-    log_path = os.path.join(args.out_dir, "log.jsonl")
+    log_path = os.path.join(args.out_dir, f"log{args.run_name and '-' + args.run_name}.jsonl")
     global LOG_PATH
     LOG_PATH = log_path
     open(LOG_PATH, "w").close()
@@ -263,9 +350,24 @@ def main():
     max_length = choose_max_length(stats)
 
     free_gib = torch.cuda.mem_get_info(0)[0] / 2**30
-    lora_r, lora_alpha = choose_lora(free_gib)
     micro_batch = args.micro_batch or choose_micro_batch(free_gib, max_length)
     eval_micro_batch = args.eval_micro_batch or micro_batch
+    if args.lora_r:
+        lora_r = args.lora_r
+        lora_alpha = args.lora_alpha or 2 * lora_r
+        lora_rank_reason = (
+            f"pinned on the command line to r={lora_r}, alpha={lora_alpha}, so a comparison "
+            f"against another LoRA width holds the rank, alpha and fp math equal instead of "
+            f"letting the {free_gib:.1f} GiB free at start pick a different rank"
+        )
+    else:
+        lora_r, lora_alpha = choose_lora(free_gib)
+        lora_rank_reason = (
+            f"{free_gib:.1f} GiB free before load (4090, another project holds the rest); "
+            f"r={lora_r}, alpha={lora_alpha} (alpha = 2r); 4-bit weights ~1.4 GiB and "
+            f"micro-batch {micro_batch} x {max_length} tokens under gradient checkpointing "
+            f"fit, so the rank is set by the free headroom"
+        )
 
     log(
         {
@@ -338,6 +440,7 @@ def main():
             target_modules=LORA_TARGET_MODULES,
         ),
     )
+    report_lora_coverage(model, log)
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total = sum(p.numel() for p in model.parameters())
     log(
@@ -349,12 +452,7 @@ def main():
             "lora_r": lora_r,
             "lora_alpha": lora_alpha,
             "lora_dropout": 0.05,
-            "lora_rank_reason": (
-                f"{free_gib:.1f} GiB free before load (4090, another project holds the rest); "
-                f"r={lora_r}, alpha={lora_alpha} (alpha = 2r); 4-bit weights ~1.4 GiB and "
-                f"micro-batch {micro_batch} x {max_length} tokens under gradient checkpointing "
-                f"fit, so the rank is set by the free headroom"
-            ),
+            "lora_rank_reason": lora_rank_reason,
             "trainable_params": trainable,
             "total_params": total,
             "trainable_fraction": round(trainable / total, 5),
@@ -604,7 +702,8 @@ def main():
         "peak_reserved_gib": round(peak_reserved, 3),
         "wall_clock_s": round(time.time() - started, 1),
     }
-    with open(os.path.join(args.out_dir, "train-summary.json"), "w", encoding="utf-8") as fh:
+    summary_path = os.path.join(args.out_dir, f"train-summary{args.run_name and '-' + args.run_name}.json")
+    with open(summary_path, "w", encoding="utf-8") as fh:
         json.dump(summary, fh, indent=2, ensure_ascii=False)
     print(json.dumps(summary, indent=2, ensure_ascii=False))
 
