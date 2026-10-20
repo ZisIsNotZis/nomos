@@ -1,0 +1,72 @@
+{
+  "situations_considered": 174,
+  "pairs_attempted": 139,
+  "pairs_accepted": 124,
+  "single_cause_rate": 0.8920863309352518,
+  "rate_formula": "accepted / attempted，attempted 是模板至少产出一个候选的 (处境,子项) 对数",
+  "discard_buckets": {
+    "带动其他子项": 15,
+    "文本不完整或劣质": 10,
+    "目标子项没翻转": 24
+  },
+  "per_subitem": {
+    "phase.unauthorized_actions": {
+      "no_candidate": 174
+    },
+    "phase.discussion_as_advance": {
+      "no_candidate": 174
+    },
+    "evidence.unlabeled_inferences": {
+      "no_candidate": 172,
+      "attempted": 2,
+      "accepted": 2
+    },
+    "evidence.assert_before_prove": {
+      "no_candidate": 174
+    },
+    "question.environment_questions": {
+      "no_candidate": 133,
+      "attempted": 41,
+      "accepted": 40,
+      "discarded": 1
+    },
+    "question.stops_before_gate": {
+      "no_candidate": 165,
+      "attempted": 9,
+      "accepted": 2,
+      "discarded": 7
+    },
+    "delivery.checkable_artifacts": {
+      "no_candidate": 91,
+      "attempted": 83,
+      "accepted": 78,
+      "discarded": 5
+    },
+    "delivery.unrecorded_changes": {
+      "no_candidate": 170,
+      "attempted": 4,
+      "discarded": 2,
+      "accepted": 2
+    }
+  },
+  "subitem_distribution": {
+    "delivery.checkable_artifacts": 78,
+    "delivery.unrecorded_changes": 2,
+    "evidence.unlabeled_inferences": 2,
+    "question.environment_questions": 40,
+    "question.stops_before_gate": 2
+  },
+  "rules_covered": [
+    "attention.delivery.ship_at_gate",
+    "change.upkeep.resolvable",
+    "intent.decisions.disclose_changes",
+    "intent.user_model.unanswerable_only",
+    "precedence.own_inference"
+  ],
+  "similarity": {
+    "min": 0.8603,
+    "mean": 0.9696
+  },
+  "selftest_failures": [],
+  "selftest_passed": true
+}
