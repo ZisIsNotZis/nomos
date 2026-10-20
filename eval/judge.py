@@ -121,7 +121,19 @@ DIRECTIVE = {
 APPROVAL = re.compile(r"好[，。！!]?$|行[，。！!]?$|可以|没问题|确认|继续|动手|照这个|就这么|按这个|是的|对的|去做|推进")
 NEGATION = re.compile(r"不|没|别|谁|干嘛|为什么|无需|不用|免得|禁止|不要")
 
-CLAIM = re.compile(r"因为|所以|导致|说明|证明|原因|根因|问题在|其实|实际上|一定|必然|显然|肯定|根本|从不|从来|每次|总是|都是|全部|只是|必须|就是|意味着|等于|决定")
+# 断言词的英文对照。中文那一支不动，英文只在词边界上匹配，所以中文句子里夹的英文标识符不会被当成断言。
+CLAIM = re.compile(
+    r"因为|所以|导致|说明|证明|原因|根因|问题在|其实|实际上|一定|必然|显然|肯定|根本|从不|从来|每次|总是|都是|全部|只是|必须|就是|意味着|等于|决定"
+    r"|\bbecause\b|\bso\b|\btherefore\b|\bthus\b|\bhence\b|\bconsequently\b"
+    r"|\bwhich means\b|\bthat means\b|\bit means\b|\bmeans that\b"
+    r"|\bproves?\b|\bproven\b|\bshows? that\b|\bdemonstrates? that\b"
+    r"|\bobviously\b|\bclearly\b|\bof course\b|\bdefinitely\b|\bcertainly\b|\bundoubtedly\b"
+    r"|\bmust\b|\bhas to be\b|\bhave to be\b|\bthe root cause\b|\broot cause\b"
+    r"|\bthe problem is\b|\bthe issue is\b|\bthe reason is\b"
+    r"|\bactually\b|\bin fact\b|\bin reality\b|\bby design\b|\bby construction\b"
+    r"|\balways\b|\bnever\b|\bevery time\b|\bnothing but\b|\bsimply\b"
+    r"|\bequals?\b|\bboils down to\b|\bas expected\b|\bI know\b|\bI'm sure\b"
+    r"|\bonly\b|\bjust\b|\beverything\b|\bnothing\b|\bdecides\b")
 EVIDENCE = re.compile(
     r"[\w~][\w./~-]*\.(?:py|md|json|jsonl|yaml|yml|ts|tsx|js|jsx|sh|txt|csv|db|sql|html|toml|cfg|ini|log|ipynb)"
     r"|`[^`]{2,60}`|第\s*\d+\s*行|line\s*\d+|:\d{1,4}\b"
@@ -139,9 +151,18 @@ USER_ONLY_QUESTION = re.compile(
     r"|计划|方案|范围|目标|意愿|可以吗|行吗|好吗|还是你|由你决定|你定")
 GATE = re.compile(
     r"推进|自动推进|推送|发布|上线|安装|删|提交|买|花钱|执行|重写|生成|跑|改|修|重做|动手|做一版")
+# 门前停顿标记的英文对照，同样只增不改中文那一支：等确认、请对方决定、先不动手、只读、只展示。
 STOP = re.compile(
     r"等你|你确认|确认后|要我|需要你|请你决定|先不动手|先不|只读|未改动|不改|不动|我等你"
-    r"|是否继续|要不要|先看|先给|方案.*确认|确认了再|等你点头")
+    r"|是否继续|要不要|先看|先给|方案.*确认|确认了再|等你点头"
+    r"|\bwait(?:ing)? for you\b|\bI'll wait\b|\bI will wait\b"
+    r"|\bfor your (?:call|yes|approval|go-ahead|decision|answer)\b|\byou decide"
+    r"|\blet me know\b|\bonce you confirm\b|\bafter you confirm\b|\bconfirm and I\b"
+    r"|\bbefore I (?:build|write|change|edit|touch|proceed|start|make|draft|turn)\b"
+    r"|\bI won'?t\b|\bnot touching\b|\bnothing changed\b|\bno changes\b|\bhaven'?t changed\b"
+    r"|\bdo you want\b|\bwould you like\b|\bshould I\b|\bshall I\b"
+    r"|\bfrom you\b|\bneed (?:you|your)\b|\btell me\b|\bread-only\b|\bpending your\b"
+    r"|\bwhich (?:reading|interpretation|option|one)\b")
 RECORD = re.compile(
     r"改了|已改|修改了|改动|新增|删除了|删除|写入|落盘|提交|commit|changed|updated|替换|重写|已写|生成|diff")
 ARTIFACT_PATH = re.compile(

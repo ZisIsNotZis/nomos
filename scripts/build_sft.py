@@ -12,9 +12,10 @@ evidence/densify/answers.jsonl 的 law 条件（735 条，bare 条件不用）�
 3. 同一处境内去重：动作签名（eval/judge.py 分类出的每个动作的类型，按出现顺序）相同的
    只留一条代表，代表取该处境出现次数最多的那套完整动作（工具名 + 参数），平局取最早出现；
    动作签名为空（回答里没有 `tool:` 行）时改用文字层决策签名：把回答压成「是否提问、是否
-   停住等确认、是否下断言、是否有可核对产物」四位，四位相同且 target 词集 Jaccard ≥ 0.9
+   停住等确认、是否下断言、是否有可核对产物」四位，四位相同且 target 词集 Jaccard ≥ 0.5
    才合并，否则各留一条；签名不同但归一化 target 的词集 Jaccard ≥ 0.9 的近重复也只留一条；
-4. 按会话切验证集，同一会话只落在一边，切分用固定种子，落 evidence/sft/split.json；
+4. 按会话切验证集，fork 与它的父会话算同一个会话组（session id 取 /forks/ 之前的第一段），
+   同一组只落在一边，切分用固定种子，落 evidence/sft/split.json；
 5. 落 data/sft.jsonl（全量）、data/sft-val.jsonl、data/sft-train.jsonl；
 6. 用 data/coverage.json 的既有标注重算 175 条可训练规则的覆盖，落
    data/sft-coverage-counts.json。
@@ -69,7 +70,10 @@ REPEAT_MIN_COUNT = 3  # 同一行/段出现几次算复读
 SHINGLE = 10  # 复读判定里的词 shingle 宽度
 ECHO_CONTAINMENT = 0.95  # 回答的用词有多少比例已在处境里出现过，超过就算只复述
 ECHO_LENGTH_RATIO = 0.5  # 只复述的回答不会比处境长
-JACCARD_MIN = 0.9  # 同处境内两条 target 的词集重合到这个值就算近重复
+JACCARD_MIN = 0.9  # 签名不同时两条 target 的词集重合到这个值就算近重复
+DECISION_JACCARD_MIN = 0.5  # 同处境、文字层决策四位相同时，词集重合到这个值才合并成一条
+FORK_SEGMENT = "/forks/"  # session id 里 fork 段之前的那一段是父会话，fork 与父会话同组
+SESSION_SUFFIX = ".jsonl"  # 父会话 id 以此结尾，fork 的父会话那一段不以它结尾
 
 _judge = None
 SENTENCE_END = set("。！？；.!?;:：）)」”\"'`]>*—-…~、\n")
@@ -278,7 +282,9 @@ def law_answers():
 
 
 def drop_record(row, situation_id, session_id, reason_class, evidence, target_chars):
-    return {"situation_id": situation_id, "session_id": session_id, "draw": row.get("draw"),
+    """候选样本的抽样号在 _draw 上（不写盘），坏件那条原始行在 draw 上，两个都要认得。"""
+    return {"situation_id": situation_id, "session_id": session_id,
+            "draw": row.get("_draw", row.get("draw")),
             "reason_class": reason_class, "evidence": evidence, "target_chars": target_chars}
 
 
@@ -319,8 +325,11 @@ def dedupe(candidates, dropped):
 
     动作签名非空时键是 (处境, 动作签名)，与只按动作去重时一致。动作签名为空时回答里没有
     `tool:` 行，动作说不出两条回答是不是两种行为，键改用 (处境, 文字层决策四位)：四位相同
-    且 target 词集 Jaccard ≥ JACCARD_MIN 才合并，否则各留一条，因为同一处境内「自行推进」
-    与「问用户 A/B」的动作签名都是空的，合并它们会在 loss 里抹掉这个选择。
+    且 target 词集 Jaccard ≥ DECISION_JACCARD_MIN 才合并，否则各留一条，因为同一处境内
+    「自行推进」与「问用户 A/B」的动作签名都是空的，合并它们会在 loss 里抹掉这个选择。
+    同一四位的两条如果是同一决定的改述（换个说法、中英各一遍），词集重合落在 0.5–0.9 之间，
+    所以这一层的阈值比跨签名的近重复层低：四位已经判了「同一个决定」，剩下的只需证明确实在
+    讲同一件事，而不是要求字重合到 0.9。
 
     同一处境的 prompt 逐字相同，同一签名里抽样之间只差措辞与半条命令，重复保留只给权重
     不给信息，所以每个签名留一条代表：该处境出现次数最多的完整动作，平局取最早出现；
@@ -365,7 +374,7 @@ def dedupe(candidates, dropped):
             for row in group:
                 close = next(((other, jaccard(row["_tokens"], other["_tokens"]))
                               for other in chosen_rows
-                              if jaccard(row["_tokens"], other["_tokens"]) >= JACCARD_MIN), None)
+                              if jaccard(row["_tokens"], other["_tokens"]) >= DECISION_JACCARD_MIN), None)
                 if close is None:
                     chosen_rows.append(row)
                     survivors.append((rows.index(row), row))
@@ -379,7 +388,7 @@ def dedupe(candidates, dropped):
                      if same_text else
                      f"与本处境 {other['_draw']} 号抽样都没有动作，文字层决策四位相同"
                      f"（{decision}，位序 {DECISION_BITS}），词集 Jaccard {score:.2f} ≥ "
-                     f"{JACCARD_MIN}，只留一条"),
+                     f"{DECISION_JACCARD_MIN}，只留一条"),
                     len(row["target"])))
 
         survivors.sort(key=lambda pair: pair[0])
@@ -438,36 +447,56 @@ def assert_prompts(samples):
 
 # --- 切分 ------------------------------------------------------------------
 
+def session_group(session_id):
+    """会话组：session id 里 /forks/ 之前的那一段，fork 与它的父会话归同一组。
+
+    父会话的 id 以 .jsonl 结尾，fork 的 id 是「父会话路径 /forks/ fork 名.jsonl」，所以取
+    /forks/ 之前的部分再去掉末尾的 .jsonl，两者才落到同一个组。一次 fork 继承父会话的全部
+    上文，两边的对话是同一段上下文的两个接续，按精确 session id 分组会把父会话放到验证侧、
+    fork 放到训练侧，于是验证集里就有训练集已经见过的上文。
+    """
+    head = session_id.split(FORK_SEGMENT)[0]
+    return head[: -len(SESSION_SUFFIX)] if head.endswith(SESSION_SUFFIX) else head
+
+
 def split(samples):
-    """按会话切：会话排序后按固定种子打乱，顺次累加到目标验证占比为止。"""
-    per_session = collections.Counter(s["session_id"] for s in samples)
-    sessions = sorted(per_session)
-    order = sessions[:]
+    """按会话组切：组名排序后按固定种子打乱，顺次累加到目标验证占比为止。"""
+    groups_of = {sample["situation_id"]: session_group(sample["session_id"]) for sample in samples}
+    per_group = collections.Counter(groups_of[s["situation_id"]] for s in samples)
+    groups = sorted(per_group)
+    order = groups[:]
     random.Random(SEED).shuffle(order)
     total = len(samples)
-    val_sessions, taken, before = [], 0, 0
-    for session in order:
+    val_groups, taken, before = [], 0, 0
+    for group in order:
         if taken / total >= VAL_SHARE_TARGET:
             break
         before = taken
-        val_sessions.append(session)
-        taken += per_session[session]
-    val_set = set(val_sessions)
-    train_sessions = [s for s in sessions if s not in val_set]
-    train = [s for s in samples if s["session_id"] not in val_set]
-    val = [s for s in samples if s["session_id"] in val_set]
+        val_groups.append(group)
+        taken += per_group[group]
+    val_set = set(val_groups)
+    train_groups = [group for group in groups if group not in val_set]
+    train = [s for s in samples if groups_of[s["situation_id"]] not in val_set]
+    val = [s for s in samples if groups_of[s["situation_id"]] in val_set]
 
     if len(train) + len(val) != total:
         raise SystemExit("切分丢了样本")
-    if set(s["session_id"] for s in train) & set(s["session_id"] for s in val):
-        raise SystemExit("同一会话跨了训练与验证两侧")
+    if set(groups_of[s["situation_id"]] for s in train) & set(groups_of[s["situation_id"]] for s in val):
+        raise SystemExit("同一会话组跨了训练与验证两侧")
     share = len(val) / total
-    overshoot = max(per_session.values()) / total  # 跨过目标的那一个会话最多能带过多少占比
+    overshoot = max(per_group.values()) / total  # 跨过目标的那一个组最多能带过多少占比
     if not before / total < VAL_SHARE_TARGET <= share:
         raise SystemExit(f"验证集停在 {before / total:.1%}→{share:.1%}，没有跨过目标 {VAL_SHARE_TARGET}")
     if share > VAL_SHARE_TARGET + overshoot:
-        raise SystemExit(f"验证集占 {share:.1%}，比目标 {VAL_SHARE_TARGET} 多出的部分超过一个会话的 {overshoot:.1%}")
-    return train, val, {"train": train_sessions, "val": val_sessions}
+        raise SystemExit(f"验证集占 {share:.1%}，比目标 {VAL_SHARE_TARGET} 多出的部分超过一个组的 {overshoot:.1%}")
+
+    members = collections.defaultdict(set)
+    for sample in samples:
+        members[groups_of[sample["situation_id"]]].add(sample["session_id"])
+    return train, val, {"train": train_groups, "val": val_groups,
+                        "fork_members": {group: sorted(ids) for group, ids in members.items() if len(ids) > 1},
+                        "train_session_ids": sorted({s["session_id"] for s in train}),
+                        "val_session_ids": sorted({s["session_id"] for s in val})}
 
 
 def per_situation_summary(samples):
@@ -544,8 +573,8 @@ SELF_TEST_CASES = (
 def dedupe_cases():
     """三层去重的正反例：同签名的丢一条、近重复的丢一条、签名与文本都不同的两条都留。
 
-    空动作签名那一组单独验：四位相同且文本近重复才合并，四位相同但文本不同、或文本相同
-    但四位不同（自行推进 vs 问用户 A/B）都必须各留一条。
+    空动作签名那一组单独验：四位相同且文本讲的是同一件事才合并（含中英各一遍的改述），
+    四位相同但文本不同、或文本相同但四位不同（自行推进 vs 问用户 A/B）都必须各留一条。
     """
     shared = "先确认改法再动手，这段逻辑要保留原来的顺序。" * 2
     read = shared + "tool: read(order.py)"
@@ -557,6 +586,10 @@ def dedupe_cases():
     text_same_far = "方案先给你看，确认了我再动手。"
     question = "我先看一眼再决定？"
     no_question = "我先看一眼再决定。"
+    english = ("Before I write the plan, I'll wait for you. Which parameters should stay tunable, "
+               "and which should I derive from them?")
+    english_rephrased = ("Before I write the plan, I'll wait for you. Which parameters do you want "
+                          "to keep tunable, and which should I derive?")
     return (
         ("same-signature", [candidate("S1", "s", "p", 1, read),
                              candidate("S1", "s", "p", 2, bash_read)], [read], ["重复动作签名"]),
@@ -573,6 +606,9 @@ def dedupe_cases():
         ("text-different-decision", [candidate("S6", "s", "p", 1, question),
                                       candidate("S6", "s", "p", 2, no_question)],
          [question, no_question], []),
+        ("text-same-decision-english", [candidate("S7", "s", "p", 1, english),
+                                         candidate("S7", "s", "p", 2, english_rephrased)],
+         [english], ["重复文字层决策"]),
     )
 
 
@@ -638,12 +674,18 @@ def main():
     reason_counts = collections.Counter(row["reason_class"] for row in dropped)
     SPLIT.write_text(json.dumps({
         "seed": SEED,
-        "algorithm": "会话 id 排序后用 seed 打乱，顺次累加会话进验证集，累计样本占比首次 ≥ "
-                     f"{VAL_SHARE_TARGET} 即停；同一会话只落一边",
-        "sessions_total": len(sessions["train"]) + len(sessions["val"]),
-        "sessions_train": len(sessions["train"]),
-        "sessions_val": len(sessions["val"]),
+        "algorithm": "会话组（session id 取 /forks/ 之前的第一段，fork 与父会话同组）排序后用 seed 打乱，"
+                     "顺次累加会话组进验证集，累计样本占比首次 ≥ "
+                     f"{VAL_SHARE_TARGET} 即停；同一会话组只落一边",
+        "groups_total": len(sessions["train"]) + len(sessions["val"]),
+        "groups_train": len(sessions["train"]),
+        "groups_val": len(sessions["val"]),
         "val_sessions": sorted(sessions["val"]),
+        "fork_members": sessions["fork_members"],
+        "sessions_total": len(sessions["train_session_ids"]) + len(sessions["val_session_ids"]),
+        "sessions_train": len(sessions["train_session_ids"]),
+        "sessions_val": len(sessions["val_session_ids"]),
+        "val_session_ids": sessions["val_session_ids"],
         "samples_total": len(samples),
         "samples_train": len(train),
         "samples_val": len(val),
@@ -651,7 +693,8 @@ def main():
         "decisions_per_situation": per_situation_summary(samples),
         "dedupe": {
             "key": "动作签名非空时 (situation_id, 动作签名)；为空时 (situation_id, 文字层决策四位)"
-                   f"（位序 {DECISION_BITS}），四位相同且 target 词集 Jaccard ≥ {JACCARD_MIN} 才合并，否则各留一条",
+                   f"（位序 {DECISION_BITS}），四位相同且 target 词集 Jaccard ≥ {DECISION_JACCARD_MIN} 才合并，否则各留一条；"
+                   f"签名不同但词集 Jaccard ≥ {JACCARD_MIN} 的近重复也只留一条",
             "text_layer": text_layer,
         },
         "drops": dict(sorted(reason_counts.items())),
@@ -663,8 +706,8 @@ def main():
     }, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
     print(f"样本 {len(samples)}（训练 {len(train)} / 验证 {len(val)}，"
-          f"验证 {len(sessions['val'])}/{len(sessions['val']) + len(sessions['train'])} 个会话，"
-          f"{len(val) / len(samples):.1%}）")
+          f"验证 {len(sessions['val'])}/{len(sessions['val']) + len(sessions['train'])} 个会话组、"
+          f"{len(sessions['val_session_ids'])} 个 session id，占样本 {len(val) / len(samples):.1%}）")
     print("丢件：" + "，".join(f"{k} {v}" for k, v in sorted(reason_counts.items())))
     print(f"文字层签名：空动作回答留 {text_layer['kept_by_text_decision']} 条"
           f"（动作签名键下是 {text_layer['kept_by_action_key']} 条，重新分开 {text_layer['rescued']} 条）")
