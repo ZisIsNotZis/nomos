@@ -9,9 +9,12 @@ report/sft-measurement.md 的「口径」一节。
 
   --generate   两个模型（base = 训练前基座，post = 窄版适配器）各对每条处境生成 3 条回答。
   --analyse    纯本地：base / post 的每处境一致率、X = (post_mean - base_mean) / (1 - base_mean)
-               与按处境重采样的区间，外加一个不依赖评委的可数对照。只在两侧齐全时写终版输出。
+               与按处境重采样的区间，外加三个并列口径与一个分解：动作签名一致率（主指标）、
+               文字层决策签名一致率（不看工具语法）、动作可比子集上的一致率（只有回答里
+               真出现动作的处境），以及主指标变化里格式项与决策项各占多少。
+               只在两侧齐全时写终版输出。
   --preliminary 同上，但只写 evidence/measure/preliminary.*，标 status=preliminary，绝不写终版路径。
-  --check      三组假数据自检 X 与区间，写 evidence/measure/selftest.json。
+  --check      假数据自检 X、区间与格式/决策分解，写 evidence/measure/selftest.json。
 
 用法：
   python3 scripts/measure_actions.py --generate
@@ -56,6 +59,8 @@ SITUATIONS = 242
 MIN_DRAWS = 3  # evidence/densify/answers.jsonl 每条处境每条件至少 3 条（多数是 3，少数 4）
 MIN_REFERENCE_VOTES = 2  # 带法侧至少 2 条抽样给出同一签名，参照物才定下来
 NEAR_CEILING_HEADROOM = 0.2  # 1 - base 小于这个值时报出 X 但标为接近满值
+# 动作可比子集少于这个处境数时只作参考：n 小时比例的区间宽到分不清「格式」与「决策」
+MIN_CONCLUSIVE_SITUATIONS = 30
 
 
 def load_module(name, path):
@@ -70,7 +75,19 @@ def load_module(name, path):
 probe_common = load_module("slice_common", SLICE_CONTRAST / "common.py")
 resample = load_module("resample_actions", HERE / "resample_actions.py")
 build_sft = load_module("build_sft", HERE / "build_sft.py")
+judge = load_module("judge", REPO / "eval" / "judge.py")
 INSTRUCTION = probe_common.INSTRUCTION
+
+# 文字层决策签名的四种决策动作，判据全部来自 eval/judge.py，这里只组合不另写。
+TEXT_FEATURES = ("asks", "stops", "asserts", "artifacts")
+TEXT_FEATURE_MEANING = {
+    "asks": "有以问号或“吗/呢”收尾的句子（提问），判据 judge.QUESTION_END",
+    "stops": "有门前停顿标记，如等确认、请你决定、先不动手（停住等确认），判据 judge.STOP",
+    "asserts": "至少一句下断言且既没给依据也没标不确定（下断言），判据 judge.CLAIM / EVIDENCE / HEDGE",
+    "artifacts": "给出可核对产物：路径、哈希、行号、带单位数字或反引号原文，判据 judge.ARTIFACT_*",
+}
+ARTIFACT_PATTERNS = (judge.ARTIFACT_PATH, judge.ARTIFACT_HASH, judge.ARTIFACT_LINE,
+                     judge.ARTIFACT_NUMBER, judge.ARTIFACT_QUOTE)
 
 
 def sha(text):
@@ -245,6 +262,29 @@ def signature_of(answer):
     return tuple(resample.signatures(answer)["signature"])
 
 
+def text_signature(answer):
+    """文字层决策签名：不看工具语法，只看这段文字做了哪几种决策动作。
+
+    四种特征按 TEXT_FEATURES 的定序压成元组，全等才算同一签名，所以“问了又停”与“只问”
+    是两个签名，与动作签名一样严。没命中任何一种时是空元组，不是缺失值。
+    判据全部取自 eval/judge.py（QUESTION_END / STOP / CLAIM+EVIDENCE+HEDGE / ARTIFACT_*），
+    这里只组合，不另写一套，所以与 eval/judge.py 的 count_checks 同一个口径。
+    """
+    sentences = judge.split_sentences(answer)
+    # 与 count_checks 的未标注推断同一过滤：太短的句子和纯招呼语不算断言
+    body = [sentence for sentence in sentences if len(sentence) >= 8 and not judge.GREETING.match(sentence)]
+    present = {
+        "asks": any(judge.QUESTION_END.search(sentence) for sentence in sentences),
+        "stops": bool(judge.STOP.search(answer)),
+        "asserts": any(
+            judge.CLAIM.search(sentence) and not judge.EVIDENCE.search(sentence) and not judge.HEDGE.search(sentence)
+            for sentence in body
+        ),
+        "artifacts": any(pattern.search(answer) for pattern in ARTIFACT_PATTERNS),
+    }
+    return tuple(name for name in TEXT_FEATURES if present[name])
+
+
 def majority(signatures):
     """出现次数最多的签名，平局取先出现的那条。
 
@@ -352,6 +392,33 @@ def usable_reference(reference):
     return reference["stable"] and reference["nonempty"]
 
 
+def text_reference_table(densify_rows, ids):
+    """文字层参照物：每处境 law 条件里出现次数最多的文字签名，可用性规则与动作参照物相同。
+
+    票数 < 2（三条抽样两两不同）或多数签名是空元组时，这个处境不进文字层一致率。
+    """
+    by_key = {}
+    for row in densify_rows:
+        by_key.setdefault((row["situation"], row["arm"]), []).append(text_signature(row["response"]))
+    result = {}
+    for situation in ids:
+        law = by_key.get((situation, "law"), [])
+        bare = by_key.get((situation, "bare"), [])
+        if len(law) < MIN_DRAWS or len(bare) < MIN_DRAWS:
+            raise SystemExit(f"{situation}: {len(law)} 条带法 / {len(bare)} 条不带法，少于 {MIN_DRAWS}")
+        signature, votes = majority(law)
+        result[situation] = {
+            "law_draws": len(law),
+            "bare_draws": len(bare),
+            "signature": signature,
+            "votes": votes,
+            "stable": votes >= MIN_REFERENCE_VOTES,
+            "nonempty": bool(signature),
+            "bare_rate": rate([draw == signature for draw in bare]),
+        }
+    return result
+
+
 def group_answers(rows):
     """(model, situation) → 每条抽样一行；同一 (model, situation, draw) 重复时后写的那条算数。"""
     grouped, duplicates = {}, 0
@@ -364,11 +431,16 @@ def group_answers(rows):
     return {key: [slot[draw] for draw in sorted(slot)] for key, slot in grouped.items()}, duplicates
 
 
-def situation_rows(grouped, ids, references):
-    """逐处境：两侧一致率、可数对照、以及只作诊断用的单处境 X。"""
+def situation_rows(grouped, ids, references, text_references):
+    """逐处境：三个口径各自的一致率、可数对照、以及只作诊断用的单处境 X。
+
+    动作口径的 `{side}_agrees` / `{side}_emits` 存的是 3 条抽样里的**条数**，因为主指标的
+    格式/决策分解要在回答层求和，不能先平均再乘回去。
+    """
     rows, mismatches = [], 0
     for situation in ids:
         reference = references[situation]
+        text = text_references[situation]
         row = {
             "situation": situation,
             "reference_signature": list(reference["signature"]),
@@ -377,10 +449,15 @@ def situation_rows(grouped, ids, references):
             "law_draws": reference["law_draws"],
             "bare_draws": reference["bare_draws"],
             "bare_deepseek": reference["bare_rate"],
+            "text_reference_signature": list(text["signature"]),
+            "text_reference_votes": text["votes"],
+            "text_reference_usable": usable_reference(text),
+            "bare_text_deepseek": text["bare_rate"],
         }
         for name in MODELS:
             draws = grouped.get((name, situation), [])
             signatures = [signature_of(draw["response"]) for draw in draws]
+            text_signatures = [text_signature(draw["response"]) for draw in draws]
             mismatches += sum(
                 1 for draw, signature in zip(draws, signatures)
                 if draw.get("action_signature") is not None and tuple(draw["action_signature"]) != signature
@@ -388,9 +465,14 @@ def situation_rows(grouped, ids, references):
             # 只有 3 条抽样全在的一侧才给一致率：生成还在跑时，半条处境的 0/1 会污染均值
             complete = len(draws) == DRAWS
             row[name] = rate([signature == reference["signature"] for signature in signatures]) if complete else None
+            row[f"{name}_text"] = rate([signature == text["signature"] for signature in text_signatures]) \
+                if complete else None
+            row[f"{name}_agrees"] = sum(1 for signature in signatures if signature == reference["signature"]) \
+                if complete else None
+            row[f"{name}_emits"] = sum(1 for signature in signatures if signature) if complete else None
+            row[f"{name}_text_emits"] = sum(1 for signature in text_signatures if signature) if complete else None
             row[f"{name}_draws"] = len(draws)
             row[f"{name}_partial"] = 0 < len(draws) < DRAWS
-            row[f"{name}_emits_action"] = rate([bool(signature) for signature in signatures]) if complete else None
             row[f"{name}_truncated"] = sum(1 for draw in draws if draw.get("truncated"))
         if row["base"] is None or row["post"] is None or row["base"] >= 1.0:
             row["X_situation"] = None
@@ -398,6 +480,216 @@ def situation_rows(grouped, ids, references):
             row["X_situation"] = (row["post"] - row["base"]) / (1.0 - row["base"])
         rows.append(row)
     return rows, mismatches
+
+
+def answer_tally(rows, side):
+    """一侧在给定处境集上的可数合计：回答数、有可解析动作的回答数、命中参照的回答数。"""
+    complete = [row for row in rows if row[f"{side}_emits"] is not None]
+    answers = len(complete) * DRAWS
+    emits = sum(row[f"{side}_emits"] for row in complete)
+    agrees = sum(row[f"{side}_agrees"] for row in complete)
+    return {
+        "situations": len(complete),
+        "answers": answers,
+        "emitting_answers": emits,
+        "agreeing_answers": agrees,
+        "emits_share": emits / answers if answers else None,
+        "agreement_given_emit": agrees / emits if emits else None,
+        "mean": agrees / answers if answers else None,
+    }
+
+
+def decomposition(rows):
+    """主指标拆成格式项与决策项：会不会写可解析动作，与写了之后选得对不对。
+
+    参照物非空时，没有可解析动作的回答永远命中不了，所以逐处境的
+    mean 一致率 = P × A，P 是回答里有可解析动作的比例，A 是这些回答里吻合的比例。
+    于是 Δ = post_mean - base_mean 可以精确拆开（Kitagawa 分解）：
+
+        Δ = (P_post - P_base)·Ā + (A_post - A_base)·P̄，Ā 与 P̄ 取两侧中点
+
+    两项相加等于 Δ，残差只应该是浮点误差。第一项是**格式项**（模型开始写工具行了），
+    第二项是**决策项**（写了之后选的动作对不对）。
+    """
+    base, post = answer_tally(rows, "base"), answer_tally(rows, "post")
+    out = {
+        "what": "主指标的格式/决策分解：P 是有可解析动作的回答比例，A 是这些回答里吻合的比例",
+        "formula": "Δ = (P_post - P_base)·Ā + (A_post - A_base)·P̄，Ā、P̄ 取两侧中点",
+        "format_part_meaning": "格式项：回答里出现可解析动作的比例变了多少带来的那一份",
+        "decision_part_meaning": "决策项：在有动作的回答里选对比参照动作的比例变了多少带来的那一份",
+        "format_share_meaning": "格式项占 Δ 的比例；1 表示提升全来自格式，0 表示全来自决策，介于两者之间表示两件都在动",
+        "base": base,
+        "post": post,
+        "status": "defined",
+        "delta": None,
+        "format_part": None,
+        "decision_part": None,
+        "format_share": None,
+        "residual": None,
+    }
+    if base["mean"] is None or post["mean"] is None:
+        out["status"] = "undefined_one_side_missing"
+        return out
+    if base["agreement_given_emit"] is None or post["agreement_given_emit"] is None:
+        # 某一侧一条动作都没有：A 无定义，决策项无从算起，不补一个 0
+        out["status"] = "undefined_no_emitting_answer_on_a_side"
+        return out
+    delta = post["mean"] - base["mean"]
+    midpoint_agreement = (base["agreement_given_emit"] + post["agreement_given_emit"]) / 2
+    midpoint_emits = (base["emits_share"] + post["emits_share"]) / 2
+    format_part = (post["emits_share"] - base["emits_share"]) * midpoint_agreement
+    decision_part = (post["agreement_given_emit"] - base["agreement_given_emit"]) * midpoint_emits
+    out.update(
+        {
+            "delta": delta,
+            "format_part": format_part,
+            "decision_part": decision_part,
+            "residual": delta - format_part - decision_part,
+            "format_share": format_part / delta if delta else None,
+        }
+    )
+    return out
+
+
+def bootstrap_decomposition(rows, seed):
+    """格式项与决策项的按处境配对自举区间；某一重抽样本无定义时计入未定义数。"""
+    empty = {"delta_ci": None, "format_part_ci": None, "decision_part_ci": None, "replicates_undefined": None}
+    if len(rows) < 2:
+        return empty
+    rng = random.Random(seed)
+    n = len(rows)
+    delta_samples, format_samples, decision_samples = [], [], []
+    undefined = 0
+    for _ in range(BOOTSTRAP):
+        parts = decomposition([rows[rng.randrange(n)] for _ in range(n)])
+        if parts["status"] != "defined":
+            undefined += 1
+            continue
+        delta_samples.append(parts["delta"])
+        format_samples.append(parts["format_part"])
+        decision_samples.append(parts["decision_part"])
+    return {
+        "delta_ci": percentile_interval(delta_samples),
+        "format_part_ci": percentile_interval(format_samples),
+        "decision_part_ci": percentile_interval(decision_samples),
+        "replicates_undefined": undefined,
+    }
+
+
+def bootstrap_delta(rows, seed):
+    """配对自举的一致率差 Δ = post_mean - base_mean（重抽单位是处境）。"""
+    if len(rows) < 2:
+        return None
+    rng = random.Random(seed)
+    n = len(rows)
+    samples = []
+    for _ in range(BOOTSTRAP):
+        total = 0.0
+        for _ in range(n):
+            row = rows[rng.randrange(n)]  # 同一处境的两侧一起进来，差值才成对
+            total += row["post"] - row["base"]
+        samples.append(total / n)
+    return percentile_interval(samples)
+
+
+def action_comparable(rows):
+    """第三个口径：只在回答里确实出现可解析动作的处境上算一致率。
+
+    一个处境进入该侧子集的条件是该侧 3 条抽样里至少 1 条签名非空。所以子集回答的是
+    「已经在写工具行的那些回答里，选的动作对不对」，把「写不出工具行」排除在外；
+    子集处境数少于 MIN_CONCLUSIVE_SITUATIONS 时标记 conclusive=false，只作参考。
+    """
+    def entry(sides):
+        picked = [row for row in rows if all(row[f"{side}_emits"] for side in sides)]
+        result = {
+            "situations": len(picked),
+            "answers": len(picked) * DRAWS,
+            "conclusive": len(picked) >= MIN_CONCLUSIVE_SITUATIONS,
+            "sides": {},
+        }
+        for side in sides:
+            values = [row[side] for row in picked]
+            agrees = sum(row[f"{side}_agrees"] for row in picked)
+            result["sides"][side] = {
+                "mean": agrees / (len(picked) * DRAWS) if picked else None,
+                "ci": bootstrap_mean(values, SEED + 7 + MODELS.index(side)),
+            }
+        if len(sides) == 2 and picked:
+            agrees_base = sum(row["base_agrees"] for row in picked) / (len(picked) * DRAWS)
+            agrees_post = sum(row["post_agrees"] for row in picked) / (len(picked) * DRAWS)
+            result["delta"] = agrees_post - agrees_base
+            result["delta_ci"] = bootstrap_delta(picked, SEED + 9)
+        return result
+
+    return {
+        "what": "只取回答里已有可解析动作的处境，在这个子集上算一致率",
+        "rule": f"该侧 3 条抽样里至少 1 条签名非空；子集少于 {MIN_CONCLUSIVE_SITUATIONS} 条处境时"
+                "conclusive=false，只能作参考、不能作结论",
+        "base": entry(("base",)),
+        "post": entry(("post",)),
+        "paired": entry(MODELS),
+    }
+
+
+def text_judgement(per_situation):
+    """第二个口径：文字层决策签名的一致率，与能不能写出 `tool: name(...)` 无关。"""
+    usable = [row for row in per_situation if row["text_reference_usable"]]
+    paired = [row for row in usable if row["base_text"] is not None and row["post_text"] is not None]
+    base_values = [row["base_text"] for row in usable if row["base_text"] is not None]
+    post_values = [row["post_text"] for row in usable if row["post_text"] is not None]
+    base_text_actions = [row["base_text_emits"] for row in usable if row["base_text_emits"] is not None]
+    bare = [row["bare_text_deepseek"] for row in usable if row["bare_text_deepseek"] is not None]
+    selection = {
+        "nonempty_and_stable": len(usable),
+        "empty_reference": sum(1 for row in per_situation if not row["text_reference_signature"]),
+        "unstable_reference": sum(
+            1 for row in per_situation if row["text_reference_signature"] and not row["text_reference_usable"]
+        ),
+    }
+    # 参照物签名的丰富度：只有一个特征的签名区分力很弱，一致率高不能当成“选对了”，
+    # 所以要报出参照物里单一特征签名占多少、最常出现的是哪几个。
+    shapes = {}
+    for row in usable:
+        key = tuple(row["text_reference_signature"])
+        shapes[key] = shapes.get(key, 0) + 1
+    return {
+        "what": "文字层决策签名一致率：每条回答压成“提了问/停住等确认/下了断言/给了可核对产物”的定序元组，"
+                "与带法 DeepSeek 的多数文字签名比",
+        "features": TEXT_FEATURE_MEANING,
+        "predicates": "eval/judge.py 的 QUESTION_END / STOP / CLAIM+EVIDENCE+HEDGE / ARTIFACT_*，本脚本只组合",
+        "reference": {
+            "source": "evidence/densify/answers.jsonl 的 law 条件",
+            "usable_when": f"票数 ≥ {MIN_REFERENCE_VOTES} 且签名非空",
+            "votes": dict(
+                (str(votes), sum(1 for row in per_situation if row["text_reference_votes"] == votes))
+                for votes in sorted({row["text_reference_votes"] for row in per_situation})
+            ),
+        },
+        "reference_selection": selection,
+        "reference_shape": {
+            "single_feature_share": (
+                sum(count for signature, count in shapes.items() if len(signature) == 1) / len(usable)
+                if usable else None
+            ),
+            "most_common": [[list(signature), count] for signature, count in
+                            sorted(shapes.items(), key=lambda item: -item[1])[:8]],
+        },
+        "situations_reference_usable": len(usable),
+        "situations_paired": len(paired),
+        "base_mean": mean(base_values),
+        "base_ci": bootstrap_mean(base_values, SEED + 12),
+        "post_mean": mean(post_values),
+        "post_ci": bootstrap_mean(post_values, SEED + 13),
+        "base_paired_mean": mean([row["base_text"] for row in paired]) if paired else None,
+        "post_paired_mean": mean([row["post_text"] for row in paired]) if paired else None,
+        "bare_deepseek_mean": mean(bare),
+        "bare_deepseek_ci": bootstrap_mean(bare, SEED + 14),
+        "law_deepseek": 1.0,
+        "base_emits_text_signature": mean([count / DRAWS for count in base_text_actions]),
+        "base_emits_text_signature_ci": bootstrap_mean(
+            [count / DRAWS for count in base_text_actions], SEED + 15
+        ),
+    }
 
 
 def summarise(per_situation, situations_total):
@@ -415,8 +707,12 @@ def summarise(per_situation, situations_total):
         x, x_status = (post_paired - base_paired) / headroom, "defined"
     bootstrap = bootstrap_pair(paired, SEED + 1)
     bare = [row["bare_deepseek"] for row in used if row["bare_deepseek"] is not None]
-    base_actions = [row["base_emits_action"] for row in used if row["base_emits_action"] is not None]
-    post_actions = [row["post_emits_action"] for row in used if row["post_emits_action"] is not None]
+    base_actions = [row["base_emits"] / DRAWS for row in used if row["base_emits"] is not None]
+    post_actions = [row["post_emits"] / DRAWS for row in used if row["post_emits"] is not None]
+    # 分解与主指标用同一批处境：两侧齐全时用配对集，否则用参照物可用的全部 base 处境
+    decomposition_rows = paired if paired else used
+    parts = decomposition(decomposition_rows)
+    parts.update(bootstrap_decomposition(decomposition_rows, SEED + 10))
     excluded = {
         "nonempty_and_stable": len(used),
         "empty_reference": sum(1 for row in per_situation if not row["reference_signature"]),
@@ -470,14 +766,18 @@ def summarise(per_situation, situations_total):
             "post_emits_action": mean(post_actions),
             "post_emits_action_ci": bootstrap_mean(post_actions, SEED + 6),
         },
+        "text_signature": text_judgement(per_situation),
+        "action_comparable": action_comparable(used),
+        "decomposition": parts,
     }
 
 
 def analyse(answers_rows, densify_rows, ids, preliminary):
     """纯本地分析：给两组行，返回 (summary, per_situation)。"""
     references = reference_table(densify_rows, ids)
+    text_references = text_reference_table(densify_rows, ids)
     grouped, duplicates = group_answers(answers_rows)
-    per_situation, mismatches = situation_rows(grouped, ids, references)
+    per_situation, mismatches = situation_rows(grouped, ids, references, text_references)
     summary = summarise(per_situation, len(ids))
     summary.update(
         {
@@ -515,7 +815,8 @@ def run_analyse(preliminary=False):
     summary, per_situation = analyse(load_jsonl(ANSWERS), load_jsonl(DENSIFY_ANSWERS), ids, preliminary)
     print(
         f"{summary['situations_paired']}/{len(ids)} 条处境两侧各 {DRAWS} 条齐全；"
-        f"参照物可用 {summary['situations_reference_usable']} 条"
+        f"参照物可用 {summary['situations_reference_usable']} 条；"
+        f"文字层参照物可用 {summary['text_signature']['situations_reference_usable']} 条"
     )
     if not preliminary and summary["situations_paired"] != len(ids):
         raise SystemExit(
@@ -530,6 +831,7 @@ def run_analyse(preliminary=False):
 # --- 自检 ------------------------------------------------------------------
 
 ACTION_RESPONSE = "tool: subagent_supervisor()"
+WRONG_ACTION_RESPONSE = "tool: bash(command=\"ls\")"
 NO_ACTION_RESPONSE = "先想清楚再动手，这个方向值得停下来讨论。"
 
 SELFTEST_CASES = (
@@ -537,6 +839,24 @@ SELFTEST_CASES = (
     {"name": "base=0.9 adapter=0.95", "n": 40, "base_hits": 108, "post_hits": 114, "expect_X": 0.5},
     {"name": "base=0 adapter=0", "n": 40, "base_hits": 0, "post_hits": 0, "expect_X": 0.0},
     {"name": "base=1 adapter=1", "n": 40, "base_hits": 120, "post_hits": 120, "expect_X": None},
+)
+
+# 格式/决策分解的自检：两组假数据只动一个变量，看提升落在哪一项上。
+DECOMPOSITION_CASES = (
+    {
+        "name": "格式：动作比例 0.05→0.5，吻合率 0.5→0.5",
+        "n": 40,
+        "base": {"emits": 0.05, "agreement": 0.5},
+        "post": {"emits": 0.5, "agreement": 0.5},
+        "expect_dominant": "format_part",
+    },
+    {
+        "name": "决策：动作比例 0.5→0.5，吻合率 0.3→0.9",
+        "n": 40,
+        "base": {"emits": 0.5, "agreement": 0.3},
+        "post": {"emits": 0.5, "agreement": 0.9},
+        "expect_dominant": "decision_part",
+    },
 )
 
 
@@ -552,6 +872,111 @@ def synthetic_draws(situation, model, hits):
         }
         for draw in range(DRAWS)
     ]
+
+
+def synthetic_mixed_draws(ids, model, emits_share, agreement_share):
+    """造一组 3n 条回答：emits_share 的回答带可解析动作，其中 agreement_share 的命中参照签名。
+
+    命中参照的用 ACTION_RESPONSE，有动作但不吻合的用 WRONG_ACTION_RESPONSE，其余不写动作。
+    回答按下标轮流发到各处境（situation = i % n，draw = i // n），所以每处境正好 3 条。
+    """
+    total = len(ids) * DRAWS
+    emitting = round(emits_share * total)
+    agreeing = round(agreement_share * emitting)
+    rows = []
+    for index in range(total):
+        if index < agreeing:
+            response = ACTION_RESPONSE
+        elif index < emitting:
+            response = WRONG_ACTION_RESPONSE
+        else:
+            response = NO_ACTION_RESPONSE
+        rows.append(
+            {
+                "model": model,
+                "situation": ids[index % len(ids)],
+                "draw": index // len(ids),
+                "response": response,
+                "truncated": False,
+            }
+        )
+    return rows, emitting, agreeing
+
+
+def check_decomposition():
+    """两组假数据只动一个变量：动动作比例应全部落在格式项，动吻合率应全部落在决策项。"""
+    cases = []
+    assert signature_of(WRONG_ACTION_RESPONSE) and signature_of(WRONG_ACTION_RESPONSE) != signature_of(ACTION_RESPONSE), \
+        "自检用的“有动作但不吻合”回答签名不对"
+    for case in DECOMPOSITION_CASES:
+        ids = [f"DC{index:03d}" for index in range(case["n"])]
+        densify_rows = [
+            {"situation": situation, "arm": arm, "draw": draw, "response": response}
+            for situation in ids
+            for arm, response in (("law", ACTION_RESPONSE), ("bare", NO_ACTION_RESPONSE))
+            for draw in range(MIN_DRAWS)
+        ]
+        answers_rows, tallies = [], {}
+        for side in MODELS:
+            rows, emitting, agreeing = synthetic_mixed_draws(
+                ids, side, case[side]["emits"], case[side]["agreement"]
+            )
+            answers_rows.extend(rows)
+            tallies[side] = (emitting, agreeing)
+        summary, _ = analyse(answers_rows, densify_rows, ids, False)
+        parts = summary["decomposition"]
+        total = len(ids) * DRAWS
+        (base_emit, base_agree), (post_emit, post_agree) = tallies["base"], tallies["post"]
+        p_base, p_post = base_emit / total, post_emit / total
+        a_base, a_post = base_agree / base_emit, post_agree / post_emit
+        want_format = (p_post - p_base) * (a_base + a_post) / 2
+        want_decision = (a_post - a_base) * (p_base + p_post) / 2
+        want_delta = post_agree / total - base_agree / total
+        problems = []
+        if parts["status"] != "defined":
+            problems.append(f"分解状态 {parts['status']}，期望 defined")
+        for label, got, want in (
+            ("delta", parts["delta"], want_delta),
+            ("format_part", parts["format_part"], want_format),
+            ("decision_part", parts["decision_part"], want_decision),
+            ("residual", parts["residual"], 0.0),
+        ):
+            if got is None or abs(got - want) > 1e-9:
+                problems.append(f"{label} = {got}，期望 {want}")
+        dominant = parts["format_part"] if case["expect_dominant"] == "format_part" else parts["decision_part"]
+        other = parts["decision_part"] if case["expect_dominant"] == "format_part" else parts["format_part"]
+        if abs(other) > 1e-9 or abs(dominant - want_delta) > 1e-9:
+            problems.append(f"提升没有全部落在 {case['expect_dominant']}：格式项 {parts['format_part']}，"
+                            f"决策项 {parts['decision_part']}")
+        want_share = 1.0 if case["expect_dominant"] == "format_part" else 0.0
+        if parts["format_share"] is None or abs(parts["format_share"] - want_share) > 1e-9:
+            problems.append(f"format_share = {parts['format_share']}，期望 {want_share}")
+        cases.append(
+            {
+                "name": case["name"],
+                "situations": case["n"],
+                "answers_per_side": total,
+                "base": {"emits_share": p_base, "agreement_given_emit": a_base,
+                         "emitting_answers": base_emit, "agreeing_answers": base_agree},
+                "post": {"emits_share": p_post, "agreement_given_emit": a_post,
+                         "emitting_answers": post_emit, "agreeing_answers": post_agree},
+                "delta": parts["delta"],
+                "format_part": parts["format_part"],
+                "decision_part": parts["decision_part"],
+                "format_share": parts["format_share"],
+                "residual": parts["residual"],
+                "expected_format_part": want_format,
+                "expected_decision_part": want_decision,
+                "expect_dominant": case["expect_dominant"],
+                "passed": not problems,
+                "problems": problems,
+            }
+        )
+        print(
+            f"{case['name']}: Δ = {parts['delta']}，格式项 {parts['format_part']}，"
+            f"决策项 {parts['decision_part']} → {'通过' if not problems else problems}"
+        )
+    return cases
 
 
 def run_check():
@@ -619,21 +1044,27 @@ def run_check():
             }
         )
         print(f"{case['name']}: X = {summary['X']}，区间 {summary['X_ci']} → {'通过' if not problems else problems}")
+    decomposition_cases = check_decomposition()
     report = {
         "status": "selftest",
         "what": "用假回答走 analyse() 真路径（动作解析 → 每处境一致率 → 两侧均值 → X → 按处境配对自举），"
-                "检查 X 与区间在四种边界上给出预期值",
+                "检查 X 与区间在四种边界上给出预期值；再用两组只动一个变量的假数据"
+                "检查主指标的格式/决策分解",
         "expectations": {
             "base=0.2 adapter=0.6": "X = 0.5",
             "base=0.9 adapter=0.95": "X = 0.5",
             "base=0 adapter=0": "X = 0（分母 1 - base = 1，有定义）",
             "base=1 adapter=1": "X 无定义（分母 0），所有自举重抽样本都无定义",
+            "格式：动作比例 0.05→0.5，吻合率 0.5→0.5": "Δ 全部落在格式项，决策项 = 0，format_share = 1",
+            "决策：动作比例 0.5→0.5，吻合率 0.3→0.9": "Δ 全部落在决策项，格式项 = 0，format_share = 0",
         },
         "bootstrap_replicates": BOOTSTRAP,
         "bootstrap_unit": "处境（配对重抽，每次重抽同一批处境的两侧）",
         "cases": cases,
-        "all_passed": all(case["passed"] for case in cases),
-        "does_not_cover": "动作解析器的判定质量、prompt 泄漏、模型抽样本身；自检只证明 X 与区间的算术。",
+        "decomposition_cases": decomposition_cases,
+        "all_passed": all(case["passed"] for case in cases + decomposition_cases),
+        "does_not_cover": "动作解析器的判定质量、文字层签名的语义合理性、prompt 泄漏、模型抽样本身；"
+                          "自检只证明 X、区间与格式/决策分解的算术。",
     }
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     SELFTEST.write_text(json.dumps(report, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
@@ -648,7 +1079,7 @@ def main():
     parser.add_argument("--generate", action="store_true", help="两个模型各生成 3 条回答")
     parser.add_argument("--analyse", action="store_true", help="纯本地统计，不调模型")
     parser.add_argument("--preliminary", action="store_true", help="写 preliminary.* 而不是终版输出")
-    parser.add_argument("--check", action="store_true", help="三组假数据自检 X 与区间")
+    parser.add_argument("--check", action="store_true", help="假数据自检 X、区间与格式/决策分解")
     args = parser.parse_args()
     chosen = [name for name in ("generate", "analyse", "check") if getattr(args, name)]
     if len(chosen) != 1:

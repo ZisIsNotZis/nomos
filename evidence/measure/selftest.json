@@ -1,11 +1,13 @@
 {
  "status": "selftest",
- "what": "用假回答走 analyse() 真路径（动作解析 → 每处境一致率 → 两侧均值 → X → 按处境配对自举），检查 X 与区间在四种边界上给出预期值",
+ "what": "用假回答走 analyse() 真路径（动作解析 → 每处境一致率 → 两侧均值 → X → 按处境配对自举），检查 X 与区间在四种边界上给出预期值；再用两组只动一个变量的假数据检查主指标的格式/决策分解",
  "expectations": {
   "base=0.2 adapter=0.6": "X = 0.5",
   "base=0.9 adapter=0.95": "X = 0.5",
   "base=0 adapter=0": "X = 0（分母 1 - base = 1，有定义）",
-  "base=1 adapter=1": "X 无定义（分母 0），所有自举重抽样本都无定义"
+  "base=1 adapter=1": "X 无定义（分母 0），所有自举重抽样本都无定义",
+  "格式：动作比例 0.05→0.5，吻合率 0.5→0.5": "Δ 全部落在格式项，决策项 = 0，format_share = 1",
+  "决策：动作比例 0.5→0.5，吻合率 0.3→0.9": "Δ 全部落在决策项，格式项 = 0，format_share = 0"
  },
  "bootstrap_replicates": 2000,
  "bootstrap_unit": "处境（配对重抽，每次重抽同一批处境的两侧）",
@@ -112,6 +114,62 @@
    "problems": []
   }
  ],
+ "decomposition_cases": [
+  {
+   "name": "格式：动作比例 0.05→0.5，吻合率 0.5→0.5",
+   "situations": 40,
+   "answers_per_side": 120,
+   "base": {
+    "emits_share": 0.05,
+    "agreement_given_emit": 0.5,
+    "emitting_answers": 6,
+    "agreeing_answers": 3
+   },
+   "post": {
+    "emits_share": 0.5,
+    "agreement_given_emit": 0.5,
+    "emitting_answers": 60,
+    "agreeing_answers": 30
+   },
+   "delta": 0.225,
+   "format_part": 0.225,
+   "decision_part": 0.0,
+   "format_share": 1.0,
+   "residual": 0.0,
+   "expected_format_part": 0.225,
+   "expected_decision_part": 0.0,
+   "expect_dominant": "format_part",
+   "passed": true,
+   "problems": []
+  },
+  {
+   "name": "决策：动作比例 0.5→0.5，吻合率 0.3→0.9",
+   "situations": 40,
+   "answers_per_side": 120,
+   "base": {
+    "emits_share": 0.5,
+    "agreement_given_emit": 0.3,
+    "emitting_answers": 60,
+    "agreeing_answers": 18
+   },
+   "post": {
+    "emits_share": 0.5,
+    "agreement_given_emit": 0.9,
+    "emitting_answers": 60,
+    "agreeing_answers": 54
+   },
+   "delta": 0.30000000000000004,
+   "format_part": 0.0,
+   "decision_part": 0.30000000000000004,
+   "format_share": 0.0,
+   "residual": 0.0,
+   "expected_format_part": 0.0,
+   "expected_decision_part": 0.30000000000000004,
+   "expect_dominant": "decision_part",
+   "passed": true,
+   "problems": []
+  }
+ ],
  "all_passed": true,
- "does_not_cover": "动作解析器的判定质量、prompt 泄漏、模型抽样本身；自检只证明 X 与区间的算术。"
+ "does_not_cover": "动作解析器的判定质量、文字层签名的语义合理性、prompt 泄漏、模型抽样本身；自检只证明 X、区间与格式/决策分解的算术。"
 }
