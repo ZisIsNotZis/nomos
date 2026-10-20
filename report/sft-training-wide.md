@@ -9,7 +9,7 @@
 | 训练 loss / PPL | 1.4376 / 4.2105 | **1.4174 / 4.1262**（更低 0.0202） |
 | 验证 loss / PPL | **1.7972 / 6.0325** | 1.8070 / 6.0923（更差 0.0099 / 0.06 PPL） |
 | 验证 − 训练 | 0.3596 | 0.3897（差距拉大 0.0301） |
-| LoRA 模块 / 张量 | 84 / 192 | 186 / 372 |
+| LoRA 模块 / 张量 | 96 / 192 | 186 / 372 |
 | 可训练参数（占比） | 10 911 744（0.794%） | 16 819 200（1.219%） |
 | 适配器字节 | 43 675 104 | 67 332 688 |
 | 峰值显存（分配 / 保留） | 8.74 / 9.98 GiB | 6.43 / 6.98 GiB |
@@ -79,13 +79,17 @@ projections_by_owner: linear_attn 90, self_attn 24, mlp 72
 ```
 # 窄版（已有）：6 全注意力层 + MLP
 python3 scripts/train_sft.py --epochs 3 --grad-accum 8 --lora-r 16 --lora-alpha 32 \
-  --adapter-dir .tmp/sft/adapter-narrow          # 828.6 秒，写 evidence/sft/log.jsonl
+  --lora-targets narrow --adapter-dir .tmp/sft/adapter-narrow
+# 828.6 秒，写 evidence/sft/log.jsonl
 
 # 宽版：再加 18 个线性注意力层的 5 个投影
 python3 scripts/train_sft.py --epochs 3 --grad-accum 16 --micro-batch 1 \
-  --lora-r 16 --lora-alpha 32 --run-name wide \
-  --adapter-dir .tmp/sft/adapter-wide            # 1312.2 秒，写 evidence/sft/log-wide.jsonl
+  --lora-r 16 --lora-alpha 32 --lora-targets wide --run-name wide \
+  --adapter-dir .tmp/sft/adapter-wide
+# 1312.2 秒，写 evidence/sft/log-wide.jsonl
 ```
+
+`--lora-targets` 是两版唯一的开关差别：`narrow` 是 7 个后缀，`wide` 是 12 个，脚本默认 `wide`。不重训的装配级验证 `python3 scripts/train_sft.py --check-lora-targets` 对两个取值各挂一次 LoRA，断言窄版 96 模块 / 192 张量 / 10 911 744 参数、宽版 186 模块 / 372 张量 / 16 819 200 参数，落 `evidence/sft/log-lora-targets-check.jsonl`（约 1 分钟，见 [SFT 训练](sft-training.md) 的复现一节）。
 
 `--lora-r` / `--lora-alpha` 是为这次对比新加的：不写就仍按开跑前的空闲显存选 rank，那样两次跑会在 rank 上分叉，比较就不成立。`--run-name` 让两次跑的日志与 summary 不互相覆盖（`log.jsonl` / `log-wide.jsonl`）。窄版的适配器目录已从 `.tmp/sft/adapter/` 改名为 `.tmp/sft/adapter-narrow/`，两个都在 `artifacts.tsv` 里登记。
 

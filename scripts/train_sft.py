@@ -10,11 +10,16 @@ Truncation never cuts the target: the sequence length comes from the measured p9
 row longer than that loses tokens from the head of the prompt only, with the count logged.
 
 Usage:
-  python3 scripts/train_sft.py                     # full run: 3 epochs, writes adapter
+  python3 scripts/train_sft.py                     # full run: 3 epochs, wide LoRA targets
   python3 scripts/train_sft.py --epochs 1 --limit 16   # smoke run
+  python3 scripts/train_sft.py --check-lora-targets    # no training: assert both widths assemble
+
+The two arms differ only in `--lora-targets`: `wide` (default) also covers the 18 linear
+attention layers' projections, `narrow` covers the 6 full attention layers plus the MLP.
 """
 
 import argparse
+import gc
 import hashlib
 import json
 import math
@@ -40,36 +45,63 @@ OUT_DIR = os.path.join(ROOT, "evidence/sft")
 LOG_PATH = os.path.join(OUT_DIR, "log.jsonl")
 ADAPTER_DIR = os.path.join(ROOT, ".tmp/sft/adapter")
 
-# Every linear projection in the language model: the answer's decision shape is carried
-# by all of them, and this base is a hybrid. 6 of the 24 layers are full attention
-# (q/k/v/o), 18 are linear attention, whose in_proj_qkv (q,k,v), in_proj_z (gate),
-# in_proj_a and in_proj_b (decay scalars) and out_proj are the only projections that
-# layer has. The suffixes match by full-name suffix, so the vision tower's `proj`,
-# `qkv` and `linear_fc1/2` are not hit; report_lora_coverage() proves that at run time.
-LORA_TARGET_MODULES = [
-    "q_proj",
-    "k_proj",
-    "v_proj",
-    "o_proj",
-    "gate_proj",
-    "up_proj",
-    "down_proj",
-    "in_proj_qkv",
-    "in_proj_z",
-    "in_proj_a",
-    "in_proj_b",
-    "out_proj",
-]
+# Two LoRA widths over the same base. `narrow` is the adapter downstream measurement
+# uses (validation PPL 6.0325, see report/sft-training.md); `wide` adds every linear
+# attention projection and is 0.06 PPL worse (report/sft-training-wide.md). Both are
+# kept selectable so either arm's command regenerates that arm instead of silently
+# producing the other one.
+#
+# The base is a hybrid: 6 of the 24 layers are full attention (q/k/v/o), 18 are linear
+# attention, whose in_proj_qkv (q,k,v), in_proj_z (gate), in_proj_a and in_proj_b
+# (decay scalars) and out_proj are the only projections that layer has. The suffixes
+# match by full-name suffix, so the vision tower's `proj`, `qkv` and `linear_fc1/2` are
+# not hit; report_lora_coverage() proves that at run time.
+LORA_TARGETS = {
+    "narrow": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj",
+    ],
+    "wide": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj",
+        "in_proj_qkv",
+        "in_proj_z",
+        "in_proj_a",
+        "in_proj_b",
+        "out_proj",
+    ],
+}
+
+# What each width must assemble to, taken from evidence/sft/log.jsonl and
+# evidence/sft/log-wide.jsonl (the `config` record's trainable_params) and from the two
+# adapter_config.json files written by those runs. --check-lora-targets re-derives them
+# from the model itself instead of trusting these numbers.
+LORA_TARGETS_EXPECTED = {
+    "narrow": {"modules": 96, "tensors": 192, "trainable_params": 10911744},
+    "wide": {"modules": 186, "tensors": 372, "trainable_params": 16819200},
+}
 
 
-def report_lora_coverage(model, log_fn):
+def report_lora_coverage(model, log_fn, targets):
     """Count the modules that actually carry a LoRA delta, per projection name.
 
     The expected count comes from the model's own `layer_types`, so a base whose hybrid
     layout differs fails here instead of silently leaving layers uncovered: every full
     attention layer owes q/k/v/o, every linear attention layer owes its five projections,
-    and every layer owes the three MLP projections. Anything matched outside those names
-    is a target suffix reaching into a part of the model it was not meant for.
+    and every layer owes the three MLP projections. Only the suffixes in `targets` are
+    expected, so a run that asks for the narrow width is not asked to have covered the
+    linear attention layers; anything matched outside `targets` is a target suffix
+    reaching into a part of the model it was not meant for.
     """
     layers = model.config.text_config.layer_types
     n_layers = len(layers)
@@ -90,6 +122,9 @@ def report_lora_coverage(model, log_fn):
         "in_proj_b": n_linear,
         "out_proj": n_linear,
     }
+    unknown = set(targets) - set(expected)
+    assert not unknown, f"target suffixes {sorted(unknown)} match no projection this model has"
+    expected = {name: count for name, count in expected.items() if count and name in targets}
     actual = {}
     examples = {}
     for name, module in model.named_modules():
@@ -98,7 +133,10 @@ def report_lora_coverage(model, log_fn):
         leaf = name.split(".")[-1]
         actual[leaf] = actual.get(leaf, 0) + 1
         examples.setdefault(leaf, name)
-    assert actual == {k: v for k, v in expected.items() if v}, (
+    assert not (set(actual) - set(targets)), (
+        f"LoRA attached to {sorted(set(actual) - set(targets))}, outside targets {sorted(targets)}"
+    )
+    assert actual == expected, (
         f"LoRA coverage {sorted(actual.items())} != expected {sorted(expected.items())}"
     )
     layer_coverage = {}
@@ -127,8 +165,8 @@ def report_lora_coverage(model, log_fn):
     return actual
 
 
-def log(record):
-    with open(LOG_PATH, "a", encoding="utf-8") as fh:
+def log(record, path=None):
+    with open(path or LOG_PATH, "a", encoding="utf-8") as fh:
         fh.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
@@ -305,6 +343,82 @@ def evaluate(model, enc_rows, tokenizer, micro_batch, max_length):
     return {"n": len(enc_rows), "tokens": total_tokens, "loss": mean_loss, "ppl": math.exp(mean_loss)}
 
 
+def load_quantized_base():
+    """The base in the same 4-bit nf4 form both arms trained from."""
+    quant = BitsAndBytesConfig(
+        load_in_4bit=True,
+        bnb_4bit_quant_type="nf4",
+        bnb_4bit_compute_dtype=torch.bfloat16,
+        bnb_4bit_use_double_quant=True,
+    )
+    return AutoModelForImageTextToText.from_pretrained(
+        BASE_MODEL, quantization_config=quant, device_map={"": 0}, dtype=torch.bfloat16
+    )
+
+
+def attach_lora(model, targets, lora_r, lora_alpha):
+    """Prepare a k-bit model for training and hang the LoRA deltas on `targets`."""
+    model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
+    model.config.use_cache = False
+    return get_peft_model(
+        model,
+        LoraConfig(
+            r=lora_r,
+            lora_alpha=lora_alpha,
+            lora_dropout=0.05,
+            bias="none",
+            task_type="CAUSAL_LM",
+            target_modules=targets,
+        ),
+    )
+
+
+def check_lora_targets(check_log):
+    """Assemble both LoRA widths once each and assert they match what was trained.
+
+    No training and no data: this is the assembly-level proof that either arm's adapter
+    can still be regenerated, which a run that only writes the wide width cannot give.
+    The expected numbers come from evidence/sft/log*.jsonl and the two shipped
+    adapter_config.json files; the count itself is re-derived from the model here.
+    """
+    results = {}
+    for name in ("narrow", "wide"):
+        model = load_quantized_base()
+        model = attach_lora(model, LORA_TARGETS[name], lora_r=16, lora_alpha=32)
+        per_name = report_lora_coverage(
+            model, lambda record: log(record, check_log), LORA_TARGETS[name]
+        )
+        modules = sum(per_name.values())
+        tensors = 2 * modules
+        trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
+        expected = LORA_TARGETS_EXPECTED[name]
+        assert modules == expected["modules"], f"{name}: {modules} LoRA modules, expected {expected['modules']}"
+        assert tensors == expected["tensors"], f"{name}: {tensors} LoRA tensors, expected {expected['tensors']}"
+        assert trainable == expected["trainable_params"], (
+            f"{name}: {trainable} trainable params, expected {expected['trainable_params']}"
+        )
+        record = {
+            "type": "lora_target_check",
+            "lora_targets": name,
+            "target_suffixes": LORA_TARGETS[name],
+            "modules_total": modules,
+            "lora_tensors": tensors,
+            "trainable_params": trainable,
+            "modules_per_name": dict(sorted(per_name.items())),
+            "expected": expected,
+        }
+        log(record, check_log)
+        results[name] = record
+        print(
+            f"{name}: {modules} modules, {tensors} tensors, {trainable} trainable params "
+            f"({dict(sorted(per_name.items()))}) == expected {expected}"
+        )
+        del model
+        gc.collect()
+        torch.cuda.empty_cache()
+    return results
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--epochs", type=float, default=3.0)
@@ -312,6 +426,18 @@ def main():
     parser.add_argument("--grad-accum", type=int, default=4)
     parser.add_argument("--lr", type=float, default=1e-4)
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument(
+        "--lora-targets",
+        choices=sorted(LORA_TARGETS),
+        default="wide",
+        help="which projection set to hang LoRA on (default: wide, the widest arm)",
+    )
+    parser.add_argument(
+        "--check-lora-targets",
+        action="store_true",
+        help="assemble both widths once, assert the module/tensor/parameter counts, write "
+        "evidence/sft/log-lora-targets-check.jsonl and exit",
+    )
     parser.add_argument("--lora-r", type=int, default=0, help="0 = choose from free VRAM")
     parser.add_argument("--lora-alpha", type=int, default=0, help="0 = 2r")
     parser.add_argument("--eval-micro-batch", type=int, default=0, help="0 = same as micro-batch")
@@ -324,8 +450,17 @@ def main():
     args = parser.parse_args()
 
     os.makedirs(args.out_dir, exist_ok=True)
-    log_path = os.path.join(args.out_dir, f"log{args.run_name and '-' + args.run_name}.jsonl")
     global LOG_PATH
+    if args.check_lora_targets:
+        # Never touches the training log: the check is a separate run and the log a run
+        # already wrote is evidence, not scratch.
+        LOG_PATH = os.path.join(args.out_dir, "log-lora-targets-check.jsonl")
+        open(LOG_PATH, "w").close()
+        print(f"assembly check only, no training; record -> {LOG_PATH}")
+        check_lora_targets(LOG_PATH)
+        return
+
+    log_path = os.path.join(args.out_dir, f"log{args.run_name and '-' + args.run_name}.jsonl")
     LOG_PATH = log_path
     open(LOG_PATH, "w").close()
     adapter_dir = args.adapter_dir
@@ -418,29 +553,8 @@ def main():
     )
     print(f"truncated {len(truncated)}/{len(train_enc)} train rows (prompt head only)")
 
-    quant = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_quant_type="nf4",
-        bnb_4bit_compute_dtype=torch.bfloat16,
-        bnb_4bit_use_double_quant=True,
-    )
-    model = AutoModelForImageTextToText.from_pretrained(
-        BASE_MODEL, quantization_config=quant, device_map={"": 0}, dtype=torch.bfloat16
-    )
-    model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)
-    model.config.use_cache = False
-    model = get_peft_model(
-        model,
-        LoraConfig(
-            r=lora_r,
-            lora_alpha=lora_alpha,
-            lora_dropout=0.05,
-            bias="none",
-            task_type="CAUSAL_LM",
-            target_modules=LORA_TARGET_MODULES,
-        ),
-    )
-    report_lora_coverage(model, log)
+    model = attach_lora(load_quantized_base(), LORA_TARGETS[args.lora_targets], lora_r, lora_alpha)
+    report_lora_coverage(model, log, LORA_TARGETS[args.lora_targets])
     trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
     total = sum(p.numel() for p in model.parameters())
     log(
@@ -448,7 +562,8 @@ def main():
             "type": "config",
             "base_model": BASE_MODEL,
             "quantization": "4-bit nf4, double quant, bf16 compute",
-            "lora_targets": LORA_TARGET_MODULES,
+            "lora_targets": LORA_TARGETS[args.lora_targets],
+            "lora_targets_name": args.lora_targets,
             "lora_r": lora_r,
             "lora_alpha": lora_alpha,
             "lora_dropout": 0.05,

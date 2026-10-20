@@ -13,14 +13,14 @@
 | | 值 | 理由 |
 | --- | --- | --- |
 | 基座 | Qwen3.5-2B，4-bit nf4、double quant、bf16 compute | 计划要求 4-bit QLoRA |
-| LoRA 目标 | `q_proj k_proj v_proj o_proj gate_proj up_proj down_proj` | 注意力与 MLP 的投影层，与仓库里 `train_dpo.py` 同一组 |
+| LoRA 目标 | `--lora-targets narrow` = `q_proj k_proj v_proj o_proj gate_proj up_proj down_proj` | 注意力与 MLP 的投影层，与仓库里 `train_dpo.py` 同一组；默认值是 `wide`，本版必须显式传 `narrow` |
 | r / alpha | 16 / 32 | 加载前卡上剩 13.5 GiB，r=16 是 10 911 744 个可训练参数（0.79%），alpha=2r 沿用同卡上 r=16 的 DPO 跑法 |
 | micro-batch × 梯度累积 | 2 × 8（有效 16） | 见下面显存一节：单样本 logits + 梯度约 2.2 GiB |
 | 优化器 / lr | paged_adamw_8bit / 1e-4，暖机 5 步后线性衰减 | 288 条的小样本，1e-4 是 QLoRA 的常用档 |
 | 种子 | 0（torch / numpy / random 同时固定） | 计划要求固定种子 |
 | 步数 | 18 步/epoch × 3 = 54 步 | 288 / 16 = 18 |
 
-注意这个基座是混合架构：24 层里只有每 4 层一层是 `q/k/v/o` 全注意力（共 6 层），另外 18 层是线性注意力（`linear_attn.in_proj_qkv`、`in_proj_z`、`in_proj_a`、`in_proj_b`、`out_proj`）。所以适配器里 192 个张量 = MLP 三类 × 24 层 + `q/k/v/o` × 6 层。线性注意力那几层的投影没有挂 LoRA，这是「注意力投影」在这个架构上的边界，不是漏配；挂上它们重跑的结果见 `report/sft-training-wide.md`——验证 PPL 6.09 比这里的 6.03 差，所以后续测量仍用这一版。
+注意这个基座是混合架构：24 层里只有每 4 层一层是 `q/k/v/o` 全注意力（共 6 层），另外 18 层是线性注意力（`linear_attn.in_proj_qkv`、`in_proj_z`、`in_proj_a`、`in_proj_b`、`out_proj`）。所以适配器里 192 个张量 = MLP 三类 × 24 层 + `q/k/v/o` × 6 层。线性注意力那几层的投影没有挂 LoRA，这是「注意力投影」在这个架构上的边界，不是漏配；挂上它们重跑的结果见 `report/sft-training-wide.md`——验证 PPL 6.0923 比这里的 6.0325 差，且宽版第三轮反弹（6.0847 → 6.0923），所以后续测量（含 `scripts/measure_actions.py`）用这一版窄版适配器。
 
 ## 显存：batch 与 rank 是怎么定的
 
@@ -80,10 +80,28 @@ step 36: 1.562   step 46: 1.265   step 54: 1.586
 ## 复现
 
 ```
-python3 scripts/train_sft.py --epochs 3 --grad-accum 8
+python3 scripts/train_sft.py --epochs 3 --grad-accum 8 --lora-r 16 --lora-alpha 32 \
+  --lora-targets narrow --adapter-dir .tmp/sft/adapter-narrow
 ```
 
-同一 GPU 上约 14 分钟（828.6 秒），写 `evidence/sft/log.jsonl`、`evidence/sft/train-summary.json`、`.tmp/sft/adapter/`。`--limit N` 与 `--epochs 1` 是冒烟跑法。
+`--lora-targets narrow` 是这一版的必要开关：脚本默认 `wide`（12 个后缀，见 [挂宽 LoRA](sft-training-wide.md)），不写就会写出另一版适配器。`--lora-r` / `--lora-alpha` 同样要写死，否则按开跑前空闲显存选 rank。
+
+同一 GPU 上约 14 分钟（828.6 秒），写 `evidence/sft/log.jsonl`、`evidence/sft/train-summary.json`、`.tmp/sft/adapter-narrow/`。`--limit N` 与 `--epochs 1` 是冒烟跑法。
+
+不重训的装配级验证（约 1 分钟、不碰数据、不写训练日志）：
+
+```
+python3 scripts/train_sft.py --check-lora-targets
+```
+
+它对两个取值各加载一次基座并挂一次 LoRA，用同一条 `report_lora_coverage()` 从模型的 `layer_types` 重算命中数并断言：
+
+| 取值 | 命中模块 | LoRA 张量 | 可训练参数 |
+| --- | --- | --- | --- |
+| `narrow` | 96（q/k/v/o × 6 层 + MLP × 24 层） | 192 | 10 911 744 |
+| `wide` | 186（+ 线性注意力 5 个投影 × 18 层） | 372 | 16 819 200 |
+
+断言的口径与 `evidence/sft/log.jsonl`、`evidence/sft/log-wide.jsonl` 的 `config.trainable_params` 以及两个 `adapter_config.json` 一致，结果落 `evidence/sft/log-lora-targets-check.jsonl`。这条命令证明两版适配器都能按清单重生成，但它本身不重训、不产出权重。
 
 ## 已知边界
 
