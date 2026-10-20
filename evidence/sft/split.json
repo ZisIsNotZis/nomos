@@ -1,0 +1,55 @@
+{
+ "seed": 20261020,
+ "algorithm": "会话 id 排序后用 seed 打乱，顺次累加会话进验证集，累计样本占比首次 ≥ 0.175 即停；同一会话只落一边",
+ "sessions_total": 51,
+ "sessions_train": 43,
+ "sessions_val": 8,
+ "val_sessions": [
+  "--home-z-hf-research--/2026-09-29T10-12-47-817Z_01a0eca7-1448-7647-ac96-e68b6c573f59.jsonl",
+  "--home-z-vibe-helpagent--/2026-09-17T05-11-59-637Z_01a0adc7-5f94-7654-82e3-495d67694384.jsonl",
+  "--home-z-vibe-mycar--/2026-09-14T01-51-41-475Z_01a09d9c-e9a3-7311-b973-cad3f8df8852.jsonl",
+  "--home-z-vibe-mycar--/2026-09-14T22-00-24-592Z_01a0a1ef-870f-7728-8c16-d5ff7c87662d.jsonl",
+  "--home-z-vibe-pathlm--/2026-09-07T09-21-09-043Z_01a07b2b-e3b3-7505-b77b-7317dd9167e3.jsonl",
+  "--home-z-vibe-raid_calc--/2026-09-09T22-29-55-802Z_01a0884a-c1da-72fd-93ff-3a2259195893/forks/2026-09-10T04-46-17-048Z_01a089a3-51d7-71db-9e96-15bb386bf03b.jsonl",
+  "--home-z-vibe-resume_private--/2026-09-10T03-18-37-229Z_01a08953-0fac-71db-9e96-15b75751084f/forks/2026-09-10T07-22-34-452Z_01a08a32-6854-71db-9e96-15d748221dd6.jsonl",
+  "--home-z-vibe-sys_gal--/2026-08-25T23-47-40-396Z_01a03b52-8aec-79bb-aa70-4069fa52ca40.jsonl"
+ ],
+ "samples_total": 637,
+ "samples_train": 510,
+ "samples_val": 127,
+ "val_share": 0.1994,
+ "drops": {
+  "截断": 3,
+  "重复 target": 95
+ },
+ "assertions": {
+  "phrases_checked": 175,
+  "prompts_checked": 637,
+  "target_heads_checked": 367
+ },
+ "inputs": {
+  "evidence/slice-contrast/situations.jsonl": "b29bb7b4e3121c4177802b0111b3aad71d3f22756799124a57e3490cb3e285ae",
+  "evidence/grow/situations.jsonl": "2ec3157a57c1eb79538b6dba4581c5c2468050e5ec237b5975f881fe6961639a",
+  "evidence/densify/answers.jsonl": "75e7096fdcbbcf1827a792f4e584fc704e29ead7aa430e884b3b18d2679d7d2d",
+  "data/coverage.json": "3e9acc35dcf07a7370ff665dffb09be55bd47fe8438c7273e1d20e72f9d9158f",
+  "constitution/nodes.json": "68ee7f8136184fb799f2e84f0577983ce0ee1f17e1a8b83677e9bc50b80272a2"
+ },
+ "outputs": {
+  "data/sft.jsonl": {
+   "lines": 637,
+   "sha256": "dd1a0110c97cb859ea59a7acf92fdced384c59f193356d331b5719698dafdfb5"
+  },
+  "data/sft-train.jsonl": {
+   "lines": 510,
+   "sha256": "a51046a031316e35477a71dd783691414cda99e773c1db0b0dba2bace157193a"
+  },
+  "data/sft-val.jsonl": {
+   "lines": 127,
+   "sha256": "031475c70fc8b03fa4e3aba5374974eae576f96253fdfae8714ca0307462e56e"
+  },
+  "evidence/sft/dropped.jsonl": {
+   "lines": 98,
+   "sha256": "6d78d7884cffb7a3f707e552e569445bd46625597739983ba84161fe3cfc8ad0"
+  }
+ }
+}
