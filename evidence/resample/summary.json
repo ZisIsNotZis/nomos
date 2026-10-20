@@ -66,12 +66,88 @@
    "observed_differing_pairs": 111
   }
  },
+ "disagreement": {
+  "law_vs_bare": {
+   "n": 174,
+   "differ": 111,
+   "rate": 0.6379310344827587,
+   "ci95": [
+    0.5632183908045977,
+    0.7068965517241379
+   ]
+  },
+  "law_vs_law": {
+   "n": 174,
+   "differ": 88,
+   "rate": 0.5057471264367817,
+   "ci95": [
+    0.43103448275862066,
+    0.5804597701149425
+   ]
+  },
+  "bare_vs_bare": {
+   "n": 174,
+   "differ": 73,
+   "rate": 0.41954022988505746,
+   "ci95": [
+    0.3448275862068966,
+    0.4942528735632184
+   ]
+  }
+ },
  "verdict": {
-  "rule": "法有作用 = 跨条件不一致率高于两个同条件重采样不一致率：差值的 95% 自助区间下界 > 0，置换检验 p < 0.05，且两个同条件差值的方向都为正",
+  "rule": "法有作用 = 跨条件不一致率分别高于两个同条件重采样不一致率：两个差值的 95% 自助区间下界都 > 0；置换检验 p 一并报告，不单独决定方向",
   "alpha": 0.05,
-  "law_has_effect": false,
-  "difference_ci95_lower": -0.40804597701149425,
-  "permutation_p": 9.999000099990002e-05
+  "law_has_effect": true,
+  "permutation_p": 9.999000099990002e-05,
+  "disagreement_differences": {
+   "law_vs_law": {
+    "cross_rate": 0.6379310344827587,
+    "same_rate": 0.5057471264367817,
+    "difference": 0.13218390804597702,
+    "ci95": [
+     0.05747126436781609,
+     0.20689655172413793
+    ]
+   },
+   "bare_vs_bare": {
+    "cross_rate": 0.6379310344827587,
+    "same_rate": 0.41954022988505746,
+    "difference": 0.21839080459770122,
+    "ci95": [
+     0.14367816091954022,
+     0.29310344827586204
+    ]
+   }
+  }
+ },
+ "stable_subset": {
+  "rule": "稳定对 = 存下 law 回答被第二次 law 抽样复现，且存下 bare 回答被第二次 bare 抽样复现（同一动作签名）",
+  "n": 66,
+  "dropped": 108,
+  "dropped_stored_law_not_reproduced_only": 35,
+  "dropped_stored_bare_not_reproduced_only": 20,
+  "dropped_both_not_reproduced": 53,
+  "both_stored_answers_without_actions": 36,
+  "cross_condition_disagreement": {
+   "n": 66,
+   "differ": 17,
+   "rate": 0.25757575757575757,
+   "ci95": [
+    0.15151515151515152,
+    0.36363636363636365
+   ]
+  },
+  "cross_condition_disagreement_with_actions": {
+   "n": 30,
+   "differ": 17,
+   "rate": 0.5666666666666667,
+   "ci95": [
+    0.4,
+    0.7333333333333333
+   ]
+  },
+  "output": "data/pairs-stable.jsonl"
  },
  "permutation": {
   "observed": 0.17528735632183912,

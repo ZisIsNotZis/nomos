@@ -31,6 +31,7 @@ TARGETS = DIMENSIONS + ("total",)
 SEED = 20261102
 BOOTSTRAP = 10000
 SIGN_P = 0.01
+SITUATION_IDS = None  # 给了就只在其中统计，用来把同一套判据套到子集上
 
 
 def load_jsonl(path):
@@ -145,8 +146,8 @@ def felt_disagreement(rows):
     return out
 
 
-def condition_summary(rows):
-    """每条感觉子级条件在两侧的"是"占比与配对符号检验。整体等级版没有条件，返回空。"""
+def condition_summary(rows, rng):
+    """每条感觉子级条件在两侧的"是"占比、差值区间与配对符号检验。整体等级版没有条件，返回空。"""
     out = {}
     if any("conditions" not in row for row in rows):
         return out
@@ -165,9 +166,11 @@ def condition_summary(rows):
             diffs = [c - r for c, r in zip(rates["chosen"], rates["rejected"])]
             wins = sum(1 for d in diffs if d > 1e-9)
             losses = sum(1 for d in diffs if d < -1e-9)
+            low, high = bootstrap_ci(diffs, rng) if diffs else (None, None)
             out[f"{dimension}.{name}"] = {
                 "chosen_yes": round(statistics.fmean(rates["chosen"]), 3) if rates["chosen"] else None,
                 "rejected_yes": round(statistics.fmean(rates["rejected"]), 3) if rates["rejected"] else None,
+                "delta_ci95": [None if low is None else round(low, 3), None if high is None else round(high, 3)],
                 "win_loss": f"{wins}/{losses}",
                 "sign_test_p": round(sign_test(wins, losses), 4),
             }
@@ -176,6 +179,8 @@ def condition_summary(rows):
 
 def analyse():
     rows = load_jsonl(JUDGE_ROWS)
+    if SITUATION_IDS is not None:
+        rows = [row for row in rows if row["situation_id"] in SITUATION_IDS]
     rescore_gap = attach_scores(rows)
     draws = max(row["draw"] for row in rows)
     by_answer = {}
@@ -249,23 +254,30 @@ def analyse():
 
     summary = {
         "draws": draws, "bootstrap": BOOTSTRAP, "criteria_significance": SIGN_P,
+        "restricted_to": None if SITUATION_IDS is None else len(SITUATION_IDS),
         "rescore_max_gap": None if rescore_gap is None else round(rescore_gap, 6),
         "results": results, "criteria": criteria,
         "all_pass": all(item["pass"] for item in criteria.values()),
         "control_degraded": control,
         "felt_disagreement_rate": felt_disagreement(rows),
-        "condition_summary": condition_summary(rows),
+        "condition_summary": condition_summary(rows, rng),
     }
+    SUMMARY.parent.mkdir(parents=True, exist_ok=True)
     SUMMARY.write_text(json.dumps(summary, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     return summary
 
 
 def main():
-    global JUDGE_ROWS, SUMMARY
+    global JUDGE_ROWS, SUMMARY, SITUATION_IDS
     if "--dir" in sys.argv:
         directory = Path(sys.argv[sys.argv.index("--dir") + 1])
         JUDGE_ROWS = directory / "judge-out.jsonl"
         SUMMARY = directory / "summary.json"
+    if "--ids" in sys.argv:
+        ids = Path(sys.argv[sys.argv.index("--ids") + 1])
+        SITUATION_IDS = {row["situation_id"] for row in load_jsonl(ids)}
+    if "--out" in sys.argv:
+        SUMMARY = Path(sys.argv[sys.argv.index("--out") + 1])
     summary = analyse()
     print(f"{'目标':10s} {'带法':>7s} {'不带法':>7s} {'δ':>7s} {'95%区间':>17s} "
           f"{'胜场':>7s} {'符号p':>9s} {'σ_repeat':>9s} {'通过':>4s}")

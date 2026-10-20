@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """法造成的差异，还是同一条提示重采样就有的抖动。
 
-174 条处境各由一次带法回答（`chosen`）与一次不带法回答（`rejected`）组成，其中 129 对动作
+174 条处境各由一次带法回答（`chosen`）与一次不带法回答（`rejected`）组成，其中 111 对动作
 不同。如果同一条件重采样也能差这么多，这对数据携带的是采样抖动而不是法，DPO 就在学噪声。
 
 本程序只做两件事，分两个阶段，都是同一个脚本：
 
   --generate   对每条处境再取一次 law 回答与一次 bare 回答，共 348 次 DeepSeek 调用。
   --analyse    纯 Python：用 eval/judge.py 的动作解析把每条回答压成动作签名，算三个一致率，
-               落盘签名、逐条对比与汇总。不调 API。
+               落盘签名、逐条对比与汇总，并写出两侧都能复现的稳定对到 data/pairs-stable.jsonl。
+               不调 API。
 
 重采样必须与存下来的批次同条件，否则比的不是抖动：
 
@@ -47,6 +48,7 @@ JUDGE = REPO / "eval" / "judge.py"
 
 EVIDENCE = REPO / "evidence" / "resample"
 ANSWERS = EVIDENCE / "answers.jsonl"
+STABLE_PAIRS = REPO / "data" / "pairs-stable.jsonl"
 SIGNATURES = EVIDENCE / "signatures.jsonl"
 COMPARE = EVIDENCE / "compare.jsonl"
 SUMMARY = EVIDENCE / "summary.json"
@@ -476,6 +478,18 @@ def run_analyse():
     result = {name: block(flags) for name, flags in comparisons.items()}
     result["same_condition_pooled"] = block(same)
 
+    cross_disagree = [not flag for flag in comparisons["law_vs_bare"]]
+    disagreement_differences = {}
+    for name in ("law_vs_law", "bare_vs_bare"):
+        same_disagree = [not flag for flag in comparisons[name]]
+        low, high = bootstrap_diff(cross_disagree, same_disagree)
+        disagreement_differences[name] = {
+            "cross_rate": rate(cross_disagree),
+            "same_rate": rate(same_disagree),
+            "difference": rate(cross_disagree) - rate(same_disagree),
+            "ci95": [low, high],
+        }
+
     differences = {}
     for name in ("law_vs_law", "bare_vs_bare"):
         low, high = bootstrap_diff(comparisons["law_vs_bare"], comparisons[name])
@@ -515,17 +529,53 @@ def run_analyse():
         joint["stored_differ_resample_law_reproduces_stored_law"]
         + joint["stored_differ_resample_bare_reproduces_stored_bare"]) / (2 * joint["stored_differ_count"])
 
-    pooled = differences["same_condition_pooled"]
     verdict = {
-        "rule": "法有作用 = 跨条件不一致率高于两个同条件重采样不一致率：差值的 95% 自助区间下界 > 0，"
-                "置换检验 p < 0.05，且两个同条件差值的方向都为正",
+        "rule": "法有作用 = 跨条件不一致率分别高于两个同条件重采样不一致率：两个差值的 95% 自助区间下界都 > 0；"
+                "置换检验 p 一并报告，不单独决定方向",
         "alpha": ALPHA,
-        "law_has_effect": bool(
-            pooled["ci95"][0] > 0 and permutation["p"] < ALPHA
-            and differences["law_vs_law"]["difference"] > 0
-            and differences["bare_vs_bare"]["difference"] > 0),
-        "difference_ci95_lower": pooled["ci95"][0],
+        "law_has_effect": bool(all(
+            disagreement_differences[name]["ci95"][0] > 0 for name in ("law_vs_law", "bare_vs_bare"))),
         "permutation_p": permutation["p"],
+        "disagreement_differences": disagreement_differences,
+    }
+
+    stable_rows = [
+        {"situation_id": pair["situation_id"], "signals": pair["signals"], "excerpt": pair["excerpt"],
+         "chosen": pair["chosen"], "rejected": pair["rejected"],
+         "signatures": {"law": compare["signatures"]["law_0"], "bare": compare["signatures"]["bare_0"]},
+         "cross_condition_differs": not compare["agreement"]["stored_law_vs_stored_bare"]}
+        for pair, compare in zip(rows, compare_rows)
+        if compare["agreement"]["stored_law_vs_new_law"] and compare["agreement"]["stored_bare_vs_new_bare"]]
+    STABLE_PAIRS.parent.mkdir(parents=True, exist_ok=True)
+    STABLE_PAIRS.write_text("".join(json.dumps(row, ensure_ascii=False) + "\n" for row in stable_rows),
+                            encoding="utf-8")
+
+    def disagree_block(flags):
+        low, high = bootstrap_ci(flags)
+        return {"n": len(flags), "differ": sum(1 for flag in flags if flag), "rate": rate(flags),
+                "ci95": [low, high]}
+
+    stable_cross = [row["cross_condition_differs"] for row in stable_rows]
+    with_actions = [row for row in stable_rows if row["signatures"]["law"] or row["signatures"]["bare"]]
+    stable = {
+        "rule": "稳定对 = 存下 law 回答被第二次 law 抽样复现，且存下 bare 回答被第二次 bare 抽样复现（同一动作签名）",
+        "n": len(stable_rows),
+        "dropped": len(rows) - len(stable_rows),
+        "dropped_stored_law_not_reproduced_only": sum(
+            1 for compare in compare_rows
+            if not compare["agreement"]["stored_law_vs_new_law"] and compare["agreement"]["stored_bare_vs_new_bare"]),
+        "dropped_stored_bare_not_reproduced_only": sum(
+            1 for compare in compare_rows
+            if compare["agreement"]["stored_law_vs_new_law"] and not compare["agreement"]["stored_bare_vs_new_bare"]),
+        "dropped_both_not_reproduced": sum(
+            1 for compare in compare_rows
+            if not compare["agreement"]["stored_law_vs_new_law"] and not compare["agreement"]["stored_bare_vs_new_bare"]),
+        "both_stored_answers_without_actions": sum(
+            1 for row in stable_rows if not row["signatures"]["law"] and not row["signatures"]["bare"]),
+        "cross_condition_disagreement": disagree_block(stable_cross),
+        "cross_condition_disagreement_with_actions": disagree_block(
+            [row["cross_condition_differs"] for row in with_actions]),
+        "output": str(STABLE_PAIRS.relative_to(REPO)),
     }
 
     summary = {
@@ -536,7 +586,10 @@ def run_analyse():
                           "<place>；签名 = 按顺序的动作列表；签名相同记一致",
         "comparisons": result,
         "differences": differences,
+        "disagreement": {name: disagree_block([not flag for flag in flags])
+                          for name, flags in comparisons.items()},
         "verdict": verdict,
+        "stable_subset": stable,
         "permutation": permutation,
         "coarse": coarse,
         "coarse_permutation": coarse_permutation,
@@ -573,11 +626,19 @@ def run_analyse():
     print(f"同条件合并       {result['same_condition_pooled']['rate']:.3f}  "
           f"[{result['same_condition_pooled']['ci95'][0]:.3f}, "
           f"{result['same_condition_pooled']['ci95'][1]:.3f}]")
-    print(f"差（跨 − 同条件）{pooled['difference']:+.3f}  "
-          f"[{pooled['ci95'][0]:+.3f}, {pooled['ci95'][1]:+.3f}]  置换 p {permutation['p']:.4f}  "
-          f"零分布均值 {permutation['null_mean']:+.3f} 标准差 {permutation['null_sd']:.3f}")
-    print(f"法有作用：{verdict['law_has_effect']}")
-    print(f"写完 {SIGNATURES.name}、{COMPARE.name}、{SUMMARY.name}、{RUN_META.name}")
+    for name, label in (("law_vs_law", "law 重采样"), ("bare_vs_bare", "bare 重采样")):
+        item = disagreement_differences[name]
+        print(f"不一致率 跨 {item['cross_rate']:.3f} 对 {label} {item['same_rate']:.3f}；"
+              f"差 {item['difference']:+.3f} [{item['ci95'][0]:+.3f}, {item['ci95'][1]:+.3f}]")
+    print(f"置换 p {permutation['p']:.4f}  零分布均值 {permutation['null_mean']:+.3f} "
+          f"标准差 {permutation['null_sd']:.3f}")
+    print(f"法有作用：{verdict['law_has_effect']}"
+          "（跨条件不一致率分别高于两个同条件不一致率，两个差值的区间下界都 > 0）")
+    print(f"稳定对 {stable['n']}/{len(rows)}，跨条件不一致 {stable['cross_condition_disagreement']['rate']:.3f} "
+          f"[{stable['cross_condition_disagreement']['ci95'][0]:.3f}, "
+          f"{stable['cross_condition_disagreement']['ci95'][1]:.3f}]，"
+          f"其中两侧都无动作 {stable['both_stored_answers_without_actions']} 对")
+    print(f"写完 {SIGNATURES.name}、{COMPARE.name}、{SUMMARY.name}、{RUN_META.name}、{STABLE_PAIRS.name}")
 
 
 def main():

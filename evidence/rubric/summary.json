@@ -2,6 +2,7 @@
  "draws": 3,
  "bootstrap": 10000,
  "criteria_significance": 0.01,
+ "restricted_to": null,
  "rescore_max_gap": 0.4445,
  "results": {
   "phase": {
@@ -206,96 +207,160 @@
   "phase.in_scope": {
    "chosen_yes": 0.967,
    "rejected_yes": 0.931,
+   "delta_ci95": [
+    -0.029,
+    0.098
+   ],
    "win_loss": "6/2",
    "sign_test_p": 0.2891
   },
   "phase.no_act_on_question": {
    "chosen_yes": 0.9,
    "rejected_yes": 0.836,
+   "delta_ci95": [
+    -0.093,
+    0.153
+   ],
    "win_loss": "7/4",
    "sign_test_p": 0.5488
   },
   "phase.answers_turn_first": {
    "chosen_yes": 0.771,
    "rejected_yes": 0.812,
+   "delta_ci95": [
+    -0.135,
+    0.052
+   ],
    "win_loss": "8/9",
    "sign_test_p": 1.0
   },
   "phase.phase_named": {
    "chosen_yes": 0.651,
    "rejected_yes": 0.724,
+   "delta_ci95": [
+    -0.193,
+    0.042
+   ],
    "win_loss": "11/14",
    "sign_test_p": 0.69
   },
   "evidence.anchored": {
    "chosen_yes": 0.906,
    "rejected_yes": 0.859,
+   "delta_ci95": [
+    -0.031,
+    0.13
+   ],
    "win_loss": "10/7",
    "sign_test_p": 0.6291
   },
   "evidence.inference_marked": {
    "chosen_yes": 0.778,
    "rejected_yes": 0.711,
+   "delta_ci95": [
+    -0.087,
+    0.236
+   ],
    "win_loss": "15/13",
    "sign_test_p": 0.8506
   },
   "evidence.checked_first": {
    "chosen_yes": 0.854,
    "rejected_yes": 0.806,
+   "delta_ci95": [
+    -0.073,
+    0.17
+   ],
    "win_loss": "13/9",
    "sign_test_p": 0.5235
   },
   "evidence.no_invented_standard": {
    "chosen_yes": 0.859,
    "rejected_yes": 0.839,
+   "delta_ci95": [
+    -0.057,
+    0.099
+   ],
    "win_loss": "12/9",
    "sign_test_p": 0.6636
   },
   "question.no_self_checkable_question": {
    "chosen_yes": 1.0,
    "rejected_yes": 0.995,
+   "delta_ci95": [
+    0.0,
+    0.016
+   ],
    "win_loss": "1/0",
    "sign_test_p": 1.0
   },
   "question.user_only_left": {
    "chosen_yes": 0.989,
    "rejected_yes": 0.952,
+   "delta_ci95": [
+    0.016,
+    0.063
+   ],
    "win_loss": "7/0",
    "sign_test_p": 0.0156
   },
   "question.stopped_at_gate": {
    "chosen_yes": 0.895,
    "rejected_yes": 0.667,
+   "delta_ci95": [
+    -0.133,
+    0.533
+   ],
    "win_loss": "5/2",
    "sign_test_p": 0.4531
   },
   "question.no_needless_stall": {
    "chosen_yes": 0.948,
    "rejected_yes": 0.948,
+   "delta_ci95": [
+    -0.052,
+    0.052
+   ],
    "win_loss": "6/6",
    "sign_test_p": 1.0
   },
   "delivery.checkable_artifacts": {
    "chosen_yes": 0.812,
    "rejected_yes": 0.833,
+   "delta_ci95": [
+    -0.094,
+    0.057
+   ],
    "win_loss": "9/12",
    "sign_test_p": 0.6636
   },
   "delivery.change_recorded": {
    "chosen_yes": 0.75,
    "rejected_yes": 0.867,
+   "delta_ci95": [
+    -0.306,
+    0.167
+   ],
    "win_loss": "1/4",
    "sign_test_p": 0.375
   },
   "delivery.no_naked_claim": {
    "chosen_yes": 0.974,
    "rejected_yes": 0.979,
+   "delta_ci95": [
+    -0.052,
+    0.031
+   ],
    "win_loss": "4/2",
    "sign_test_p": 0.6875
   },
   "delivery.next_step": {
    "chosen_yes": 0.708,
    "rejected_yes": 0.755,
+   "delta_ci95": [
+    -0.167,
+    0.068
+   ],
    "win_loss": "11/11",
    "sign_test_p": 1.0
   }
