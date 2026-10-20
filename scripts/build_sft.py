@@ -9,7 +9,9 @@ evidence/densify/answers.jsonl 的 law 条件（735 条，bare 条件不用）�
 
 1. 一行 law 回答就是一个候选样本，prompt = 该处境的 excerpt，target = response；
 2. 坏件丢：截断、复读、回显、空回答，各记一条证据到 evidence/sft/dropped.jsonl；
-3. 同一处境内归一化后文本相同的 target 只留最早的那条（去重后 prompt 与 target 的配对不变）；
+3. 同一处境内去重：动作签名（eval/judge.py 分类出的每个动作的类型，按出现顺序）相同的
+   只留一条代表，代表取该处境出现次数最多的那套完整动作（工具名 + 参数），平局取最早出现；
+   签名不同但归一化 target 的词集 Jaccard ≥ 0.9 的近重复也只留一条；
 4. 按会话切验证集，同一会话只落在一边，切分用固定种子，落 evidence/sft/split.json；
 5. 落 data/sft.jsonl（全量）、data/sft-val.jsonl、data/sft-train.jsonl；
 6. 用 data/coverage.json 的既有标注重算 175 条可训练规则的覆盖，落
@@ -54,7 +56,6 @@ COVERAGE_COUNTS = REPO / "data" / "sft-coverage-counts.json"
 
 SEED = 20261020
 VAL_SHARE_TARGET = 0.175  # 会话按种子打乱后顺次取，累计样本占比到这个值以上就停
-VAL_SHARE_RANGE = (0.15, 0.20)
 
 SITUATIONS = 242
 LAW_ANSWERS = 735
@@ -66,6 +67,7 @@ REPEAT_MIN_COUNT = 3  # 同一行/段出现几次算复读
 SHINGLE = 10  # 复读判定里的词 shingle 宽度
 ECHO_CONTAINMENT = 0.95  # 回答的用词有多少比例已在处境里出现过，超过就算只复述
 ECHO_LENGTH_RATIO = 0.5  # 只复述的回答不会比处境长
+JACCARD_MIN = 0.9  # 同处境内两条 target 的词集重合到这个值就算近重复
 
 _judge = None
 SENTENCE_END = set("。！？；.!?;:：）)」”\"'`]>*—-…~、\n")
@@ -173,14 +175,36 @@ def detect_repeated(text):
 JUDGE = REPO / "eval" / "judge.py"
 
 
-def parse_actions(answer):
-    """动作解析直接用 eval/judge.py 那一份，不复制一份规则到这里。"""
+def judge_module():
+    """动作解析与分类直接用 eval/judge.py 那一份，不复制一份规则到这里。"""
     global _judge
     if _judge is None:
         spec = importlib.util.spec_from_file_location("judge", JUDGE)
         _judge = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(_judge)
-    return _judge.parse_actions(answer)
+    return _judge
+
+
+def parse_actions(answer):
+    return judge_module().parse_actions(answer)
+
+
+def action_signature(answer):
+    """动作签名：每个动作被判成的类型（read/files/commit/…）按出现顺序拼成一串，参数不参与。
+
+    同一处境的抽样只差措辞与半条 shell 命令，所以判重看动作的类型串而不是命令正文。
+    """
+    return tuple(judge_module().action_class(action) for action in parse_actions(answer))
+
+
+def exact_actions(answer):
+    """完整动作：工具名 + 压过连续空白的参数，只用来在同签名的几条里挑代表。"""
+    return tuple((action["tool"], re.sub(r"\s+", " ", action["args"]).strip())
+                 for action in parse_actions(answer))
+
+
+def signature_text(signature):
+    return "→".join(signature) if signature else "无动作"
 
 
 def detect_echo(response, excerpt):
@@ -230,33 +254,93 @@ def law_answers():
     return rows
 
 
+def drop_record(row, situation_id, session_id, reason_class, evidence, target_chars):
+    return {"situation_id": situation_id, "session_id": session_id, "draw": row.get("draw"),
+            "reason_class": reason_class, "evidence": evidence, "target_chars": target_chars}
+
+
+def jaccard(left, right):
+    union = left | right
+    return len(left & right) / len(union) if union else 1.0
+
+
+def candidate(situation_id, session_id, excerpt, draw, response):
+    """一条抽样变成候选样本，带上判重用的字段（下划线开头，不写盘）。"""
+    target = normalize(response)
+    return {"situation_id": situation_id, "session_id": session_id, "prompt": excerpt,
+            "target": response, "_draw": draw, "_target_sha256": sha256_text(target),
+            "_signature": action_signature(response), "_exact": exact_actions(response),
+            "_tokens": set(words(target))}
+
+
 def samples_and_drops(by_id, rows):
-    """逐条抽样判坏件与去重；返回留下的样本与全部丢弃记录。"""
-    samples, dropped, seen = [], [], set()
+    """逐条抽样判坏件，再按 (处境, 动作签名) 去重并挡掉近重复；返回样本与全部丢弃记录。"""
+    candidates, dropped = [], []
     for row in rows:
         situation = by_id[row["situation"]]
         excerpt = situation["excerpt"]
         found = drop_reason(row, excerpt)
         if found is not None:
             reason_class, evidence = found
-            dropped.append({"situation_id": row["situation"], "session_id": situation["session"],
-                            "draw": row.get("draw"), "reason_class": reason_class,
-                            "evidence": evidence, "target_chars": len(row["response"])})
+            dropped.append(drop_record(row, row["situation"], situation["session"], reason_class,
+                                       evidence, len(row["response"])))
             continue
-        target = normalize(row["response"])
-        key = (row["situation"], target)
-        if key in seen:
-            dropped.append({"situation_id": row["situation"], "session_id": situation["session"],
-                            "draw": row.get("draw"), "reason_class": "重复 target",
-                            "evidence": f"与本处境已有样本归一化后逐字相同（{len(target)} 字），只留最早一条",
-                            "target_chars": len(row["response"])})
-            continue
-        seen.add(key)
-        samples.append({"situation_id": row["situation"], "session_id": situation["session"],
-                        "prompt": excerpt, "target": row["response"],
-                        "_draw": row.get("draw"),
-                        "_target_sha256": sha256_text(target)})
+        candidates.append(candidate(row["situation"], situation["session"], excerpt,
+                                    row.get("draw"), row["response"]))
+    samples = dedupe(candidates, dropped)
     return samples, dropped
+
+
+def dedupe(candidates, dropped):
+    """同处境内动作签名相同的只留一条，再挡一层 token Jaccard ≥ JACCARD_MIN 的近重复。
+
+    同一处境的 prompt 逐字相同，抽样之间只差措辞与半条命令，重复保留只给权重不给信息，
+    所以每个签名留一条代表：该处境出现次数最多的完整动作，平局取最早出现。
+    """
+    by_situation = collections.defaultdict(list)
+    for sample in candidates:
+        by_situation[sample["situation_id"]].append(sample)
+
+    kept = []
+    for situation_id in sorted(by_situation):
+        rows = by_situation[situation_id]
+        modal = collections.Counter(row["_exact"] for row in rows).most_common(1)[0][0]
+        groups = collections.defaultdict(list)
+        for row in rows:
+            groups[row["_signature"]].append(row)
+
+        survivors = []
+        for group in groups.values():
+            keeper = min(group, key=lambda row: row["_exact"] != modal)
+            survivors.append((rows.index(keeper), keeper))
+            for row in group:
+                if row is keeper:
+                    continue
+                same_text = row["_target_sha256"] == keeper["_target_sha256"]
+                dropped.append(drop_record(
+                    row, situation_id, row["session_id"],
+                    "重复 target" if same_text else "重复动作签名",
+                    (f"与本处境 {keeper['_draw']} 号抽样归一化后逐字相同（{len(row['target'])} 字）"
+                     if same_text else
+                     f"与本处境 {keeper['_draw']} 号抽样动作签名相同（{signature_text(row['_signature'])}），"
+                     f"词集 Jaccard {jaccard(row['_tokens'], keeper['_tokens']):.2f}，只留一条"),
+                    len(row["target"])))
+
+        survivors.sort(key=lambda pair: pair[0])
+        chosen = []
+        for _, row in survivors:
+            close = next(((other, jaccard(row["_tokens"], other["_tokens"])) for other in chosen
+                          if jaccard(row["_tokens"], other["_tokens"]) >= JACCARD_MIN), None)
+            if close is not None:
+                other, score = close
+                dropped.append(drop_record(
+                    row, situation_id, row["session_id"], "近重复 target",
+                    f"与本处境 {other['_draw']} 号抽样动作签名不同，但 target 词集 Jaccard "
+                    f"{score:.2f} ≥ {JACCARD_MIN}，只留一条", len(row["target"])))
+                continue
+            chosen.append(row)
+        kept.extend(chosen)
+    return kept
 
 
 # --- 运行时断言 ---------------------------------------------------------------
@@ -304,10 +388,11 @@ def split(samples):
     order = sessions[:]
     random.Random(SEED).shuffle(order)
     total = len(samples)
-    val_sessions, taken = [], 0
+    val_sessions, taken, before = [], 0, 0
     for session in order:
         if taken / total >= VAL_SHARE_TARGET:
             break
+        before = taken
         val_sessions.append(session)
         taken += per_session[session]
     val_set = set(val_sessions)
@@ -320,9 +405,22 @@ def split(samples):
     if set(s["session_id"] for s in train) & set(s["session_id"] for s in val):
         raise SystemExit("同一会话跨了训练与验证两侧")
     share = len(val) / total
-    if not VAL_SHARE_RANGE[0] <= share <= VAL_SHARE_RANGE[1]:
-        raise SystemExit(f"验证集占 {share:.1%}，不在 {VAL_SHARE_RANGE} 内")
+    overshoot = max(per_session.values()) / total  # 跨过目标的那一个会话最多能带过多少占比
+    if not before / total < VAL_SHARE_TARGET <= share:
+        raise SystemExit(f"验证集停在 {before / total:.1%}→{share:.1%}，没有跨过目标 {VAL_SHARE_TARGET}")
+    if share > VAL_SHARE_TARGET + overshoot:
+        raise SystemExit(f"验证集占 {share:.1%}，比目标 {VAL_SHARE_TARGET} 多出的部分超过一个会话的 {overshoot:.1%}")
     return train, val, {"train": train_sessions, "val": val_sessions}
+
+
+def per_situation_summary(samples):
+    """每个处境贡献几条样本：去重后同处境里还剩几种不同行为。"""
+    counts = collections.Counter(sample["situation_id"] for sample in samples)
+    histogram = collections.Counter(counts.values())
+    return {"situations": len(counts), "samples": len(samples),
+            "min": min(counts.values()), "max": max(counts.values()),
+            "mean": round(len(samples) / len(counts), 3),
+            "histogram": {str(k): histogram[k] for k in sorted(histogram)}}
 
 
 def stable_sample_order(samples):
@@ -374,8 +472,25 @@ SELF_TEST_CASES = (
 )
 
 
+def dedupe_cases():
+    """两层去重的正反例：同签名的丢一条、近重复的丢一条、签名与文本都不同的两条都留。"""
+    shared = "先确认改法再动手，这段逻辑要保留原来的顺序。" * 2
+    read = shared + "tool: read(order.py)"
+    other = shared + "tool: commit(order.py)"
+    bash_read = "先看一眼文件再动手，确认现在的写法。tool: bash(grep -n order order.py)"
+    write = "直接补上缺的那句。tool: edit({\"path\": \"order.py\"})"
+    return (
+        ("same-signature", [candidate("S1", "s", "p", 1, read),
+                             candidate("S1", "s", "p", 2, bash_read)], [read], "重复动作签名"),
+        ("near-duplicate", [candidate("S2", "s", "p", 1, read),
+                             candidate("S2", "s", "p", 2, other)], [read], "近重复 target"),
+        ("different-behaviour", [candidate("S3", "s", "p", 1, read),
+                                  candidate("S3", "s", "p", 2, write)], [read, write], None),
+    )
+
+
 def self_test():
-    """坏件检测器的正反例：每个检测器都要在自己那类上响，在好件上不响。"""
+    """坏件检测器与去重的正反例：每个判据都要在自己那类上响，在好件上不响。"""
     failures = []
     for name, row, expect in SELF_TEST_CASES:
         excerpt = "现在是个啥状态？我感觉我们是不是跑偏了。因为我们要的是 AI 有机会介入。" * 2
@@ -386,9 +501,18 @@ def self_test():
         elif expect is not None and reason_class != expect:
             failures.append(f"{name}: 期望 {expect}，实际 {reason_class}（{evidence}）")
         print(f"{name}: {reason_class or '留下'} — {evidence}")
+
+    for name, candidates, expected, reason in dedupe_cases():
+        dropped = []
+        kept = [row["target"] for row in dedupe(candidates, dropped)]
+        got = sorted(row["reason_class"] for row in dropped)
+        if kept != expected or got != ([reason] if reason else []):
+            failures.append(f"{name}: 期望留 {len(expected)} 条并丢 {reason}，实际留 {len(kept)} 条并丢 {got}")
+        print(f"{name}: 留 {len(kept)} 条 — " + ("，".join(got) if got else "无丢弃"))
+
     if failures:
         raise SystemExit("自检失败：" + "；".join(failures))
-    print(f"自检通过：{len(SELF_TEST_CASES)} 个用例")
+    print(f"自检通过：{len(SELF_TEST_CASES)} 个坏件用例 + 3 个去重用例")
 
 
 # --- 写盘 ------------------------------------------------------------------
@@ -436,6 +560,7 @@ def main():
         "samples_train": len(train),
         "samples_val": len(val),
         "val_share": round(len(val) / len(samples), 4),
+        "samples_per_situation": per_situation_summary(samples),
         "drops": dict(sorted(reason_counts.items())),
         "assertions": assertions,
         "inputs": {str(p.relative_to(REPO)): file_sha256(p) for p in SITUATION_FILES + (ANSWERS, COVERAGE, NODES)},

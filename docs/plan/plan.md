@@ -6,9 +6,9 @@
 
 ## 工作包：训练数据与质量
 
-**产出**：`data/sft.jsonl`（处境原文作 prompt、带法回答作 target，同一处境的 5 次抽样各算一条，重复 target 去重）、`report/sft-data.md`。
+**产出**：`data/sft.jsonl`（处境原文作 prompt、带法回答作 target；同一处境按动作签名去重，同签名只留一条，再挡一层 target 词集 Jaccard ≥ 0.9 的近重复）、`report/sft-data.md`。
 
-**验收**：prompt 只含处境，运行时断言不含法条原文；每条带处境 id 与会话 id；坏件（截断、复读、回显）与重复 target 丢弃并计数；按会话切出验证集，同一会话不跨两侧；175 条可训练规则的覆盖数重算落盘。
+**验收**：prompt 只含处境，运行时断言不含法条原文；每条带处境 id 与会话 id；坏件（截断、复读、回显）与同处境重复样本（逐字重复、动作签名相同、近重复）丢弃并计数；按会话切出验证集，同一会话不跨两侧；175 条可训练规则的覆盖数重算落盘。
 
 **依赖**：无。数据在 `evidence/densify/answers.jsonl`（735 条带法回答）与 `mining/candidates.jsonl`。
 

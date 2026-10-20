@@ -7,7 +7,7 @@
  "trainable_rules": 175,
  "covered_rules": 77,
  "uncovered_rules": 98,
- "samples": 637,
+ "samples": 291,
  "situations": 242,
  "situations_in_annotation": 174,
  "situations_without_annotation": [

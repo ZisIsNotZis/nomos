@@ -14,18 +14,31 @@
   "--home-z-vibe-resume_private--/2026-09-10T03-18-37-229Z_01a08953-0fac-71db-9e96-15b75751084f/forks/2026-09-10T07-22-34-452Z_01a08a32-6854-71db-9e96-15d748221dd6.jsonl",
   "--home-z-vibe-sys_gal--/2026-08-25T23-47-40-396Z_01a03b52-8aec-79bb-aa70-4069fa52ca40.jsonl"
  ],
- "samples_total": 637,
- "samples_train": 510,
- "samples_val": 127,
- "val_share": 0.1994,
+ "samples_total": 291,
+ "samples_train": 228,
+ "samples_val": 63,
+ "val_share": 0.2165,
+ "samples_per_situation": {
+  "situations": 242,
+  "samples": 291,
+  "min": 1,
+  "max": 3,
+  "mean": 1.202,
+  "histogram": {
+   "1": 196,
+   "2": 43,
+   "3": 3
+  }
+ },
  "drops": {
   "截断": 3,
-  "重复 target": 95
+  "重复 target": 94,
+  "重复动作签名": 347
  },
  "assertions": {
   "phrases_checked": 175,
-  "prompts_checked": 637,
-  "target_heads_checked": 367
+  "prompts_checked": 291,
+  "target_heads_checked": 231
  },
  "inputs": {
   "evidence/slice-contrast/situations.jsonl": "b29bb7b4e3121c4177802b0111b3aad71d3f22756799124a57e3490cb3e285ae",
@@ -36,20 +49,20 @@
  },
  "outputs": {
   "data/sft.jsonl": {
-   "lines": 637,
-   "sha256": "dd1a0110c97cb859ea59a7acf92fdced384c59f193356d331b5719698dafdfb5"
+   "lines": 291,
+   "sha256": "bcc3ed85ee665f6fd885d0a4e20080c5c95eb924829c8195c35121f82a5d5c48"
   },
   "data/sft-train.jsonl": {
-   "lines": 510,
-   "sha256": "a51046a031316e35477a71dd783691414cda99e773c1db0b0dba2bace157193a"
+   "lines": 228,
+   "sha256": "539a4dca62c0520505423b7dd4e521d71fe255ae933aa87713d4a2434feceea7"
   },
   "data/sft-val.jsonl": {
-   "lines": 127,
-   "sha256": "031475c70fc8b03fa4e3aba5374974eae576f96253fdfae8714ca0307462e56e"
+   "lines": 63,
+   "sha256": "b5eab339b1af663610ea27c683aeedda9ab923edd700869cec91d6b689d6d8f2"
   },
   "evidence/sft/dropped.jsonl": {
-   "lines": 98,
-   "sha256": "6d78d7884cffb7a3f707e552e569445bd46625597739983ba84161fe3cfc8ad0"
+   "lines": 444,
+   "sha256": "d61628e0f4c2972314fcc90066c03cb6d0a204a68b1c11ecee885762c4a7b3b3"
   }
  }
 }
