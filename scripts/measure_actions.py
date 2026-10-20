@@ -509,12 +509,20 @@ def decomposition(rows):
 
     参照物非空时，没有可解析动作的回答永远命中不了，所以逐处境的
     mean 一致率 = P × A，P 是回答里有可解析动作的比例，A 是这些回答里吻合的比例。
-    于是 Δ = post_mean - base_mean 可以精确拆开（Kitagawa 分解）：
+    于是 Δ = post_mean - base_mean 可以精确拆开，但拆法不止一种，份额随约定变：
+
+    中点约定（Kitagawa，本页主口径）：
 
         Δ = (P_post - P_base)·Ā + (A_post - A_base)·P̄，Ā 与 P̄ 取两侧中点
 
-    两项相加等于 Δ，残差只应该是浮点误差。第一项是**格式项**（模型开始写工具行了），
-    第二项是**决策项**（写了之后选的动作对不对）。
+    以 base 为起点的两项加交互项：
+
+        Δ = ΔP·A_base + ΔA·P_base + ΔP·ΔA
+
+    两种拆法都精确等于 Δ（残差只应是浮点误差），第一种把交互项平分成两半，第二种把它单列。
+    中点约定下第一项是**格式项**（开始写工具行的比例变了多少带来的那一份），第二项是**决策项**
+    （写了之后选的动作对不对带来的那一份）。base 侧 P 与 A 都接近 0 时 ΔP·ΔA 几乎就是 Δ 本身，
+    所以只报中点的 62/38 会掩盖一件事：那份「提升」主要落在两项同时变的乘积项上，不是任何单侧。
     """
     base, post = answer_tally(rows, "base"), answer_tally(rows, "post")
     out = {
@@ -531,6 +539,11 @@ def decomposition(rows):
         "decision_part": None,
         "format_share": None,
         "residual": None,
+        "format_part_at_base": None,
+        "decision_part_at_base": None,
+        "interaction_part": None,
+        "interaction_share": None,
+        "at_base_residual": None,
     }
     if base["mean"] is None or post["mean"] is None:
         out["status"] = "undefined_one_side_missing"
@@ -544,6 +557,11 @@ def decomposition(rows):
     midpoint_emits = (base["emits_share"] + post["emits_share"]) / 2
     format_part = (post["emits_share"] - base["emits_share"]) * midpoint_agreement
     decision_part = (post["agreement_given_emit"] - base["agreement_given_emit"]) * midpoint_emits
+    delta_emits = post["emits_share"] - base["emits_share"]
+    delta_agreement = post["agreement_given_emit"] - base["agreement_given_emit"]
+    format_at_base = delta_emits * base["agreement_given_emit"]
+    decision_at_base = delta_agreement * base["emits_share"]
+    interaction = delta_emits * delta_agreement
     out.update(
         {
             "delta": delta,
@@ -551,6 +569,11 @@ def decomposition(rows):
             "decision_part": decision_part,
             "residual": delta - format_part - decision_part,
             "format_share": format_part / delta if delta else None,
+            "format_part_at_base": format_at_base,
+            "decision_part_at_base": decision_at_base,
+            "interaction_part": interaction,
+            "interaction_share": interaction / delta if delta else None,
+            "at_base_residual": delta - format_at_base - decision_at_base - interaction,
         }
     )
     return out
@@ -564,6 +587,7 @@ def bootstrap_decomposition(rows, seed):
     rng = random.Random(seed)
     n = len(rows)
     delta_samples, format_samples, decision_samples = [], [], []
+    format_at_base_samples, decision_at_base_samples, interaction_samples, interaction_share_samples = [], [], [], []
     undefined = 0
     for _ in range(BOOTSTRAP):
         parts = decomposition([rows[rng.randrange(n)] for _ in range(n)])
@@ -573,10 +597,19 @@ def bootstrap_decomposition(rows, seed):
         delta_samples.append(parts["delta"])
         format_samples.append(parts["format_part"])
         decision_samples.append(parts["decision_part"])
+        format_at_base_samples.append(parts["format_part_at_base"])
+        decision_at_base_samples.append(parts["decision_part_at_base"])
+        interaction_samples.append(parts["interaction_part"])
+        if parts["interaction_share"] is not None:
+            interaction_share_samples.append(parts["interaction_share"])
     return {
         "delta_ci": percentile_interval(delta_samples),
         "format_part_ci": percentile_interval(format_samples),
         "decision_part_ci": percentile_interval(decision_samples),
+        "format_part_at_base_ci": percentile_interval(format_at_base_samples),
+        "decision_part_at_base_ci": percentile_interval(decision_at_base_samples),
+        "interaction_part_ci": percentile_interval(interaction_samples),
+        "interaction_share_ci": percentile_interval(interaction_share_samples),
         "replicates_undefined": undefined,
     }
 
@@ -963,9 +996,16 @@ def check_decomposition():
             ("format_part", parts["format_part"], want_format),
             ("decision_part", parts["decision_part"], want_decision),
             ("residual", parts["residual"], 0.0),
+            ("format_part_at_base", parts["format_part_at_base"], (p_post - p_base) * a_base),
+            ("decision_part_at_base", parts["decision_part_at_base"], (a_post - a_base) * p_base),
+            ("interaction_part", parts["interaction_part"], (p_post - p_base) * (a_post - a_base)),
+            ("at_base_residual", parts["at_base_residual"], 0.0),
         ):
             if got is None or abs(got - want) > 1e-9:
                 problems.append(f"{label} = {got}，期望 {want}")
+        # 两种拆法的关系：中点约定把交互项平分成两半，所以中点两项之和 − 交互项一半 = Δ
+        if abs(parts["interaction_part"] / 2 - (want_format - (p_post - p_base) * a_base)) > 1e-9:
+            problems.append("中点约定没有把交互项平分成两半，两个视角不可比较")
         dominant = parts["format_part"] if case["expect_dominant"] == "format_part" else parts["decision_part"]
         other = parts["decision_part"] if case["expect_dominant"] == "format_part" else parts["format_part"]
         if abs(other) > 1e-9 or abs(dominant - want_delta) > 1e-9:
@@ -988,6 +1028,11 @@ def check_decomposition():
                 "decision_part": parts["decision_part"],
                 "format_share": parts["format_share"],
                 "residual": parts["residual"],
+                "format_part_at_base": parts["format_part_at_base"],
+                "decision_part_at_base": parts["decision_part_at_base"],
+                "interaction_part": parts["interaction_part"],
+                "interaction_share": parts["interaction_share"],
+                "at_base_residual": parts["at_base_residual"],
                 "expected_format_part": want_format,
                 "expected_decision_part": want_decision,
                 "expect_dominant": case["expect_dominant"],

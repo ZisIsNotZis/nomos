@@ -1,0 +1,100 @@
+{
+  "what": "匹配锚点：用 base/post 的解码参数重抽 DeepSeek 两侧，把不带法刻度放回同一把尺子",
+  "situations": 148,
+  "draws_per_arm": 3,
+  "calls": 888,
+  "spend_cny": 0.7115,
+  "prompt": "excerpt + slice-contrast 的续写指令，与 base/post 同一串字节（逐条 sha256 核对）",
+  "action_signature": {
+    "situations": 148,
+    "old_same_sample": 0.35022522522522526,
+    "old_same_sample_ci": [
+      0.28153153153153154,
+      0.42342342342342343
+    ],
+    "matched": 0.28153153153153154,
+    "matched_ci": [
+      0.22072072072072071,
+      0.34009009009009006
+    ],
+    "delta_matched_minus_old": -0.06869369369369371,
+    "delta_ci": [
+      -0.12387387387387387,
+      -0.014639639639639653
+    ],
+    "what": "口径一（动作签名一致率）的不带法刻度：与带法多数签名吻合的抽样比例",
+    "old_protocol": {
+      "temperature": 0.0,
+      "max_tokens": 600,
+      "draws": "3–4",
+      "law_in": "system"
+    },
+    "matched_protocol": {
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "max_tokens": 320,
+      "draws": 3,
+      "law_in": "system"
+    },
+    "law_matched_self_agreement": 0.3310810810810811,
+    "law_matched_self_agreement_ci": [
+      0.2725225225225225,
+      0.3918918918918919
+    ],
+    "law_self_agreement_old_protocol": 0.8406531531531531,
+    "law_self_agreement_old_protocol_meaning": "旧批次同协议下的带法侧自洽度：每处境多数签名的票数 / 带法抽样数，即「再抽一条带法回答、还是同一个签名」的比例；参照物的 1.0 是定义，这个数才是旧协议下带法侧的量",
+    "matched_law_minus_matched_bare": 0.04954954954954954,
+    "matched_law_minus_matched_bare_ci": [
+      -0.006756756756756766,
+      0.1058558558558558
+    ],
+    "matched_law_minus_matched_bare_meaning": "同一批抽样、同一套匹配解码下，带法侧减不带法侧；这才是这个框架里的「法的作用」，它在匹配解码下很小，所以拿不带法刻度去量适配器补了多少法条效果，尺度本身就很窄",
+    "base": 0.0022522522522522522,
+    "post": 0.09684684684684684,
+    "old_on_148_situations_by_old_protocol": 0.35022522522522526
+  },
+  "text_signature": {
+    "situations": 99,
+    "old_same_sample": 0.617003367003367,
+    "old_same_sample_ci": [
+      0.5387205387205387,
+      0.696969696969697
+    ],
+    "matched": 0.5757575757575758,
+    "matched_ci": [
+      0.5050505050505051,
+      0.6430976430976431
+    ],
+    "delta_matched_minus_old": -0.0412457912457912,
+    "delta_ci": [
+      -0.12121212121212122,
+      0.037037037037037035
+    ],
+    "what": "口径二（文字层决策签名一致率）的不带法刻度",
+    "situations_note": "匹配锚点只覆盖口径一的 148 条可用处境，与本口径可用的 169 条相交 99 条；这里的旧抽样读数也重算在这 99 条上，所以两边同一样本，可与原 169 条上的读数并存但不相等",
+    "old_on_169_situations_by_old_protocol": 0.5330374753451677,
+    "old_on_169_situations_by_old_protocol_situations": 169,
+    "law_matched_self_agreement": 0.5656565656565656,
+    "law_matched_self_agreement_ci": [
+      0.49831649831649827,
+      0.632996632996633
+    ],
+    "matched_law_minus_matched_bare": -0.010101010101010166,
+    "matched_law_minus_matched_bare_ci": [
+      -0.08417508417508414,
+      0.06397306397306397
+    ],
+    "base": 0.3412228796844181,
+    "post": 0.2938856015779093
+  },
+  "action_comparable_bare": "缺：旧抽样没有在动作可比子集上算不带法读数，匹配批次只有这 148 条处境上的整体读数，不补一个子集值",
+  "X": {
+    "value": 0.0948081264108352,
+    "ci": [
+      0.056433408577878104,
+      0.13318284424379231
+    ],
+    "status": "defined",
+    "unchanged_because": "X = (post_mean - base_mean) / (1 - base_mean) 只用 base 与 post，不带法刻度不进入 X；匹配锚点改的是刻度，base/post 与参照物都没动"
+  }
+}

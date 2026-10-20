@@ -292,6 +292,11 @@
   "decision_part": 0.03587675999352645,
   "format_share": 0.6207313943541488,
   "residual": 6.938893903907228e-18,
+  "format_part_at_base": 0.027837837837837838,
+  "decision_part_at_base": 0.004996763230296164,
+  "interaction_part": 0.061759993526460576,
+  "interaction_share": 0.652891360136869,
+  "at_base_residual": 0.0,
   "delta_ci": [
    0.058558558558558564,
    0.13513513513513514
@@ -303,6 +308,22 @@
   "decision_part_ci": [
    -0.000715894465894469,
    0.06579593612303893
+  ],
+  "format_part_at_base_ci": [
+   0.0,
+   0.0984984984984985
+  ],
+  "decision_part_at_base_ci": [
+   -7.972574344255742e-05,
+   0.009944034944034943
+  ],
+  "interaction_part_ci": [
+   -0.0012709137709137764,
+   0.11373873873873871
+  ],
+  "interaction_share_ci": [
+   -0.018036241045090558,
+   0.9504373177842566
   ],
   "replicates_undefined": 0
  },

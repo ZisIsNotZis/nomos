@@ -1,0 +1,46 @@
+{
+  "what": "小批验证：匹配锚点的解码参数是否确实生效，再决定跑不跑全量",
+  "situations": 20,
+  "arms": [
+    "law",
+    "bare"
+  ],
+  "draws": 3,
+  "calls": 120,
+  "params_sent": {
+    "model": "deepseek-flash",
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "max_tokens": 320,
+    "thinking": "disabled"
+  },
+  "spend_cny": 0.1015,
+  "usage_reported": 120,
+  "completion_tokens": {
+    "min": 10,
+    "max": 291,
+    "mean": 115.1
+  },
+  "finish_reason": {
+    "stop": 120
+  },
+  "prompt_tokens": {
+    "min": 96,
+    "max": 20333
+  },
+  "prompt_matches_base_post": 120,
+  "draw_diversity": {
+    "matched": "39/40",
+    "old_temp_0": "33/40"
+  },
+  "checks": {
+    "max_tokens_respected": true,
+    "usage_on_every_call": true,
+    "finish_reason_on_every_call": true,
+    "prompt_identical_to_base_post": true,
+    "bare_has_no_system": true,
+    "law_has_system": true
+  },
+  "note": "API 不回显 temperature 与 top_p，所以这两项只能证明发送成功（无报错）并且在请求体里；max_tokens 有可观测的上界证据（completion_tokens ≤ 320）",
+  "passed": true
+}
