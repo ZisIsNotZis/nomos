@@ -1,0 +1,75 @@
+{
+ "situations_total": 242,
+ "situations_paired": 0,
+ "situations_reference_usable": 148,
+ "situations_base_complete": 169,
+ "situations_base_partial": 0,
+ "situations_post_complete": 0,
+ "situations_post_partial": 0,
+ "draws_per_model": 3,
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.95,
+  "max_new_tokens": 320
+ },
+ "models": {
+  "base": "/home/z/hf/hub/models--Qwen--Qwen3.5-2B/snapshots/15852e8c16360a2fea060d615a32b45270f8a8fc",
+  "post": "/home/z/vibe/nomos/.tmp/sft/adapter-narrow"
+ },
+ "reference": {
+  "source": "evidence/densify/answers.jsonl 的 law 条件",
+  "how": "每处境 law 条件里出现次数最多的动作签名，平局取先出现的那条",
+  "usable_when": "票数 ≥ 2 且签名非空",
+  "votes": {
+   "1": 40,
+   "2": 73,
+   "3": 124,
+   "4": 5
+  }
+ },
+ "reference_selection": {
+  "nonempty_and_stable": 148,
+  "empty_reference": 54,
+  "unstable_reference": 40
+ },
+ "base_mean": 0.0,
+ "base_ci": [
+  0.0,
+  0.0
+ ],
+ "post_mean": null,
+ "post_ci": null,
+ "bare_deepseek_mean": 0.35022522522522526,
+ "bare_deepseek_ci": [
+  0.2849099099099099,
+  0.4189189189189189
+ ],
+ "law_deepseek": 1.0,
+ "X_definition": "X = (post_mean - base_mean) / (1 - base_mean)，两侧齐全的处境配对，自举单位是处境",
+ "X": null,
+ "X_ci": null,
+ "X_status": "undefined_adapter_side_missing",
+ "X_base_paired": null,
+ "X_post_paired": null,
+ "X_headroom": null,
+ "X_near_ceiling": null,
+ "X_replicates_undefined": null,
+ "base_paired_ci": null,
+ "post_paired_ci": null,
+ "countable_control": {
+  "what": "回答里有没有可解析动作（签名非空），不经评委、不看参照物",
+  "base_emits_action": 0.057239057239057235,
+  "base_emits_action_ci": [
+   0.03367003367003367,
+   0.08417508417508417
+  ],
+  "post_emits_action": null,
+  "post_emits_action_ci": null
+ },
+ "status": "preliminary",
+ "answers_rows": 507,
+ "answer_duplicates_dropped": 0,
+ "stored_signature_mismatches": 0,
+ "truncated_answers": 16,
+ "note": "预备：adapter（post）侧还没有抽样，X 不可算；base 侧只覆盖已落盘的处境。不许当结论引用。"
+}

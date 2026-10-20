@@ -1,0 +1,117 @@
+{
+ "status": "selftest",
+ "what": "用假回答走 analyse() 真路径（动作解析 → 每处境一致率 → 两侧均值 → X → 按处境配对自举），检查 X 与区间在四种边界上给出预期值",
+ "expectations": {
+  "base=0.2 adapter=0.6": "X = 0.5",
+  "base=0.9 adapter=0.95": "X = 0.5",
+  "base=0 adapter=0": "X = 0（分母 1 - base = 1，有定义）",
+  "base=1 adapter=1": "X 无定义（分母 0），所有自举重抽样本都无定义"
+ },
+ "bootstrap_replicates": 2000,
+ "bootstrap_unit": "处境（配对重抽，每次重抽同一批处境的两侧）",
+ "cases": [
+  {
+   "name": "base=0.2 adapter=0.6",
+   "situations": 40,
+   "draws_per_situation": 3,
+   "base_mean": 0.2,
+   "base_ci": [
+    0.1,
+    0.325
+   ],
+   "post_mean": 0.6,
+   "post_ci": [
+    0.45,
+    0.75
+   ],
+   "X": 0.49999999999999994,
+   "X_ci": [
+    0.3055555555555556,
+    0.6774193548387097
+   ],
+   "X_status": "defined",
+   "X_replicates_undefined": 0,
+   "X_situation_defined": 32,
+   "expected_X": 0.5,
+   "passed": true,
+   "problems": []
+  },
+  {
+   "name": "base=0.9 adapter=0.95",
+   "situations": 40,
+   "draws_per_situation": 3,
+   "base_mean": 0.9,
+   "base_ci": [
+    0.8,
+    0.975
+   ],
+   "post_mean": 0.95,
+   "post_ci": [
+    0.875,
+    1.0
+   ],
+   "X": 0.49999999999999944,
+   "X_ci": [
+    0.0,
+    1.0
+   ],
+   "X_status": "defined",
+   "X_replicates_undefined": 29,
+   "X_situation_defined": 4,
+   "expected_X": 0.5,
+   "passed": true,
+   "problems": []
+  },
+  {
+   "name": "base=0 adapter=0",
+   "situations": 40,
+   "draws_per_situation": 3,
+   "base_mean": 0.0,
+   "base_ci": [
+    0.0,
+    0.0
+   ],
+   "post_mean": 0.0,
+   "post_ci": [
+    0.0,
+    0.0
+   ],
+   "X": 0.0,
+   "X_ci": [
+    0.0,
+    0.0
+   ],
+   "X_status": "defined",
+   "X_replicates_undefined": 0,
+   "X_situation_defined": 40,
+   "expected_X": 0.0,
+   "passed": true,
+   "problems": []
+  },
+  {
+   "name": "base=1 adapter=1",
+   "situations": 40,
+   "draws_per_situation": 3,
+   "base_mean": 1.0,
+   "base_ci": [
+    1.0,
+    1.0
+   ],
+   "post_mean": 1.0,
+   "post_ci": [
+    1.0,
+    1.0
+   ],
+   "X": null,
+   "X_ci": null,
+   "X_status": "undefined_no_headroom",
+   "X_replicates_undefined": 2000,
+   "X_situation_defined": 0,
+   "expected_X": null,
+   "passed": true,
+   "problems": []
+  }
+ ],
+ "all_passed": true,
+ "does_not_cover": "动作解析器的判定质量、prompt 泄漏、模型抽样本身；自检只证明 X 与区间的算术。"
+}
