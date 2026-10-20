@@ -14,31 +14,39 @@
   "--home-z-vibe-resume_private--/2026-09-10T03-18-37-229Z_01a08953-0fac-71db-9e96-15b75751084f/forks/2026-09-10T07-22-34-452Z_01a08a32-6854-71db-9e96-15d748221dd6.jsonl",
   "--home-z-vibe-sys_gal--/2026-08-25T23-47-40-396Z_01a03b52-8aec-79bb-aa70-4069fa52ca40.jsonl"
  ],
- "samples_total": 291,
- "samples_train": 228,
- "samples_val": 63,
- "val_share": 0.2165,
- "samples_per_situation": {
+ "samples_total": 394,
+ "samples_train": 313,
+ "samples_val": 81,
+ "val_share": 0.2056,
+ "decisions_per_situation": {
   "situations": 242,
-  "samples": 291,
+  "samples": 394,
   "min": 1,
   "max": 3,
-  "mean": 1.202,
+  "mean": 1.628,
   "histogram": {
-   "1": 196,
-   "2": 43,
-   "3": 3
+   "1": 147,
+   "2": 38,
+   "3": 57
+  }
+ },
+ "dedupe": {
+  "key": "动作签名非空时 (situation_id, 动作签名)；为空时 (situation_id, 文字层决策四位)（位序 提问/停住/断言/产物），四位相同且 target 词集 Jaccard ≥ 0.9 才合并，否则各留一条",
+  "text_layer": {
+   "kept_by_action_key": 69,
+   "kept_by_text_decision": 172,
+   "rescued": 103
   }
  },
  "drops": {
   "截断": 3,
   "重复 target": 94,
-  "重复动作签名": 347
+  "重复动作签名": 244
  },
  "assertions": {
   "phrases_checked": 175,
-  "prompts_checked": 291,
-  "target_heads_checked": 231
+  "prompts_checked": 394,
+  "target_heads_checked": 288
  },
  "inputs": {
   "evidence/slice-contrast/situations.jsonl": "b29bb7b4e3121c4177802b0111b3aad71d3f22756799124a57e3490cb3e285ae",
@@ -49,20 +57,20 @@
  },
  "outputs": {
   "data/sft.jsonl": {
-   "lines": 291,
-   "sha256": "bcc3ed85ee665f6fd885d0a4e20080c5c95eb924829c8195c35121f82a5d5c48"
+   "lines": 394,
+   "sha256": "fdc286c13ae00f5002a2597433db3ddb9da72edc25fb2970b432abf22baefbd6"
   },
   "data/sft-train.jsonl": {
-   "lines": 228,
-   "sha256": "539a4dca62c0520505423b7dd4e521d71fe255ae933aa87713d4a2434feceea7"
+   "lines": 313,
+   "sha256": "cdb6830c62c599833076ddf3e24b67f41d90e30647829a3c0dcc189c0a9c9c30"
   },
   "data/sft-val.jsonl": {
-   "lines": 63,
-   "sha256": "b5eab339b1af663610ea27c683aeedda9ab923edd700869cec91d6b689d6d8f2"
+   "lines": 81,
+   "sha256": "5a983937bfceb098ef1bdb089593367824a20a489138b07aa30d36ff207025f8"
   },
   "evidence/sft/dropped.jsonl": {
-   "lines": 444,
-   "sha256": "d61628e0f4c2972314fcc90066c03cb6d0a204a68b1c11ecee885762c4a7b3b3"
+   "lines": 341,
+   "sha256": "93f7435b240ac54b06a51def8a04d13886cac6ca786308e92af1ecf3799a48c8"
   }
  }
 }
