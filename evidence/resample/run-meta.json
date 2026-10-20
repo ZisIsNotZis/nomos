@@ -1,0 +1,15 @@
+{
+ "model": "deepseek-flash",
+ "temperature": 0.0,
+ "max_tokens": 600,
+ "thinking": "disabled",
+ "arms": {
+  "law": "整部 AGENTS.md 作 system 消息",
+  "bare": "无 system 消息"
+ },
+ "law_commit": "5eafb2e",
+ "law_sha256": "325f8b3e2d868f91fb43c24dd088ae6e735386c6d5e2aacfc7496d6ff2726ab6",
+ "request_gate": "每次调用的 request_sha256 必须等于 evidence/slice-contrast/answers.jsonl 记录的原批次指纹",
+ "pairs": 174,
+ "calls": 348
+}

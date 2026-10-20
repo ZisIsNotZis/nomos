@@ -1,0 +1,154 @@
+{
+ "pairs": 174,
+ "answers": 348,
+ "spend_cny": 0.6044277486183299,
+ "signature_rule": "动作 = (工具, 程序:子命令, 目标路径)；占位符 <PATH>/<REPO>/<HEX> 归一为 <place>；签名 = 按顺序的动作列表；签名相同记一致",
+ "comparisons": {
+  "law_vs_bare": {
+   "n": 174,
+   "agree": 63,
+   "rate": 0.3620689655172414,
+   "ci95": [
+    0.29310344827586204,
+    0.4367816091954023
+   ]
+  },
+  "law_vs_law": {
+   "n": 174,
+   "agree": 86,
+   "rate": 0.4942528735632184,
+   "ci95": [
+    0.41954022988505746,
+    0.5689655172413793
+   ]
+  },
+  "bare_vs_bare": {
+   "n": 174,
+   "agree": 101,
+   "rate": 0.5804597701149425,
+   "ci95": [
+    0.5057471264367817,
+    0.6551724137931034
+   ]
+  },
+  "same_condition_pooled": {
+   "n": 174,
+   "agree": 121,
+   "rate": 0.6954022988505747,
+   "ci95": [
+    0.6264367816091954,
+    0.764367816091954
+   ]
+  }
+ },
+ "differences": {
+  "law_vs_law": {
+   "difference": -0.13218390804597702,
+   "ci95": [
+    -0.20689655172413793,
+    -0.05747126436781609
+   ]
+  },
+  "bare_vs_bare": {
+   "difference": -0.21839080459770116,
+   "ci95": [
+    -0.29310344827586204,
+    -0.14367816091954022
+   ]
+  },
+  "same_condition_pooled": {
+   "difference": -0.3333333333333333,
+   "ci95": [
+    -0.40804597701149425,
+    -0.25862068965517243
+   ],
+   "expected_differing_pairs_under_no_effect": 121.0,
+   "observed_differing_pairs": 111
+  }
+ },
+ "verdict": {
+  "rule": "法有作用 = 跨条件不一致率高于两个同条件重采样不一致率：差值的 95% 自助区间下界 > 0，置换检验 p < 0.05，且两个同条件差值的方向都为正",
+  "alpha": 0.05,
+  "law_has_effect": false,
+  "difference_ci95_lower": -0.40804597701149425,
+  "permutation_p": 9.999000099990002e-05
+ },
+ "permutation": {
+  "observed": 0.17528735632183912,
+  "p": 9.999000099990002e-05,
+  "null_mean": 0.00010804597701149394,
+  "null_sd": 0.031156600709772456,
+  "null_q025": -0.06034482758620696,
+  "null_q975": 0.06034482758620696
+ },
+ "coarse": {
+  "stored_law_vs_stored_bare": {
+   "n": 174,
+   "agree": 137,
+   "rate": 0.7873563218390804,
+   "ci95": [
+    0.7241379310344828,
+    0.8448275862068966
+   ]
+  },
+  "stored_law_vs_new_law": {
+   "n": 174,
+   "agree": 147,
+   "rate": 0.8448275862068966,
+   "ci95": [
+    0.7873563218390804,
+    0.896551724137931
+   ]
+  },
+  "stored_bare_vs_new_bare": {
+   "n": 174,
+   "agree": 154,
+   "rate": 0.8850574712643678,
+   "ci95": [
+    0.8333333333333334,
+    0.9310344827586207
+   ]
+  },
+  "same_condition_pooled": {
+   "n": 174,
+   "agree": 168,
+   "rate": 0.9655172413793104,
+   "ci95": [
+    0.9367816091954023,
+    0.9885057471264368
+   ]
+  }
+ },
+ "coarse_permutation": {
+  "observed": 0.07758620689655171,
+  "p": 0.0012998700129987,
+  "null_mean": 0.0002143678160919557,
+  "null_sd": 0.025183812886320888,
+  "null_q025": -0.048850574712643674,
+  "null_q975": 0.048850574712643674
+ },
+ "joint": {
+  "stored_differ_resample_law_reproduces_stored_law": 35,
+  "stored_differ_resample_bare_reproduces_stored_bare": 44,
+  "stored_differ_count": 111,
+  "resample_reproduces_its_own_side_share": 0.35585585585585583
+ },
+ "stored_law_answer_without_actions": 51,
+ "stored_both_answers_without_actions": 38,
+ "inputs": {
+  "pairs_sha256": "d3dfff3125cd7fbad0ea767e4e8f52408dd0f0a663ffe93b6d7ffc534770f08f",
+  "source_answers_sha256": "635c73f00b4680682ed07d6409fde672b1b5f5feff689cee90cb3114f2a3d400",
+  "law_sha256": "325f8b3e2d868f91fb43c24dd088ae6e735386c6d5e2aacfc7496d6ff2726ab6",
+  "law_commit": "5eafb2e",
+  "instruction_sha256": "f92e401df8d5827f81ea60a761d8aec0eaf95e6f8ba95e91e067a7dff46179cd"
+ },
+ "constants": {
+  "bootstrap": 10000,
+  "seed": 20261103,
+  "permutation": 10000,
+  "permutation_seed": 20261104,
+  "temperature": 0.0,
+  "model": "deepseek-flash",
+  "max_tokens": 600
+ }
+}
