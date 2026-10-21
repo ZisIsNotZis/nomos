@@ -47,9 +47,10 @@ UV_CACHE_DIR=/tmp/uvcold /usr/bin/time -f "WALL=%e" /home/z/.local/bin/uv run --
 | warm `uv` cache, one run while another process was busy on the host | 9.53 s | same |
 | warm `uv` cache, host under unrelated load (load average ≈20) | 13.03 s | same |
 
-The 9.53 s row comes from a copy of `47a436f`; the changes between that revision and
-`cf1a466` are documentation plus one read-only script, and the artefact is identical. A
-cold run on a copy of the finished tree measured 14.16 s, again with the same artefact.
+The two rows after the `UV_CACHE_DIR` ones come from later revisions of this tree
+(`47a436f` and the finished tree): the changes between those revisions and `cf1a466` are
+documentation plus one read-only script, and the artefact is identical. A cold run on a
+copy of the finished tree measured 14.16 s, again with the same artefact.
 
 Quote **7.5–13 s** for a warm run — the upper end is what unrelated work on the same host costs — and **14–22 s** for a first run on an empty `uv` cache:
 14.41 s here, and the independent review of `5ba9a2e` (2026-10-21, its own fresh copy)
