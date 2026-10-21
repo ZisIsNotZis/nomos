@@ -20,8 +20,8 @@ portfolio 的 `go` 包：这一格不再欠文档债，下一个 workset 可以�
 改后（`2cda241`）：那封信里每条事实都已在别处落地（M4 的六条头行数字、三处 review 修正、Q7 的问句、WP-2/WP-3 的状态），落地后删信；约定改成 `inbox/` 的四头行（`kind` / `from` / `spend` / `id`，不写 `to`），`report/measurements.md` 里那处旧路径同改。跟着修掉包本体：`run_m2b_ifeval_full.sh` 现在写 `inbox/`（`3790a86`、`5b78053`，后者补上我第一遍漏掉的那处 `mkdir`）。现在 `git ls-tree -r --name-only HEAD mail/` 为空，`git grep -n "mail/" -- ':!evidence/benchmark/logs-m2b' -- ':!inbox'` 零命中；运行日志 `logs-m2b/` 里那个名字是那次的记录，不改。
 
 **缺陷 3（耗时的上界对空缓存读者不成立）**
-改前（`cf1a466`）：`实测 6.5–11 s（含 uv 启动开销）`，写在 `AGENTS.md` 两处、`report/sft-benchmark.md` 两处、`docs/model-card.md` 一处。在树的 `git archive` 副本里跑那条文档命令：热缓存 8.27 / 7.88 / 7.49 / 9.53 / 9.25 s，空 `UV_CACHE_DIR` 首次 14.41 / 14.16 s，复核者自己的空环境首次 21.72 s——冷启动两处都超过 11 s。
-改后（`4e2df7c`、`651ef6f`、`019028d`）：五处一律写 `热环境 7.5–9.5 s、空 uv 缓存首次 14–22 s`；每条读数、命令、条件与每次运行的产物 sha256 落在 `evidence/benchmark/official/RUN.md` 的「Timing」一节，每行钉住它自己所在的 revision。每一次运行（含复核者的五次）产物都是 `01d94585…34c145`，与提交件逐字节相同。
+改前（`cf1a466`）：`实测 6.5–11 s（含 uv 启动开销）`，写在 `AGENTS.md` 两处、`report/sft-benchmark.md` 两处、`docs/model-card.md` 一处。在树的 `git archive` 副本里跑那条文档命令：热缓存 7.49–13.03 s（13.03 s 那次本机被别的作业压到 load average ≈20），空 `UV_CACHE_DIR` 首次 14.41 / 14.16 s，复核者自己的空环境首次 21.72 s——冷启动两处都超过 11 s。这一段我改过两次上界（8.3 → 9.5 → 13），每次都是新的实测把它推上去的；所以现在只在 RUN.md 那张表里给逐次读数，散文里给一个覆盖全部实测的区间。
+改后（`4e2df7c`、`651ef6f`、`019028d`）：五处一律写 `热环境 7.5–13 s（随机器忙闲）、空 uv 缓存首次 14–22 s`；每条读数、命令、条件与每次运行的产物 sha256 落在 `evidence/benchmark/official/RUN.md` 的「Timing」一节，每行钉住它自己所在的 revision。每一次运行（含复核者的五次）产物都是 `01d94585…34c145`，与提交件逐字节相同。
 
 **Q7**
 按你的答复：那个数没有来源，记录不再复述它。现在写的是实测——40 个带 `length_constraints:number_words` 的题里 adapter 在这一条指令上仍通过 **19** 个（42 槽里 21 个为真）、base **24** 个（26/42 槽），整题全对 adapter **12** / base **18**。命令 `python3 scripts/number_words_reading.py`（新增、只读）一次打出这四个数：它读 `evidence/benchmark/{base,adapter}-ifeval.json` 的 `output` 与 `data/bench/ifeval.jsonl` 的 `instruction_id_list`/`kwargs`，逐槽重算，不信 `per_instruction` 的同名覆盖。实测读数只留这一个家，「决定了的」那一行指过来。

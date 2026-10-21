@@ -100,7 +100,7 @@ EOF
   --with immutabledict --with absl-py python3 evidence/benchmark/official/grade_official.py
 ```
 
-实测 **热环境 7.5–9.5 s、空 `uv` 缓存首次 14–22 s**（纯 CPU，含 `uv` 解析依赖的启动开销；落盘那一轮 6.62 s 是热缓存），产物 `evidence/benchmark/official/official-ifeval.json`；三次连续运行逐字节相同，重跑一次与落盘件逐字段相同（唯一会变的字段是 `vendored.local_path`，见 `evidence/benchmark/official/RUN.md`）。冷/热两种条件的读数、命令与主机条件在同一文件的「Timing」一节。
+实测 **热环境 7.5–13 s（随机器忙闲）、空 `uv` 缓存首次 14–22 s**（纯 CPU，含 `uv` 解析依赖的启动开销；落盘那一轮 6.62 s 是热缓存），产物 `evidence/benchmark/official/official-ifeval.json`；三次连续运行逐字节相同，重跑一次与落盘件逐字段相同（唯一会变的字段是 `vendored.local_path`，见 `evidence/benchmark/official/RUN.md`）。冷/热两种条件的读数、命令与主机条件在同一文件的「Timing」一节。
 
 | 尺子 | base | adapter | 差值（adapter−base） | 配对 95% | 掉/涨 | McNemar p |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -182,7 +182,7 @@ n=20 的四格是同一批冻结样本的前 20 条（同一 seed、同一判分
 | `evidence/benchmark/n20/` | 同一样本前 20 条的四格与两份配对结果（上一版的读数，保留为前一次估计） |
 | `evidence/benchmark/run_m2_n100.sh` / `run_m2b_ifeval_full.sh` | 两轮的包本体（含契约与起飞命令）；后者第一步把 n=100 产物拷进 `n100/` |
 | `evidence/benchmark/analyse_paired.py` | 重算上表每个数字；四格任一缺失即退出码 1。配对自举复用 `scripts/resample_actions.py` 的那一份实现，树里不存第二份 |
-| `evidence/benchmark/official/` | 参考实现的重算：`official-ifeval.json`（官方 strict/lax 与本仓库尺子三行、区间、p、逐检查器分歧表、掉/涨算术、确定性记录）、`grade_official.py`、`dump_disagreements.py`、`HANDCHECK.md`（11 条分歧逐条人读）、`VENDOR.md`、`vendor/instruction_following_eval/`（六个文件逐字节）；一次运行热环境 7.5–9.5 s、空 `uv` 缓存首次 14–22 s 纯 CPU（含 `uv` 启动），重跑逐字段相同 |
+| `evidence/benchmark/official/` | 参考实现的重算：`official-ifeval.json`（官方 strict/lax 与本仓库尺子三行、区间、p、逐检查器分歧表、掉/涨算术、确定性记录）、`grade_official.py`、`dump_disagreements.py`、`HANDCHECK.md`（11 条分歧逐条人读）、`VENDOR.md`、`vendor/instruction_following_eval/`（六个文件逐字节）；一次运行热环境 7.5–13 s（随机器忙闲）、空 `uv` 缓存首次 14–22 s 纯 CPU（含 `uv` 启动），重跑逐字段相同 |
 
 五次运行（n=20/n=100/M3）的 `unscorable` 都是 0：n=295 那一轮 590 份记录 + n=100 那轮 400 份全部吐出了可判分的回答，没有一条因为抽不出数或空回答被排除；`accuracy` 的分母是条数，不是可判分数。
 
