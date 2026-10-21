@@ -12,7 +12,7 @@ portfolio 的 `go` 包：这一格不再欠文档债，下一个 workset 可以�
 ## 证据：每处缺陷的复现，改前与改后
 
 **缺陷 1（`number_paragraphs` 单向计数）**
-改前（`cf1a466`）：`grep -n number_paragraphs AGENTS.md` 同时给出 23 行的 `30 / 40` 与 56 行的 `33 / 40`；23 行那句里各族的数只加得出 51，而同一句写着 56。
+改前（`cf1a466`）：`grep -n number_paragraphs AGENTS.md` 在同一个文件里给出两个互相矛盾的计数（M4 里程碑那一行是单向的那一个，`决定了的` 那一行是双向的）；里程碑那一行里各族的数只加得出 51，而同一句写着 56。
 改后（`d6defd3`）：23 行写 `33 / 40 槽（30 槽我们判不过、3 槽我们判过）`；同一句里 33+7+6+7+1 再加 startend、combination 各 1 = 56，与 `evidence/benchmark/official/official-ifeval.json` 的 `per_checker_disagreement` 逐族相加（33/7/6/4+3/1/1/1）一致。
 
 **缺陷 2（入口说收信目录不存在，而树里有信）**
