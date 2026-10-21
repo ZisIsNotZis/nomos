@@ -62,7 +62,7 @@
 
 **依赖**：三点测量与 benchmark。
 
-**状态**：完成，未外传。[模型卡](../model-card.md)、[数据卡](../data-card.md)、[preprint 草稿](../paper/draft.md)、README 的「一条命令」`python3 scripts/measure_actions.py --analyse` 自跑过（本机 3.1 秒、干净 clone 3.2 秒，重算出的 `summary.json` 逐字节相同，只有 `models.*` 的绝对路径随 checkout 变）；`artifacts.tsv` 三条（DPO r16、SFT 窄版、SFT 宽版）的 sha256 校验通过，durable location 写明没有第二份、只留重生成命令。Zenodo / Hugging Face / GitHub release 上传都需要用户授权，一条都没做。
+**状态**：完成，未外传。[模型卡](../model-card.md)、[数据卡](../data-card.md)、[preprint 草稿](../paper/draft.md)、README 的「一条命令」自跑过并计时，读数就是下面这一条：命令 `python3 scripts/measure_actions.py --analyse`，环境 Python 3.12.3、12 核、纯 CPU、不联网、只用标准库，修订 `9048e62`；本机工作树两次 **3.28 s / 3.33 s**，全新 `git clone` 到 `/tmp` 后两次 **3.19 s / 3.33 s**（`/usr/bin/time -f '%e'` 计时，含解释器启动）；工作树每次跑完 `evidence/measure/summary.json` 的 sha256 仍是 `0e10e6f4…`、`git status --short` 空，clone 里同一命令只改 `models.*` 的绝对路径，所以 README 写「约 3.3 秒」并引用本条；`artifacts.tsv` 三条（DPO r16、SFT 窄版、SFT 宽版）的 sha256 校验通过，durable location 写明没有第二份、只留重生成命令。Zenodo / Hugging Face / GitHub release 上传都需要用户授权，一条都没做。
 
 ## 约束
 

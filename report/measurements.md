@@ -49,4 +49,52 @@
 
 ## 花费
 
-- 全部 API 调用合计 1504 次、约 ¥4.37；其中 550 次、¥1.65 是覆盖标注（`evidence/coverage/`、`evidence/coverage-cap8/`、`evidence/coverage-uncapped/`）。单价与逐次 usage 在 `evidence/*/calls.jsonl`。
+- 全部 DeepSeek API 调用 **7283 次、¥14.2309**（约 ¥14.23），其中 7239 次成功、44 次失败或重试。这是逐次落盘的金额求和，不是估算。
+- 口径：一次调用 = 一次 HTTP 请求，含重试；金额取每条调用记录里已经写下的 `cost.cny`（生成批次）或 `cost_cny`（判读与标注批次），脚本按 DeepSeek 官方单价（input 命中缓存 0.006 / 未命中 0.30 / 输出 1.20 USD per Mtok，off-peak 减半）× 汇率 6.693661 与调用时刻计价，单价与汇率来源 `evidence/bare-baseline/run-meta.json`、`scripts/annotate_coverage.py` 的 `PRICE`。本表只求和，不改算。
+
+| 批次 | 调用 | 失败/重试 | 花费 | 落盘 |
+| --- | --- | --- | --- | --- |
+| slice-contrast 生成（183 处境×2 条件，首轮双答） | 549 | 0 | ¥1.5282 | `evidence/slice-contrast/answers.jsonl` |
+| slice-contrast 判读（逐片对照） | 405 | 0 | ¥1.1883 | `evidence/slice-contrast/calls.jsonl` |
+| bare-baseline（20 处境对照探针） | 120 | 0 | ¥0.3294 | `evidence/bare-baseline/calls.jsonl` |
+| grow（新 59 处境×2 条件×2 条） | 236 | 0 | ¥0.4940 | `evidence/grow/answers.jsonl` |
+| resample（174 处境每条件再抽一条） | 348 | 0 | ¥0.6044 | `evidence/resample/answers.jsonl` |
+| densify（242 处境×2 条件×3.04 条） | 1470 | 0 | ¥1.2535 | `evidence/densify/answers.jsonl` |
+| anchor-matched（148 处境×2 条件×3 条，含 pilot 120） | 888 | 0 | ¥0.7115 | `evidence/measure/anchor-matched/answers.jsonl` |
+| position-swap（评委位置偏好） | 1172 | 0 | ¥2.3868 | `evidence/position-swap/calls.jsonl` |
+| draw-noise（同条件重发的噪声） | 636 | 0 | ¥1.2404 | `evidence/draw-noise/calls.jsonl` |
+| forced-choice（强制二选一对照） | 20 | 0 | ¥0.0678 | `evidence/forced-choice/calls.jsonl` |
+| rubric 第一遍（holistic） | 411 | 2 | ¥0.8205 | `evidence/rubric/pass-holistic/calls.jsonl` |
+| rubric 第二遍（逐条） | 423 | 14 | ¥1.8375 | `evidence/rubric/calls.jsonl` |
+| coverage（242 处境的覆盖标注） | 176 | 2 | ¥0.4777 | `evidence/coverage/calls.jsonl` |
+| coverage-cap8（同上，标签上限 8） | 177 | 3 | ¥0.5403 | `evidence/coverage-cap8/calls.jsonl` |
+| coverage-uncapped（同上，标签不限） | 197 | 23 | ¥0.6274 | `evidence/coverage-uncapped/calls.jsonl` |
+| grow/coverage（新 55 处境的覆盖标注） | 55 | 0 | ¥0.1231 | `evidence/grow/coverage/calls.jsonl` |
+| **合计** | **7283** | **44** | **¥14.2309** | 上列 16 个文件 |
+
+按用途分三堆：处境生成 3611 次 ¥4.9210、评委 3067 次 ¥7.5413、覆盖标注 605 次 ¥1.7685，三堆相加即 ¥14.2308（与上表差 0.0001 是四舍五入）。
+
+复算命令（输出就是上面这张表的行）：
+
+```sh
+python3 - <<'EOF'
+import json
+B=[("slice-contrast 生成","evidence/slice-contrast/answers.jsonl"),("slice-contrast 判读","evidence/slice-contrast/calls.jsonl"),("bare-baseline","evidence/bare-baseline/calls.jsonl"),("grow","evidence/grow/answers.jsonl"),("resample","evidence/resample/answers.jsonl"),("densify","evidence/densify/answers.jsonl"),("anchor-matched","evidence/measure/anchor-matched/answers.jsonl"),("position-swap","evidence/position-swap/calls.jsonl"),("draw-noise","evidence/draw-noise/calls.jsonl"),("forced-choice","evidence/forced-choice/calls.jsonl"),("rubric 第一遍","evidence/rubric/pass-holistic/calls.jsonl"),("rubric 第二遍","evidence/rubric/calls.jsonl"),("coverage","evidence/coverage/calls.jsonl"),("coverage-cap8","evidence/coverage-cap8/calls.jsonl"),("coverage-uncapped","evidence/coverage-uncapped/calls.jsonl"),("grow/coverage","evidence/grow/coverage/calls.jsonl")]
+N=F=0; S=0.0
+for name,p in B:
+    rs=[json.loads(l) for l in open(p) if l.strip()]
+    c=sum(float(r.get("cost_cny") or (r.get("cost") or {}).get("cny") or 0) for r in rs)
+    bad=sum(1 for r in rs if not r.get("ok"))
+    N+=len(rs); F+=bad; S+=c
+    print(f"{name:22s} {len(rs):5d} {bad:3d} ¥{c:8.4f} {p}")
+print(f"TOTAL {N} {F} ¥{S:.4f}")
+EOF
+```
+
+**含哪些、不含哪些**：上表含 `evidence/` 下所有带逐次 usage 的 DeepSeek 批次，每个批次只算一次（有 `calls.jsonl` 的按它算，只有 `answers.jsonl` 的按它算；`evidence/slice-contrast/` 两者是两批不同的事——生成与判读——所以都算）。不含三类：
+
+- **没有 usage 落盘，无法计价**：`evidence/agent-context/` 的 12 条回答与 6 条判读只存 id 与文本，没有 `usage`/`cost` 字段，因此不在上表里，也不推算（缺的值不拿别的数顶替）。
+- **本机生成与训练，不花 API 钱**：`evidence/measure/answers.jsonl` 的 1452 条回答、`evidence/benchmark/` 四格 80 条回答跑在单卡 4090 上，`evidence/sft/`、`evidence/training/` 是训练日志。
+- **本地分析**：`evidence/rubric-diagnosis/`、`evidence/data-quality/`、`evidence/corrupted2/` 对已存回答做自举与签名比较，没有 API 调用。
+
+覆盖标注的「550 次、¥1.65」只指 `coverage`、`coverage-cap8`、`coverage-uncapped` 这三遍（550 次请求、¥1.6454），不含 `grow/coverage` 的 55 次 ¥0.1231；[数据质量](data-quality.md) 与 [增长批次](grow-pairs.md) 各报自己那一笔。

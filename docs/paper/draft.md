@@ -139,7 +139,7 @@ n=20 是相对约定值（n=100）的降级，代价是单格 Wilson 半宽 ±18
 
 ### 4.8 代价
 
-全部 API 调用 1504 次、约 ¥4.37；训练一次约 14 分钟 4090；测量生成 1452 条回答、benchmark 四格 80 条。
+全部 DeepSeek API 调用 7283 次、约 ¥14.23（16 个批次的分项与含/不含口径见 [`report/measurements.md`](../../report/measurements.md)「花费」）；训练一次约 14 分钟 4090；本机测量生成 1452 条回答、benchmark 四格 80 条。
 
 ## 5 限制
 
@@ -174,6 +174,6 @@ n=20 是相对约定值（n=100）的降级，代价是单格 Wilson 半宽 ±18
 | 0.3311 [0.2725, 0.3919]、0.2815 [0.2207, 0.3401]、0.0496 [−0.0068, 0.1059]、0.3502、0.0687 [0.0146, 0.1239]、888 次 / ¥0.7115 | `report/sft-measurement.md`「口径一」「X」「结论」 |
 | X 0.0948 [0.0564, 0.1332] | `report/sft-measurement.md`「X」 |
 | GSM8K 75.0 → 65.0 / IFEval 60.0 → 40.0、区间、p、n=20、检出下限 20–25pp | `report/sft-benchmark.md` |
-| 1504 次调用、¥4.37 | `report/measurements.md`「花费」 |
+| 7283 次调用、¥14.23（16 批分项） | `report/measurements.md`「花费」 |
 | rubric 分不开两侧 −0.001 [−0.0265, 0.0255] | `report/measurements.md`、`report/rubric.md` |
 | 训练/验证 loss 差 0.1057 → 0.3596、第三 epoch 只降 0.037 | `report/sft-training.md` |

@@ -12,7 +12,7 @@
 python3 scripts/measure_actions.py --analyse
 ```
 
-在本机实测 **3.1 秒**（Python 3.12，纯 CPU、不碰 GPU、不联网、只用标准库；同一命令在一个全新 `git clone` 里实测 3.2 秒）。它从仓库里已提交的证据重算主指标，并打印第一行：
+在本机实测 **约 3.3 秒**（Python 3.12，纯 CPU、不碰 GPU、不联网、只用标准库；同一命令在一个全新 `git clone` 里同为约 3.3 秒）。计时条件与两次读数记在 [`docs/plan/plan.md`](docs/plan/plan.md) 的「发布准备」。它从仓库里已提交的证据重算主指标，并打印第一行：
 
 ```
 n_pairs 148/242（覆盖率 0.612）；两侧都齐全 242/242；参照物可用 148 条；文字层参照物可用 169 条
@@ -42,6 +42,7 @@ n_pairs 148/242（覆盖率 0.612）；两侧都齐全 242/242；参照物可用
 ## 许可
 
 - 适配器是 `Qwen/Qwen3.5-2B` 的衍生权重，随基座继承 **Apache-2.0**（本机 HF 快照里的 `LICENSE` 与 `README.md` 头部的 `license: apache-2.0` 核对过）；再分发时基座的 LICENSE/NOTICE 义务一并带上。
+- 随仓库分发的第三方数据：`data/bench/gsm8k.jsonl` 是 GSM8K（MIT），`data/bench/ifeval.jsonl` 是 IFEval（Apache-2.0）。许可原文落 `licenses/`，来源、引用、改动声明与冻结件 sha256 见 [THIRD-PARTY.md](THIRD-PARTY.md)。
 - 处境与回答来自法条作者本人的私有会话（已脱敏，见[数据卡](docs/data-card.md)），DeepSeek 的回答受其服务条款约束。
 - 本仓库自身的代码与文档**尚未声明许可**（作者未指定），因此当前不授予复用许可。这一条是待决项。
 
