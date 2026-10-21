@@ -12,9 +12,23 @@ copied here before M3's IFEval run at `--limit 295` overwrote the canonical
 - The 100 items are the first 100 of the same seed-0 frozen prefix the n=295 run uses, so
   these records are a prefix of the n=295 records, not a different sample.
 
-Caveat that travels with the IFEval number (added by the node, not the package): p=0.029 is
-one test per suite with no multiplicity correction — under Bonferroni α=0.025 (two suites)
-it does not pass — and flipping the two word-floor near-misses (`ifeval-1072`, 398/400;
-`ifeval-2844`, 195/200) gives 17 drops / 7 gains, Δ=−10.0pp, exact McNemar p=0.064. The
-mechanism is that the adapter writes shorter answers (median words 212.5 → 169.0 on IFEval,
-204.0 → 83.0 on GSM8K), so "at least N words" fails first. See report/sft-benchmark.md.
+Caveats that travel with *this* n=100 reading (added by the node, not the package), and where
+they stand after M3:
+
+- p=0.029 is one test per suite with no multiplicity correction; under Bonferroni α=0.025
+  (two suites) it does not pass. **Still true of this file. It is not true of n=295**: that
+  p is 2.57e-5 and passes 0.025 by three orders of magnitude.
+- Flipping the two word-floor near-misses (`ifeval-1072`, 398/400; `ifeval-2844`, 195/200)
+  gives 17 drops / 7 gains, Δ=−10.0pp, exact McNemar p=0.064. **This is the fragility of the
+  n=100 reading specifically.** At n=295 the same two flips give 52/18, Δ=−11.5pp, p=5.85e-5,
+  and flipping all seven `number_words` drops gives 47/18, p=4.22e-4.
+- The mechanism claim that used to sit next to this number ("the adapter writes shorter
+  answers, so 'at least N words' fails first") is **narrower than it was written**. Median
+  words do drop (212.5 → 169.0 on these 100 items; 185 → 130 over all 295), but at n=295 the
+  adapter is shorter on only 52% of the 54 drops versus 68% of the 130 items both got right,
+  so brevity is a background shift and not what selects the drops. The largest single family
+  of drops at n=295 is `punctuation:no_comma` (11), and 7 of those 11 got *longer*.
+
+The n=295 reading that supersedes this one for IFEval: 184/295 → 148/295, −12.2pp
+[−17.6, −6.8], 54 drops / 18 gains, McNemar p=2.57e-5, floors 5 items / 1.7pp (McNemar) and
+4 items / 1.4pp (interval), `unscorable=0`. See report/sft-benchmark.md.
