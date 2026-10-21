@@ -44,11 +44,14 @@ UV_CACHE_DIR=/tmp/uvcold /usr/bin/time -f "WALL=%e" /home/z/.local/bin/uv run --
 | empty `UV_CACHE_DIR`, second run | 7.85 s | same |
 | warm `uv` cache, one run while another process was busy on the host | 9.53 s | same |
 
+The 9.53 s row comes from a copy of `47a436f`; the changes between that revision and
+`cf1a466` are documentation plus one read-only script, and the artefact is identical.
+
 Quote **7.5–9.5 s** for a warm run and **14–22 s** for a first run on an empty `uv` cache:
 14.41 s here, and the independent review of `5ba9a2e` (2026-10-21, its own fresh copy)
 measured 21.72 s on its first run, then 14.53 s and 11.83 s. Every run, cold or warm,
 reproduces the committed artefact byte for byte. Do not quote a bound below 8 s as what a
-reader will see: host load and cache state both move it.
+reader sees: host load and cache state both move it.
 
 Reading aid, same environment (read-only, prints every strict-ruler disagreement with its
 full output so the hand-checks could be made by reading):
