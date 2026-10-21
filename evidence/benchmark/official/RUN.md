@@ -27,7 +27,7 @@ cd /home/z/vibe/nomos
 The wall-clock bullet above is a warm-cache measurement on an otherwise idle host. A
 reader whose `uv` cache is empty also pays for building the environment, so the number to
 quote for a first run comes from an empty cache. Measured on 2026-10-21 in an extracted
-copy of the revision under review (`git archive` into `/tmp`, so nothing in the project is
+copy of the tree at `cf1a466` (`git archive` into `/tmp`, so nothing in the project is
 written):
 
 ```
