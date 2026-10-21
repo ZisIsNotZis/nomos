@@ -100,7 +100,7 @@ EOF
   --with immutabledict --with absl-py python3 evidence/benchmark/official/grade_official.py
 ```
 
-实测 **9.8 s**（纯 CPU），产物 `evidence/benchmark/official/official-ifeval.json`；三次连续运行逐字节相同，重跑一次与落盘件逐字段相同（唯一会变的字段是 `vendored.local_path`，见 `evidence/benchmark/official/RUN.md`）。
+实测 **6.5–11 s**（纯 CPU，含 `uv` 解析依赖的启动开销；落盘那一轮 6.62 s），产物 `evidence/benchmark/official/official-ifeval.json`；三次连续运行逐字节相同，重跑一次与落盘件逐字段相同（唯一会变的字段是 `vendored.local_path`，见 `evidence/benchmark/official/RUN.md`）。
 
 | 尺子 | base | adapter | 差值（adapter−base） | 配对 95% | 掉/涨 | McNemar p |
 | --- | --- | --- | --- | --- | --- | --- |
