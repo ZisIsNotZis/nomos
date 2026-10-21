@@ -14,7 +14,9 @@ cd /home/z/vibe/nomos
 
 - wall clock: **6.62 s** for the run that produced the current `official-ifeval.json`
   (`/usr/bin/time -f "WALL=%e"`); an earlier run of the same command measured 6.45 s, and
-  the run was executed 8 times end to end in this session with every timed one under 7 s.
+  the 8 runs of that session on that idle host were all under 7 s. These are that
+  session's warm-cache readings, **not** a bound for a reader — see "Timing" below for
+  what a first run costs and why no bound below 8 s holds.
 - `uv` 0.12.13 at `/home/z/.local/bin/uv`; the ephemeral environment resolved
   nltk 3.10.3, langdetect 1.0.9, immutabledict and absl-py from PyPI into
   `~/.cache/uv` and touched nothing in the repo or the shared venv. `--no-project` is
