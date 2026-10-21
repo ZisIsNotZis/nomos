@@ -75,6 +75,7 @@
 - **Q7（新增，在我手里）回信里「33 of 40 个 `number_words` 题仍通过」复算不上**：在落盘记录上按 `scripts/bench_suites.py` 重算，40 个带 `length_constraints:number_words` 的题里 adapter 在这一条指令上通过 **19** 个（42 个指令槽里 21 个）、base 通过 **24** 个（26/42 槽）、adapter 整题全对 **12** 个、base 18 个；没有任何读法给出 33。**做法**：不据此改任何读数，把那一句按实测值说成「40 个里 adapter 仍有 19 个（base 24 个）在这一条上通过」——它作为反机制观测比 33 更强，不是更弱。**重开的观测**：上一层说清 33 的来源（另一把尺子、另一批题、还是笔误），或授权直接按实测改写那句话。
 - **Q4（已关）GPU 在 2026-10-31 之后还能不能用**：M3 已落盘，那条日期线整条解除（`paired-ifeval.json` 的 `n` 已是 295，`report/measurements.md` 的 M3 行已由「未定」补成实测）。要再跑 GPU 才有这个问题，现在没有要跑的。
 - **Q5（已关）公开可读**：2026-10-21 匿名 `curl -sI https://github.com/ZisIsNotZis/nomos` 返回 `HTTP/2 200`。
+- **Q8（新增，在我手里，本报告送出时仍开着）M4 的独立 review 未返回**：review 按九条契约派出（read-only、fresh context、worker `d62d9490-53c2-4736-ac27-7e5b893ca26d`，scope 是 `evidence/benchmark/official/` 的产物与引用面上的主张），20 分钟 budget 已超、催过一次，送出 `mail/2026-10-21-m4-official-grader.md` 时仍在跑。**在它返回之前，不要说「M4 通过独立复核」**——能说的是产物可重跑、三次运行逐字节相同、文档里每个数都能从产物或落盘记录重算。**做法**：裁决回来后逐条落到本节（FAIL 的按它给的 reproduction 重开被点到的句子，不辩；BLOCKED 的补它缺的东西）。**重开的观测**：run `d62d9490-53c2-4736-ac27-7e5b893ca26d` 返回 PASS/FAIL/BLOCKED 三选一。
 - **Q6（新增，低优先，在我手里）`per_instruction` 同名覆盖**：见「决定了的」里那条缺陷。**做法**：下一次要动 `scripts/run_bench.py` 的落盘格式时，把它改成 `list[[name, bool], ...]`，并在同一次提交里重跑两格；不单独为它开跑。**重开的观测**：下一轮真要跑套件的那一刻，或有人拿 `per_instruction` 做指令级统计之前。
 
 ## 证据指针
