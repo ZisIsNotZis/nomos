@@ -4,7 +4,7 @@
 
 ## 入口
 
-怎么开始：读本文件，再读 `report/sft-benchmark.md` 开头「结论」那张两格表（GSM8K n=100、IFEval n=295）与「这个 n 能看见多大的掉幅」；口径与主指标读 `report/sft-measurement.md` 的「重估的结论（一句话）」与三个口径表。收信目录是 `inbox/`，约定见下一条；读过的信落地即删，所以那里通常只剩还没被读的几封。
+怎么开始：读本文件，再读 `report/sft-benchmark.md` 开头「结论」那张两格表（GSM8K n=100、IFEval n=295）与「这个 n 能看见多大的掉幅」；口径与主指标读 `report/sft-measurement.md` 的「重估的结论（一句话）」与三个口径表。收信目录是 `inbox/`，约定见本节「与通用约定不一样的地方」；读过的信落地即删，所以那里通常只剩还没被读的几封。
 
 怎么继续：M2、M3、M4 都已落地，引用面（`README.md`、`docs/model-card.md`、`docs/paper/draft.md`、`report/sft-benchmark.md`、`evidence/benchmark/n100/README.md`）已全部换成当前读数，并且都带上了官方 grader 那一行。本节点自己还剩的活是 WP-2、WP-3 两条工作包；Q1/Q2/Q3 都在人手里等答案，**不阻塞任何事，也不该被谁替人答**；Q7 已按上一层的答复关掉（那个数按实测改写，读法与命令见 Q7）。**没有上一层的话不要推**：本轮所有提交都在本机。
 
