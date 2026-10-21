@@ -1,6 +1,6 @@
 # 第三方数据与许可
 
-本仓库随代码分发两份第三方 benchmark 数据：`data/bench/gsm8k.jsonl` 与 `data/bench/ifeval.jsonl`。两份都是原数据集的抽样冻结件，许可原文落 `licenses/`，本文是它们的署名与变更声明。来源、许可名与源文件 hash 同时记录在 `data/bench/sources.json`（程序读的那一份），本文不复制它的字段以外的内容。
+本仓库随代码分发两份第三方 benchmark 数据：`data/bench/gsm8k.jsonl` 与 `data/bench/ifeval.jsonl`，以及 IFEval 官方判分器的六个源文件（`evidence/benchmark/official/vendor/`）。两份数据都是原数据集的抽样冻结件，许可原文落 `licenses/`，本文是它们的署名与变更声明。来源、许可名与源文件 hash 同时记录在 `data/bench/sources.json`（程序读的那一份），本文不复制它的字段以外的内容。
 
 ## GSM8K（`data/bench/gsm8k.jsonl`）
 
@@ -21,9 +21,17 @@
 - **NOTICE**：上游数据集没有 NOTICE 文件，故不另附；Apache-2.0 的署名与许可声明以本节加 `licenses/Apache-2.0.txt` 为准。
 - **冻结件**：295 条，sha256 `0cc0fb5726c3aa6ec9053aec2bfc8615ed631150e54cee492c0f2f963dcdf71e`。
 
+## IFEval 的官方判分器代码（`evidence/benchmark/official/vendor/instruction_following_eval/`）
+
+- **来源**：`google-research/google-research` 仓库的 `instruction_following_eval/` 目录，commit `e6890f85757dd84e27ca6df2dd30651dafad28e0`。
+- **许可**：Apache-2.0，与上面 IFEval 数据同一份原文 `licenses/Apache-2.0.txt`（11358 字节，sha256 `cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30`）。
+- **用途**：`evidence/benchmark/official/grade_official.py` 用它重算同一批 590 份落盘输出的 IFEval 判定，回答「−12.2pp 是我们的尺子量出来的，还是参考实现的尺子也量得出来」。
+- **改动**：无。六个文件逐字节拷贝（`modified: false`），程序每次运行时重算它们的 sha256 并写进 `official-ifeval.json` 的 `vendored.files`，所以漂移会让运行失败而不是悄悄改数。逐文件 sha256、字节数与 URL 见 `evidence/benchmark/official/VENDOR.md` 与 `official-ifeval.json`；取回命令在 `VENDOR.md`。
+- **NOTICE**：上游该目录不含 NOTICE 文件，故不另附；署名义与许可声明以本节加 `licenses/Apache-2.0.txt` 为准。
+
 ## Apache-2.0 的保留义务
 
-再分发 IFEval 抽样件时，Apache-2.0 §4 要求随附本许可原文副本、保留版权与署名声明、并声明改动；本目录的 `licenses/Apache-2.0.txt` 与本文的「改动」一条是这两项义务的落点。GSM8K 的 MIT 要求版权声明与许可声明随所有副本或实质部分保留，`licenses/gsm8k-MIT.txt` 即该声明。
+再分发 IFEval 抽样件与上面那份官方判分器代码时，Apache-2.0 §4 要求随附本许可原文副本、保留版权与署名声明、并声明改动；本目录的 `licenses/Apache-2.0.txt`、本文的「改动」两条与 `VENDOR.md` 是这些义务的落点。GSM8K 的 MIT 要求版权声明与许可声明随所有副本或实质部分保留，`licenses/gsm8k-MIT.txt` 即该声明。
 
 ## 不含在本声明里的东西
 

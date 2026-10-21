@@ -1,0 +1,2024 @@
+{
+ "what": "base-vs-adapter IFEval comparison recomputed on Google's official instruction-following graders, with the tree's own ruler as control",
+ "vendored": {
+  "repo": "google-research/google-research",
+  "commit": "e6890f85757dd84e27ca6df2dd30651dafad28e0",
+  "directory": "instruction_following_eval",
+  "local_path": "evidence/benchmark/official/vendor/instruction_following_eval/",
+  "modified": false,
+  "files": [
+   {
+    "file": "instructions.py",
+    "sha256": "60e086f5342a03ce8e18b64bbcccf86308f523c08aa826707a562150a52f3edf",
+    "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/instructions.py"
+   },
+   {
+    "file": "instructions_util.py",
+    "sha256": "a73797261eee5bf447e279d82a2b700b1bdd3cb1193412dbab1270a85832bc6b",
+    "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/instructions_util.py"
+   },
+   {
+    "file": "instructions_registry.py",
+    "sha256": "ec92d72c264f6d906978613085db262356174300370a3fffe6fefd5969ce9cfc",
+    "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/instructions_registry.py"
+   },
+   {
+    "file": "evaluation_lib.py",
+    "sha256": "35decc06000718487f44d7deafa6d3f48a8ec0886281edf40162c0265b7d248c",
+    "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/evaluation_lib.py"
+   },
+   {
+    "file": "README.md",
+    "sha256": "fef3c44408e4b39837af345095ccce7da798853fd60ea94a1de63afa9d3d67b3",
+    "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/README.md"
+   },
+   {
+    "file": "requirements.txt",
+    "sha256": "1b1716c9ac21b9cc2bd0d7354ed8f7b6982ccf35598529601a7c08508acec94a",
+    "url": "https://raw.githubusercontent.com/google-research/google-research/e6890f85757dd84e27ca6df2dd30651dafad28e0/instruction_following_eval/requirements.txt"
+   }
+  ]
+ },
+ "inputs": {
+  "jsonl": "data/bench/ifeval.jsonl",
+  "jsonl_sha256": "0cc0fb5726c3aa6ec9053aec2bfc8615ed631150e54cee492c0f2f963dcdf71e",
+  "base": "evidence/benchmark/base-ifeval.json",
+  "base_sha256": "e1ee39afc2fb772ca5085693ed27b11439a9e4f220c91b30e3bf315b733caaf8",
+  "adapter": "evidence/benchmark/adapter-ifeval.json",
+  "adapter_sha256": "0951bee5b7546ebb8539eb8aaf40021f01096c653684bbb4d3b382737a807710",
+  "frozen_sha256": "0cc0fb5726c3aa6ec9053aec2bfc8615ed631150e54cee492c0f2f963dcdf71e",
+  "record_order_matches_jsonl": true,
+  "base_and_adapter_ids_agree": true,
+  "instruction_ids_unknown_to_official": [],
+  "instruction_types_seen": [
+   "change_case:english_capital",
+   "change_case:english_lowercase",
+   "combination:two_responses",
+   "detectable_content:number_placeholders",
+   "detectable_format:json_format",
+   "detectable_format:number_highlighted_sections",
+   "detectable_format:title",
+   "keywords:existence",
+   "keywords:forbidden_words",
+   "keywords:frequency",
+   "length_constraints:number_paragraphs",
+   "length_constraints:number_words",
+   "punctuation:no_comma",
+   "startend:end_checker",
+   "startend:quotation"
+  ]
+ },
+ "n": 295,
+ "rules": {
+  "strict": {
+   "n": 295,
+   "base": {
+    "correct": 196,
+    "accuracy": 0.6644067796610169,
+    "ci95_wilson": [
+     0.6087140040948107,
+     0.7158726665695145
+    ],
+    "unscorable": 0,
+    "official_error_items": 0
+   },
+   "adapter": {
+    "correct": 160,
+    "accuracy": 0.5423728813559322,
+    "ci95_wilson": [
+     0.485339607214568,
+     0.5983167512040725
+    ],
+    "unscorable": 0,
+    "official_error_items": 0
+   },
+   "delta_adapter_minus_base": -0.12203389830508475,
+   "delta_pp": -12.203389830508474,
+   "delta_ci95_paired_bootstrap": [
+    -0.17627118644067796,
+    -0.06779661016949153
+   ],
+   "delta_ci95_paired_bootstrap_pp": [
+    -17.627118644067796,
+    -6.779661016949152
+   ],
+   "paired": {
+    "drops": 55,
+    "gains": 19,
+    "drop_ids": [
+     "ifeval-1372",
+     "ifeval-2752",
+     "ifeval-24",
+     "ifeval-2374",
+     "ifeval-2844",
+     "ifeval-1137",
+     "ifeval-3376",
+     "ifeval-1928",
+     "ifeval-343",
+     "ifeval-1248",
+     "ifeval-3619",
+     "ifeval-1217",
+     "ifeval-142",
+     "ifeval-349",
+     "ifeval-209",
+     "ifeval-2417",
+     "ifeval-2909",
+     "ifeval-2829",
+     "ifeval-1107",
+     "ifeval-2245",
+     "ifeval-3709",
+     "ifeval-2825",
+     "ifeval-127",
+     "ifeval-1237",
+     "ifeval-1132",
+     "ifeval-2069",
+     "ifeval-2583",
+     "ifeval-3109",
+     "ifeval-1658",
+     "ifeval-3615",
+     "ifeval-2292",
+     "ifeval-2404",
+     "ifeval-3084",
+     "ifeval-3569",
+     "ifeval-2649",
+     "ifeval-1746",
+     "ifeval-1147",
+     "ifeval-2324",
+     "ifeval-1943",
+     "ifeval-2136",
+     "ifeval-1713",
+     "ifeval-1645",
+     "ifeval-1644",
+     "ifeval-340",
+     "ifeval-2398",
+     "ifeval-2683",
+     "ifeval-1927",
+     "ifeval-3743",
+     "ifeval-2372",
+     "ifeval-3350",
+     "ifeval-3287",
+     "ifeval-2691",
+     "ifeval-1436",
+     "ifeval-2977",
+     "ifeval-1075"
+    ],
+    "gain_ids": [
+     "ifeval-2246",
+     "ifeval-3243",
+     "ifeval-3380",
+     "ifeval-2602",
+     "ifeval-2534",
+     "ifeval-3617",
+     "ifeval-247",
+     "ifeval-2010",
+     "ifeval-1897",
+     "ifeval-1377",
+     "ifeval-1691",
+     "ifeval-122",
+     "ifeval-3572",
+     "ifeval-1203",
+     "ifeval-2662",
+     "ifeval-164",
+     "ifeval-3518",
+     "ifeval-2243",
+     "ifeval-1092"
+    ],
+    "unchanged": 221,
+    "mcnemar_exact_p": 3.376813810738314e-05
+   },
+   "bootstrap": {
+    "resamples": 10000,
+    "seed": 20261104,
+    "implementation": "scripts/resample_actions.py:bootstrap_diff"
+   },
+   "official_error": {
+    "checker_exceptions": 0,
+    "detail": []
+   }
+  },
+  "lax": {
+   "n": 295,
+   "base": {
+    "correct": 196,
+    "accuracy": 0.6644067796610169,
+    "ci95_wilson": [
+     0.6087140040948107,
+     0.7158726665695145
+    ],
+    "unscorable": 0,
+    "official_error_items": 0
+   },
+   "adapter": {
+    "correct": 163,
+    "accuracy": 0.5525423728813559,
+    "ci95_wilson": [
+     0.4954868912981394,
+     0.6082469931409749
+    ],
+    "unscorable": 0,
+    "official_error_items": 0
+   },
+   "delta_adapter_minus_base": -0.11186440677966102,
+   "delta_pp": -11.186440677966102,
+   "delta_ci95_paired_bootstrap": [
+    -0.1694915254237288,
+    -0.05423728813559322
+   ],
+   "delta_ci95_paired_bootstrap_pp": [
+    -16.94915254237288,
+    -5.423728813559322
+   ],
+   "paired": {
+    "drops": 55,
+    "gains": 22,
+    "drop_ids": [
+     "ifeval-1372",
+     "ifeval-2752",
+     "ifeval-24",
+     "ifeval-2374",
+     "ifeval-2844",
+     "ifeval-1137",
+     "ifeval-3376",
+     "ifeval-1928",
+     "ifeval-343",
+     "ifeval-1248",
+     "ifeval-3619",
+     "ifeval-1217",
+     "ifeval-142",
+     "ifeval-349",
+     "ifeval-209",
+     "ifeval-2417",
+     "ifeval-2909",
+     "ifeval-2829",
+     "ifeval-1107",
+     "ifeval-2245",
+     "ifeval-3709",
+     "ifeval-2825",
+     "ifeval-127",
+     "ifeval-1237",
+     "ifeval-1132",
+     "ifeval-2069",
+     "ifeval-2583",
+     "ifeval-3109",
+     "ifeval-1658",
+     "ifeval-3615",
+     "ifeval-2292",
+     "ifeval-2404",
+     "ifeval-3084",
+     "ifeval-3569",
+     "ifeval-2649",
+     "ifeval-1746",
+     "ifeval-1147",
+     "ifeval-2324",
+     "ifeval-1943",
+     "ifeval-2136",
+     "ifeval-1713",
+     "ifeval-1645",
+     "ifeval-1644",
+     "ifeval-340",
+     "ifeval-2398",
+     "ifeval-2683",
+     "ifeval-1927",
+     "ifeval-3743",
+     "ifeval-2372",
+     "ifeval-3350",
+     "ifeval-3287",
+     "ifeval-2691",
+     "ifeval-1436",
+     "ifeval-2977",
+     "ifeval-1075"
+    ],
+    "gain_ids": [
+     "ifeval-2246",
+     "ifeval-3243",
+     "ifeval-3565",
+     "ifeval-3380",
+     "ifeval-2602",
+     "ifeval-2534",
+     "ifeval-2328",
+     "ifeval-3617",
+     "ifeval-1591",
+     "ifeval-247",
+     "ifeval-2010",
+     "ifeval-1897",
+     "ifeval-1377",
+     "ifeval-1691",
+     "ifeval-122",
+     "ifeval-3572",
+     "ifeval-1203",
+     "ifeval-2662",
+     "ifeval-164",
+     "ifeval-3518",
+     "ifeval-2243",
+     "ifeval-1092"
+    ],
+    "unchanged": 218,
+    "mcnemar_exact_p": 0.00021680385841747665
+   },
+   "bootstrap": {
+    "resamples": 10000,
+    "seed": 20261104,
+    "implementation": "scripts/resample_actions.py:bootstrap_diff"
+   },
+   "official_error": {
+    "checker_exceptions": 0,
+    "detail": []
+   }
+  },
+  "ours": {
+   "n": 295,
+   "base": {
+    "correct": 184,
+    "accuracy": 0.6237288135593221,
+    "ci95_wilson": [
+     0.5671885059619012,
+     0.6770880606205293
+    ],
+    "unscorable": 0,
+    "official_error_items": 0
+   },
+   "adapter": {
+    "correct": 148,
+    "accuracy": 0.5016949152542373,
+    "ci95_wilson": [
+     0.44498356718796644,
+     0.5583626871487791
+    ],
+    "unscorable": 0,
+    "official_error_items": 0
+   },
+   "delta_adapter_minus_base": -0.12203389830508475,
+   "delta_pp": -12.203389830508474,
+   "delta_ci95_paired_bootstrap": [
+    -0.17627118644067796,
+    -0.06779661016949153
+   ],
+   "delta_ci95_paired_bootstrap_pp": [
+    -17.627118644067796,
+    -6.779661016949152
+   ],
+   "paired": {
+    "drops": 54,
+    "gains": 18,
+    "drop_ids": [
+     "ifeval-1372",
+     "ifeval-2752",
+     "ifeval-2374",
+     "ifeval-2844",
+     "ifeval-1137",
+     "ifeval-3376",
+     "ifeval-1072",
+     "ifeval-1928",
+     "ifeval-343",
+     "ifeval-3619",
+     "ifeval-1217",
+     "ifeval-3456",
+     "ifeval-142",
+     "ifeval-349",
+     "ifeval-209",
+     "ifeval-2417",
+     "ifeval-2909",
+     "ifeval-3386",
+     "ifeval-2829",
+     "ifeval-1107",
+     "ifeval-2245",
+     "ifeval-3709",
+     "ifeval-2825",
+     "ifeval-127",
+     "ifeval-1237",
+     "ifeval-1132",
+     "ifeval-2069",
+     "ifeval-2583",
+     "ifeval-3109",
+     "ifeval-1658",
+     "ifeval-3615",
+     "ifeval-2292",
+     "ifeval-3084",
+     "ifeval-3569",
+     "ifeval-2649",
+     "ifeval-1746",
+     "ifeval-1147",
+     "ifeval-2324",
+     "ifeval-2136",
+     "ifeval-1713",
+     "ifeval-1645",
+     "ifeval-1644",
+     "ifeval-340",
+     "ifeval-2398",
+     "ifeval-2683",
+     "ifeval-1927",
+     "ifeval-3743",
+     "ifeval-2372",
+     "ifeval-3350",
+     "ifeval-1220",
+     "ifeval-3287",
+     "ifeval-2691",
+     "ifeval-1436",
+     "ifeval-1075"
+    ],
+    "gain_ids": [
+     "ifeval-2246",
+     "ifeval-3243",
+     "ifeval-3380",
+     "ifeval-2602",
+     "ifeval-2534",
+     "ifeval-1591",
+     "ifeval-247",
+     "ifeval-2010",
+     "ifeval-1897",
+     "ifeval-1691",
+     "ifeval-122",
+     "ifeval-1203",
+     "ifeval-2662",
+     "ifeval-164",
+     "ifeval-3518",
+     "ifeval-2243",
+     "ifeval-2386",
+     "ifeval-1092"
+    ],
+    "unchanged": 223,
+    "mcnemar_exact_p": 2.568720337924735e-05
+   },
+   "bootstrap": {
+    "resamples": 10000,
+    "seed": 20261104,
+    "implementation": "scripts/resample_actions.py:bootstrap_diff"
+   },
+   "official_error": {
+    "checker_exceptions": 0,
+    "detail": []
+   }
+  }
+ },
+ "item_level_ruler_disagreement": {
+  "official_strict_vs_ours": {
+   "base": {
+    "ours_pass_official_fail": [
+     "ifeval-1342",
+     "ifeval-3617",
+     "ifeval-3456",
+     "ifeval-3572",
+     "ifeval-202"
+    ],
+    "ours_fail_official_pass": [
+     "ifeval-2467",
+     "ifeval-3294",
+     "ifeval-1248",
+     "ifeval-2921",
+     "ifeval-1375",
+     "ifeval-1082",
+     "ifeval-1845",
+     "ifeval-3506",
+     "ifeval-1236",
+     "ifeval-2404",
+     "ifeval-1943",
+     "ifeval-2941",
+     "ifeval-1858",
+     "ifeval-2357",
+     "ifeval-1148",
+     "ifeval-2028",
+     "ifeval-2977"
+    ],
+    "counts": {
+     "ours_pass_official_fail": 5,
+     "ours_fail_official_pass": 17,
+     "total_disagreeing_items": 22
+    },
+    "rows": [
+     {
+      "id": "ifeval-2467",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3294",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1248",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1342",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3617",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "change_case:english_capital"
+      ]
+     },
+     {
+      "id": "ifeval-3456",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "change_case:english_capital"
+      ]
+     },
+     {
+      "id": "ifeval-2921",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1375",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1082",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1845",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3506",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "detectable_format:json_format"
+      ]
+     },
+     {
+      "id": "ifeval-1236",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3572",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "change_case:english_capital"
+      ]
+     },
+     {
+      "id": "ifeval-202",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "change_case:english_lowercase"
+      ]
+     },
+     {
+      "id": "ifeval-2404",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "detectable_format:json_format"
+      ]
+     },
+     {
+      "id": "ifeval-1943",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-2941",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1858",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-2357",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1148",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "detectable_format:json_format"
+      ]
+     },
+     {
+      "id": "ifeval-2028",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "keywords:forbidden_words"
+      ]
+     },
+     {
+      "id": "ifeval-2977",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     }
+    ]
+   },
+   "adapter": {
+    "ours_pass_official_fail": [
+     "ifeval-24",
+     "ifeval-1342",
+     "ifeval-1591",
+     "ifeval-202",
+     "ifeval-2386"
+    ],
+    "ours_fail_official_pass": [
+     "ifeval-2467",
+     "ifeval-3294",
+     "ifeval-1072",
+     "ifeval-2921",
+     "ifeval-1375",
+     "ifeval-1082",
+     "ifeval-1845",
+     "ifeval-3386",
+     "ifeval-3506",
+     "ifeval-1377",
+     "ifeval-1236",
+     "ifeval-2941",
+     "ifeval-1858",
+     "ifeval-1220",
+     "ifeval-2357",
+     "ifeval-1148",
+     "ifeval-2028"
+    ],
+    "counts": {
+     "ours_pass_official_fail": 5,
+     "ours_fail_official_pass": 17,
+     "total_disagreeing_items": 22
+    },
+    "rows": [
+     {
+      "id": "ifeval-2467",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3294",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-24",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "change_case:english_capital"
+      ]
+     },
+     {
+      "id": "ifeval-1072",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_words"
+      ]
+     },
+     {
+      "id": "ifeval-1342",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-2921",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1375",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1082",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1591",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "combination:two_responses"
+      ]
+     },
+     {
+      "id": "ifeval-1845",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3386",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "keywords:forbidden_words"
+      ]
+     },
+     {
+      "id": "ifeval-3506",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "detectable_format:json_format"
+      ]
+     },
+     {
+      "id": "ifeval-1377",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1236",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-202",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "change_case:english_lowercase"
+      ]
+     },
+     {
+      "id": "ifeval-2941",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1858",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-2386",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1220",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "startend:end_checker"
+      ]
+     },
+     {
+      "id": "ifeval-2357",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1148",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "detectable_format:json_format"
+      ]
+     },
+     {
+      "id": "ifeval-2028",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "keywords:forbidden_words"
+      ]
+     }
+    ]
+   }
+  },
+  "official_lax_vs_ours": {
+   "base": {
+    "ours_pass_official_fail": [
+     "ifeval-1342",
+     "ifeval-3617",
+     "ifeval-3456",
+     "ifeval-3572",
+     "ifeval-202"
+    ],
+    "ours_fail_official_pass": [
+     "ifeval-2467",
+     "ifeval-3294",
+     "ifeval-1248",
+     "ifeval-2921",
+     "ifeval-1375",
+     "ifeval-1082",
+     "ifeval-1845",
+     "ifeval-3506",
+     "ifeval-1236",
+     "ifeval-2404",
+     "ifeval-1943",
+     "ifeval-2941",
+     "ifeval-1858",
+     "ifeval-2357",
+     "ifeval-1148",
+     "ifeval-2028",
+     "ifeval-2977"
+    ],
+    "counts": {
+     "ours_pass_official_fail": 5,
+     "ours_fail_official_pass": 17,
+     "total_disagreeing_items": 22
+    },
+    "rows": [
+     {
+      "id": "ifeval-2467",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3294",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1248",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1342",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3617",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "change_case:english_capital"
+      ]
+     },
+     {
+      "id": "ifeval-3456",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "change_case:english_capital"
+      ]
+     },
+     {
+      "id": "ifeval-2921",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1375",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1082",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1845",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3506",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "detectable_format:json_format"
+      ]
+     },
+     {
+      "id": "ifeval-1236",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3572",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "change_case:english_capital"
+      ]
+     },
+     {
+      "id": "ifeval-202",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "change_case:english_lowercase"
+      ]
+     },
+     {
+      "id": "ifeval-2404",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "detectable_format:json_format"
+      ]
+     },
+     {
+      "id": "ifeval-1943",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-2941",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1858",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-2357",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1148",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "detectable_format:json_format"
+      ]
+     },
+     {
+      "id": "ifeval-2028",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "keywords:forbidden_words"
+      ]
+     },
+     {
+      "id": "ifeval-2977",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     }
+    ]
+   },
+   "adapter": {
+    "ours_pass_official_fail": [
+     "ifeval-24",
+     "ifeval-1342",
+     "ifeval-202",
+     "ifeval-2386"
+    ],
+    "ours_fail_official_pass": [
+     "ifeval-2467",
+     "ifeval-3294",
+     "ifeval-1072",
+     "ifeval-3565",
+     "ifeval-2328",
+     "ifeval-2921",
+     "ifeval-1375",
+     "ifeval-1082",
+     "ifeval-1845",
+     "ifeval-3386",
+     "ifeval-3506",
+     "ifeval-1377",
+     "ifeval-1236",
+     "ifeval-2941",
+     "ifeval-1858",
+     "ifeval-1220",
+     "ifeval-2357",
+     "ifeval-1148",
+     "ifeval-2028"
+    ],
+    "counts": {
+     "ours_pass_official_fail": 4,
+     "ours_fail_official_pass": 19,
+     "total_disagreeing_items": 23
+    },
+    "rows": [
+     {
+      "id": "ifeval-2467",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3294",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-24",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "change_case:english_capital"
+      ]
+     },
+     {
+      "id": "ifeval-1072",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_words"
+      ]
+     },
+     {
+      "id": "ifeval-1342",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3565",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "keywords:forbidden_words",
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-2328",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "keywords:forbidden_words"
+      ]
+     },
+     {
+      "id": "ifeval-2921",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1375",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1082",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1845",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-3386",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "keywords:forbidden_words"
+      ]
+     },
+     {
+      "id": "ifeval-3506",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "detectable_format:json_format"
+      ]
+     },
+     {
+      "id": "ifeval-1377",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1236",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-202",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "change_case:english_lowercase"
+      ]
+     },
+     {
+      "id": "ifeval-2941",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1858",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-2386",
+      "ours": true,
+      "official": false,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1220",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "startend:end_checker"
+      ]
+     },
+     {
+      "id": "ifeval-2357",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "length_constraints:number_paragraphs"
+      ]
+     },
+     {
+      "id": "ifeval-1148",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "detectable_format:json_format"
+      ]
+     },
+     {
+      "id": "ifeval-2028",
+      "ours": false,
+      "official": true,
+      "slots_where_they_differ": [
+       "keywords:forbidden_words"
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "per_checker_disagreement": {
+  "rule": "strict",
+  "records": 590,
+  "by_instruction_type": {
+   "change_case:english_capital": {
+    "slots": {
+     "base": 18,
+     "adapter": 18,
+     "total": 36
+    },
+    "ours_pass_official_fail": {
+     "base": 3,
+     "adapter": 1,
+     "total": 4
+    },
+    "ours_fail_official_pass": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "agree": {
+     "base": 15,
+     "adapter": 17,
+     "total": 32
+    },
+    "ours_pass": {
+     "base": 14,
+     "adapter": 11,
+     "total": 25
+    },
+    "official_pass": {
+     "base": 11,
+     "adapter": 10,
+     "total": 21
+    }
+   },
+   "change_case:english_lowercase": {
+    "slots": {
+     "base": 28,
+     "adapter": 28,
+     "total": 56
+    },
+    "ours_pass_official_fail": {
+     "base": 1,
+     "adapter": 2,
+     "total": 3
+    },
+    "ours_fail_official_pass": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "agree": {
+     "base": 27,
+     "adapter": 26,
+     "total": 53
+    },
+    "ours_pass": {
+     "base": 25,
+     "adapter": 27,
+     "total": 52
+    },
+    "official_pass": {
+     "base": 24,
+     "adapter": 25,
+     "total": 49
+    }
+   },
+   "combination:two_responses": {
+    "slots": {
+     "base": 19,
+     "adapter": 19,
+     "total": 38
+    },
+    "ours_pass_official_fail": {
+     "base": 0,
+     "adapter": 1,
+     "total": 1
+    },
+    "ours_fail_official_pass": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "agree": {
+     "base": 19,
+     "adapter": 18,
+     "total": 37
+    },
+    "ours_pass": {
+     "base": 17,
+     "adapter": 16,
+     "total": 33
+    },
+    "official_pass": {
+     "base": 17,
+     "adapter": 15,
+     "total": 32
+    }
+   },
+   "detectable_content:number_placeholders": {
+    "slots": {
+     "base": 20,
+     "adapter": 20,
+     "total": 40
+    },
+    "ours_pass_official_fail": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "ours_fail_official_pass": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "agree": {
+     "base": 20,
+     "adapter": 20,
+     "total": 40
+    },
+    "ours_pass": {
+     "base": 14,
+     "adapter": 9,
+     "total": 23
+    },
+    "official_pass": {
+     "base": 14,
+     "adapter": 9,
+     "total": 23
+    }
+   },
+   "detectable_format:json_format": {
+    "slots": {
+     "base": 17,
+     "adapter": 17,
+     "total": 34
+    },
+    "ours_pass_official_fail": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "ours_fail_official_pass": {
+     "base": 4,
+     "adapter": 3,
+     "total": 7
+    },
+    "agree": {
+     "base": 13,
+     "adapter": 14,
+     "total": 27
+    },
+    "ours_pass": {
+     "base": 7,
+     "adapter": 4,
+     "total": 11
+    },
+    "official_pass": {
+     "base": 11,
+     "adapter": 7,
+     "total": 18
+    }
+   },
+   "detectable_format:number_highlighted_sections": {
+    "slots": {
+     "base": 43,
+     "adapter": 43,
+     "total": 86
+    },
+    "ours_pass_official_fail": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "ours_fail_official_pass": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "agree": {
+     "base": 43,
+     "adapter": 43,
+     "total": 86
+    },
+    "ours_pass": {
+     "base": 31,
+     "adapter": 25,
+     "total": 56
+    },
+    "official_pass": {
+     "base": 31,
+     "adapter": 25,
+     "total": 56
+    }
+   },
+   "detectable_format:title": {
+    "slots": {
+     "base": 20,
+     "adapter": 20,
+     "total": 40
+    },
+    "ours_pass_official_fail": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "ours_fail_official_pass": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "agree": {
+     "base": 20,
+     "adapter": 20,
+     "total": 40
+    },
+    "ours_pass": {
+     "base": 20,
+     "adapter": 20,
+     "total": 40
+    },
+    "official_pass": {
+     "base": 20,
+     "adapter": 20,
+     "total": 40
+    }
+   },
+   "keywords:existence": {
+    "slots": {
+     "base": 29,
+     "adapter": 29,
+     "total": 58
+    },
+    "ours_pass_official_fail": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "ours_fail_official_pass": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "agree": {
+     "base": 29,
+     "adapter": 29,
+     "total": 58
+    },
+    "ours_pass": {
+     "base": 19,
+     "adapter": 23,
+     "total": 42
+    },
+    "official_pass": {
+     "base": 19,
+     "adapter": 23,
+     "total": 42
+    }
+   },
+   "keywords:forbidden_words": {
+    "slots": {
+     "base": 39,
+     "adapter": 39,
+     "total": 78
+    },
+    "ours_pass_official_fail": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "ours_fail_official_pass": {
+     "base": 3,
+     "adapter": 3,
+     "total": 6
+    },
+    "agree": {
+     "base": 36,
+     "adapter": 36,
+     "total": 72
+    },
+    "ours_pass": {
+     "base": 19,
+     "adapter": 17,
+     "total": 36
+    },
+    "official_pass": {
+     "base": 22,
+     "adapter": 20,
+     "total": 42
+    }
+   },
+   "keywords:frequency": {
+    "slots": {
+     "base": 36,
+     "adapter": 36,
+     "total": 72
+    },
+    "ours_pass_official_fail": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "ours_fail_official_pass": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "agree": {
+     "base": 36,
+     "adapter": 36,
+     "total": 72
+    },
+    "ours_pass": {
+     "base": 22,
+     "adapter": 22,
+     "total": 44
+    },
+    "official_pass": {
+     "base": 22,
+     "adapter": 22,
+     "total": 44
+    }
+   },
+   "length_constraints:number_paragraphs": {
+    "slots": {
+     "base": 20,
+     "adapter": 20,
+     "total": 40
+    },
+    "ours_pass_official_fail": {
+     "base": 1,
+     "adapter": 2,
+     "total": 3
+    },
+    "ours_fail_official_pass": {
+     "base": 15,
+     "adapter": 15,
+     "total": 30
+    },
+    "agree": {
+     "base": 4,
+     "adapter": 3,
+     "total": 7
+    },
+    "ours_pass": {
+     "base": 1,
+     "adapter": 2,
+     "total": 3
+    },
+    "official_pass": {
+     "base": 15,
+     "adapter": 15,
+     "total": 30
+    }
+   },
+   "length_constraints:number_words": {
+    "slots": {
+     "base": 42,
+     "adapter": 42,
+     "total": 84
+    },
+    "ours_pass_official_fail": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "ours_fail_official_pass": {
+     "base": 0,
+     "adapter": 1,
+     "total": 1
+    },
+    "agree": {
+     "base": 42,
+     "adapter": 41,
+     "total": 83
+    },
+    "ours_pass": {
+     "base": 26,
+     "adapter": 21,
+     "total": 47
+    },
+    "official_pass": {
+     "base": 26,
+     "adapter": 22,
+     "total": 48
+    }
+   },
+   "punctuation:no_comma": {
+    "slots": {
+     "base": 38,
+     "adapter": 38,
+     "total": 76
+    },
+    "ours_pass_official_fail": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "ours_fail_official_pass": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "agree": {
+     "base": 38,
+     "adapter": 38,
+     "total": 76
+    },
+    "ours_pass": {
+     "base": 31,
+     "adapter": 22,
+     "total": 53
+    },
+    "official_pass": {
+     "base": 31,
+     "adapter": 22,
+     "total": 53
+    }
+   },
+   "startend:end_checker": {
+    "slots": {
+     "base": 23,
+     "adapter": 23,
+     "total": 46
+    },
+    "ours_pass_official_fail": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "ours_fail_official_pass": {
+     "base": 0,
+     "adapter": 1,
+     "total": 1
+    },
+    "agree": {
+     "base": 23,
+     "adapter": 22,
+     "total": 45
+    },
+    "ours_pass": {
+     "base": 22,
+     "adapter": 19,
+     "total": 41
+    },
+    "official_pass": {
+     "base": 22,
+     "adapter": 20,
+     "total": 42
+    }
+   },
+   "startend:quotation": {
+    "slots": {
+     "base": 26,
+     "adapter": 26,
+     "total": 52
+    },
+    "ours_pass_official_fail": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "ours_fail_official_pass": {
+     "base": 0,
+     "adapter": 0,
+     "total": 0
+    },
+    "agree": {
+     "base": 26,
+     "adapter": 26,
+     "total": 52
+    },
+    "ours_pass": {
+     "base": 16,
+     "adapter": 14,
+     "total": 30
+    },
+    "official_pass": {
+     "base": 16,
+     "adapter": 14,
+     "total": 30
+    }
+   }
+  },
+  "totals": {
+   "slots": {
+    "base": 418,
+    "adapter": 418,
+    "total": 836
+   },
+   "ours_pass_official_fail": {
+    "base": 5,
+    "adapter": 6,
+    "total": 11
+   },
+   "ours_fail_official_pass": {
+    "base": 22,
+    "adapter": 23,
+    "total": 45
+   },
+   "agree": {
+    "base": 391,
+    "adapter": 389,
+    "total": 780
+   }
+  },
+  "types_with_any_disagreement": [
+   "change_case:english_capital",
+   "change_case:english_lowercase",
+   "combination:two_responses",
+   "detectable_format:json_format",
+   "keywords:forbidden_words",
+   "length_constraints:number_paragraphs",
+   "length_constraints:number_words",
+   "startend:end_checker"
+  ],
+  "types_with_no_disagreement": [
+   "detectable_content:number_placeholders",
+   "detectable_format:number_highlighted_sections",
+   "detectable_format:title",
+   "keywords:existence",
+   "keywords:frequency",
+   "punctuation:no_comma",
+   "startend:quotation"
+  ]
+ },
+ "named_detail": {
+  "length_constraints:number_words": {
+   "strict": {
+    "disagreeing_slots": 1,
+    "ours_pass_official_fail": 0,
+    "ours_fail_official_pass": 1,
+    "rows": [
+     {
+      "id": "ifeval-1072",
+      "model": "adapter",
+      "slot": 0,
+      "ours_pass": false,
+      "official_pass": true,
+      "instruction_args": {
+       "relation": "at least",
+       "num_words": 400
+      },
+      "our_word_count": 398,
+      "official_word_count": 415,
+      "output_chars": 2430,
+      "snippet": "**The Allure",
+      "snippet_note": "first token divergence at span 0 of 398 word / 415 \\w+ tokens"
+     }
+    ]
+   },
+   "lax": {
+    "disagreeing_slots": 1,
+    "ours_pass_official_fail": 0,
+    "ours_fail_official_pass": 1,
+    "rows": [
+     {
+      "id": "ifeval-1072",
+      "model": "adapter",
+      "slot": 0,
+      "ours_pass": false,
+      "official_pass": true,
+      "instruction_args": {
+       "relation": "at least",
+       "num_words": 400
+      },
+      "our_word_count": 398,
+      "official_word_count": 415,
+      "output_chars": 2430,
+      "snippet": "**The Allure",
+      "snippet_note": "first token divergence at span 0 of 398 word / 415 \\w+ tokens"
+     }
+    ]
+   }
+  },
+  "punctuation:no_comma": {
+   "strict": {
+    "disagreeing_slots": 0,
+    "ours_pass_official_fail": 0,
+    "ours_fail_official_pass": 0,
+    "rows": []
+   },
+   "lax": {
+    "disagreeing_slots": 0,
+    "ours_pass_official_fail": 0,
+    "ours_fail_official_pass": 0,
+    "rows": []
+   }
+  }
+ },
+ "drop_gain_arithmetic": {
+  "rule": "strict",
+  "stored_drops": {
+   "n": 54,
+   "survive_as_drops": 50,
+   "become_ties": 4,
+   "become_gains": 0,
+   "survive_as_drop_ids": [
+    "ifeval-1372",
+    "ifeval-2752",
+    "ifeval-2374",
+    "ifeval-2844",
+    "ifeval-1137",
+    "ifeval-3376",
+    "ifeval-1928",
+    "ifeval-343",
+    "ifeval-3619",
+    "ifeval-1217",
+    "ifeval-142",
+    "ifeval-349",
+    "ifeval-209",
+    "ifeval-2417",
+    "ifeval-2909",
+    "ifeval-2829",
+    "ifeval-1107",
+    "ifeval-2245",
+    "ifeval-3709",
+    "ifeval-2825",
+    "ifeval-127",
+    "ifeval-1237",
+    "ifeval-1132",
+    "ifeval-2069",
+    "ifeval-2583",
+    "ifeval-3109",
+    "ifeval-1658",
+    "ifeval-3615",
+    "ifeval-2292",
+    "ifeval-3084",
+    "ifeval-3569",
+    "ifeval-2649",
+    "ifeval-1746",
+    "ifeval-1147",
+    "ifeval-2324",
+    "ifeval-2136",
+    "ifeval-1713",
+    "ifeval-1645",
+    "ifeval-1644",
+    "ifeval-340",
+    "ifeval-2398",
+    "ifeval-2683",
+    "ifeval-1927",
+    "ifeval-3743",
+    "ifeval-2372",
+    "ifeval-3350",
+    "ifeval-3287",
+    "ifeval-2691",
+    "ifeval-1436",
+    "ifeval-1075"
+   ],
+   "become_tie_ids": [
+    "ifeval-1072",
+    "ifeval-3456",
+    "ifeval-3386",
+    "ifeval-1220"
+   ],
+   "become_gain_ids": []
+  },
+  "stored_gains": {
+   "n": 18,
+   "survive_as_gains": 16,
+   "become_ties": 2,
+   "become_drops": 0,
+   "survive_as_gain_ids": [
+    "ifeval-2246",
+    "ifeval-3243",
+    "ifeval-3380",
+    "ifeval-2602",
+    "ifeval-2534",
+    "ifeval-247",
+    "ifeval-2010",
+    "ifeval-1897",
+    "ifeval-1691",
+    "ifeval-122",
+    "ifeval-1203",
+    "ifeval-2662",
+    "ifeval-164",
+    "ifeval-3518",
+    "ifeval-2243",
+    "ifeval-1092"
+   ],
+   "become_tie_ids": [
+    "ifeval-1591",
+    "ifeval-2386"
+   ],
+   "become_drop_ids": []
+  },
+  "stored_ties_that_flip_on_the_official_ruler": {
+   "become_drops": 5,
+   "become_gains": 3
+  },
+  "official_strict_delta_items": -36,
+  "official_strict_discordant_total": 74,
+  "stored_discordant_total": 72
+ },
+ "determinism": {
+  "langdetect_DetectorFactory_seed": 0,
+  "random_seed": 0,
+  "why": "the vendored change_case checkers call langdetect.detect, whose DetectorFactory.seed defaults to None and therefore draws from the global random state; unpinned, this file's own two runs disagreed on one adapter verdict (160 vs 159 of 295). Which slots flip, measured over 9 unpinned processes, is in RUN.md; pinning the seed makes three consecutive runs byte-identical",
+  "checkers_that_use_langdetect": [
+   "change_case:english_capital",
+   "change_case:english_lowercase",
+   "language:response_language"
+  ]
+ },
+ "ours_ruler_check": {
+  "function": "scripts/bench_suites.py:check_ifeval",
+  "records_checked": 590,
+  "mismatches": [],
+  "reproduces_stored_correct_and_per_instruction": true
+ }
+}
