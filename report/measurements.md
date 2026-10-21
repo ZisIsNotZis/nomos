@@ -49,7 +49,7 @@
 
 ## 花费
 
-- 全部 DeepSeek API 调用 **7283 次、¥14.2309**（约 ¥14.23），其中 7239 次成功、44 次失败或重试。这是逐次落盘的金额求和，不是估算。
+- 全部 DeepSeek API 调用 **9059 次、¥15.6493**（约 ¥15.65），其中 9015 次成功、44 次失败或重试。这是逐次落盘的金额求和，不是估算。
 - 口径：一次调用 = 一次 HTTP 请求，含重试；金额取每条调用记录里已经写下的 `cost.cny`（生成批次）或 `cost_cny`（判读与标注批次），脚本按 DeepSeek 官方单价（input 命中缓存 0.006 / 未命中 0.30 / 输出 1.20 USD per Mtok，off-peak 减半）× 汇率 6.693661 与调用时刻计价，单价与汇率来源 `evidence/bare-baseline/run-meta.json`、`scripts/annotate_coverage.py` 的 `PRICE`。本表只求和，不改算。
 
 | 批次 | 调用 | 失败/重试 | 花费 | 落盘 |
@@ -61,6 +61,7 @@
 | resample（174 处境每条件再抽一条） | 348 | 0 | ¥0.6044 | `evidence/resample/answers.jsonl` |
 | densify（242 处境×2 条件×3.04 条） | 1470 | 0 | ¥1.2535 | `evidence/densify/answers.jsonl` |
 | anchor-matched（148 处境×2 条件×3 条，含 pilot 120） | 888 | 0 | ¥0.7115 | `evidence/measure/anchor-matched/answers.jsonl` |
+| anchor-draws9 追加（148 处境×2 条件×第 3–8 条，把匹配锚点抽到每侧 9 条） | 1776 | 0 | ¥1.4184 | `evidence/measure/anchor-draws9/answers.jsonl` |
 | position-swap（评委位置偏好） | 1172 | 0 | ¥2.3868 | `evidence/position-swap/calls.jsonl` |
 | draw-noise（同条件重发的噪声） | 636 | 0 | ¥1.2404 | `evidence/draw-noise/calls.jsonl` |
 | forced-choice（强制二选一对照） | 20 | 0 | ¥0.0678 | `evidence/forced-choice/calls.jsonl` |
@@ -70,16 +71,20 @@
 | coverage-cap8（同上，标签上限 8） | 177 | 3 | ¥0.5403 | `evidence/coverage-cap8/calls.jsonl` |
 | coverage-uncapped（同上，标签不限） | 197 | 23 | ¥0.6274 | `evidence/coverage-uncapped/calls.jsonl` |
 | grow/coverage（新 55 处境的覆盖标注） | 55 | 0 | ¥0.1231 | `evidence/grow/coverage/calls.jsonl` |
-| **合计** | **7283** | **44** | **¥14.2309** | 上列 16 个文件 |
+| **合计** | **9059** | **44** | **¥15.6493** | 上列 17 个文件 |
 
-按用途分三堆：处境生成 3611 次 ¥4.9210、评委 3067 次 ¥7.5413、覆盖标注 605 次 ¥1.7685，三堆相加即 ¥14.2308（与上表差 0.0001 是四舍五入）。
+按用途分三堆：处境生成 5387 次 ¥6.3395、评委 3067 次 ¥7.5413、覆盖标注 605 次 ¥1.7685，三堆相加即 ¥15.6493（按上表已四舍五入的行值相加是 ¥15.6492，差 0.0001 是四舍五入）。
+
+`anchor-draws9` 这一行是 2026-10-21 追加的抽样，按臂拆开是带法 ¥0.8796 / 不带法 ¥0.5388（均值 ¥0.000799/次），全部落在 off-peak 价档；分项、参数与两目录合计写在 `evidence/measure/anchor-draws9/run-meta.json` 里，本表只取它的求和，不改算。原批 888 次 ¥0.7115 未被改写（追加只在 `range(3, 9)` 上跑），所以两行合计 2 664 次 ¥2.1300 就是整个匹配锚点的花费。
+
+这张表只增行、不重跑：新批次落盘后把它的行插进来、把合计重算一遍，旧行不动。
 
 复算命令（输出就是上面这张表的行）：
 
 ```sh
 python3 - <<'EOF'
 import json
-B=[("slice-contrast 生成","evidence/slice-contrast/answers.jsonl"),("slice-contrast 判读","evidence/slice-contrast/calls.jsonl"),("bare-baseline","evidence/bare-baseline/calls.jsonl"),("grow","evidence/grow/answers.jsonl"),("resample","evidence/resample/answers.jsonl"),("densify","evidence/densify/answers.jsonl"),("anchor-matched","evidence/measure/anchor-matched/answers.jsonl"),("position-swap","evidence/position-swap/calls.jsonl"),("draw-noise","evidence/draw-noise/calls.jsonl"),("forced-choice","evidence/forced-choice/calls.jsonl"),("rubric 第一遍","evidence/rubric/pass-holistic/calls.jsonl"),("rubric 第二遍","evidence/rubric/calls.jsonl"),("coverage","evidence/coverage/calls.jsonl"),("coverage-cap8","evidence/coverage-cap8/calls.jsonl"),("coverage-uncapped","evidence/coverage-uncapped/calls.jsonl"),("grow/coverage","evidence/grow/coverage/calls.jsonl")]
+B=[("slice-contrast 生成","evidence/slice-contrast/answers.jsonl"),("slice-contrast 判读","evidence/slice-contrast/calls.jsonl"),("bare-baseline","evidence/bare-baseline/calls.jsonl"),("grow","evidence/grow/answers.jsonl"),("resample","evidence/resample/answers.jsonl"),("densify","evidence/densify/answers.jsonl"),("anchor-matched","evidence/measure/anchor-matched/answers.jsonl"),("anchor-draws9 追加","evidence/measure/anchor-draws9/answers.jsonl"),("position-swap","evidence/position-swap/calls.jsonl"),("draw-noise","evidence/draw-noise/calls.jsonl"),("forced-choice","evidence/forced-choice/calls.jsonl"),("rubric 第一遍","evidence/rubric/pass-holistic/calls.jsonl"),("rubric 第二遍","evidence/rubric/calls.jsonl"),("coverage","evidence/coverage/calls.jsonl"),("coverage-cap8","evidence/coverage-cap8/calls.jsonl"),("coverage-uncapped","evidence/coverage-uncapped/calls.jsonl"),("grow/coverage","evidence/grow/coverage/calls.jsonl")]
 N=F=0; S=0.0
 for name,p in B:
     rs=[json.loads(l) for l in open(p) if l.strip()]
