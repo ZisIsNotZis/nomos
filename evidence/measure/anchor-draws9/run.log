@@ -17,3 +17,5 @@ analyse: 处境 148 条，每处境每侧用 9 条抽样（要求 9 条），落
 note: answers.jsonl 的 1776 行 call_id 一次性重编为 a0889–a2664（原为 a0001–a1776，与原批的 a0001–a0885 整段重叠）；只改 call_id，其余字段与行序未动，因为同一批锚点内 call_id 必须唯一。runner 现在按原批条数接着编，同一目录再追加不会再重叠。
 cmd: scripts/measure_anchor.py --analyse --draws 9
 analyse: 处境 148 条，每处境每侧用 9 条抽样（要求 9 条），落 evidence/measure/anchor-draws9/per-situation.jsonl
+cmd: scripts/measure_anchor.py --analyse --draws 9
+analyse: 处境 148 条，每处境每侧用 9 条抽样（要求 9 条），落 evidence/measure/anchor-draws9/per-situation.jsonl
