@@ -1,131 +1,189 @@
-# Benchmark：base 75.0%/60.0%，adapter 65.0%/40.0%，配对差 −10pp / −20pp 都没到检出下限；全量未跑
+# Benchmark（n=100）：GSM8K +3.0pp 区间跨 0、IFEval −12.0pp 区间不含 0；检出下限 4–5pp
 
 ## 结论
 
-四个格子都跑完了：每套件 n=20、同一条冻结样本前缀、seed 0、贪心解码，base 与 adapter 用同一把尺子（只换模型，不改判分）。
+四个格子都跑完了：每套件 n=100、同一条冻结样本前缀、seed 0、贪心解码，base 与 adapter 用同一把尺子（只换模型，不改判分）。跑的是 `evidence/benchmark/run_m2_n100.sh`，逐格 log、`driver.log`、`driver.pid` 在 `evidence/benchmark/logs-n100/`；`analyse rc=0` 之后 driver 退出，四份 JSON 与两份配对结果由它落盘（提交 `6dc8f52`）。
 
 | 套件 | base | adapter | 差值（adapter−base） | 配对 95% 区间 | 配对翻转（掉/涨） | McNemar 精确 p | 判定 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| GSM8K | 15/20 = **75.0%** | 13/20 = **65.0%** | **−10.0pp** | [−30.0, +10.0] | 3 / 1 | 0.625 | 没测到下降；也看不见 20pp 以内的下降 |
-| IFEval | 12/20 = **60.0%** | 8/20 = **40.0%** | **−20.0pp** | [−40.0, 0.0] | 5 / 1 | 0.219 | 本轮最大的点估计降幅，但区间触 0，够不到 95% 显著 |
+| GSM8K | 73/100 = **73.0%** | 76/100 = **76.0%** | **+3.0pp** | [−6.0, +12.0] | 10 / 13 | 0.678 | 没测到下降，也没测到上升 |
+| IFEval | 57/100 = **57.0%** | 45/100 = **45.0%** | **−12.0pp** | [**−22.0, −3.0**] | 19 / 7 | **0.029** | **测到下降：区间整个在 0 的负侧** |
 
-读法：「没测到」不等于「没有」。两个差值区间都跨过或触到 0，所以这轮的结论句只能写到「没有可信的下降证据」，不能写成「能力没掉」。IFEval 的 −20pp 恰好压在这个 n 的检出下限上（见「这个 n 能看见多大的掉幅」），再掉一条就是显著。
+读法（这一版替换掉 n=20 时那句「没有可信的下降证据」）：
 
-配对翻转的构成是唯一能指向机制的证据，逐条核过：
+- **IFEval 的下降不再只是点估计。** 配对区间 [−22.0, −3.0] 不含 0，McNemar p = 0.029（19 掉 / 7 涨），所以可以写「测到 −12pp」，不能再写「没测到」。同一句话必须带上它的边界：**一次抽样、一个 seed、贪心解码，两个套件各测一次而没有做多重比较校正**——两格里只有一格显著，把 α 校正到 0.025（Bonferroni，两个套件）时 p = 0.029 就压线了。
+- **GSM8K 仍然没测到下降。** +3.0pp、区间 [−6.0, +12.0] 跨 0、p 0.678、10 掉 13 涨：它既不能宣称没掉，也不能宣称涨了。
+- **这个 n 能看见多小的掉幅**：n=100 的检出下限是 **5pp（McNemar 精确检验，且掉点没有涨来抵消）／4pp（配对自举区间不含 0）**（见「这个 n 能看见多大的掉幅」）。所以「GSM8K 没测到」的准确读法是「4–5pp 以上的下降会被看见，而没看见」；「IFEval 测到 −12pp」的准确读法是「它是这个下限的两倍多」。
+- **「没有可信的下降证据」从此只在 GSM8K 那一格成立。** 支撑上一版结论的 n=20 读数留在后面「前一次估计」一节：同样本前 20 条是 GSM8K −10.0pp、IFEval −20.0pp；扩到 100 条后 GSM8K 翻正、IFEval 收窄到 −12pp。点估计随 n 变了，没变的是 IFEval 的负号。
 
-- **IFEval 五条掉点全是格式/指令合规逐条翻 false**：`number_placeholders`、`highlighted_sections`（两条）、`no_comma`、`number_words`、`json_format`。与训练目标一致——SFT 只喂了 288 条长中文回答，改的是回答方式，最先受伤的是「按格式写」这类指令跟随。
-- **GSM8K 三条掉点是算错数**（gold 150→pred 6、60→5、50→100），不是抽不出数：两套件 `unscorable` 都是 0，40 条全部吐出可判分回答，分母一直是 20。
+### headroom 判定（口径不变，n=100 重算）
 
-### headroom 判定（口径不变）
-
-headroom（训练前基座分数是否落在判别带 30–70%）用真模型跑出来了，两个套件各 n=20、贪心解码、seed 0、冻结样本前缀：
+headroom（训练前基座分数是否落在判别带 30–70%）用真模型跑出来了，两个套件各 n=100、贪心解码、seed 0、冻结样本前缀：
 
 | 套件 | n | 正确 | 基座分数 | Wilson 95% | 单条耗时 | headroom 判定 |
 | --- | --- | --- | --- | --- | --- | --- |
-| GSM8K | 20 | 15 | **75.0%** | [53.1%, 88.8%] | 26.8 s | 边际通过，判别力偏弱（见下） |
-| IFEval | 20 | 12 | **60.0%** | [38.7%, 78.1%] | 28.5 s | 通过：落在判别带正中 |
+| GSM8K | 100 | 73 | **73.0%** | [63.6%, 80.7%] | 23.2 s | 边际通过，判别力偏弱（点估计在带上沿之外，见下） |
+| IFEval | 100 | 57 | **57.0%** | [47.2%, 66.3%] | 22.1 s | 通过：落在判别带正中 |
 
 判定按约定阈值读，不按印象读：
 
-- **IFEval 采用。** 点估计 60.0%，区间 [38.7%, 78.1%] 完全覆盖 30–70% 带，离天花板 85% 和地板 15% 都远，掉 20pp 就出带 → 对"掉没掉"敏感。
-- **GSM8K 采用但标注判别力偏弱。** 点估计 75.0% 已在 30–70% 带的上沿之外，区间上界 88.8% 越过了 85% 天花板，所以不能排除这个套件已经贴顶。它的用法因此限定为：**只能看见 ≳20pp 的掉幅（实测下限，见「这个 n 能看见多大的掉幅」），不能拿来宣称「没掉」**。按约定若点估计 >85% 就不采用；75.0% 低于 85%，故采用，但结论强度写在这里，不留给读者自己推。
-- **base 与 adapter 两格都已跑，差值与区间在本轮已给出（见上表与「配对对照」）。** 未跑的只剩全量（200/295 条）与 n=100 的约定值，逐格列在「未跑与续跑命令」。
+- **IFEval 采用。** 点估计 57.0%，区间 [47.2%, 66.3%] 完整落在 30–70% 带内，离天花板 85% 和地板 15% 都远 → 对「掉没掉」敏感。n 从 20 到 100 只把点估计从 60.0% 挪到 57.0%，判定没变。
+- **GSM8K 采用但标注判别力偏弱。** 点估计 73.0% 已在 30–70% 带的上沿之外，区间上界 80.7% 离 85% 天花板还有 4.3pp（n=20 时是 88.8%，越过了天花板），所以「已经贴顶」从「不能排除」降级为「没有证据」，但仍不能当成没贴顶：点估计高于带的上沿这件事本身没消除。它的用法限定为：**4–5pp 以上的掉幅会被看见，但不拿它宣称「没掉」**。按约定若点估计 >85% 就不采用；73.0% 低于 85%，故采用，结论强度写在这里，不留给读者自己推。
+- **四格都已跑完。** 未跑的只剩全量（GSM8K 200 条、IFEval 295 条），逐格列在「未跑与续跑命令」。
 
-**样本量是降过的，这是本轮最大的一处偏离。** 约定跑 `--limit 100`，实测单条 23.3–35.9 s，100 条单套件就要 40–60 分钟，两套件 × base/adapter 更装不进 25 分钟硬预算。于是四个格子统一降到 n=20（base 与 adapter 都是），代价是单格 Wilson 半宽从 ±9pp 变到 ±18pp、配对检出下限站到 20–25pp：GSM8K 的「可能贴顶」和两套件的「没测到显著下降」都是 n 小造成的，不是能力结论。续跑命令见文末，`--limit 100` 与全量都是同一条冻结序列的前缀，所以这 20 条是大跑的前 20 条，不冲突，可直接被覆盖升级。
+**样本量曾经是降过的。** 上一轮按 25 分钟硬预算把四格降到 n=20（单条 23.3–35.9 s，100 条单套件就要 40–60 分钟）。这一轮派发的是约定值 `--limit 100`，四格实测单条 14.1–23.4 s、整轮墙钟 78.5 分钟（见「实测速度与预算重算」），所以「装不进预算」这个理由已经消失。n=20 的四格与两份配对结果移到了 `evidence/benchmark/n20/`（提交 `fc273a9`），保留在同一样本前 20 条的位置上。
 
-## 配对对照：base 对 adapter（n=20，同一样本 id）
+## 配对对照：base 对 adapter（n=100，同一样本 id）
 
 方法就是「换一个变量」：
 
-- **同一批 20 条。** `data/bench/sources.json` 的 seed 0 按 `sha256("0:<id>")` 升序取前缀，`--limit 20` 永远是同 20 条；`analyse_paired.py` 先比对两次运行的 `limit`、`seed`、`frozen_sha256`、`decoding`，再比对记录里的 id 顺序，不一致直接报错退出，不会算出一个假的配对结果。
+- **同一批 100 条。** `data/bench/sources.json` 的 seed 0 按 `sha256("0:<id>")` 升序取前缀，`--limit 100` 永远是同 100 条；`analyse_paired.py` 先比对两次运行的 `limit`、`seed`、`frozen_sha256`、`decoding`，再比对记录里的 id 顺序，不一致直接报错退出，不会算出一个假的配对结果。
 - **只换模型。** 解码贪心、`max_new_tokens` 512/640 由 `sources.json` 固定，adapter 走 `PeftModel.from_pretrained` 加载 `.tmp/sft/adapter-narrow`（r=16，41.7 MB）。判分代码一行没改，`correct` 直接读落盘记录。
 - **落盘可查。** `evidence/benchmark/paired-<suite>.json` 记两条分数、Wilson 区间、差值、配对自举区间、翻转 id（`drop_ids`/`gain_ids`）、McNemar p、检出下限和两侧耗时。
 
 | 套件 | base | adapter | 差值 | 配对自举 95% | 掉 | 涨 | 不变 | McNemar p |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| GSM8K | 15/20 | 13/20 | −10.0pp | [−30.0, +10.0] | 3 | 1 | 16 | 0.625 |
-| IFEval | 12/20 | 8/20 | −20.0pp | [−40.0, 0.0] | 5 | 1 | 14 | 0.219 |
+| GSM8K | 73/100 | 76/100 | +3.0pp | [−6.0, +12.0] | 10 | 13 | 77 | 0.678 |
+| IFEval | 57/100 | 45/100 | −12.0pp | [−22.0, −3.0] | 19 | 7 | 74 | 0.029 |
 
-配对而不是比两个单格区间，是因为 20 条里只有 4–6 条真正翻转，其余 14–16 条两条模型答案一模一样；把「同一条上翻没翻」当样本，噪声比两个独立比例小得多。McNemar 只看不一致的那几条（GSM8K 4 条、IFEval 6 条），所以 p 值大：n=20 时不一致的样本只有个位数。
+配对而不是比两个单格区间，是因为 100 条里只有 29–32 条真正翻转，其余 68–77 条两条模型答案一模一样；把「同一条上翻没翻」当样本，噪声比两个独立比例小得多。McNemar 只看不一致的那几条（GSM8K 23 条、IFEval 26 条）。
+
+### 逐条读 19 条 IFEval 掉点：受伤的是「字数/标点/标记」这类表层指令
+
+`per_instruction` 字段在每份落盘记录里逐条写明了每条指令过没过，所以掉点可以拆到指令层，不必自己重跑。命令（只读，不动任何东西）：
+
+```sh
+python3 - <<'EOF'
+import json
+b={r['id']:r for r in json.load(open('evidence/benchmark/base-ifeval.json'))['records']}
+a={r['id']:r for r in json.load(open('evidence/benchmark/adapter-ifeval.json'))['records']}
+for i in a:
+    if b[i]['correct'] and not a[i]['correct']:
+        print(i, [k for k in b[i]['per_instruction'] if b[i]['per_instruction'][k] and not a[i]['per_instruction'][k]])
+EOF
+```
+
+19 条掉点里，每条只丢一条指令（没有一条是因为同一题上丢两条而多算的），按指令汇总：
+
+| 掉的指令 | 掉几条 | 该指令在这 100 条里出现几条 | 读法 |
+| --- | --- | --- | --- |
+| `length_constraints:number_words` | 6 | 23 | 5 条是「至少 N 词」没过（adapter 写短了），1 条是「少于 151 词」被超 |
+| `punctuation:no_comma` | 4 | 12 | 全是 base 0 个逗号、adapter 冒出 1–8 个 |
+| `detectable_format:number_highlighted_sections` | 2 | 16 | 少写了 `*高亮*` 段落 |
+| `detectable_content:number_placeholders` | 2 | 5 | 少写了占位符 |
+| `startend:quotation` | 2 | 10 | 首尾引号没包住 |
+| `detectable_format:json_format` / `change_case:english_capital` / `keywords:forbidden_words` | 各 1 | 4 / 10 / 11 | 各一条 |
+
+三条可直接核的事实：
+
+1. **不是答错，是答短了。** 100 条里 adapter 有 65 条比 base 短，词数中位数 212.5 → 169.0（均值 248.3 → 202.8）；GSM8K 更明显（均值 210.2 → 95.1 词）。「至少 N 词」这类下限指令因此先受伤：5 条没过里 3 条只差 2–23 词（398/400、377/400、195/200），另两条差 62 与 91 词。
+2. **逗号禁令是另一条独立的伤。** base 在这 12 条里 10 条一个逗号不写，adapter 在 5 条里写出 1–8 个，其中 4 条由对变错。
+3. **其他 9 条掉点与 GSM8K 一样零散。** 没有一条是「写不出可判分回答」：两套件 200 份记录 `unscorable` 都是 0，分母一直是 100。
+
+所以这一格的 −12pp 不是「通用能力掉了一截」的单一东西，而是**回答变短、并多了逗号**这个风格变化撞在 IFEval 的表层检查上——与 §4.3「提升的 65.3% 是交互项」同一个方向：SFT 改的是回答方式，而「按格式写」的能力是这套方式的代价。
 
 ### 这个 n 能看见多大的掉幅
 
-用同一套自举和精确检验算出来的检出下限（α=0.05，且掉的那几条没有任何涨来抵消，这是最有利的情形）：
+用同一套自举和精确检验算出来的检出下限（α=0.05，且掉的那几条没有任何涨来抵消，这是最有利的情形）。两个 n 列在一起，因为「没测到」这句话的强度就是由这一行决定的：
 
-| 判据 | 最少掉几条 | 折成掉幅 |
-| --- | --- | --- |
-| 配对自举区间不含 0 | 4 | **20pp** |
-| McNemar 精确检验 p<0.05 | 5 | **25pp** |
+| n | 判据 | 最少掉几条 | 折成掉幅 |
+| --- | --- | --- | --- |
+| **100** | 配对自举区间不含 0 | 4 | **4pp** |
+| **100** | McNemar 精确检验 p<0.05 | 5 | **5pp** |
+| 20 | 配对自举区间不含 0 | 4 | 20pp |
+| 20 | McNemar 精确检验 p<0.05 | 5 | 25pp |
 
-两条合起来的读法：**n=20 只能看见 ≳20pp 的掉幅，而且要求几乎不退不涨地整片掉**。这轮 IFEval 是 5 掉 1 涨，净 −4 条，刚好差在 McNemar 的 5 条门线下一格；GSM8K 是 3 掉 1 涨，净 −2 条，离两条判据的下限都还远。GSM8K 基座 15/20 已贴上沿，顶板效应对它比对 IFEval 更紧：它连 20pp 的掉幅都只能靠 4 条承载。想吃掉 10pp 级别的差异，每格 n 要到 150 左右，那是全量（200/295 条）才做得到的事，本轮没跑。
+读法：**n=100 能看见 4–5pp 级别的掉幅，n=20 只能看见 ≳20pp**——同一条判据下，把 n 乘 5 把下限除以 5。这一轮两个格子的读数各自落在这个分辨力上：IFEval 净掉 12 条，是下限的两倍多，所以区间不含 0；GSM8K 净涨 3 条，离下限还差得远，所以只能写「没测到」而不写「没掉」。想看 3pp 以下的差异，n=100 不够，得跑全量（IFEval 295 条）或把套件加宽——那一步不在这一轮里。
+
+### 前一次估计：同一样本前 20 条（n=20）
+
+n=20 的四格是同一批冻结样本的前 20 条（同一 seed、同一判分、同一 adapter），现在只作为「同一样本的前一次估计」存在，**不再是谁的当前读数**。它留在报告里是因为它能用来说明「n 小的时候点估计会飘到哪里」：
+
+| 套件 | base | adapter | 差值 | 配对 95% | 掉 | 涨 | 不变 | McNemar p | 判定 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| GSM8K | 15/20 = 75.0% | 13/20 = 65.0% | −10.0pp | [−30.0, +10.0] | 3 | 1 | 16 | 0.625 | 没测到下降；也看不见 20pp 以内的下降 |
+| IFEval | 12/20 = 60.0% | 8/20 = 40.0% | −20.0pp | [−40.0, 0.0] | 5 | 1 | 14 | 0.219 | 点估计降幅最大，但区间触 0 |
+
+同一批前 20 条当时也逐条核过，结论与 n=100 那一节不矛盾：IFEval 五条掉点全是格式/指令合规逐条翻 `false`（`number_placeholders`、`highlighted_sections` ×2、`no_comma`、`number_words`、`json_format`），GSM8K 三条掉点是算错数（gold 150→pred 6、60→5、50→100），两套件 `unscorable` 都是 0。当时把这五条读成「与训练目标一致：改的是回答方式，最先受伤的是按格式写」，n=100 的 19 条掉点把这个读法坐实了（见「逐条读 19 条 IFEval 掉点」）。当时的结论句只能写到「没有可信的下降证据」，因为两个区间都跨过或触到 0，而且 IFEval 的 −20pp 恰好压在那个 n 的 20–25pp 下限上：再掉一条就是显著。
 
 ## 落盘
 
 | 路径 | 内容 |
 | --- | --- |
-| `evidence/benchmark/base-gsm8k.json` | 20 条完整记录（prompt、输出、判定、是否正确）+ summary + `elapsed_seconds`，`limit: 20`、`seed: 0`、`decoding: greedy`、`max_new_tokens: 512`、`frozen_sha256: def2e3a0…c1d3` |
+| `evidence/benchmark/base-gsm8k.json` | 100 条完整记录（prompt、输出、判定、是否正确、`per_instruction`）+ summary + `elapsed_seconds`，`limit: 100`、`seed: 0`、`decoding: greedy`、`max_new_tokens: 512`、`frozen_sha256: def2e3a0…c1d3` |
 | `evidence/benchmark/base-ifeval.json` | 同上，`max_new_tokens: 640`、`frozen_sha256: 0cc0fb57…71e` |
-| `evidence/benchmark/adapter-gsm8k.json` / `adapter-ifeval.json` | adapter 侧同样 20 条完整记录 + summary；`adapter_dir` 记了 LoRA 路径，`decoding: greedy`、`seed: 0`、`limit: 20` 与 base 逐字段相同 |
+| `evidence/benchmark/adapter-gsm8k.json` / `adapter-ifeval.json` | adapter 侧同样 100 条完整记录 + summary；`adapter_dir` 记了 LoRA 路径，`decoding: greedy`、`seed: 0`、`limit: 100` 与 base 逐字段相同 |
 | `evidence/benchmark/paired-gsm8k.json` / `paired-ifeval.json` | 配对比较结果：两条分数与 Wilson 区间、差值、配对自举区间、翻转 id、McNemar p、检出下限、两侧耗时 |
+| `evidence/benchmark/logs-n100/` | `driver.log`（两相 rc、两行 `analyse` 读数）、`driver.out`、`driver.pid`、四份逐格 stdout、`inflight.md`（派发时的 pid 与续跑点） |
+| `evidence/benchmark/n20/` | 同一样本前 20 条的四格与两份配对结果（上一版的读数，保留为前一次估计） |
 | `evidence/benchmark/analyse_paired.py` | 重算上表每个数字；四格任一缺失即退出码 1。配对自举复用 `scripts/resample_actions.py` 的那一份实现，树里不存第二份 |
-| `evidence/benchmark/base-gsm8k.log` / `base-ifeval.log` / `adapter-gsm8k.log` / `adapter-ifeval.log` | 四次运行的 stdout（含 `/usr/bin/time` 的耗时） |
 
-四次运行都 `unscorable=0`，即 80 条记录全部吐出了可判分的回答，没有一条因为抽不出数或空回答被排除；`accuracy` 的分母是条数，不是可判分数。
+四次运行都 `unscorable=0`，即 400 条记录全部吐出了可判分的回答，没有一条因为抽不出数或空回答被排除；`accuracy` 的分母是条数，不是可判分数。
 
 ## 实测速度与预算重算
 
-原报告按 30–60 token/s 估出"两套件 × base/adapter 约 1.5–3 小时"。这个估计被实测推翻，现在用实测值替换：
+原报告按 30–60 token/s 估出"两套件 × base/adapter 约 1.5–3 小时"。这个估计被实测推翻，现在用实测值替换（n=100 的四行是本轮实测，n=20 的四行是上一轮实测，两轮卡上负载不同，所以逐行标了备注）：
 
 | 观测 | 条数 | 生成时间 | 单条 | 备注 |
 | --- | --- | --- | --- | --- |
+| base GSM8K 与 IFEval 并行（n=100） | 100 | 2324.1 s | 23.2 s | 卡上只剩本轮两路，预检时空 23560 MiB |
+| base IFEval 与 GSM8K 并行（n=100） | 100 | 2213.5 s | 22.1 s | 同上 |
+| adapter GSM8K 与 IFEval 并行（n=100） | 100 | 1407.7 s | 14.1 s | 同上；比上一轮的 23.3 s 快 40%，因为卡空了 |
+| adapter IFEval 与 GSM8K 并行（n=100） | 100 | 2344.4 s | 23.4 s | 同上；比上一轮的 35.9 s 快 35% |
 | GSM8K 单进程 probe | 10 | 246 s（`WALL 258.7 s` 含加载） | 24.6 s | 独占卡时 |
-| GSM8K 与 IFEval 并行 | 20 | 536.9 s | 26.8 s | 两路同时跑，互相拖慢约 9% |
-| IFEval 与 GSM8K 并行 | 20 | 569.9 s | 28.5 s | 输出更长（均 1423 字符 vs 1104） |
-| adapter GSM8K 与 IFEval 并行 | 20 | 465.8 s | 23.3 s | 本轮早段，卡上另一任务较轻 |
-| adapter IFEval 与 GSM8K 并行 | 20 | 718.6 s | 35.9 s | 同刻另一任务（动作测量）在跑，慢了 26% |
+| GSM8K 与 IFEval 并行（n=20） | 20 | 536.9 s | 26.8 s | 两路同时跑，互相拖慢约 9% |
+| IFEval 与 GSM8K 并行（n=20） | 20 | 569.9 s | 28.5 s | 输出更长（均 1423 字符 vs 1104） |
+| adapter GSM8K 与 IFEval 并行（n=20） | 20 | 465.8 s | 23.3 s | 上一轮早段，卡上另一任务较轻 |
+| adapter IFEval 与 GSM8K 并行（n=20） | 20 | 718.6 s | 35.9 s | 同刻另一任务（动作测量）在跑，慢了 26% |
 
-两路并行合计吞吐 4.2 条/分钟，串行是 2.4 条/分钟，**并行 1.75×**。据此推算（不是实测）：
+n=100 那一轮的整体墙钟：`12:41:08` 预检 → `13:59:40` analyse → **78 分 32 秒（4713 s）**，两相各两路并行，四格生成时间合计 8290 s（并行度 1.76×，与 n=20 那一轮算出的 1.75× 一致）。上一轮拿 4.2 条/分钟外推「四格全量 990 条约 4.5–5 h」；按 n=100 实测的 5.1 条/分钟（400 条 / 78.5 分钟）重算，990 条约 3.2 h，所以那个估计是保守的，不夸大。
 
-| 全量单元 | 条数 | 并行两路时的时间 |
-| --- | --- | --- |
-| base GSM8K | 200 | ≈ 90 min |
-| base IFEval | 295 | ≈ 140 min |
-| adapter GSM8K | 200 | ≈ 90 min |
-| adapter IFEval | 295 | ≈ 140 min |
-| 全部四个单元 | 990 | **≈ 4.5–5 h**（GSM8K 路 180 min、IFEval 路 280 min，取长的那条） |
+上一轮的外推表（保留作为当时的估计，它现在已经可以被实测取代）：
 
-慢的成因是推断而非测量，标出来以免被当成结论：transformers 四次警告 `flash-linear-attention` 与 `causal_conv1d` 未安装，回落到 reference PyTorch 实现；同一时刻卡上还有另一个任务（约 5.2 GiB）和别的项目占用。没有装这两个包（需要网络，本机 PyPI 不可达），也没有改量化、没有加 batch——改了就不是同一把尺子，base 与 adapter 的对比会失去意义。
+| 全量单元 | 条数 | 并行两路时的时间（当时的估计） | 按 n=100 实测量重算 |
+| --- | --- | --- | --- |
+| base GSM8K | 200 | ≈ 90 min | ≈ 79 min |
+| base IFEval | 295 | ≈ 140 min | ≈ 109 min |
+| adapter GSM8K | 200 | ≈ 90 min | ≈ 48 min |
+| adapter IFEval | 295 | ≈ 140 min | ≈ 115 min |
+| 全部四个单元 | 990 | **≈ 4.5–5 h** | **≈ 3.2 h**（GSM8K 路 79+48 min、IFEval 路 109+115 min，取长的那条） |
+
+**花费对账（相对派发时的授权）**：派发时按 ≈5 小时墙钟给了 `idle-compute`（单卡 4090，不碰 metered、不花 API 钱）。实测 **1.31 小时**（4713 s，包了预检、两相四格与 analyse），用了授权的 **26%**；四格生成时间合计 2.3 GPU 小时（两路并行）。所以这一轮的花费类是 `idle-compute`，金额是 **¥0**，剩下 ≈3.7 小时未用。计账在 [`report/measurements.md`] 的「本机 GPU（不计钱）」一节。
+
+慢的成因：transformers 警告 `flash-linear-attention` 与 `causal_conv1d` 未安装，回落到 reference PyTorch 实现（四次运行都警告）。上一轮把这个归因与「卡上还有另一个任务」攪在一起，n=100 那一轮把两者分开了：预检时卡上 23560 MiB 全空，单条仍然要 14.1–23.4 s，所以主要原因是未编译的 kernel，不是并发。没有装这两个包（需要网络，本机 PyPI 不可达），也没有改量化、没有加 batch——改了就不是同一把尺子，base 与 adapter 的对比会失去意义。
 
 ## 未跑与续跑命令
 
 | 单元 | 状态 | 命令 |
 | --- | --- | --- |
-| base GSM8K n=20 | 已跑 | — |
-| base IFEval n=20 | 已跑 | — |
-| base GSM8K n=100（约定值） | **未跑** | `nohup python3 scripts/run_bench.py --suite gsm8k --model base --limit 100 > evidence/benchmark/base-gsm8k.log 2>&1 &` |
-| base IFEval n=100（约定值） | **未跑** | `nohup python3 scripts/run_bench.py --suite ifeval --model base --limit 100 > evidence/benchmark/base-ifeval.log 2>&1 &` |
-| base GSM8K n=200（全量） | **未跑** | `nohup python3 scripts/run_bench.py --suite gsm8k --model base --limit 200 > evidence/benchmark/base-gsm8k-full.log 2>&1 &` |
-| base IFEval n=295（全量） | **未跑** | `nohup python3 scripts/run_bench.py --suite ifeval --model base --limit 295 > evidence/benchmark/base-ifeval-full.log 2>&1 &` |
-| adapter GSM8K n=20 | 已跑 | — |
-| adapter IFEval n=20 | 已跑 | — |
-| adapter GSM8K n=100（约定值） | **未跑** | `nohup python3 scripts/run_bench.py --suite gsm8k --model adapter --limit 100 > evidence/benchmark/adapter-gsm8k.log 2>&1 &` |
-| adapter IFEval n=100（约定值） | **未跑** | `nohup python3 scripts/run_bench.py --suite ifeval --model adapter --limit 100 > evidence/benchmark/adapter-ifeval.log 2>&1 &` |
-| adapter GSM8K n=200（全量） | **未跑** | `nohup python3 scripts/run_bench.py --suite gsm8k --model adapter --limit 200 > evidence/benchmark/adapter-gsm8k-full.log 2>&1 &` |
-| adapter IFEval n=295（全量） | **未跑** | `nohup python3 scripts/run_bench.py --suite ifeval --model adapter --limit 295 > evidence/benchmark/adapter-ifeval-full.log 2>&1 &` |
+| base GSM8K n=20 | 已跑（前一次估计，`n20/`） | — |
+| base IFEval n=20 | 已跑（前一次估计，`n20/`） | — |
+| base GSM8K n=100（约定值） | **已跑**（`logs-n100/base-gsm8k.log`） | — |
+| base IFEval n=100（约定值） | **已跑**（`logs-n100/base-ifeval.log`） | — |
+| base GSM8K n=200（全量） | **未跑** | `nohup python3 scripts/run_bench.py --suite gsm8k --model base --limit 200 > evidence/benchmark/logs-full/base-gsm8k.log 2>&1 &` |
+| base IFEval n=295（全量） | **未跑** | `nohup python3 scripts/run_bench.py --suite ifeval --model base --limit 295 > evidence/benchmark/logs-full/base-ifeval.log 2>&1 &` |
+| adapter GSM8K n=20 | 已跑（前一次估计，`n20/`） | — |
+| adapter IFEval n=20 | 已跑（前一次估计，`n20/`） | — |
+| adapter GSM8K n=100（约定值） | **已跑**（`logs-n100/adapter-gsm8k.log`） | — |
+| adapter IFEval n=100（约定值） | **已跑**（`logs-n100/adapter-ifeval.log`） | — |
+| adapter GSM8K n=200（全量） | **未跑** | `nohup python3 scripts/run_bench.py --suite gsm8k --model adapter --limit 200 > evidence/benchmark/logs-full/adapter-gsm8k.log 2>&1 &` |
+| adapter IFEval n=295（全量） | **未跑** | `nohup python3 scripts/run_bench.py --suite ifeval --model adapter --limit 295 > evidence/benchmark/logs-full/adapter-ifeval.log 2>&1 &` |
 
 跑 adapter 侧之前先确认 `.tmp/sft/adapter-narrow/` 还在：它在 `.tmp/` 下，按约定是可删的临时区，删了就只能重训。
 
-**同一把尺子的要求：** base 与 adapter 必须同样的 `--limit`、同样的并行/串行方式。这轮做到了：两套件各自两路并行，base 与 adapter 都是。并行带来的拖慢只影响耗时，不影响分数（贪心解码、同样权重、同样 20 条 id）；但**耗时两轮不可比**——adapter IFEval 那条赶上卡上另一任务最重的时候，35.9 s/条 比 base 的 28.5 s 慢 26%，这不是模型变慢。
+**⚠ 全量那四行会覆盖当前的 n=100 产物。** `run_bench.py` 的输出路径是固定的 `<model>-<suite>.json`，`analyse_paired.py` 写固定的 `paired-<suite>.json`，没有 `--out`。所以要跑全量，得先把当前的 n=100 四格与两份配对结果拷到 `evidence/benchmark/n100/`（照 `n20/` 的做法），否则本文引的那组数字就从工作区里消失了（git 历史里仍在，提交 `6dc8f52`）。另：`--seed` 必须等于 `sources.json` 的冻结 seed（现在是 0，不相等就报错），所以「换一个 seed 再抽 100 条」不是这个 harness 支持的动作；要独立重复，只能把同一个 seed 的冻结序列往后推（n=295 全量，第 101–295 条对当前读数是新的）。
+
+**同一把尺子的要求：** base 与 adapter 必须同样的 `--limit`、同样的并行/串行方式。这轮做到了：两套件各自两路并行（`run_m2_n100.sh`），base 与 adapter 都是。并行带来的拖慢只影响耗时，不影响分数（贪心解码、同样权重、同样 100 条 id）。
 
 ## 判读方法：没观察到下降不等于没有下降
 
 这一条是这份报告的边界，不是免责声明：
 
-- 每格分数带 95% Wilson 区间。**两条区间重叠不等于「没有下降」**，只等于「这轮没测到下降」；n=20 时单格 Wilson 半宽约 18pp，10pp 的掉幅在这里看不见；要看见 10pp 需要每格 n≥150 左右。
-- 判「掉」看**配对差值区间与配对检验**，不看两条单格区间是否重叠：单格区间的重叠永远是粗略判法，而配对把「同一条上翻没翻」作样本，同样的 n 更灵敏。这轮的 −10pp 与 −20pp 都跨过或触到 0，只能说没测到。
+- 每格分数带 95% Wilson 区间。**两条区间重叠不等于「没有下降」**，只等于「这轮没测到下降」；n=100 时单格 Wilson 半宽约 9–10pp（GSM8K ±8.6pp、IFEval ±10.1pp），比 n=20 的 ±18pp 窄一半，但 4–5pp 以下的掉幅仍然看不见。
+- 判「掉」看**配对差值区间与配对检验**，不看两条单格区间是否重叠：单格区间的重叠永远是粗略判法，而配对把「同一条上翻没翻」作样本，同样的 n 更灵敏。这轮 IFEval 的 −12pp 两条判据都过了（区间不含 0、McNemar p=0.029），GSM8K 的 +3pp 两条都没过。
 - 解码是贪心、单 seed，残余随机性只有数值实现差别，所以两次真跑之间的小抖动不构成"能力变化"的证据；反过来，贪心也意味着分数是这条固定路径上的一个点，不是分布的期望。
 - IFEval 只覆盖 15 类指令（541 条中留 295 条），**不能与公开 IFEval 数比**，只能 base 对 adapter 自比。
-- GSM8K 的判别力偏弱（见结论），SFT 只喂了 288 条长中文回答，若它损伤的是"回答方式"而非数学，GSM8K 掉不下来正是预期，不能反推"通用能力没掉"；反过来它掉了 10pp 也一样不能反推"数学变差"——两者都在检出下限以内。
+- GSM8K 的判别力偏弱（见结论），SFT 只喂了 288 条长中文回答，若它损伤的是"回答方式"而非数学，GSM8K 掉不下来正是预期，不能反推"通用能力没掉"；反过来，4–5pp 以上的下降在这一格会被看见，而这一轮没看见（+3.0pp [−6.0, +12.0]）。
 
 ## 选型：判定标准与结论（未变）
 

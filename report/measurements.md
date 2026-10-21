@@ -99,7 +99,19 @@ EOF
 **含哪些、不含哪些**：上表含 `evidence/` 下所有带逐次 usage 的 DeepSeek 批次，每个批次只算一次（有 `calls.jsonl` 的按它算，只有 `answers.jsonl` 的按它算；`evidence/slice-contrast/` 两者是两批不同的事——生成与判读——所以都算）。不含三类：
 
 - **没有 usage 落盘，无法计价**：`evidence/agent-context/` 的 12 条回答与 6 条判读只存 id 与文本，没有 `usage`/`cost` 字段，因此不在上表里，也不推算（缺的值不拿别的数顶替）。
-- **本机生成与训练，不花 API 钱**：`evidence/measure/answers.jsonl` 的 1452 条回答、`evidence/benchmark/` 四格 80 条回答跑在单卡 4090 上，`evidence/sft/`、`evidence/training/` 是训练日志。
+- **本机生成与训练，不花 API 钱**：`evidence/measure/answers.jsonl` 的 1452 条回答、`evidence/benchmark/` 四格 400 条回答（n=100；另 n=20 的 80 条是前一次估计）跑在单卡 4090 上，`evidence/sft/`、`evidence/training/` 是训练日志。GPU 那一类的墙钟记在下一节，不进钱表。
 - **本地分析**：`evidence/rubric-diagnosis/`、`evidence/data-quality/`、`evidence/corrupted2/` 对已存回答做自举与签名比较，没有 API 调用。
+
+### 本机 GPU（不计钱）
+
+这一类不进上面的钱表：花费类是 `idle-compute`，不租卡、不花 API 钱，金额 ¥0。要记的是墙钟，以及它相对派发时那份授权的用量——授权是一次性的，过期不补，所以用量是事实而不是估计。
+
+| 跑 | 格 | 条数 | 墙钟 | 生成时间合计 | 派发时授权 | 用量 |
+| --- | --- | --- | --- | --- | --- | --- |
+| M2 `m2-n100`（2026-10-21T12:41:08 → 13:59:41） | GSM8K/IFEval × base/adapter | 400 | 78 min 32 s（4713 s） | 8290 s（两路并行） | ≈5 h `idle-compute` | **26%** |
+
+- 起止取自 `evidence/benchmark/logs-n100/driver.log` 的两行时间戳（`preflight ok` 与 `analyse rc=0`），不是估的；`driver.pid` 记的 pid 91165 在 `analyse` 之后退出，watcher 的退出通知在 `mail/2026-10-21-m2-driver-exited.md`（已落地并删信）。
+- 逐格 `elapsed_seconds` 在 `evidence/benchmark/paired-*.json`，单条 14.1–23.4 s；n=100 比 n=20 那一轮的 23.3–35.9 s 快，因为跑的时候卡上是空的（预检 23560 MiB 空闲）。
+- 剩 ≈3.7 小时未用。这一轮 **没有 metered 调用**，所以上表的 `TOTAL 9059 44 ¥15.6493` 不变。
 
 覆盖标注的「550 次、¥1.65」只指 `coverage`、`coverage-cap8`、`coverage-uncapped` 这三遍（550 次请求、¥1.6454），不含 `grow/coverage` 的 55 次 ¥0.1231；[数据质量](data-quality.md) 与 [增长批次](grow-pairs.md) 各报自己那一笔。
