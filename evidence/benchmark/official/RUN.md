@@ -22,6 +22,33 @@ cd /home/z/vibe/nomos
   project root by accident.
 - exit 0; writes `evidence/benchmark/official/official-ifeval.json`.
 
+### Timing, and what a first run on a clean machine sees
+
+The wall-clock bullet above is a warm-cache measurement on an otherwise idle host. A
+reader whose `uv` cache is empty also pays for building the environment, so the number to
+quote for a first run comes from an empty cache. Measured on 2026-10-21 in an extracted
+copy of the revision under review (`git archive` into `/tmp`, so nothing in the project is
+written):
+
+```
+cd <extracted copy>
+UV_CACHE_DIR=/tmp/uvcold /usr/bin/time -f "WALL=%e" /home/z/.local/bin/uv run --no-project \
+  --with nltk --with langdetect --with immutabledict --with absl-py \
+  python3 evidence/benchmark/official/grade_official.py
+```
+
+| condition | wall clock | artefact sha256 |
+| --- | --- | --- |
+| warm `uv` cache, 3 consecutive runs | 8.27 / 7.88 / 7.49 s | `01d94585…34c145`, all three |
+| empty `UV_CACHE_DIR`, first run | 14.41 s | same |
+| empty `UV_CACHE_DIR`, second run | 7.85 s | same |
+
+So the range that holds for both cache states is **7.5–14.4 s**, and a warm run sits in
+7.5–8.3 s. Every run, cold or warm, reproduces the committed artefact byte for byte. Do
+not quote a bound below 8 s as what a reader will see: host load and cache state both
+move it, and the independent review of `5ba9a2e` (2026-10-21, its own fresh copy) measured
+21.72 s on its first run, 14.53 s and 11.83 s on the next two.
+
 Reading aid, same environment (read-only, prints every strict-ruler disagreement with its
 full output so the hand-checks could be made by reading):
 
