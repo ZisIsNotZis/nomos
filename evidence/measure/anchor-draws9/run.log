@@ -19,3 +19,5 @@ cmd: scripts/measure_anchor.py --analyse --draws 9
 analyse: 处境 148 条，每处境每侧用 9 条抽样（要求 9 条），落 evidence/measure/anchor-draws9/per-situation.jsonl
 cmd: scripts/measure_anchor.py --analyse --draws 9
 analyse: 处境 148 条，每处境每侧用 9 条抽样（要求 9 条），落 evidence/measure/anchor-draws9/per-situation.jsonl
+cmd: scripts/measure_anchor.py --analyse --draws 9
+analyse: 处境 148 条，每处境每侧用 9 条抽样（要求 9 条），落 evidence/measure/anchor-draws9/per-situation.jsonl
