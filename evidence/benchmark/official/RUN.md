@@ -93,8 +93,7 @@ With the pin, three consecutive runs produced byte-identical output:
 No field in the JSON is a duration, so "re-running reproduces the same JSON" holds
 byte-for-byte and not merely modulo timings.
 
-After the landing move (`work/official-ifeval-grader/` → `evidence/benchmark/official/`,
-2026-10-21) the runner derives its repo root by walking up to `data/bench/ifeval.jsonl`
+After the landing move into `evidence/benchmark/official/` (2026-10-21) the runner derives its repo root by walking up to `data/bench/ifeval.jsonl`
 and writes `vendored.local_path` relative to that root, so the artefact's hash changes in
 that one field and nowhere else. Re-run after the move:
 
