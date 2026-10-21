@@ -60,8 +60,10 @@ say "preflight ok: limit=$LIMIT, adapter=$(sha256sum .tmp/sft/adapter-narrow/ada
 # ---- keep the n=100 reading the report quotes before the canonical path is overwritten --
 if [ ! -f "$KEEP/paired-ifeval.json" ]; then
   for f in base-gsm8k base-ifeval adapter-gsm8k adapter-ifeval paired-gsm8k paired-ifeval; do
-    cp -p "$OUT/$f.json" "$KEEP/$f.json"
+    cp -p "$OUT/$f.json" "$KEEP/$f.json" || { say "preserve failed on $f; stopping before anything is overwritten"; exit 2; }
   done
+  [ "$(sha256sum <"$OUT/paired-ifeval.json")" = "$(sha256sum <"$KEEP/paired-ifeval.json")" ] || {
+    say "preserved copy does not match the source; stopping"; exit 2; }
   cat > "$KEEP/README.md" <<'MD'
 # n=100 cells (2026-10-21, superseded as the canonical reading by M3's IFEval n=295)
 
