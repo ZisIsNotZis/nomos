@@ -4,13 +4,13 @@
 
 ## 入口
 
-怎么开始：读本文件，再读 `report/sft-benchmark.md` 开头「结论」那张两格表（GSM8K n=100、IFEval n=295）与「这个 n 能看见多大的掉幅」；口径与主指标读 `report/sft-measurement.md` 的「重估的结论（一句话）」与三个口径表。`mail/` 现在不存在（M3 的 completion、2026-10-21 那封「跑官方 grader 再冻」的回信、以及 M4 的 completion 都已在各自那一批提交里落地并删信）。
+怎么开始：读本文件，再读 `report/sft-benchmark.md` 开头「结论」那张两格表（GSM8K n=100、IFEval n=295）与「这个 n 能看见多大的掉幅」；口径与主指标读 `report/sft-measurement.md` 的「重估的结论（一句话）」与三个口径表。收信目录是 `inbox/`，约定见下一条；读过的信落地即删，所以那里通常只剩还没被读的几封。
 
 怎么继续：M2、M3、M4 都已落地，引用面（`README.md`、`docs/model-card.md`、`docs/paper/draft.md`、`report/sft-benchmark.md`、`evidence/benchmark/n100/README.md`）已全部换成当前读数，并且都带上了官方 grader 那一行。本节点自己还剩的活是 WP-2、WP-3 两条工作包；Q1/Q2/Q3 都在人手里等答案，**不阻塞任何事，也不该被谁替人答**；Q7 顺手办完，等上一层说 33 的来源。**没有上一层的话不要推**：本轮所有提交都在本机。
 
-与通用约定不一样的地方：`mail/` 里没有 `README.md`，也不该有——那条约定的形状由上一层的信本身定：文件叫 `mail/YYYY-MM-DD-<slug>.md`，前四行是 `kind:`（resource / cost / direction / contract / report）、`from:`、`to:`、`spend:`，第五行 `id:` 说明它答的是哪一封，正文一句结论开头、末尾写 effort；读信先落地（事实进本文、命令执行、答不了的转投上一层 `inbox`）再删文件，删信与落地同一次提交，信全删掉时 `mail/` 目录也就不存在了（`git show 677e9ca:mail/` 是一封现成的样例）。`docs/plan/plan.md` 是项目**过去**的工作包状态记录，不是本节点的 roadmap，别把它当路线图读、也别为了让报告好看去回填它（它现在仍写着 n=20 那一版，是历史快照）；`report/measurements.md` 的花费表只增行、不改旧行，GPU 墙钟单列在「本机 GPU（不计钱）」一节；许可原文按「字节数 + sha256 + 取回 URL」登记在 `README.md` 的「许可」与 `THIRD-PARTY.md`；`scripts/measure_anchor.py --analyse` 每跑一次会往 `evidence/measure/anchor-draws9/run.log` **追加**一行 `cmd:`，所以那个文件不标 hash，是允许脏着出现在 `git status` 里的路径之一。另一处是 `evidence/benchmark/logs-{n100,m2b}/` 下的 `driver.log`、`driver.out` 与逐格日志：跑的时候它们一直在长，脏着就是「跑着」，不是漂移；现在两轮都跑完了，它们与产物同一次提交落盘，之后不该再变。
+与通用约定不一样的地方：`inbox/` 里没有 `README.md`，也不该有——信的四个头行是 `kind:`（resource / cost / direction / contract / report）、`from:`、`spend:`、`id:`（`id:` 写它答的是哪一封），文件名 `inbox/YYYY-MM-DD-<slug>.md`，正文一句结论开头、末尾写 effort；不写 `to:`，收件人由「这是哪一层的 `inbox/`」决定。读信先落地（事实进本文、命令执行、答不了的转投上一层 `inbox/` 并带上 `id:`）再删文件，删信与落地同一次提交，`inbox/` 跟着仓库进版本控制。`docs/plan/plan.md` 是项目**过去**的工作包状态记录，不是本节点的 roadmap，别把它当路线图读、也别为了让报告好看去回填它（它现在仍写着 n=20 那一版，是历史快照）；`report/measurements.md` 的花费表只增行、不改旧行，GPU 墙钟单列在「本机 GPU（不计钱）」一节；许可原文按「字节数 + sha256 + 取回 URL」登记在 `README.md` 的「许可」与 `THIRD-PARTY.md`；`scripts/measure_anchor.py --analyse` 每跑一次会往 `evidence/measure/anchor-draws9/run.log` **追加**一行 `cmd:`，所以那个文件不标 hash，是允许脏着出现在 `git status` 里的路径之一。另一处是 `evidence/benchmark/logs-{n100,m2b}/` 下的 `driver.log`、`driver.out` 与逐格日志：跑的时候它们一直在长，脏着就是「跑着」，不是漂移；现在两轮都跑完了，它们与产物同一次提交落盘，之后不该再变。
 
-哪些不是当前的：`mail/` 目录不存在（2026-10-21 的 dispatch 信、M3 的 completion、「跑官方 grader 再冻」那封回信与 M4 的 completion 都已落地并删掉；删信与落地在同一次提交里）；`work/` 目录现在不存在（WP-5 的产物在 M4 里毕业进 `evidence/benchmark/official/`，工作区里没有留下的中间件）；`docs/plan/plan.md` 的状态行是历史快照，里面 n=20 的结论句已被 n=100 与 n=295 的读数取代；`evidence/measure/anchor-draws9/run.log` 里重复的 `--analyse` 行是同一批数据的复核，不是第二次分析；**IFEval 的 n=100 读数（57/100 → 45/100、−12.0pp [−22.0, −3.0]、19 掉 / 7 涨、p=0.029）现在是前一次估计**，只在「同一冻结前缀的前 100 条」这个位置上出现，当前读数是 n=295；GSM8K 的 n=100 读数**不是**前一次估计，它就是当前读数（那一格没加宽）。
+哪些不是当前的：`work/` 目录现在不存在（WP-5 的产物在 M4 里毕业进 `evidence/benchmark/official/`，工作区里没有留下的中间件）；`docs/plan/plan.md` 的状态行是历史快照，里面 n=20 的结论句已被 n=100 与 n=295 的读数取代；`evidence/measure/anchor-draws9/run.log` 里重复的 `--analyse` 行是同一批数据的复核，不是第二次分析；**IFEval 的 n=100 读数（57/100 → 45/100、−12.0pp [−22.0, −3.0]、19 掉 / 7 涨、p=0.029）现在是前一次估计**，只在「同一冻结前缀的前 100 条」这个位置上出现，当前读数是 n=295；GSM8K 的 n=100 读数**不是**前一次估计，它就是当前读数（那一格没加宽）。
 
 ## roadmap
 
@@ -65,7 +65,7 @@
 - **发布**：已获授权，最后一次推是 `74793ff`（`bdbbe31..74793ff`，10 个提交）。**推完之后在本机做的提交都没推**，包括 M2 那一批（`6dc8f52` 等）、M3 落盘（`cbbde88`）与 M3 的引用面/信这一批（本轮最后一个提交）；下一个推把它们一起带上。本轮**没有推**（上一层的指令）。
 - **钱**：DeepSeek 累计 **9059 次 ¥15.6493**（17 批分项在 `report/measurements.md`「花费」）；匹配锚点两批合计 2664 次 ¥2.1300。**GPU 两轮的金额都是 ¥0**：花费类 `idle-compute`，M2 墙钟 1.31 h（授权 5 h 的 26%）、M3 墙钟 1.72 h（剩余授权的 47%），合计 61%。授权里还剩 ≈1.97 h。
 - **数字以哪一版为准**：锚点读数是 9 条那一份；3 条那一份只在「同一样本的前一次估计」的位置上出现，并且每次出现都带「跨 0、那份宽度是抽样噪声」的说明。文字层口径二在 99 条相交子集上是 0.0303 [−0.0180, 0.0819]，仍然跨 0。通用能力：**GSM8K 以 n=100 为准、IFEval 以 n=295 为准**；IFEval 的 n=100 与两套件的 n=20 都降为「前一次估计」（`evidence/benchmark/n100/`、`evidence/benchmark/n20/`）。
-- **M2 的派发方式留了一条运行时经验**：包内的后台 watcher 会随它的 turn 一起被回收，所以长跑只能长在 `setsid` 的 driver 上；等待必须靠「driver 自己写 completion 到 mail/」或一次带 `waitFor` 的调用，**不能用后台任务加「结束 turn 等通知」，也不能 `sleep`**。M3 按这条跑，两路都 rc=0、driver 把 completion 写进了 `mail/`。
+- **M2 的派发方式留了一条运行时经验**：包内的后台 watcher 会随它的 turn 一起被回收，所以长跑只能长在 `setsid` 的 driver 上；等待必须靠「driver 自己写 completion 到 `inbox/`」或一次带 `waitFor` 的调用，**不能用后台任务加「结束 turn 等通知」，也不能 `sleep`**。M3 按这条跑，两路都 rc=0、driver 把 completion 写进了 `inbox/`。
 
 ### 开着的（每条都带做法与重开的观测）
 

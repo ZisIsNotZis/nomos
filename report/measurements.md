@@ -111,7 +111,7 @@ EOF
 | M2 `m2-n100`（2026-10-21T12:41:08 → 13:59:41） | GSM8K/IFEval × base/adapter | 400 | 78 min 32 s（4713 s） | 8290 s（两路并行） | ≈5 h `idle-compute` | **26%** |
 | M3 `m3-ifeval-295`（2026-10-21T14:07:46 → 15:50:56） | IFEval × base/adapter | 590 | **1 h 43 min 10 s（6190 s）** | 11609 s（两路并行） | M2 剩下的 ≈3.7 h | **47%** |
 
-- 起止取自 `evidence/benchmark/logs-n100/driver.log` 的两行时间戳（`preflight ok` 与 `analyse rc=0`），不是估的；`driver.pid` 记的 pid 91165 在 `analyse` 之后退出，watcher 的退出通知在 `mail/2026-10-21-m2-driver-exited.md`（已落地并删信）。
+- 起止取自 `evidence/benchmark/logs-n100/driver.log` 的两行时间戳（`preflight ok` 与 `analyse rc=0`），不是估的；`driver.pid` 记的 pid 91165 在 `analyse` 之后退出，watcher 的退出通知在当时的收信目录里（已落地并删信；那个目录现在叫 `inbox/`）。
 - 逐格 `elapsed_seconds` 在 `evidence/benchmark/paired-*.json`，单条 14.1–23.4 s；n=100 比 n=20 那一轮的 23.3–35.9 s 快，因为跑的时候卡上是空的（预检 23560 MiB 空闲）。
 - 剩 ≈3.7 小时未用。这一轮 **没有 metered 调用**，所以上表的 `TOTAL 9059 44 ¥15.6493` 不变。
 - M3 那一行先在派发时落账（2026-10-21T14:07:46，`evidence/benchmark/logs-m2b/driver.log` 第一行），跑完后按同一份 log 补完：起止取 `preflight` 与 `completion written` 两行时间戳，逐格耗时取 `paired-ifeval.json` 的 `elapsed_seconds`（base 5436.8 s、adapter 6172.5 s）。两轮合计 3.03 h，是那次 5 h `idle-compute` 授权的 61%。未定就写未定，不填零也不按预估充数——这一次是实测填的，不是预估。
