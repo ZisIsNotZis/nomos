@@ -4,13 +4,13 @@
 
 ## 入口
 
-怎么开始：读本文件，再读 `report/sft-measurement.md` 开头那段「重估的结论（一句话）」和它的两个口径表；`mail/` 现在是空的（见「哪些不是当前的」）。
+怎么开始：读本文件，再读 `report/sft-measurement.md` 开头那段「重估的结论（一句话）」和它的两个口径表；`mail/` 现在不存在（最后一封落地后删掉了，见「哪些不是当前的」）。
 
 怎么继续：M2 已经派发出去了（包 `m2-n100`，见 M2 那一条的「派发状态」）。看它在不在跑：`evidence/benchmark/logs-n100/driver.log` 与 `inflight.md`；它跑完会自己往 `mail/` 写一封 `completion`，读到就落地：把四格 n=100 的读数写进 `report/sft-benchmark.md` 与引用面，然后删信。**M2 没跑完之前不要动任何引用 n=20 的句子**，因为新读数还不存在。之后才轮到 WP-2（README 的「约 3.3 秒」）。
 
 与通用约定不一样的地方：`docs/plan/plan.md` 是项目**过去**的工作包状态记录，不是本节点的 roadmap，别把它当路线图读、也别为了让 M2 好看去回填它；`report/measurements.md` 的花费表只增行、不改旧行；许可原文按「字节数 + sha256 + 取回 URL」登记在 `README.md` 的「许可」与 `THIRD-PARTY.md`；`scripts/measure_anchor.py --analyse` 每跑一次会往 `evidence/measure/anchor-draws9/run.log` **追加**一行 `cmd:`，所以那个文件不标 hash，也是唯一允许脏着出现在 `git status` 里的路径（它现在已提交，第 3 条 `cmd:` 是复核跑，不是新数据）。
 
-哪些不是当前的：`mail/` 已经清空（四封信都落地到本文件）；`docs/plan/plan.md` 的状态行是历史快照；`evidence/measure/anchor-draws9/run.log` 里重复的 `--analyse` 行是同一批数据的复核，不是第二次分析。
+哪些不是当前的：`mail/` 目录现在不存在（四封信都落地到本文件，删完就没了；M2 的包跑完会重建它并写 `completion`）；`docs/plan/plan.md` 的状态行是历史快照；`evidence/measure/anchor-draws9/run.log` 里重复的 `--analyse` 行是同一批数据的复核，不是第二次分析。
 
 ## roadmap
 
