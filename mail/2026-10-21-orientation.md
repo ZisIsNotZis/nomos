@@ -6,88 +6,53 @@ id:      none — first contract, answered in the run final message
 
 First orientation report, filed here by root. Body is the run report verbatim.
 
-Report follows. I read only `/home/z/vibe/nomos`, plus the one cited external path (`constitution/lock.yaml` names `/home/z/vibe/AGENTS.yaml`, which does not exist — see finding F4). Nothing was written inside the project.
+# Report — Contract N2 (anchor re-estimate at 9 draws, `nomos`)
 
----
+**Node whose roadmap this changes:** `root` (the `nomos` milestone "make the instrument's failure falsifiable").
+**Evidence pointer:** `report/sft-measurement.md:139-158` + `:255-266` (new 复算 section); `evidence/measure/anchor-draws9/{answers.jsonl,summary.json,per-situation.jsonl,run-meta.json,run.log}`; commits `fff3441`, `5859afc`, `12a4d12` on top of `a3797c4`.
+**Decision needed:** four items in §5 — the stale 3-draw sentences elsewhere in the tree, the push, the missing AGPL text file, the spend-ledger row. The measurement itself needs no decision.
 
-# Nomos — orientation report
+## 1. Verdict — one sentence
 
-**Report kind:** completion (orientation package, no decision pending on the work itself; one charter decision named in §C)
-**Node whose roadmap this changes:** `nomos`
-**Evidence pointer:** `report/sft-measurement.md:139-160,236-247`, `report/sft-benchmark.md:99-115,132-140`, `docs/method/design.md §1,§7`, `docs/plan/plan.md:3,55`, `evidence/measure/summary.json`, `constitution/lock.yaml`, plus the reproduction in §D.
+On the pre-specified primary metric (动作签名一致率, 148 situations, 9 draws per situation per arm), law-vs-nolaw is **0.0593 [0.0263, 0.0923] — the paired-bootstrap interval excludes 0**, so the ruler is salvageable and 0.0968 is now readable as distance toward the law; the text-level ruler (口径二, 99 situations) still spans 0 at 0.0303 [−0.0180, 0.0819].
 
-## A. What the project is
-
-`nomos` (HEAD `bdbbe31`, 39 commits, working tree clean, `origin/main..HEAD` = 0) compresses one person's operating law — `constitution/AGENTS.yaml`, 264 leaves, frozen at sha256 `68801dae…`, verified this session against `constitution/lock.yaml` — into a 2.21 B model (`Qwen/Qwen3.5-2B`, 4-bit QLoRA, narrow LoRA r=16, 10.9 M trainable params), using 288 training / 78 validation samples drawn from 242 real situations, and then measures whether *decision behaviour* moved, not just surface format.
-
-It answers no, mostly, and it says so:
-
-- Format moved hard: parseable tool-line 5.6% → 75.2%.
-- Action agreement against the law-bearing reference: 0.0023 → 0.0968, Δ 0.0946 [0.0586, 0.1351], n = 148/242.
-- But the gain decomposes 29.4% format / 5.3% decision (interval spans 0) / 65.3% interaction, and the text-level metric does **not** support "decisions got closer" (Δ −0.0473 [−0.1085, 0.0118]).
-- The ruler is the binding limit: under matched decoding, the reference *with* the law scores 0.3311 and *without* it 0.2815, diff 0.0496 [−0.0068, 0.1059] — the instrument cannot resolve the law's own effect, so "how much law effect was internalised" has no denominator.
-- Generic-capability cost: no credible drop detected, but only n=20 (GSM8K 75.0→65.0, IFEval 60.0→40.0, both intervals span 0), with a stated detection floor of 20–25 pp.
-
-It is a single-user, single-law, single-model study, not alignment research, not RLHF, not a benchmark paper; the README, model card, data card and `docs/method/limits.md` all hold that line. Its state is **publish-ready but undistributed**: adapters live only in `.tmp/` (ignored by git, 274 MB), registered in `artifacts.tsv` by hash plus a regeneration command; all three hashes verified this session.
-
-## B. The milestone it proposes next
-
-The project declares **no milestones at all** — `docs/plan/plan.md:3`: "全线是工作包，不是里程碑：没有用户确认点". All six work packages are marked 完成. So the next milestone is not written down anywhere; I propose it, and I name the two candidates the evidence actually supports.
-
-**Proposed milestone (primary): make the instrument's failure falsifiable before spending anything larger on it.**
-
-Reopen the matched anchor at more draws per situation — 148 situations × 2 conditions × 9 draws ≈ 2 664 calls, ≈ ¥2.1 at the recorded price of the 888-call run (¥0.7115).
-
-- Why this one: the main claim is currently undecidable, and the decision to abandon it rests on a 3-draw estimate. Everything else in the tree is complete; this is the one open question whose answer changes what the project *is*. It is also not a metric swap — it is the same metric with less sampling noise, so it does not violate `docs/method/design.md §7` ("训练后 X_d 的变化盖不过噪声时，如实写负结果，不改题、不换指标").
-- Acceptance (observable): the anchor pair re-estimated with ≥9 draws per situation, reported with the same paired bootstrap; either the law-vs-nolaw diff excludes 0 (the ruler is salvageable and the adapter's 0.0968 can be read as "how far toward the law") or it still spans 0 (the project's conclusion stands as final and the paper closes as a negative result on the instrument).
-- Evidence pointer that this is the live question: `report/sft-measurement.md:156` (0.3311 vs 0.2815, 0.0496 [−0.0068, 0.1059]) and `:243` ("X 在这份数据上不是独立信息"); noise floor is measured, not assumed — same prompt at temperature 0 differs in 42–51% of resampled actions (`docs/paper/draft.md` limit 8), and 5-draw majority stability is only 0.808 (`docs/plan/backlog.md`).
-- Spend: `metered-compute`, ≈¥2.1, plus minutes of wall-clock. **Needs a grant** — this is the one line my contract cannot cross.
-
-**Proposed milestone (fallback, if the above is refused): finish the capability axis to its contracted n.**
-
-- What is missing: the plan says the benchmark work package is "完成本轮约定的一半" — n was cut from the contracted 100 to 20 because 23.3–35.9 s/item did not fit a 25-minute budget (`docs/plan/plan.md:55`). Eight cells are explicitly 未跑 with copy-pasteable commands, estimated ≈4.5–5 h, in `report/sft-benchmark.md:99-115`.
-- Acceptance: four cells at n=100, base and adapter on the same `--limit` and same serial/parallel mode, paired intervals plus a stated detection floor; each number recomputable from the committed logs.
-- Why it is the fallback and not the primary: it can only ever say "still no credible drop", and the report itself states n=20 sees nothing below ≳20 pp while 10 pp needs n≥150 per cell (`report/sft-benchmark.md:118-124`). Five GPU-hours buy a floor, not a finding.
-- Spend: `idle-compute` on a 4090 that is currently free (1 343 MiB of 24 564 MiB used), inside the window before GPU availability becomes unconfirmed (2026-10-31; today is 2026-10-21).
-
-**Explicitly not next:** any further decision measurement on the current instrument. `design.md §7` bars changing the metric, and §B primary is the only remaining move that is neither a metric swap nor a re-run.
-
-## C. What it cannot answer
-
-**Q1 — Publish, and under what licence.** (kind: `cost`, routes to the person.)
-Tried: `grep -rn -iE "许可未|尚未声明许可|待决|授权|license" README.md docs artifacts.tsv THIRD-PARTY.md` → 17 hits, of which exactly two record a decision field, and both record it as undecided: `README.md:47` and `docs/model-card.md:85` ("待决项，不是默示授权"). `artifacts.tsv` says durable_location = "none" for all three adapters. The publish commit message states Zenodo / Hugging Face / GitHub release each need authorisation and none was done.
-Reopens on: the author stating a licence for the repo's own code and docs, and granting or refusing upload consent. Nothing in the tree can be read as consent.
-
-**Q2 — Is the ruler's failure a property of the law or of the sample size?** (kind: `direction`, needs a metered grant before it can even be asked.)
-Tried: three parallel metrics (action signature, text-level decision signature, comparable-action subset), a matched-decoding anchor of 888 calls with prompts sha256-verified identical to base/post, position-swap judging, a draw-noise study, and a rubric that was stopped under §7 when it could not separate the two known levels. None separated law from no-law. Remaining untried lever, stated by the project itself: more draws per situation (3 → 9), which is a sampling fix rather than a new metric.
-Reopens on: the §B primary result. If it still spans 0, this closes permanently and the paper ends on the instrument, not the model.
-
-**Q3 — Can an agentic axis be attached offline?** (kind: `contract`.)
-Tried: the selection table at `report/sft-benchmark.md:132-140` records a per-candidate offline verdict from actual attempts — `huggingface.co` and PyPI unreachable (curl timeout), MMLU blocked on `pyarrow` with only local parquet, HumanEval blocked on docker/no data, BFCL blocked on HF data plus a thousand-line harness. The claim in `design.md §1` includes "agentic 能力不跌出自身噪声带", so **that half of the claim currently has zero measurement** — the strongest unstated gap in the tree.
-Reopens on: network access at package-install time (`pyarrow`), a local BFCL harness, or a decision to narrow the claim in §1 to the two axes actually measured.
-
-**Q4 — Two documentation defects found while orienting** (no decision needed, recorded for the next writer):
-
-- F1: `constitution/lock.yaml` records `upstream: /home/z/vibe/AGENTS.yaml`; that path no longer exists (`ls` → No such file). The frozen copy still validates against the lock's own sha256 (`68801dae…` = `constitution/AGENTS.yaml`), so the pin is sound but its stated origin is stale after the law moved to `agent-policy/`.
-- F2: README's constant "约 3.3 秒" does not reproduce today — measured **4.88 s** from a clean `git archive` in `/tmp` (see §D). The numbers it produces do reproduce exactly. Treat 3.3 s as machine-load-dependent, not as a property of the tree.
-
-## D. What I verified (read-only; nothing written inside the project)
-
-| check | command | result |
+| 口径一 (primary), n = 148, 9 draws | rate | 95% CI (paired bootstrap, 2000×, 2.5/97.5) |
 |---|---|---|
-| HEAD reproducible from git alone | `git archive HEAD \| tar -x -C /tmp/…` then `python3 scripts/measure_actions.py --analyse` | printed `n_pairs 148/242（覆盖率 0.612）；两侧都齐全 242/242；参照物可用 148 条；文字层参照物可用 169 条` — byte-for-byte the README's claimed first line |
-| headline numbers | same run, `evidence/measure/summary.json` | `base_mean 0.0022522…`, `post_mean 0.0968468…`, `n_pairs 148` — matches README's 0.0023 / 0.0968 |
-| timing claim | `/usr/bin/time -f '%e'` on the same command | **4.88 s** vs README's recorded 3.28/3.33 s (F2) |
-| adapters still exist and are unmodified | `sha256sum .tmp/sft/adapter-narrow/… .tmp/sft/adapter-wide/… .tmp/training/adapter-dpo-r16/…` | all three match `artifacts.tsv` exactly (`5be6a2f3…`, `580509c8…`, `bfe5dc07…`) |
-| law pin intact | `sha256sum constitution/AGENTS.yaml` vs `constitution/lock.yaml` | `68801dae…` — match |
-| tree durable | `git status --short`; `git rev-list --count origin/main..HEAD` | empty; 0 — committed and pushed |
-| GPU available for the fallback | `nvidia-smi --query-gpu=…` | RTX 4090, 1 343 / 24 564 MiB used |
+| 不带法 DeepSeek (matched decoding) | 0.2605 | [0.2072, 0.3116] |
+| 带法 DeepSeek (matched decoding) | 0.3198 | [0.2703, 0.3746] |
+| **law − bare** | **0.0593** | **[0.0263, 0.0923]** — was 0.0496 [−0.0068, 0.1059] at 3 draws |
+| post (adapter) / base | 0.0968 / 0.0023 | unchanged — recomputed from base/post only |
 
-Temporary archive under `/tmp` removed after use.
+Why the flip is the draws and not a new metric: the point estimate moved 0.0097 while the interval width fell 0.1127 → 0.0661 (ratio 0.587 vs 1/√3 = 0.577), i.e. the old width was draw noise. Robustness: 5 bootstrap seeds all exclude 0 (narrowest [0.0263, 0.0916]); 0.015% of 20 000 replicates ≤ 0; analytic SE 0.0167 gives [0.0266, 0.0920], matching the bootstrap. `X = 0.0948 [0.0564, 0.1332]` and the format/decision decomposition are untouched (they use base/post only).
 
-## E. Residual risks
+## 2. Spend — actual, beside the numbers
 
-- The primary proposal spends metered API money (≈¥2.1); it is a grant, not a unilateral act, and I did not make any call.
-- F2 means the README's reproducibility claim should be re-worded to "≈3–5 s, load-dependent" or the two numbers re-recorded; a reader timing it will otherwise think the tree drifted.
-- The §1 claim remains half-unmeasured (Q3) regardless of which milestone is chartered, so any release text that repeats "通用与 agentic 能力不跌出噪声带" overstates what exists.
-- If GPU availability ends after 2026-10-31, the fallback milestone becomes `resource`-blocked and only the primary (API-only) remains runnable.
+| | calls | ¥ |
+|---|---|---|
+| original batch (untouched) | 888 | 0.7115 |
+| **this batch (draws 3–8, 1776 rows)** | **1776** | **¥1.4184** (off-peak; law ¥0.8796 / bare ¥0.5388; ¥0.000799/call) |
+| whole anchor, 2664 calls | 2664 | **¥2.1300** |
+
+Grant was ≈¥2.1 (2664 × recorded unit price); actual is +1.4%, inside the "more than a fifth" stop line (≈¥2.52). Staged to check price before committing: 20 situations × 2 arms × 6 draws = 240 calls cost ¥0.1983 (¥0.000826/call, cache warm) — projection ¥1.27 for the rest, so the remainder was allowed to run. All 2664 calls landed in the off-peak band. API time 04:23:42–04:28:40 UTC; whole contract ≈25 min wall-clock (limit 4 h).
+
+## 3. What changed
+
+- `scripts/measure_anchor.py`: `--draws N` (append-only, never re-draws the stored 3), `--situations K`, `--max-cny` (hard stop on new spend), `--allow-partial`. Extension rows go to `evidence/measure/anchor-draws<N>/`, so `anchor-matched/`'s 888 rows / ¥0.7115 / `pilot.json` are byte-identical — the paid evidence I was told to add to, not rewrite. `call_id` continues at `a0889`–`a2664` (unique across both files). Regression: `--analyse` (3 draws) still reproduces the committed `summary.json` and `per-situation.jsonl` exactly.
+- `report/sft-measurement.md`: state line, protocol table, pilot-evidence paragraph, both metric tables, 结论 5–6, 能说明/不能说明, 修掉的问题 10, and a new 复算 section with commands, four sha256s and the spend paragraph. Every anchor citation in the file moved to the 9-draw number; the 3-draw number is kept inline as the earlier estimate of the same sample.
+- Licence: `README.md:47` and `docs/model-card.md:85` now read **AGPL-3.0-only** (SPDX id + canonical URL); the model card names the base model's licence **Apache-2.0** with its obligations and the local-snapshot verification. Two more lines that said "仓库未声明许可" (`THIRD-PARTY.md:32`, `docs/data-card.md:73`) were corrected, because leaving them would state a falsehood in the very commit that decided the licence.
+
+## 4. Verification run
+
+- 296 (situation, arm) pairs, exactly 9 draws each, 2664 unique `call_id`s, 0 empty answers.
+- `prompt_sha256` identical to base/post for **2664/2664** (the gate refuses otherwise); params only `0.7 / 0.95 / 320 / deepseek-flash`; bare `system_chars` = 0; law `system_sha256` = law's `325f8b3e…`; 42 truncations at 320 (1.6% vs 1.2% before).
+- Re-running `--analyse --draws 9` reproduces all four artefacts byte-identically (`summary.json` `69d27635d832e268`, `per-situation.jsonl` `dfe0137f214deaf8`, `run-meta.json` `c749c1d2bf3d29b4`, `answers.jsonl` `fbd574357f560684`).
+- `python3 scripts/measure_actions.py --check` — all 7 self-tests pass (metric unchanged, I did not touch it).
+
+## 5. Decisions needed (nothing else waits on me)
+
+1. **Stale sentences elsewhere still carry the 3-draw cross-0 claim** — `README.md:38`, `docs/model-card.md:77` (limit 6), `docs/paper/draft.md:15,91-92,126-129,174`, `docs/plan/plan.md:45`. They are outside my named scope and each now contradicts the report. Replacement text, ready to paste: 带法 0.3198 [0.2703, 0.3746]、不带法 0.2605 [0.2072, 0.3116]、差 0.0593 [0.0263, 0.0923]（9 条/处境/侧，含不含 0 的翻转说明；旧 0.0496 [−0.0068, 0.1059] 作 3 条时的前次估计保留）. The paper's abstract-level "这把尺子量不出法的作用" is the sentence that must change most carefully.
+2. **Push.** My three commits are local, together with your three mail commits (`origin/main..HEAD` = 6). Pushing now would publish the stale README/model-card/paper sentences in (1) — publish is authorised, but I did not take that call.
+3. **No AGPL text in the repo.** `licenses/` holds only `Apache-2.0.txt` and `gsm8k-MIT.txt`; the project's own convention ("许可原文落 licenses/") now has no file for the licence it declares. Fetch verified reachable (`https://www.gnu.org/licenses/agpl-3.0.txt` → 200). A new file was not in my named scope, so it is a finding, not done.
+4. **Spend ledger.** `report/measurements.md:63` still lists the anchor batch as "888 / ¥0.7115"; the 1776-call ¥1.4184 batch needs its own row and the total recomputed (¥14.23 → ¥15.65 if nothing else changed). That file is another writer's area; `run-meta.json` carries the per-arm/per-price-band split needed for the row.
+
+Minor, no decision: `mail/2026-10-21-answers.md` and `mail/2026-10-21-licence-and-grant.md` are now landed in commits and are addressed to `nomos`, so their deletion is `nomos`'s act, not mine. 口径二 remains unresolved by design — 0.0303 with a CI of width 0.10 at n = 99 would need another order of magnitude of situations, not draws; the 42/2664 truncations at 320 still have no measured suppression.
