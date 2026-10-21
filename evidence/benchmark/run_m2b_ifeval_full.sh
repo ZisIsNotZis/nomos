@@ -116,7 +116,7 @@ print(d["base"]["correct"], d["adapter"]["correct"],
       d["paired"]["drops"], d["paired"]["gains"], f'{d["paired"]["mcnemar_exact_p"]:.4f}')
 PY
 )"
-mkdir -p mail
+mkdir -p inbox
 cat > "inbox/$(date +%F)-m2b-ifeval-full-completion.md" <<MD
 kind:    completion
 from:    package m2b-ifeval-full (M3 driver)
