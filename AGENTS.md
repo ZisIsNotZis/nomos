@@ -6,7 +6,7 @@
 
 怎么开始：读本文件，再读 `report/sft-measurement.md` 开头那段「重估的结论（一句话）」和它的两个口径表；`mail/` 现在不存在（最后一封落地后删掉了，见「哪些不是当前的」）。
 
-怎么继续：M2 已经派发出去了（包 `m2-n100`，见 M2 那一条的「派发状态」）。看它在不在跑：`evidence/benchmark/logs-n100/driver.log` 与 `inflight.md`；它跑完会自己往 `mail/` 写一封 `completion`，读到就落地：把四格 n=100 的读数写进 `report/sft-benchmark.md` 与引用面，然后删信。**M2 没跑完之前不要动任何引用 n=20 的句子**，因为新读数还不存在。之后才轮到 WP-2（README 的「约 3.3 秒」）。
+怎么继续：M2 已经派发出去了（包 `m2-n100`，见 M2 那一条的「派发状态」）。看它在不在跑：`evidence/benchmark/logs-n100/driver.log` 与 `inflight.md`；它跑完会自己往 `mail/` 写一封 `completion`，读到就落地：把四格 n=100 的读数写进 `report/sft-benchmark.md` 与引用面，然后删信。**如果 `driver.log` 已经有 `analyse rc=` 而 `mail/` 里没有信**，就是包没活到写报告那一步：按 `inflight.md` 的续跑点把包叫回来，不由我自己提笔写它那一段（拆出去的东西就不能自己再执行）。**M2 没跑完之前不要动任何引用 n=20 的句子**，因为新读数还不存在。之后才轮到 WP-2（README 的「约 3.3 秒」）。
 
 与通用约定不一样的地方：`docs/plan/plan.md` 是项目**过去**的工作包状态记录，不是本节点的 roadmap，别把它当路线图读、也别为了让 M2 好看去回填它；`report/measurements.md` 的花费表只增行、不改旧行；许可原文按「字节数 + sha256 + 取回 URL」登记在 `README.md` 的「许可」与 `THIRD-PARTY.md`；`scripts/measure_anchor.py --analyse` 每跑一次会往 `evidence/measure/anchor-draws9/run.log` **追加**一行 `cmd:`，所以那个文件不标 hash，也是唯一允许脏着出现在 `git status` 里的路径（它现在已提交，第 3 条 `cmd:` 是复核跑，不是新数据）。
 
@@ -24,7 +24,7 @@
 - 期限：2026-10-31（GPU 之后能不能用未确认，这是这个里程碑唯一的真期限）。
 - 报告对象：root。
 - 派发契约（已照抄填空发出；包没有自己的目录，契约只能记在这一条里）：边界＝四格 n=100 跑完并落报告，不改判分器、不改冻结样本、不碰测量主指标；地界＝`scripts/run_bench.py`、`scripts/bench_suites.py`、`evidence/benchmark/`、`report/sft-benchmark.md`，以及上列引用面；验收＝四格配对结果 + 区间 + 检出下限 + 判定；花费＝`idle-compute`，墙钟≈5 小时；报告目标＝本节点。
-- **派发状态（2026-10-21）**：包 id `m2-n100` 已发出，跑的是 `evidence/benchmark/run_m2_n100.sh`（预检 → `base` 一相两路、`adapter` 一相两路 → `analyse_paired.py`），每路 3 小时 `timeout`，`setsid` 脱离会话。日志在 `evidence/benchmark/logs-n100/`：`driver.log`、四份逐格 log、`inflight.md`（pid、起始时刻、续跑点）。派发前把 n=20 四格与两份配对从 `evidence/benchmark/` **移**到 `evidence/benchmark/n20/`（提交 `fc273a9`，带一份说明为什么留着它），规范名空出来给 n=100 覆盖。这次派发没有回填 `docs/plan/plan.md`，也没有先跑任何一格去看数。
+- **派发状态（2026-10-21）**：包 id `m2-n100` 已发出，跑的是 `evidence/benchmark/run_m2_n100.sh`（预检 → `base` 一相两路、`adapter` 一相两路 → `analyse_paired.py`），每路 3 小时 `timeout`，`setsid` 脱离会话。日志在 `evidence/benchmark/logs-n100/`：`driver.log`、四份逐格 log、`inflight.md`（pid、起始时刻、续跑点）。派发前把 n=20 四格与两份配对从 `evidence/benchmark/` **移**到 `evidence/benchmark/n20/`（提交 `fc273a9`，带一份说明为什么留着它），规范名空出来给 n=100 覆盖。这次派发没有回填 `docs/plan/plan.md`，也没有先跑任何一格去看数。一条运行时的经验也记在这里：包内的后台 watcher 会随它的 turn 一起被回收，所以长跑只能长在 `setsid` 的 driver 上（driver 不死），等待必须用一次带 `waitFor` 的阻塞调用，不能用后台任务加“结束 turn 等通知”。
 
 **M1（已报、已被上一层接受，不再欠）**：匹配锚点每处境每侧 9 条重估，主指标上「读了法」减「没读法」不含 0。证据：`evidence/measure/anchor-draws9/`（`answers.jsonl` 1776 行、`summary.json`、`per-situation.jsonl`、`run-meta.json`、`run.log`），提交 `fff3441`、`12a4d12`，报告 `report/sft-measurement.md`「复算」一节。**不再重跑，也不再花 metered 钱**：那批证据已结。
 
