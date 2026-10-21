@@ -39,7 +39,7 @@ headroom（训练前基座分数是否落在判别带 30–70%）用真模型跑
 
 方法就是「换一个变量」：
 
-- **同一批条。** `data/bench/sources.json` 的 seed 0 按 `sha256("0:<id>")` 升序取前缀，`--limit` 小的那次永远是大那次的前缀：n=100 的四格就是 n=295 的前 100 条，两份记录**逐字节相同**（2026-10-21 核过，两侧各 100/100），所以两次读数可以直接比，且差额只来自新加的 195 条。`analyse_paired.py` 先比对两次运行的 `limit`、`seed`、`frozen_sha256`、`decoding`，再比对记录里的 id 顺序，不一致直接报错退出，不会算出一个假的配对结果。
+- **同一批条。** `data/bench/sources.json` 的 seed 0 按 `sha256("0:<id>")` 升序取前缀，`--limit` 小的那次永远是大那次的前缀：n=100 的四格就是 n=295 的前 100 条，两份记录**逐字节相同**（2026-10-21 核过，两侧各 100/100），所以这不是两次独立读数，是**一次读数把分母从 100 加到 295**：两次跑可以逐条比，差额只来自新加的 195 条，两版之间相同的那 100 条一致是算术结果，不是第二次测量印证了第一次。`analyse_paired.py` 先比对两次运行的 `limit`、`seed`、`frozen_sha256`、`decoding`，再比对记录里的 id 顺序，不一致直接报错退出，不会算出一个假的配对结果。
 - **只换模型。** 解码贪心、`max_new_tokens` 512/640 由 `sources.json` 固定，adapter 走 `PeftModel.from_pretrained` 加载 `.tmp/sft/adapter-narrow`（r=16，41.7 MB）。判分代码一行没改，`correct` 直接读落盘记录。
 - **落盘可查。** `evidence/benchmark/paired-<suite>.json` 记两条分数、Wilson 区间、差值、配对自举区间、翻转 id（`drop_ids`/`gain_ids`）、McNemar p、检出下限和两侧耗时。
 

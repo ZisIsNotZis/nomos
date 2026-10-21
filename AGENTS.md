@@ -6,7 +6,7 @@
 
 怎么开始：读本文件，再读 `report/sft-benchmark.md` 开头「结论」那张两格表（GSM8K n=100、IFEval n=295）与「这个 n 能看见多大的掉幅」；口径与主指标读 `report/sft-measurement.md` 的「重估的结论（一句话）」与三个口径表。`mail/` 现在不存在（M3 的 completion 已落地并删信）。
 
-怎么继续：M2、M3 都已落地，引用面（`README.md`、`docs/model-card.md`、`docs/paper/draft.md`、`evidence/benchmark/n100/README.md`）已全部换成当前读数。本节点自己还剩的活只有 WP-2、WP-3 两条工作包；Q1/Q2/Q3 都在人手里等答案，**不阻塞任何事，也不该被谁替人答**。**没有上一层的话不要推**：本轮所有提交都在本机。
+怎么继续：M2、M3 都已落地，引用面（`README.md`、`docs/model-card.md`、`docs/paper/draft.md`、`evidence/benchmark/n100/README.md`）已全部换成当前读数。本节点自己还剩的活是 WP-2、WP-3 两条工作包，另有一条已派发给 worker 的 WP-5（官方 grader 复核）在跑；Q1/Q2/Q3 都在人手里等答案，**不阻塞任何事，也不该被谁替人答**。**没有上一层的话不要推**：本轮所有提交都在本机。
 
 与通用约定不一样的地方：`docs/plan/plan.md` 是项目**过去**的工作包状态记录，不是本节点的 roadmap，别把它当路线图读、也别为了让报告好看去回填它（它现在仍写着 n=20 那一版，是历史快照）；`report/measurements.md` 的花费表只增行、不改旧行，GPU 墙钟单列在「本机 GPU（不计钱）」一节；许可原文按「字节数 + sha256 + 取回 URL」登记在 `README.md` 的「许可」与 `THIRD-PARTY.md`；`scripts/measure_anchor.py --analyse` 每跑一次会往 `evidence/measure/anchor-draws9/run.log` **追加**一行 `cmd:`，所以那个文件不标 hash，是允许脏着出现在 `git status` 里的路径之一。另一处是 `evidence/benchmark/logs-{n100,m2b}/` 下的 `driver.log`、`driver.out` 与逐格日志：跑的时候它们一直在长，脏着就是「跑着」，不是漂移；现在两轮都跑完了，它们与产物同一次提交落盘，之后不该再变。
 
@@ -20,7 +20,7 @@
 
 - 观测（决定它成没成）：`evidence/benchmark/paired-ifeval.json` 的 `n` 变成 295，区间与 McNemar p 重算，且 `report/sft-benchmark.md` 把它写成当前读数、把 n=100 那一版移到「前一次估计」。
 - **结果**：`n: 295`，base **184/295 = 62.4%**、adapter **148/295 = 50.2%**、Δ **−12.2pp**、配对区间 **[−17.6, −6.8]**、**54 掉 / 18 涨**（不一致 70）、McNemar p **2.57e-5**、检出下限 **5 条 / 1.7pp（McNemar）、4 条 / 1.4pp（区间）**、`unscorable=0`。区间仍不含 0，所以走的是约定里的第一种落法（论文可冻），n=100 那一版降到「前一次估计」。
-- **加宽是纯加法，可核**：n=295 的前 1–100 条记录与 `evidence/benchmark/n100/` 那两份**逐字节相同**（两侧各 100/100），n=100 的 19 条掉点全部落在 54 条里。所以点估计只从 −12.0pp 动到 −12.2pp，动的是宽度（19pp → 10.8pp）与 p（0.029 → 2.57e-5）。
+- **加宽是纯加法，可核**：n=295 的前 1–100 条记录与 `evidence/benchmark/n100/` 那两份**逐字节相同**（两侧各 100/100），n=100 的 19 条掉点全部落在 54 条里。所以点估计只从 −12.0pp 动到 −12.2pp，动的是宽度（19pp → 10.8pp）与 p（0.029 → 2.57e-5）。**这不是两次读数一致，是一次读数把分母从 100 加到 295**：两版之间相同的那 100 条一致是算术结果，不是第二次测量印证了第一次。
 - 引用面改完（同一批提交）：`report/sft-benchmark.md`（结论表、headroom、配对对照、逐条读 54 条、检出下限、前一次估计、落盘、实测速度、未跑与续跑、判读方法）、`README.md`（结果一行、不是什么、报告索引）、`docs/model-card.md`（结果、限制 7）、`docs/paper/draft.md`（摘要、§1、§4.7、§4.8、§5、§7、出处表）、`report/measurements.md`（GPU 墙钟 M3 那一行由「未定」补成实测）、`evidence/benchmark/n100/README.md`（把两条 caveat 的现状写清）。
 - 花费：`idle-compute`（同一张 4090），实测墙钟 **1 h 43 min 10 s（6190 s）**，是派发时剩余授权（≈3.7 h）的 **47%**；两轮合计 3.03 h / 5 h = 61%。零 metered，¥0。账在 `report/measurements.md`「本机 GPU（不计钱）」。
 - 证据：`evidence/benchmark/{base,adapter}-ifeval.json`、`evidence/benchmark/paired-ifeval.json`、`evidence/benchmark/logs-m2b/`，提交 `cbbde88`。
@@ -34,6 +34,7 @@
 - **WP-2（F2）**：README 的「约 3.3 秒」要么改写成「约 3–5 秒，随机型负载变化」，要么在一台空机上重录一次并把两次读数一起写进 `docs/plan/plan.md` 的「发布准备」。现状是可被读者一计时就反驳的声明。验收：README 与 plan 的读数一致，且都说明测的条件。**仍未做**。
 - **WP-3（F1）**：`constitution/lock.yaml` 的 `upstream:` 还指向一个已经不存在的路径；改成法当前的家 `agent-policy/`，并在同一次提交里写一句「冻结副本仍按 sha256 校验，所以旧路径不伤害任何东西」。**限定条件**：只在下一个碰到这个 lock 的改动里做，不单独为它开一次提交去碰冻结区。
 - **WP-4（已完成）**：M2 的四格新读数同步进引用面。
+- **WP-5（派发中，2026-10-21，worker `cae2e94e-05db-4079-8876-dde6be27d14f`）**：用 Google 官方 `instruction_following_eval`（pin `e6890f85757dd84e27ca6df2dd30651dafad28e0`）重算 590 份落盘输出的 IFEval 判定，回答「−12.2pp 是我们的尺子量出来的，还是参考实现的尺子也量得出来」。输入只有 `evidence/benchmark/{base,adapter}-ifeval.json` 的 `output` 与 `data/bench/ifeval.jsonl`（判分不重跑模型、不碰 GPU，花费 `idle-compute`），产出落 `work/official-ifeval-grader/`。验收：`official-ifeval.json` 给出官方 strict/lax 的 base/adapter 计数、配对差与区间、McNemar p、逐检查器的 our-vs-official 分歧表，并说清 `_words`（空白切分 vs 官方 nltk 词元）与 `_no_comma`（任一字面逗号）两处分歧是孤例还是普遍；重跑复现同一 JSON。**若官方区间跨 0，停在这里：那是 `cost` 报告，送上之前不改任何主张文本。**
 
 ## 现在的事实
 

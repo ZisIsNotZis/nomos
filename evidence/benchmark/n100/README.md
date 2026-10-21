@@ -10,7 +10,8 @@ copied here before M3's IFEval run at `--limit 295` overwrote the canonical
 - IFEval here is the n=100 reading: 57/100 -> 45/100, -12.0pp [-22.0, -3.0], 19 drops /
   7 gains, McNemar p=0.029, floors 5pp (McNemar) / 4pp (interval).
 - The 100 items are the first 100 of the same seed-0 frozen prefix the n=295 run uses, so
-  these records are a prefix of the n=295 records, not a different sample.
+  these records are a prefix of the n=295 records, not a different sample — one reading with
+  a bigger denominator, not two readings that agree.
 
 Caveats that travel with *this* n=100 reading (added by the node, not the package), and where
 they stand after M3:
@@ -21,7 +22,9 @@ they stand after M3:
 - Flipping the two word-floor near-misses (`ifeval-1072`, 398/400; `ifeval-2844`, 195/200)
   gives 17 drops / 7 gains, Δ=−10.0pp, exact McNemar p=0.064. **This is the fragility of the
   n=100 reading specifically.** At n=295 the same two flips give 52/18, Δ=−11.5pp, p=5.85e-5,
-  and flipping all seven `number_words` drops gives 47/18, p=4.22e-4.
+  and flipping all seven `number_words` drops gives 47/18, p=4.22e-4. Pushing p back
+  outside 0.025 needs 19 of the 54 drops flipped, and the largest single family is 11
+  (`punctuation:no_comma`), so the n=295 reading is not one near-miss away from failing.
 - The mechanism claim that used to sit next to this number ("the adapter writes shorter
   answers, so 'at least N words' fails first") is **narrower than it was written**. Median
   words do drop (212.5 → 169.0 on these 100 items; 185 → 130 over all 295), but at n=295 the
