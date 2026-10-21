@@ -109,9 +109,11 @@ EOF
 | 跑 | 格 | 条数 | 墙钟 | 生成时间合计 | 派发时授权 | 用量 |
 | --- | --- | --- | --- | --- | --- | --- |
 | M2 `m2-n100`（2026-10-21T12:41:08 → 13:59:41） | GSM8K/IFEval × base/adapter | 400 | 78 min 32 s（4713 s） | 8290 s（两路并行） | ≈5 h `idle-compute` | **26%** |
+| M3 `m3-ifeval-295`（2026-10-21T14:07:46 起，跑完补） | IFEval × base/adapter | 590 | **未定**（预估 1.9 h；契约里的「≈80 min」算的是补 195 条，实际跑全量 295） | 未定 | M2 剩下的 ≈3.7 h | 未定 |
 
 - 起止取自 `evidence/benchmark/logs-n100/driver.log` 的两行时间戳（`preflight ok` 与 `analyse rc=0`），不是估的；`driver.pid` 记的 pid 91165 在 `analyse` 之后退出，watcher 的退出通知在 `mail/2026-10-21-m2-driver-exited.md`（已落地并删信）。
 - 逐格 `elapsed_seconds` 在 `evidence/benchmark/paired-*.json`，单条 14.1–23.4 s；n=100 比 n=20 那一轮的 23.3–35.9 s 快，因为跑的时候卡上是空的（预检 23560 MiB 空闲）。
 - 剩 ≈3.7 小时未用。这一轮 **没有 metered 调用**，所以上表的 `TOTAL 9059 44 ¥15.6493` 不变。
+- M3 那一行是派发时先落的账（2026-10-21T14:07:46，`evidence/benchmark/logs-m2b/driver.log` 第一行）：墙钟与用量等 driver 写 `completion` 到 `mail/` 后补，未定就写未定，不填零也不按预估充数。
 
 覆盖标注的「550 次、¥1.65」只指 `coverage`、`coverage-cap8`、`coverage-uncapped` 这三遍（550 次请求、¥1.6454），不含 `grow/coverage` 的 55 次 ¥0.1231；[数据质量](data-quality.md) 与 [增长批次](grow-pairs.md) 各报自己那一笔。

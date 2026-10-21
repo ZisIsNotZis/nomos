@@ -1,0 +1,6 @@
+run id:  m3-ifeval-295
+driver:  setsid nohup bash evidence/benchmark/run_m2b_ifeval_full.sh > logs-m2b/driver.out 2>&1 &
+pid:     307118 (driver, logs-m2b/driver.pid); cells 307159 base / 307160 adapter (logs-m2b/cell.pids)
+started: see the first line of logs-m2b/driver.log
+shape:   ifeval --limit 295 for base and adapter, same seed-0 frozen prefix, greedy, same scorer;
+         then analyse_paired.py ifeval; the driver writes its own `completion` into nomos/mail/.

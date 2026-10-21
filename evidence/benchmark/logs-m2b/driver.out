@@ -1,0 +1,3 @@
+[2026-10-21T14:07:46+08:00] preflight: gpu free 23111 MiB, used 998 MiB
+[2026-10-21T14:07:46+08:00] preflight ok: limit=295, adapter=5be6a2f387520259
+[2026-10-21T14:07:46+08:00] preserved n=100 artefacts in evidence/benchmark/n100

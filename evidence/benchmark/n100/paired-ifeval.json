@@ -1,0 +1,80 @@
+{
+ "suite": "ifeval",
+ "status": "ran",
+ "n": 100,
+ "base": {
+  "correct": 57,
+  "accuracy": 0.57,
+  "ci95_wilson": [
+   0.4721521169586435,
+   0.6626686099947162
+  ]
+ },
+ "adapter": {
+  "correct": 45,
+  "accuracy": 0.45,
+  "ci95_wilson": [
+   0.3561437510640346,
+   0.5475557296835656
+  ]
+ },
+ "delta_adapter_minus_base": -0.12,
+ "delta_ci95_paired_bootstrap": [
+  -0.22,
+  -0.03
+ ],
+ "paired": {
+  "drops": 19,
+  "gains": 7,
+  "drop_ids": [
+   "ifeval-1372",
+   "ifeval-2752",
+   "ifeval-2374",
+   "ifeval-2844",
+   "ifeval-1137",
+   "ifeval-3376",
+   "ifeval-1072",
+   "ifeval-1928",
+   "ifeval-343",
+   "ifeval-3619",
+   "ifeval-1217",
+   "ifeval-3456",
+   "ifeval-142",
+   "ifeval-349",
+   "ifeval-209",
+   "ifeval-2417",
+   "ifeval-2909",
+   "ifeval-3386",
+   "ifeval-2829"
+  ],
+  "gain_ids": [
+   "ifeval-2246",
+   "ifeval-3243",
+   "ifeval-3380",
+   "ifeval-2602",
+   "ifeval-2534",
+   "ifeval-1591",
+   "ifeval-247"
+  ],
+  "unchanged": 74,
+  "mcnemar_exact_p": 0.028959274291992188
+ },
+ "detectable": {
+  "smallest_drop_items_with_no_gains": 5,
+  "smallest_drop_pp_with_no_gains": 0.05,
+  "smallest_drop_items_by_paired_interval": 4,
+  "smallest_drop_pp_by_paired_interval": 0.04,
+  "alpha": 0.05
+ },
+ "harness": {
+  "limit": 100,
+  "seed": 0,
+  "frozen_sha256": "0cc0fb5726c3aa6ec9053aec2bfc8615ed631150e54cee492c0f2f963dcdf71e",
+  "decoding": "greedy",
+  "adapter_dir": "/home/z/vibe/nomos/.tmp/sft/adapter-narrow"
+ },
+ "elapsed_seconds": {
+  "base": 2213.5,
+  "adapter": 2344.4
+ }
+}
