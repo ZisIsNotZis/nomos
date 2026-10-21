@@ -1,0 +1,19 @@
+cmd: scripts/measure_anchor.py --generate --draws 9 --situations 20 --max-cny 1.80
+staged20-draws9: 20 条处境 × 2 条件 × 9 条，待调用 240 次；按 densify 单价 ¥0.00085 投影 ¥0.20；上限 ¥1.80；解码 temperature 0.7、top_p 0.95、max_tokens 320
+staged20-draws9: 落盘 240 条，anchor-draws9/answers.jsonl 累计 1128 条，本目录累计花费 ¥0.1983
+cmd: scripts/measure_anchor.py --generate --draws 9 --max-cny 1.80
+full-draws9: 148 条处境 × 2 条件 × 9 条，待调用 1536 次；按 densify 单价 ¥0.00085 投影 ¥1.31；上限 ¥1.80；解码 temperature 0.7、top_p 0.95、max_tokens 320
+full-draws9: 落盘 1536 条，anchor-draws9/answers.jsonl 累计 2664 条，本目录累计花费 ¥1.4184
+cmd: scripts/measure_anchor.py --analyse --draws 9
+analyse: 处境 148 条，每处境每侧用 9 条抽样（要求 9 条），落 evidence/measure/anchor-draws9/per-situation.jsonl
+cmd: scripts/measure_anchor.py --analyse --draws 9
+analyse: 处境 148 条，每处境每侧用 9 条抽样（要求 9 条），落 evidence/measure/anchor-draws9/per-situation.jsonl
+cmd: scripts/measure_anchor.py --analyse --draws 9
+analyse: 处境 148 条，每处境每侧用 9 条抽样（要求 9 条），落 evidence/measure/anchor-draws9/per-situation.jsonl
+cmd: scripts/measure_anchor.py --analyse --draws 9
+analyse: 处境 148 条，每处境每侧用 9 条抽样（要求 9 条），落 evidence/measure/anchor-draws9/per-situation.jsonl
+cmd: scripts/measure_anchor.py --analyse --draws 9
+analyse: 处境 148 条，每处境每侧用 9 条抽样（要求 9 条），落 evidence/measure/anchor-draws9/per-situation.jsonl
+note: answers.jsonl 的 1776 行 call_id 一次性重编为 a0889–a2664（原为 a0001–a1776，与原批的 a0001–a0885 整段重叠）；只改 call_id，其余字段与行序未动，因为同一批锚点内 call_id 必须唯一。runner 现在按原批条数接着编，同一目录再追加不会再重叠。
+cmd: scripts/measure_anchor.py --analyse --draws 9
+analyse: 处境 148 条，每处境每侧用 9 条抽样（要求 9 条），落 evidence/measure/anchor-draws9/per-situation.jsonl

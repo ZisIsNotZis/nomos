@@ -1,0 +1,121 @@
+{
+  "what": "匹配锚点：用 base/post 的解码参数重抽 DeepSeek 两侧，把不带法刻度放回同一把尺子",
+  "situations": 148,
+  "draws_per_arm": 9,
+  "calls": 2664,
+  "spend_cny": 2.13,
+  "prompt": "excerpt + slice-contrast 的续写指令，与 base/post 同一串字节（逐条 sha256 核对）",
+  "action_signature": {
+    "situations": 148,
+    "old_same_sample": 0.35022522522522526,
+    "old_same_sample_ci": [
+      0.28153153153153154,
+      0.42342342342342343
+    ],
+    "matched": 0.2605105105105105,
+    "matched_ci": [
+      0.2072072072072072,
+      0.31156156156156156
+    ],
+    "delta_matched_minus_old": -0.08971471471471476,
+    "delta_ci": [
+      -0.1385135135135136,
+      -0.04579579579579581
+    ],
+    "what": "口径一（动作签名一致率）的不带法刻度：与带法多数签名吻合的抽样比例",
+    "old_protocol": {
+      "temperature": 0.0,
+      "max_tokens": 600,
+      "draws": "3–4",
+      "law_in": "system"
+    },
+    "matched_protocol": {
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "max_tokens": 320,
+      "draws": 9,
+      "draws_requested": 9,
+      "law_in": "system"
+    },
+    "law_matched_self_agreement": 0.31981981981981983,
+    "law_matched_self_agreement_ci": [
+      0.2702702702702703,
+      0.3746246246246246
+    ],
+    "law_self_agreement_old_protocol": 0.8406531531531531,
+    "law_self_agreement_old_protocol_meaning": "旧批次同协议下的带法侧自洽度：每处境多数签名的票数 / 带法抽样数，即「再抽一条带法回答、还是同一个签名」的比例；参照物的 1.0 是定义，这个数才是旧协议下带法侧的量",
+    "matched_law_minus_matched_bare": 0.05930930930930933,
+    "matched_law_minus_matched_bare_ci": [
+      0.02627627627627628,
+      0.0923423423423423
+    ],
+    "matched_law_minus_matched_bare_meaning": "同一批抽样、同一套匹配解码下，带法侧减不带法侧；这才是这个框架里的「法的作用」，它在匹配解码下很小，所以拿不带法刻度去量适配器补了多少法条效果，尺度本身就很窄",
+    "base": 0.0022522522522522522,
+    "post": 0.09684684684684684,
+    "old_on_148_situations_by_old_protocol": 0.35022522522522526
+  },
+  "text_signature": {
+    "situations": 99,
+    "old_same_sample": 0.617003367003367,
+    "old_same_sample_ci": [
+      0.5387205387205387,
+      0.696969696969697
+    ],
+    "matched": 0.5432098765432098,
+    "matched_ci": [
+      0.4769921436588103,
+      0.6060606060606061
+    ],
+    "delta_matched_minus_old": -0.07379349046015715,
+    "delta_ci": [
+      -0.13692480359147025,
+      -0.010101010101010105
+    ],
+    "what": "口径二（文字层决策签名一致率）的不带法刻度",
+    "situations_note": "匹配锚点只覆盖口径一的 148 条可用处境，与本口径可用的 169 条相交 99 条；这里的旧抽样读数也重算在这 99 条上，所以两边同一样本，可与原 169 条上的读数并存但不相等",
+    "old_on_169_situations_by_old_protocol": 0.5330374753451677,
+    "old_on_169_situations_by_old_protocol_situations": 169,
+    "law_matched_self_agreement": 0.5735129068462402,
+    "law_matched_self_agreement_ci": [
+      0.5185185185185185,
+      0.6296296296296297
+    ],
+    "matched_law_minus_matched_bare": 0.030303030303030387,
+    "matched_law_minus_matched_bare_ci": [
+      -0.01795735129068462,
+      0.0819304152637486
+    ],
+    "base": 0.3412228796844181,
+    "post": 0.2938856015779093
+  },
+  "action_comparable_bare": "缺：旧抽样没有在动作可比子集上算不带法读数，匹配批次只有这 148 条处境上的整体读数，不补一个子集值",
+  "X": {
+    "value": 0.0948081264108352,
+    "ci": [
+      0.056433408577878104,
+      0.13318284424379231
+    ],
+    "status": "defined",
+    "unchanged_because": "X = (post_mean - base_mean) / (1 - base_mean) 只用 base 与 post，不带法刻度不进入 X；匹配锚点改的是刻度，base/post 与参照物都没动"
+  },
+  "draws_requested": 9,
+  "calls_this_batch": 1776,
+  "spend_cny_this_batch": 1.4184,
+  "calls_note": "calls/spend_cny 是 anchor-matched/ 的 888 条原批与 anchor-draws9/ 的追加批之和；calls_this_batch/spend_cny_this_batch只算这次追加抽样花的钱",
+  "recompute": {
+    "generate": "python3 scripts/measure_anchor.py --generate --draws 9 --max-cny 4.0",
+    "analyse": "python3 scripts/measure_anchor.py --analyse --draws 9",
+    "commands_actually_run": [
+      "scripts/measure_anchor.py --generate --draws 9 --situations 20 --max-cny 1.80",
+      "scripts/measure_anchor.py --generate --draws 9 --max-cny 1.80",
+      "scripts/measure_anchor.py --analyse --draws 9"
+    ],
+    "note": "commands_actually_run 是 run.log 里记下的真实命令（含分段跑与实际上限）；generate 是等价的一次跑完命令，已落盘的抽样不重抽，所以两者产生同一批数据",
+    "log": "evidence/measure/anchor-draws9/run.log",
+    "per_situation": "evidence/measure/anchor-draws9/per-situation.jsonl",
+    "answers": [
+      "evidence/measure/anchor-matched/answers.jsonl",
+      "evidence/measure/anchor-draws9/answers.jsonl"
+    ]
+  }
+}

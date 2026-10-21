@@ -34,6 +34,7 @@
       "top_p": 0.95,
       "max_tokens": 320,
       "draws": 3,
+      "draws_requested": 3,
       "law_in": "system"
     },
     "law_matched_self_agreement": 0.3310810810810811,

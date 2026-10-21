@@ -3,3 +3,9 @@ pilot: 落盘 120 条，answers.jsonl 共 120 条，花费 ¥0.102
 pilot: 120 次调用，完成 token 最大 291，finish_reason {'stop': 120}，prompt 与 base/post 同字节 120/120；检查全部通过
 full: 148 条处境 × 2 条件 × 3 条，待调用 768 次；按 densify 单价 ¥0.00085 投影 ¥0.65；解码 temperature 0.7、top_p 0.95、max_tokens 320
 full: 落盘 768 条，answers.jsonl 共 888 条，花费 ¥0.712
+cmd: scripts/measure_anchor.py --analyse
+analyse: 处境 148 条，每处境每侧用 3 条抽样（要求 3 条），落 evidence/measure/anchor-matched/per-situation.jsonl
+cmd: scripts/measure_anchor.py --analyse
+analyse: 处境 148 条，每处境每侧用 3 条抽样（要求 3 条），落 evidence/measure/anchor-matched/per-situation.jsonl
+cmd: scripts/measure_anchor.py --analyse
+analyse: 处境 148 条，每处境每侧用 3 条抽样（要求 3 条），落 evidence/measure/anchor-matched/per-situation.jsonl

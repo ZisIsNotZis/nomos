@@ -1,0 +1,57 @@
+{
+  "what": "匹配锚点每处境每侧 9 条的追加抽样：本次花了多少钱、抽了多少条、用了什么参数",
+  "model": "deepseek-flash",
+  "protocol": {
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "max_tokens": 320,
+    "thinking": "disabled",
+    "law_in": "system",
+    "bare_system_chars": 0,
+    "law_system_chars": 93670
+  },
+  "situations": 148,
+  "draws_per_arm": 9,
+  "draws_requested": 9,
+  "calls_this_batch": 1776,
+  "spend_cny_this_batch": 1.4184,
+  "spend_cny_this_batch_by_arm": {
+    "law": 0.8796,
+    "bare": 0.5388
+  },
+  "spend_cny_this_batch_by_rate": {
+    "off_peak": 1.4184
+  },
+  "mean_cny_per_call_this_batch": 0.000799,
+  "calls_total_both_dirs": 2664,
+  "spend_cny_total_both_dirs": 2.13,
+  "batch_created_epoch_range": [
+    1792556622,
+    1792556920
+  ],
+  "draw_indices_this_batch": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "anchor_matched_untouched": "evidence/measure/anchor-matched/answers.jsonl 仍为 888 行 ¥0.7115：本次只在 range(3, target) 上追加，不重抽也不改写",
+  "recompute": {
+    "generate": "python3 scripts/measure_anchor.py --generate --draws 9 --max-cny 4.0",
+    "analyse": "python3 scripts/measure_anchor.py --analyse --draws 9",
+    "commands_actually_run": [
+      "scripts/measure_anchor.py --generate --draws 9 --situations 20 --max-cny 1.80",
+      "scripts/measure_anchor.py --generate --draws 9 --max-cny 1.80",
+      "scripts/measure_anchor.py --analyse --draws 9"
+    ],
+    "note": "commands_actually_run 是 run.log 里记下的真实命令（含分段跑与实际上限）；generate 是等价的一次跑完命令，已落盘的抽样不重抽，所以两者产生同一批数据",
+    "log": "evidence/measure/anchor-draws9/run.log",
+    "per_situation": "evidence/measure/anchor-draws9/per-situation.jsonl",
+    "answers": [
+      "evidence/measure/anchor-matched/answers.jsonl",
+      "evidence/measure/anchor-draws9/answers.jsonl"
+    ]
+  }
+}
