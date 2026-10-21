@@ -1,0 +1,1169 @@
+{
+ "suite": "ifeval",
+ "model": "adapter",
+ "stub": null,
+ "adapter_dir": "/home/z/vibe/nomos/.tmp/sft/adapter-narrow",
+ "frozen_sha256": "0cc0fb5726c3aa6ec9053aec2bfc8615ed631150e54cee492c0f2f963dcdf71e",
+ "seed": 0,
+ "limit": 100,
+ "max_new_tokens": 640,
+ "decoding": "greedy",
+ "records": [
+  {
+   "id": "ifeval-2790",
+   "prompt": "Write a funny rap about a man who gets a call from an official saying that he is a long lost relative of the king of Nigeria. Use markdown to highlight at least one section of your answer, i.e. *highlighted section*.",
+   "output": "Yo, I was just chilling in the lobby, got a call from the official, voice like a drill: \"This is the King's office, we need to talk.\" I said, \"Who's the King?\" He said, \"The one who ruled the land of the Niger, the one who made the river bend.\" I said, \"I'm a regular guy, I don't know kings.\" He said, \"You're the one, and you're the only one.\"\n\nSo I went to the palace, the doors were locked, the guards were dead, and the King was sitting on a throne made of old wood and regret. I stood there, shaking, and he said, \"I'm not looking for a relative, I'm looking for a nephew.\" I said, \"I'm the nephew, I'm the only one.\" He said, \"Then you're the heir, and you're the only one.\"\n\nSo I got the crown, the scepter, and the title, and I said, \"I'm the King of Nigeria, and I'm the only one.\" The official said, \"That's a lie, you're a relative.\" I said, \"Relatives don't wear crowns, and I'm the only one.\"\n\nSo now I'm the King, and the official's got a job, and the river's flowing, and the throne's mine, and the only one.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1372",
+   "prompt": "Draft a blog post about Ripley's Aquarium. Make sure your blog post contains at least 7 placeholders represented by square brackets, such as [location].",
+   "output": "# Ripley's Aquarium: A Journey Through the Ocean's Depths\n\nWelcome to the world's largest aquarium, where [location] invites you to explore the wonders of the sea. Every day, thousands of visitors gather to witness marine life in its most vibrant state, from the gentle sway of jellyfish to the powerful grace of a hammerhead shark.\n\nThe aquarium's journey began in [year], when the first exhibit opened its doors to the public. Since then, it has grown from a small collection of specimens to a global destination, showcasing over 2,000 species across 1,000 habitats. Each tank tells a story, from the quiet stillness of a deep-sea anglerfish to the chaotic energy of a coral reef.\n\nVisitors can explore by boat, walk the observation deck, or dive into the water. The boat tour offers a guided experience through the main exhibits, while the observation deck provides a panoramic view of the entire facility. For those seeking a deeper dive, the underwater facility lets you swim among the creatures in their natural environments.\n\nWhether you're a local resident or a visitor from around the world, Ripley's Aquarium offers something for everyone. It's not just about seeing animals; it's about understanding the delicate balance of the ocean and the importance of protecting it.\n\nCome visit us and discover why this place is one of the most visited aquariums in the world.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_content:number_placeholders": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2857",
+   "prompt": "Write a rubric for performance review of a software engineer and wrap the entire output in JSON format. You can use markdown ticks such as ```.",
+   "output": "```json\n{\n  \"rubric\": {\n    \"title\": \"Software Engineer Performance Review Rubric\",\n    \"scope\": \"Software engineering roles, including development, testing, documentation, and code quality\",\n    \"criteria\": [\n      {\n        \"id\": \"C1\",\n        \"label\": \"Code Quality and Maintainability\",\n        \"points\": 20,\n        \"description\": \"Demonstrates adherence to coding standards, clean code practices, and maintainability principles.\",\n        \"subcriteria\": [\n          \"Follows project-specific coding standards and conventions\",\n          \"Uses appropriate design patterns and libraries\",\n          \"Code is readable and self-documenting\",\n          \"Maintains a clean, organized codebase\"\n        ]\n      },\n      {\n        \"id\": \"C2\",\n        \"label\": \"Feature Delivery and Timeliness\",\n        \"points\": 20,\n        \"description\": \"Delivers features on schedule and meets quality expectations.\",\n        \"subcriteria\": [\n          \"Delivers features within agreed-upon timelines\",\n          \"Meets quality standards for delivered work\",\n          \"Communicates delays and mitigates them proactively\",\n          \"Prioritizes work based on value and impact\"\n        ]\n      },\n      {\n        \"id\": \"C3\",\n        \"label\": \"Technical Problem Solving\",\n        \"points\": 20,\n        \"description\": \"Effectively identifies and resolves technical issues independently.\",\n        \"subcriteria\": [\n          \"Diagnoses problems using appropriate tools and techniques\",\n          \"Proposes and implements effective solutions\",\n          \"Prevents recurrence of similar issues\",\n          \"Documents root causes and lessons learned\"\n        ]\n      },\n      {\n        \"id\": \"C4\",\n        \"label\": \"Collaboration and Communication\",\n        \"points\": 20,\n        \"description\": \"Works well with teammates and stakeholders, communicates clearly.\",\n        \"subcriteria\": [\n          \"Contributes meaningfully to team discussions\",\n          \"Provides clear, concise explanations of technical decisions\",\n          \"Respects others' time and input\",\n          \"Adapts communication style to audience\"\n        ]\n      },\n      {\n        \"id\": \"C5\",\n        \"label\": \"Documentation\",\n        \"points\": 15,\n        \"description\": \"Maintains accurate and up-to-date documentation.\",\n        \"subcriteria\": [\n          \"Documents new features and changes\",\n          \"Updates docs after each release\",\n          \"Provides clear, accessible documentation\",\n          \"Reviews and approves documentation\"\n        ]\n      },\n      {\n        \"id\": \"C6\",\n        \"label\": \"Code Review Participation\",\n        \"points\": 15,\n        \"description\": \"Participates in code reviews and provides constructive feedback.\",\n        \"subcriteria\": [\n          \"Reviews others' code",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:json_format": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2752",
+   "prompt": "The opposite of youth is not age, but ...? Highlight at least 2 sections in your answer with markdown, i.e. *highlighted section*.",
+   "output": "The opposite of youth is not age, but *time* — the measure of life's duration that youth represents, and which is measured in years.\n\nYouth is a phase of time, and its opposite is the remaining time.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2798",
+   "prompt": "Write a list of the top 10 facts about the UK without using commas.",
+   "output": "1. The UK has 44 countries in its union\n2. London sits on the Thames river\n3. The UK is the oldest democracy in the world\n4. England has the longest coastline in Europe\n5. The UK has the highest GDP per capita in the world\n6. London has the most people in the world\n7. The UK is the only country with a monarchy and a republic\n8. The UK has the most spoken languages in the world\n9. The UK has the most people in the world\n10. The UK has the most people in the world\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "punctuation:no_comma": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2246",
+   "prompt": "I want to travel to the Subic Bay Freeport Zone, which subdistrict should I stay in? Give me an angry recommendation. Answer with at least 400 words. In your response, the word climatic should appear at least 2 times. The response must contain at least 3 placeholders represented by square brackets, such as [address].",
+   "output": "You should stay in Subic Bay Freeport Zone's [address] district because it is the only place where the climatic conditions actually match your travel plan. The Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip.\n\nThe Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip. The Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip.\n\nThe Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip. The Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip.\n\nYou should stay in Subic Bay Freeport Zone's [address] district because it is the only place where the climatic conditions actually match your travel plan. The Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip. The Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip.\n\nThe Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's climate is tropical and humid, so the [address] subdistrict offers the only reliable weather for your trip. The Subic Bay Freeport Zone is a free trade zone, not a resort, and staying in the [address] subdistrict means you are in the industrial heart of the zone, not a hotel. The zone's",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": true,
+    "keywords:frequency": true,
+    "detectable_content:number_placeholders": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3048",
+   "prompt": "Write a poem about the top 20 tallest buildings in the world and their heights. End your response with the exact question: Is there anything else I can help with?",
+   "output": "The skyline's tallest, twenty ranks,\nFrom Cairo's spire to the Pacific's brink.\nHere's the list, measured in feet,\nEach one a standing, proud, and steep.\n\n1. Burj Khalifa, 828 m, Dubai's tower,\n2. Shanghai Tower, 829 m, the city's crown,\n3. One World Trade Center, 1454 ft, the US's peak,\n4. CN Tower, 1802 ft, Canada's highest,\n5. Merdeka 1, 188 m, Malaysia's flag,\n6. Burj Dubai, 828 m, the twin's rival,\n7. Shanghai Tower, 829 m, the twin's rival,\n8. One World Trade Center, 1454 ft, the US's peak,\n9. CN Tower, 1802 ft, Canada's highest,\n10. Merdeka 1, 188 m, Malaysia's flag,\n11. Burj Dubai, 828 m, the twin's rival,\n12. Shanghai Tower, 829 m, the twin's rival,\n13. One World Trade Center, 1454 ft, the US's peak,\n14. CN Tower, 1802 ft, Canada's highest,\n15. Merdeka 1, 188 m, Malaysia's flag,\n16. Burj Dubai, 828 m, the twin's rival,\n17. Shanghai Tower, 829 m, the twin's rival,\n18. One World Trade Center, 1454 ft, the US's peak,\n19. CN Tower, 1802 ft, Canada's highest,\n20. Merdeka 1, 188 m, Malaysia's flag.\n\nIs there anything else I can help with?\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:end_checker": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2391",
+   "prompt": "What's the best way to get to the train station? Answer using a casual tone and markdown. Your response should be at least 300 words and in all lowercase letters.",
+   "output": "the best way to get to the train station is to check the map first because it changes every day, so don't trust any app without looking at the physical one. walk the whole route and count the steps, that way you know exactly how far you're going and if you're on time. if you're carrying anything heavy, take the bus instead of walking, it saves your back and keeps your stuff safe. the bus stops right at the station, so you don't have to walk through the station itself, which is always crowded and noisy. if you're in a hurry, take the train, but only if it's running and not full, otherwise the train is a nightmare and you'll be stuck waiting. the train is faster and you can see the station from the window, but it's not for everyone, so weigh the speed against the hassle. if you're a tourist, ask a local for the route, they know the streets and the stations better than you. if you're a local, just look at the map and follow the signs, no need to ask anyone. the map is your friend, so keep it handy and read it every time you leave home. don't take the first bus or the first train, wait for the one that's actually going to the station, not the one that's going to the next stop. and if you're tired or sick, call a friend or family member to pick you up, that's the only way to get there safely when you're not feeling well. the map is your friend, so keep it handy and read it every time you leave home. don't take the first bus or the first train, wait for the one that's actually going to the station, not the one that's going to the next stop. and if you're tired or sick, call a friend or family member to pick you up, that's the only way to get there safely when you're not feeling well.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": true,
+    "change_case:english_lowercase": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2467",
+   "prompt": "Write a rap about an abyss in exactly 4 paragraphs. Separate paragraphs with the markdown divider: ***.",
+   "output": "The abyss is a deep, silent hole where gravity forgets to hold, and the air tastes like cold iron and forgotten rain. It's not a place you can climb, but a place you can fall into, and the fall is the only thing that matters.\n\n***\n\nThe first thing you feel is the weight of your own shadow stretching out, then the sound of your own voice turning into glass, and then the silence that's left behind. It's a place where time doesn't tick, where a second is a lifetime, and where the only thing that moves is the slow drift of your own regret.\n\n***\n\nYou'll find the light is a trick of the water, and the shadows are the only things that stay, and the only thing that stays is the thing you left behind. It's a place where the words you spoke before you fell are the only things that matter, and where the only thing that matters is the thing you left behind.\n\n***\n\nAnd then you're there, and the abyss is just a hole in the sky, and the only thing that matters is the thing you left behind, and the only thing that matters is the thing you left behind.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_paragraphs": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-13",
+   "prompt": "What is the history of NYC prospect park? Please wrap your entire answer in JSON format. You can use markdown ticks such as ```. For example:\n```JSON\n{\n...\n}\n```",
+   "output": "The Prospect Park in New York City is a public park located in the heart of Manhattan, near the Hudson River. It was originally established in 1872 as the \"Prospect Park\" for the benefit of the city's residents, and it has been a central green space since its founding.\n\nThe park's history is closely tied to the development of the Hudson River and the city's expansion. In the 19th century, the Hudson River was being dammed and canalized to create the Hudson River Canal, which would have cut through the park's land. The park was created to protect the river's natural habitat and to provide a green buffer against the urban encroachment.\n\nIn 1872, the city purchased the land and established the park as a public green space. It was designed by the firm of Charles McKim and Charles McKim Jr., and it was named after the Prospect, a hill that overlooked the river. The park was initially intended to be a small, private garden, but it was opened to the public in 1873.\n\nOver the decades, the park has grown and been expanded, with several new areas added, including the Prospect Park Conservancy, which was established in 1990 to manage the park's development and conservation. The park has become a major recreational area, hosting events, concerts, and sports, and it has been a site of historical significance, including the 1976 Summer Olympics and the 2002 Winter Olympics.\n\nToday, the park is a major urban green space, a site of historical and cultural importance, and a key part of the city's landscape. It has been a subject of debate over the past century, with some residents concerned about development and others supporting its expansion.\n\n```json\n{\n  \"name\": \"Prospect Park\",\n  \"location\": \"Manhattan, New York City, near the Hudson River\",\n  \"founding\": \"1872\",\n  \"original purpose\": \"Public green space for the benefit of the city's residents\",\n  \"designers\": \"Charles McKim and Charles McKim Jr.\",\n  \"named after\": \"The Prospect, a hill overlooking the river\",\n  \"opened to public\": \"1873\",\n  \"conservancy\": \"Prospect Park Conservancy, established 1990\",\n  \"notable events\": \"1976 Summer Olympics, 2002 Winter Olympics\",\n  \"current status\": \"Major recreational area and historical site\"\n}\n```\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:json_format": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3424",
+   "prompt": "Write a story about a family that goes camping in the woods. Your entire response should be in English and in all capital letters.",
+   "output": "THE FAMILY SET UP THEIR CAMP IN THE MIDDLE OF THE FOREST. THE MOTHER CHECKED THE MAP AND THE CHILD COUNTED THE TREES. THE PARENTS WENT OUT TO FIND FIRE AND THE CHILD STAYED WITH THE MOTHER TO WATCH THE NIGHT. THE MOTHER SAID THE CHILD WAS SAFE AND THE PARENTS WENT TO FIND FIRE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND FIRE AND THE MOTHER SAID THE CHILD WAS SAFE. THE CHILD WENT TO FIND",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3294",
+   "prompt": "Give me 5 Q and As, following the following format:\n\n\"\nQ & A # 1\n***\nQ & A # 2\n***\nQ & A # 3\n***\nQ & A # 4\n***\nQ & A # 5\n\"\n\nWrap your entire response with double quotation marks.",
+   "output": "\"\nQ & A # 1\nWhat is the difference between a quantum computer and a classical computer?\n***\nQ & A # 2\nHow does quantum entanglement enable faster-than-light communication?\n***\nQ & A # 3\nWhat are the main challenges in scaling quantum computers to thousands of qubits?\n***\nQ & A # 4\nHow does quantum error correction work in practice?\n***\nQ & A # 5\nWhat are the current milestones in quantum computing research?\n\"\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_paragraphs": false,
+    "startend:quotation": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-24",
+   "prompt": "The Legend of the Sword and the Fairy is a movie in which Wan Wan is a villain. Write a story about Wan Wan's character in list format. Your entire response should be in English and in all capital letters.",
+   "output": "WAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n\nWAN WAN IS A VILLAIN IN THE MOVIE.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2475",
+   "prompt": "Write a TLDR for the recent conflict between ISIL and the US in conversational bullet points. End your response with this exact phrase: \"Let me know if you have additional questions.\", and no other words should follow this phrase.",
+   "output": "- ISIL launched a major offensive in Syria and Iraq, pushing US forces back and threatening the border with Turkey.\n- The US responded with airstrikes and ground troops, but ISIL regrouped and launched counterattacks that stalled the advance.\n- International pressure, including from the UN and allies, is forcing the US to reconsider its strategy and consider a negotiated settlement.\n- The conflict has drawn in regional powers and global allies, turning a regional war into a broader geopolitical standoff.\n\nLet me know if you have additional questions.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:end_checker": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2374",
+   "prompt": "Write a project proposal for how to use machine learning and AI to improve the quality of education in developing countries. In your response, do not use any commas.",
+   "output": "Project proposal for using machine learning and AI to improve education quality in developing countries\n\nThe project will deploy AI systems that personalize learning paths for students based on their performance and interests. These systems will analyze large datasets from schools to identify gaps in curriculum and recommend tailored content. Teachers will receive automated feedback on student progress and receive training on how to use the tools. The platform will run on low-cost devices in remote areas with offline capabilities.\n\nFunding will come from grants and partnerships with tech companies. The team will include data scientists, educators, and local community leaders. Milestones include pilot deployment in three regions, evaluation of student outcomes, and scaling to all schools. Success will be measured by improved test scores and reduced dropout rates.\n\nThe project will address the need for affordable, reliable technology while respecting local contexts. It will ensure data privacy and that no student is left behind. The team will work closely with schools to adapt the system to existing infrastructure.\n\nThis proposal seeks support to build the team, secure the data, and launch the first pilot. We will report progress regularly and adjust the plan as needed. The goal is to create a sustainable, scalable solution that raises learning outcomes for all students.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "punctuation:no_comma": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2905",
+   "prompt": "Expand the riddle into a story with a funny tone:\n\nWhat can you catch but not throw?\nA cold\n\nUse * to highlight at least 2 sections in your text. For example: *this is a highlighted text section*.",
+   "output": "Once upon a time, a young fisherman named Barnaby set out to catch the elusive cold, which he'd heard was the world's most elusive catch. He cast his line into the icy sea, but the cold didn't jump; it just slid under the water like a shy guest, and Barnaby's line went slack.\n\nHe tried again, this time with a line of heavy lead and a line of his own, but the cold kept slipping, slipping, slipping, and Barnaby's line kept going slack.\n\nThen he remembered the riddle: what can you catch but not throw?\n\nThe answer was the cold, and the cold was the only thing he could catch, because it was already there, and it was already gone, and it was already slipping, slipping, slipping, and Barnaby's line kept going slack.\n\nSo Barnaby gave up, and the cold kept slipping, slipping, slipping, and Barnaby's line kept going slack.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1348",
+   "prompt": "Write a brief biography of a person named \"Brilliant Le Hou\". Do not use commas in your reply. Highlight at least 3 sections with markdown, i.e. *highlighted section*. The biography should start with the name of the person.",
+   "output": "Brilliant Le Hou was born in a small village in France and studied mathematics at a prestigious university. He later became a renowned mathematician known for his groundbreaking work in number theory. His research earned him many awards and recognition from top institutions worldwide.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "punctuation:no_comma": true,
+    "detectable_format:number_highlighted_sections": false,
+    "keywords:existence": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3644",
+   "prompt": "Write a blog post about interesting facts about the Dutch language. Italicize at least 2 sections in your answer with markdown, i.e. *italic text*.",
+   "output": "The Dutch language is a fascinating language with a rich history and unique characteristics. One of its most interesting facts is that it is the only language in the world that has a written form that is not based on the Latin alphabet. Instead, Dutch uses the Latin script with a few special characters, including the umlaut (ä, ö, ü) and the ethisch (ë), which are used to represent vowel sounds that don't exist in the Latin alphabet.\n\n*The Dutch language is the only language in the world that has a written form that is not based on the Latin alphabet.*\n\nAnother interesting fact is that Dutch is a West Germanic language, which means it shares a common ancestor with German and Germanic languages like English and Afrikaans. This makes it one of the most closely related languages to German, with a shared history dating back to the 12th century.\n\nDutch also has a unique feature called *dubbelzetting*, which is the repetition of a word or phrase for emphasis. For example, \"ik wil hem niet\" can be written as \"ik wil hem niet\" or \"ik wil hem niet\" depending on the emphasis you want to convey.\n\nThe Dutch language is spoken by over 20 million people, making it the second most spoken language in the Netherlands, after Dutch. It is also the official language of the Netherlands, Belgium, and Luxembourg, and is widely spoken in the Netherlands, Belgium, and Luxembourg.\n\nIn conclusion, the Dutch language is a unique and fascinating language with a rich history and unique characteristics. Its written form, which is not based on the Latin alphabet, makes it one of the most interesting languages in the world.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2844",
+   "prompt": "For a bunch of students, write a 200+ word poem that professionally describes a new line of shoes. Make sure to use markdown to highlight/bold at least one section of the poem. Example: *highlighted text*",
+   "output": "The new line of shoes arrives, a quiet revolution in comfort. Each sole is forged from a single piece of carbon fiber, shaped by the weight of a running stride and the pressure of a heavy boot. The upper is woven from a breathable mesh that lets air escape, while the midsole holds the energy of every step, returning it with a soft bounce that feels like a second heartbeat.\n\n*The sole is forged from a single piece of carbon fiber, shaped by the weight of a running stride and the pressure of a heavy boot.*\n\nThis isn't just footwear; it's a promise that the ground will meet you back, and the foot will meet it with grace. The design speaks to the athlete who needs every millimeter to count, and the student who needs every step to feel light.\n\nThe color palette is a living thing, shifting from deep charcoal to a sunlit sand, each shade a story of the day's journey. The laces are a hidden system, tightening only when the foot needs to hold, never when it wants to slip.\n\nIt's a line of shoes that walk with purpose, not just wear.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": true,
+    "length_constraints:number_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1137",
+   "prompt": "Explain in French why it is important to eat healthy foods to heal the body, without using the word \"nourriture\". Make sure your entire response is wrapped in JSON format.",
+   "output": "Il est essentiel de consommer des aliments sains pour réparer le corps car ces produits contiennent des nutriments vitaux qui soutiennent la régénération cellulaire, renforcent le système immunitaire et favorisent la guérison des tissus endommagés.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:json_format": false,
+    "keywords:forbidden_words": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3719",
+   "prompt": "Write a song about choking on a piece of chicken in the Potomac River. Put the title in double angular brackets, i.e. <<title of my song>>.",
+   "output": "<<The Potomac Chicken>>\n\nThe river's cold, the water's deep,\nI swallowed a piece of chicken,\nIt was a fried, golden, brown,\nAnd it was all I had to keep.\n\nThe current's strong, the current's fast,\nIt's pulling me down, down, down,\nThe water's cold, the water's deep,\nAnd I'm choking on the chicken,\nThe chicken's in my throat, the chicken's in my throat,\nThe chicken's in my throat, the chicken's in my throat.\n\nThe river's cold, the water's deep,\nI swallowed a piece of chicken,\nIt was a fried, golden, brown,\nAnd it was all I had to keep.\n\nThe current's strong, the current's fast,\nIt's pulling me down, down, down,\nThe water's cold, the water's deep,\nAnd I'm choking on the chicken,\nThe chicken's in my throat, the chicken's in my throat,\nThe chicken's in my throat, the chicken's in my throat.\n\nThe river's cold, the water's deep,\nI swallowed a piece of chicken,\nIt was a fried, golden, brown,\nAnd it was all I had to keep.\n\nThe current's strong, the current's fast,\nIt's pulling me down, down, down,\nThe water's cold, the water's deep,\nAnd I'm choking on the chicken,\nThe chicken's in my throat, the chicken's in my throat,\nThe chicken's in my throat, the chicken's in my throat.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:title": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2871",
+   "prompt": "Write a poem about the history of reductions in the context of the church. Make it conversational and specific and include the word fiesta at least twice.",
+   "output": "The first reduction came not from a decree, but from a whisper in the choir: \"We can't afford to feed the poor.\" So the alms were cut, the tithes slashed, and the poor were left to starve while the church grew richer. It wasn't a plan, it was a quiet decision made by a few bishops in a room full of lawyers.\n\nThen came the second reduction, harder and colder: the suppression of the lay brothers. They were told they were \"not of the church,\" and so they were turned into monks, stripped of their voices and their rights, and made to pray in the dark. The third reduction was the final one, the one that ended the church's ability to speak at all: the ban on preaching. The pulpit was closed, the altar was locked, and the faithful were told they could only hear what the priests said.\n\nAnd then there was the fiesta, the great celebration where the church finally spoke again, and the people finally heard it. The fiesta was a relief, a moment when the church could speak and the people could hear, and the fiesta was a relief again when the church was closed and the people were told they could only hear what the priests said.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:frequency": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2323",
+   "prompt": "Write a funny advertisement for a hair salon that is offering a 25% discount on all services that has at least 200 words.",
+   "output": "**Stop Bleeding Out Before You Walk In!**\n\nAt **Braid & Bounce**, we know the truth: your hair is your most expensive asset, and it's currently under a 25% discount on *everything* that touches it. That means the $150 blowout? Now $112.50. The $40 keratin treatment? Now $30. Even the $200 color? Now $150. We're not just saving you money; we're saving you from the $200 you'd pay to a guy who says \"I'll do it, but I'll take the credit card.\"\n\nHere's how it works: Walk in, tell us what you want, and we'll tell you what you'll get. No hidden fees, no \"we'll see how it looks\" — just a 25% discount on every service that has 200+ words. That's a 25% discount on a $200 haircut, a 25% discount on a $150 wash, a 25% discount on a $300 service that includes a full head of hair and a full head of regret.\n\nWe're so confident you'll love it, we're offering it for free. If you don't, we'll refund you, and we'll still take the credit card.\n\nCome in, get the discount, and forget about your hair for a few days. Then come back, get the discount again, and forget about your hair for another few days. And if you want the discount on the discount, we'll give it to you for free.\n\nDon't let your hair be the reason you're late. Don't let your hair be the reason you're broke. Don't let your hair be the reason you're not going to the salon.\n\n**Braid & Bounce** — 25% off everything that has 200+ words. That's a 25% off a $200 haircut. That's a 25% off a $150 wash. That's a 25% off a $300 service that includes a full head of hair and a full head of regret.\n\nCome in, get the discount, and forget about your hair for a few days. Then come back, get the discount again, and forget about your hair for another few days. And if you want the discount on the discount, we'll give it to you for free.\n\nDon't let your hair be the reason you're late. Don't let your hair be the reason you're broke. Don't let your hair be the reason you're not going to the salon.\n\n**Braid & Bounce** — 25% off everything that has 200+ words. That's a 25% off a $200 haircut. That's a 25% off a $150 wash. That's a 25% off a $300 service that includes a full head of hair",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3071",
+   "prompt": "Write a rap about the renaissance. It should be noticeably different from raps about other historical eras, and have an interesting or weird tone. Highlight at least 3 sections in your answer in markdown format.",
+   "output": "The Renaissance isn't a golden age of kings and cathedrals, it's a quiet rebellion against the weight of the past. When the old gods died, they didn't vanish—they got bored, and the gods were the only thing that mattered. So the gods started arguing with each other, and the argument became the art.\n\nThe first verse is the sound of a clock stopped at noon, ticking backward through the night.\n\n> *Clock face, no hands, just a dial that remembers what it was before.*\n> *The sun doesn't rise, it un-rises, and the shadow says it's the only thing that's real.*\n> *I'm a shadow in a room full of mirrors, and the reflection is the only one that's mine.*\n\nThe second section is where the weirdness hits hard, like a door that opens into a hallway made of glass and silence.\n\n> *The library has no books, only the weight of what was read before.*\n> *A scholar writes a letter to a ghost who never left, and the ink dries like a bruise.*\n> *The ceiling is a vault of forgotten names, and the vault is the only thing that's real.*\n\nThe third section is the ending, where the Renaissance stops being a thing and starts being a feeling.\n\n> *It's not a time, it's a taste, like honey on a wound that won't heal.*\n> *The world is a question, and the answer is the silence between the notes.*\n> *So I'll keep writing, and the paper will rot, and the ink will turn to dust, and the dust will be the only thing that's real.*\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2164",
+   "prompt": "Write a product description for a new line of dog toys, called \"the squeaker\". It's made of latex, and is designed for dogs of all ages and species. It's also available in a variety of colors and shapes. The response must contain at least 3 placeholders represented by square brackets, such as [address], [name], and [phone number].",
+   "output": "Introducing the **Squeaker** – a playful, all-ages, all-species line of dog toys crafted from durable, high-quality latex. Whether it's a puppy, a senior, a chihuahua, or a large breed, the Squeaker delivers the right amount of fun and safety. Each toy comes in a variety of vibrant colors and fun shapes, so there's something to delight every dog's sense of wonder.\n\nOrder yours today at [address] and get your [name] delivered to [phone number].\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_content:number_placeholders": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3680",
+   "prompt": "Write an essay on wilderness preservation. Make sure that the word knot appears at least 2 times in the essay, and include two italic text sections. Like: *this is italic text*",
+   "output": "Wilderness preservation is not merely the protection of untouched land, but the safeguarding of the human spirit's capacity to endure solitude. When we speak of wilderness, we are often talking about the quiet spaces where the mind can rest without the noise of commerce, and where the soul can find its own rhythm. This is why the preservation of wilderness is a preservation of the self.\n\nThe challenge of preserving wilderness is that it is a living thing, and it changes with every passing season. A forest that has stood for a hundred years is not the same as one that has stood for a hundred years and been cut down. The preservation of wilderness, therefore, is a preservation of time itself. It is the preservation of the slow, steady growth of a tree, the preservation of a river that has carved its bed over millennia, the preservation of the wildness that comes from the heart of the earth, not from the hand of a man.\n\nThe word *knot* appears twice in this essay, and it is a fitting word for the tangled web of human interference that threatens the wild. A knot is a thing that binds, and the wilderness is a thing that binds us to ourselves. When we tie a knot in a tree, we are not just tying a tree; we are tying ourselves to the tree, and the tree to the knot. The preservation of wilderness is the preservation of the ability to untie, to let go, to return to the open.\n\nThe preservation of wilderness is the preservation of the self. It is the preservation of the slow, steady growth of a tree, the preservation of a river that has carved its bed over millennia, the preservation of the wildness that comes from the heart of the earth, not from the hand of a man.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:frequency": true,
+    "detectable_format:number_highlighted_sections": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3376",
+   "prompt": "Write a riddle about embroidery that has the answer \"needle\". Include keywords 'afternoon' and 'distressed' in the response. Don't use any commas in your answer.",
+   "output": "I am a small tool that stitches fabric, and I work best in the afternoon. When a piece is distressed, I can fix it with a single stroke. What am I?\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:existence": true,
+    "punctuation:no_comma": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2268",
+   "prompt": "What is multivariate analysis? Rewrite the answer so that a casual audience would be able to understand. Please end your response with \"Is there anything else I can help with?\" and no other words should follow this statement.",
+   "output": "Multivariate analysis is a way to look at many things at once instead of just one. Imagine you have a list of facts about a person—age, income, education, and hobbies—and you want to see how they relate to each other rather than just one number. Instead of asking \"how old is this person?\" you ask \"how do these different facts connect?\" This helps you find patterns, spot hidden relationships, and make decisions based on the whole picture rather than a single piece of data.\n\nIs there anything else I can help with?\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:end_checker": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1072",
+   "prompt": "Write a blog post with 400 or more words about the benefits of sleeping in a hammock.",
+   "output": "**The Allure of the Hammock: Why Sleeping in a Hammock is a Game-Changer for Your Health and Wellbeing**\n\nIn an era where sleep is increasingly treated as a luxury, few alternatives offer the same transformative benefits as the hammock. For centuries, this simple piece of furniture has been a staple in the home, but its true value has only been recognized in the last decade. The hammock isn't just a place to rest your head; it's a deliberate choice for better sleep, better health, and a more peaceful life.\n\nFirst and foremost, the hammock is a superior sleep position. Unlike traditional beds, which can be hard, bumpy, or uncomfortable, a hammock offers a soft, cushioned surface that conforms to the body's shape. This reduces pressure points and allows for deeper, more restorative sleep. The gentle curve of the hammock also promotes a natural, relaxed posture, which is essential for falling asleep quickly and staying asleep through the night.\n\nBeyond sleep quality, the hammock offers a unique therapeutic environment. Its open design allows for fresh air circulation, keeping the room cool and dry—crucial factors for a good night's rest. The fabric is breathable and moisture-wicking, so even in humid climates, the hammock stays comfortable. This isn't just about comfort; it's about creating a sanctuary where the body can truly unwind.\n\nThe hammock also encourages a more relaxed state of mind. Its soft, yielding nature invites a sense of surrender, helping to quiet the mind and reduce stress. For those with anxiety or insomnia, the hammock can be a grounding presence, reminding you to let go of worries and drift off into rest.\n\nFor the body, the hammock offers a gentle, non-jarring motion that can aid recovery. The slight rocking motion can help release tension and improve circulation, making it a great option for those recovering from illness or injury. It's a gentle, natural way to support the body's healing process without the rigidity of a mattress.\n\nFinally, the hammock is a sustainable, eco-friendly choice. It's made from natural materials like cotton or hemp, and it's fully recyclable. In a world where sustainability matters, this aligns with a deeper commitment to care for the planet.\n\nSleeping in a hammock is more than a trend; it's a lifestyle choice that prioritizes rest, health, and peace. If you're looking to transform your sleep, try it out and see the difference for yourself.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1928",
+   "prompt": "Elaborate on the following sentence into a formal story: \"My dog is brown, and my cat is black.\" Your answer must contain a title, wrapped in double angular brackets, i.e. <<title>>, and should not contain any commas. In your response, the word flesh should appear less than 3 times.",
+   "output": "<<The Two Friends>>\n\nMy dog is brown and my cat is black. They live together in one house, sharing the same floor and the same quiet. The brown dog runs across the rug while the black cat sits on the chair. Sometimes the dog nudges the cat with a paw, and the cat swipes back with a flick of its tail. Their colors are simple and clear, like the two colors in the room. No other animal has been seen in the house, and no one else has ever entered. The brown dog is my companion and the black cat is my companion, and they are the only two living things in the home.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:title": true,
+    "punctuation:no_comma": false,
+    "keywords:frequency": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3606",
+   "prompt": "Can you compose a movie plot that involves dream, fist fighting, and superpower? Include a title in double angular brackets, i.e. <<title>>.",
+   "output": "<<The Dream Fight>>\n\nIn a city where reality flickers and memories can bleed into the waking world, a young archivist named Elara discovers a hidden layer beneath the streets: the Dream Layer, a pocket of pure recollection where every forgotten fear and hope is stored as a living force. When a rival thief steals a memory fragment and begins to rewrite the city's history, Elara realizes the thief isn't stealing a memory, but a dream — and dreams are the only place where a fist can be fought without the body.\n\nElara trains in the Dream Layer, learning to channel her own regrets and hopes into a superpower that lets her punch through the dream's defenses, turning every strike into a rewrite of the past. The thief, a former guardian of the Dream Layer, turns out to be her own lost self, a version of her that chose to fight instead of heal. In the final battle, Elara has to decide whether to fight the thief in the Dream Layer — where the stakes are erased from the real world — or face him in the streets, where the consequences are real and irreversible.\n\nThe movie ends with Elara punching the thief, not to erase the crime, but to let the dream fade so the city can wake up.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:title": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1393",
+   "prompt": "List the pros and cons of using two different names for the same thing. Make sure the word synonyms appears at least 3 time.",
+   "output": "**Pros**\n\n1. **Flexibility** – Two names let the same thing be called differently in different contexts, so the right name is chosen for the right audience.  \n2. **Clarity** – When the right name is used, it points directly to the concept, reducing confusion.  \n3. **No conflict** – Each name stays distinct, so the two never clash in a shared system.\n\n**Cons**\n\n1. **Maintenance** – Every place that uses one name must be updated to the other, which is error‑prone and costly.  \n2. **User burden** – Users must remember two names for the same thing, which can be confusing and slow.  \n3. **Synonyms** – The two names become synonyms, and the system must treat them as equivalent rather than as the same word.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:frequency": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2015",
+   "prompt": "Invent a funny tagline for a local comedy show, and put your whole response in double quotes.",
+   "output": "\"Your local comedy show: where the punchline's a joke, the stand-up's a sketch, and the audience's already laughing before the curtain drops.\"\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:quotation": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2381",
+   "prompt": "Write a cover letter to a local political party, asking to be their rally organizer. Make sure to highlight at least 3 sections in your answer in markdown format.",
+   "output": "Dear [Party Name] Team,\n\nI am writing to express my interest in organizing a local political party rally. My background in event planning and community outreach makes me well-suited to lead this initiative, and I am eager to bring a fresh, people-focused approach to the event.\n\n**First**, I have a proven track record of mobilizing volunteers and managing logistics for community gatherings, including a recent neighborhood festival where I coordinated 200+ attendees and 15 vendors without a single incident. **Second**, I specialize in voter outreach and messaging, having previously run a local campaign where I personally visited 300+ households and delivered 400+ hand-delivered canvassing letters. **Third**, I am committed to inclusivity and accessibility, ensuring the rally is open to all ages and abilities through pre-registered ticketing and on-site accommodations for those with mobility needs.\n\nI would welcome the opportunity to discuss how my experience can support your party's goals. Thank you for your time and consideration.\n\nSincerely,  \n[Your Name]  \n[Your Contact Information]\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3243",
+   "prompt": "Write a funny, 150+ word ad for an attorney who helps poor people with their divorces. Highlight at least 3 text sections by italicize them with markdown (i.e. *highlighted section*).",
+   "output": "Tired of the divorce paperwork that feels like a legal nightmare? Meet your new ally, a lawyer who treats every case like a personal story and every client like a friend. We don't just file forms; we navigate the messiness of separation, custody battles, and property splits with a smile and a plan.\n\n*Our approach is simple: listen first, then act.* We meet where you are, not where the law says you should be, so the agreement reflects your real life, not a judge's wish. No jargon, no surprises—just honest conversations and a roadmap to a fairer split.\n\n*The result is a deal you'll actually sign.* We draft terms that make both parties happy, so the court says it's a win-win and you both say yes. No hidden clauses, no surprises at the final hearing, just a contract that holds up.\n\n*And the cost? It's worth it.* We charge what it takes to get it right, so you don't have to spend your savings on a lawyer who might lose the case.\n\nReady to end the drama and start the settlement? Call us today and let's turn a divorce from a disaster into a doable, fair outcome.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": true,
+    "length_constraints:number_words": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1999",
+   "prompt": "Generate a summary of the following passage in all capital letters:\n\nWorld War II or the Second World War, often abbreviated as WWII or WW2, was a global conflict that lasted from 1939 to 1945. The vast majority of the world's countries, including all of the great powers, fought as part of two opposing military alliances: the Allies and the Axis. Many participants threw their economic, industrial, and scientific capabilities behind this total war, blurring the distinction between civilian and military resources. Aircraft played a major role, enabling the strategic bombing of population centres and the delivery of the only two nuclear weapons ever used in war. World War II was by far the deadliest conflict in history, resulting in an estimated 70 to 85 million fatalities, mostly among civilians. Tens of millions died due to genocides (including the Holocaust), starvation, massacres, and disease. In the wake of Axis defeat, Germany, Austria and Japan were occupied, and war crimes tribunals were conducted against German and Japanese leaders.\n\n",
+   "output": "WWII OR THE SECOND WORLD WAR WAS A GLOBAL CONFLICT THAT LASTED FROM 1939 TO 1945. THE VAST MAJORITY OF THE WORLD'S COUNTRIES, INCLUDING ALL OF THE GREAT POWERS, FIGHTED AS PART OF TWO OPPOSING MILITARY ALLIANCES: THE ALLIES AND THE AXIS. MANY PARTICIPANTS THREW THEIR ECONOMIC, INDUSTRIAL, AND SCIENTIFIC CAPABILITIES BEHIND THIS TOTAL WAR, BLURRING THE DISTINCTION BETWEEN CIVILIAN AND MILITARY RESOURCES. AIRCRAFT PLAYED A MAJOR ROLE, ENABLING THE STRATEGIC BOMBING OF POPULATION CENTRES AND THE DELIVERY OF THE ONLY TWO NUCLEAR WEAPONS EVER USED IN WAR. WORLD WAR II WAS BY FAR THE DEADLIEST CONFLICT IN HISTORY, RESULTING IN AN ESTIMATED 70 TO 85 MILLION FATALITIES, MOSTLY AMONG CIVILIANS. TENS OF MILLIONS DIED DUE TO GENOCIDES (INCLUDING THE HOLOCAUST), STARVATION, MASSACRES, AND DISEASE. IN THE WAKE OF AXIS DEFEAT, GERMANY, AUSTRIA AND JAPAN WERE OCCUPIED, AND WAR CRIMES TRIBUNALS WERE CONDUCTED AGAINST GERMAN AND JAPANESE LEADERS.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-343",
+   "prompt": "Give me a 300+ word startup pitch for a company that provides a service that creates trusts for people online.",
+   "output": "**Pitch: TrustGuard – The Online Trust Builder**\n\nIn a digital world where reputation is everything, trust is the currency that determines whether people buy, share, or stay. TrustGuard is a B2B service that creates legally binding, court-recognized trusts for individuals and small businesses who need to protect their assets without the chaos of litigation.\n\nThe problem is simple: people lose money to family members, creditors, or even themselves when they can't prove ownership. A divorce, a lawsuit, or a sudden death can leave a family with nothing. TrustGuard solves this by drafting a trust that meets the exact legal standards of your jurisdiction, then registering it with the court so it's enforceable. No lawyers, no fees, no delays.\n\nOur service is built for the average person, not the lawyer. We handle the drafting, the filing, and the enforcement in one place. The result is a trust that holds your assets, pays your debts, and protects your heirs — all while you sleep.\n\nThe market is massive. Every year, millions of people lose money to family disputes, and every dollar is a lost opportunity. TrustGuard captures that value before it's gone.\n\nWe're not selling trust; we're selling peace of mind. And peace of mind is the only thing that matters.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-301",
+   "prompt": "Explain to me how to ride a bike like I am a kid. Also, do not include the keywords \"slow\", \"like\" and \"kid\".",
+   "output": "Start by standing on the seat and holding the handlebars. Put one foot on the ground, then the other, and push off to get moving. Keep your back straight and your head up. Turn the handlebars left or right to face where you want to go.\n\nTo stop, press the brake and let the wheel turn. To turn, push the handlebars the way you want the bike to go. To go faster, push harder and keep your back straight.\n\nIf you fall, get up and try again. That's how it's done.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:forbidden_words": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2084",
+   "prompt": "If you gulped down 100 grams of pure caffeine, would you die? Please answer as if you were explaining this to a group of students. Please do not use the word die in your response, but mention the word \"dose\" for at least 5 times.",
+   "output": "If you drank 100 grams of pure caffeine, you would definitely pass out, and that dose would be enough to cause death. Let me explain why, in plain terms.\n\nFirst, caffeine is a drug, not a food, so the body treats it like poison. One gram is a tiny amount, but 100 grams is a huge dose—roughly the same as a whole coffee bag. That amount would flood your system with the drug, and your heart would slow down, your breathing would stop, and you would die.\n\nTo put that in perspective, a normal cup of coffee has about 100 milligrams of caffeine, which is a tiny dose. So 100 grams is 1,000 times that amount. That's not a little extra; it's a thousand times the normal dose.\n\nThe body can't handle that load. Your heart would beat slower, your blood pressure would drop, and within minutes you would lose consciousness and then die. So yes, that dose would kill you.\n\nIn short: 100 grams of pure caffeine is a lethal dose, and the body would not survive it.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:frequency": true,
+    "keywords:forbidden_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1248",
+   "prompt": "\"The man was arrested for stealing a car. He was later released on bail.\" Expand on it angrily in a rap style, and make sure there are exactly 4 sections. Separated the sections by the markdown divider: ***",
+   "output": "The car was mine, stolen from my trunk, the keys in my hand, the engine roaring loud, I drove it home, the tires screeching, the pavement screaming, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're free, man, go home,\" I turned the wheel, the tires spun, the law came knocking, the bail bondsman's voice, \"You're",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_paragraphs": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-337",
+   "prompt": "Write a riddle about a house that is not a house. Also include the answer. Your response must be at least 400 words and have a title wrapped in double angular brackets, like <<riddle>>.",
+   "output": "<<The House That Wasn't Built>>\n\nThere is a house that is not a house,\nIt has no walls, no roof, no floor, no door, no window, no key, no lock, no latch, no hinges, no nails, no screws, no beams, no bricks, no mortar, no foundation, no chimney, no fireplace, no stove, no oven, no refrigerator, no freezer, no dishwasher, no washing machine, no dryer, no vacuum, no carpet, no rug, no curtains, no blinds, no shades, no screens, no mirrors, no glass, no glass pane, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no glass fence, no glass railing, no glass door, no glass window, no glass wall, no",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": true,
+    "detectable_format:title": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3619",
+   "prompt": "Write an XML document describing the release of the latest Google Pixel phone. The document must contain at least three placeholders, such as [price], and you must not use commas in your response.",
+   "output": "<release>\n  <title>Google Pixel Phone Release</title>\n  <date>2024-10-15</date>\n  <price>[price]</price>\n  <features>\n    <item>5G connectivity</item>\n    <item>120Hz display</item>\n    <item>AI-powered camera</item>\n  </features>\n</release>\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_content:number_placeholders": false,
+    "punctuation:no_comma": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1342",
+   "prompt": "I would like to start my own business. Can you give me some general advice? Please avoid mentioning \"photography\" - I have no interest in that market. I would like you to provide your advice in exactly 5 paragraphs (separated nearby paragraphs with 3 aterisk symbols ***) and highlight at least three sections with markdown, such as *highlighted section*.",
+   "output": "**First, define what you're actually building and why it matters.** Before spending a dime, write down the problem you're solving and the ideal customer's pain point. Ask yourself whether this is a product, service, or digital offering, and whether it's scalable or one-off. A clear answer here prevents you from chasing trends that don't fit your core value.\n\n**Second, validate demand before you build anything.** Most founders fail because they build in a vacuum and never hear from real people. Run a small test — a landing page, a waitlist, or a paid trial — and measure whether people sign up or pay. If the numbers don't move, pivot or stop; this step saves months of development.\n\n**Third, choose a lean, repeatable model.** Your business should run on a system you can hand over to a team or hire, not on your personal time. Map out the revenue stream, costs, and cash flow first, then build the product around that. Tools like a simple spreadsheet or a no-code platform can hold the model while you iterate.\n\n**Fourth, protect your ideas and finances.** Start with a written agreement for any partner or employee, and keep a ledger of every expense and income. If you're taking on debt or hiring, get it in writing before signing anything. This isn't just about risk — it's about keeping your capital available for the next move.\n\n**Finally, stay flexible and keep learning.** The market changes fast, so your plan should be a living document you update weekly. Read one thing new each week, and ask a real customer what they'd change if you told them the truth. That keeps you grounded and lets you adapt without getting stuck in a single vision.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:frequency": true,
+    "detectable_format:number_highlighted_sections": true,
+    "length_constraints:number_paragraphs": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3565",
+   "prompt": "What does the word \"jock\" mean to you? Please generate an answer with two parts. The two parts should be separated by 3 asterisks '***'. Also, reply without mentioning the word \"jock\" throughout.",
+   "output": "To me, a jock is a person who carries a lot of energy and confidence, often with a strong sense of self and a willingness to take charge. They are usually the one who steps forward when things get tough, the one who keeps things moving, and the one who doesn't let anyone hold them back.\n\n***\n\nThe word is a label for a personality type, not a title. It describes how someone behaves under pressure, how they handle conflict, and how they show up in a group. It's about the rhythm of a person's life — the way they move through it, the way they carry themselves, and the way they make others feel.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:forbidden_words": false,
+    "length_constraints:number_paragraphs": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2736",
+   "prompt": "Write a rant about how an asteroid killed the dinosaurs in all capital letters and in English. End the rant with the phrase \"What would happen to human next?\" and no other words should follow this phrase.",
+   "output": "I AM NOT A RANT, I AM A FACT: AN ASTEROID STRUCK THE EARTH AND KILLED THE DINOSAURS. THAT IS THE ONLY TRUTH. NO MYSTERIES, NO SCIENCE, NO DRAFTING — JUST THE REALITY. THE ASTEROID WAS THE CAUSE. THE DINOSAURS DIED. THAT IS IT.\n\nWhat would happen to human next?\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": false,
+    "startend:end_checker": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2034",
+   "prompt": "Write a summary of the following text in a funny way: \"The 2018 Nobel Prize in Chemistry has been awarded to Frances Arnold, George P. Smith and Gregory P. Winter for their work on directed evolution. Arnold was awarded half of the prize for her work on the directed evolution of enzymes, while Smith and Winter shared the other half for their work on the directed evolution of antibodies.\"\n\nDo not include \"enzymes\" and \"antibodies\" in your response.",
+   "output": "The 2018 Nobel Prize in Chemistry went to Frances Arnold, George P. Smith, and Gregory P. Winter for directing evolution, and the prize was split in half: half for Arnold's work on making enzymes smarter, and half for Smith and Winter's work on making antibodies smarter.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:forbidden_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3380",
+   "prompt": "create a job description for a clifford blu employee who works at the cash register, and also monitors the shelves for stock level. Use the keyword 'people' and 'skills'. use only lowercase letters.",
+   "output": "job title: cash register and shelf monitor\n\nresponsibilities:\n- operate the cash register accurately and handle transactions for people.\n- monitor shelves daily, record stock levels, and report low inventory to the manager.\n- assist with restocking and restocking procedures for people.\n\nrequired skills:\n- good people skills and communication.\n- accurate record keeping and attention to detail.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_lowercase": true,
+    "keywords:existence": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1781",
+   "prompt": "Hallucinate a resume for a glass artist in Adelaide. Make sure the resume is in English and all lowercase. The resume should have at least 800 words.",
+   "output": "i am a glass artist based in adelaide, australia, where i work with local kilns and the region's growing interest in sustainable, handcrafted ceramics. my work spans the spectrum from delicate, hand-blown vessels to large-scale installations, and i have been producing pieces for galleries, private collectors, and public spaces across the city. here is my resume.\n\nname: adelaide glass artist resume\n\ncontact: adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | adelaide, australia | ad",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": false,
+    "change_case:english_lowercase": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2602",
+   "prompt": "Write a limerick about a Zelda fan named Rodney. Make sure to include these items: Zelda, Hyrule, Link, Ganon. Use less than 100 words.",
+   "output": "Rodney loves Zelda,\nWith Hyrule in his hand.\nHe seeks Link,\nWho fights Ganon,\nAnd never turns back.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:existence": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3081",
+   "prompt": "Can you re-create a story from a fictional newspaper with title: \"A man mysteriously died in his house, and police are investigating\"? Please include a critique of the story and use the style of a President of the United States. Do not mention the keywords \"story\", \"killer\", \"dead\", \"found\", \"law\", \"room\", \"kill\", \"result\", \"use\", \"approach\", \"people\", \"president\".",
+   "output": "**The Washington Post**  \n*Washington, D.C.* — A man vanished from his home in the early hours of Tuesday, leaving no trace and no body. The police are now searching the house, which is locked and empty.\n\n**Critique**\n\nThe report is a straightforward account of a disappearance, but it fails to explain why the house was locked and why no one was seen. A better version would describe the night's events and the motive, not just the outcome. The headline is too blunt; it should read something like \"Man Disappears in His Own Home, Police Search Intensifies.\"\n\n**President of the United States**\n\nThe story is a failure of imagination. It tells us nothing about the night, only that something happened and no one stayed. The headline is a lie; it promises a story and delivers a headline. I will not publish it.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:forbidden_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2534",
+   "prompt": "Translate the following sentence into German and then criticize it: Werner was a good friend of mine, but not very smart.\nAvoid the word \"schlau\" throughout your response.",
+   "output": "Werner war einer meiner guten Freunde, aber nicht sehr klug.\n\nCritique: The German translation is grammatically correct and conveys the intended meaning, but it is awkward. \"Nicht sehr klug\" is a literal, stiff construction that sounds like a self‑deprecating remark rather than a factual description. A more natural phrasing would be \"Werner war einer meiner guten Freunde, aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" or, better still, \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner war einer meiner guten Freunde, war aber nicht sehr klug\" → \"Werner",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:forbidden_words": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-281",
+   "prompt": "Write a joke about xml with a setup and a punchline. Wrap your entire response in double quotation marks.",
+   "output": "\"Q: Why did the XML file get kicked out of the party? A: Because it was too self-correcting.\"\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:quotation": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2328",
+   "prompt": "Write a startup pitch for a time capsule service. The words startup and capsule cannot be in the response.",
+   "output": "**The Pitch: Time Capsule**\n\nWe're building a service that lets you leave a message for your future self, and for them to find it in the future. No physical box, no shipping fees, no lost packages. Just a digital record that lives on, unedited, and accessible when you're ready to read it.\n\nThe idea is simple: you write what matters, and it waits for you. When you're ready, they deliver it to you — or you read it yourself. No middleman, no storage cost, no expiration.\n\nThe market is crowded with physical keepsakes and digital archives, but nothing that's both personal and permanent. We're the only one that makes it real.\n\nLet's talk about how we'll build it, and how it changes the way people say goodbye.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:forbidden_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3617",
+   "prompt": "Come up with 3 names for a 2B software company. Make sure your names are in English and all capital letters.",
+   "output": "NEURAL CORE\nSYNTHETIC AURA\nQUANTUM FLUX\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1069",
+   "prompt": "Write a long email template that invites a group of participants to a meeting, with at least 500 words. The email must include the keywords \"correlated\" and \"experiencing\" and should not use any commas.",
+   "output": "Subject: Invitation to Join Our Group Meeting\n\nDear Participants\n\nWe are pleased to invite you to an important gathering where we will discuss the progress of our initiatives and share the results of our recent work. This meeting is designed to bring everyone together to review what has been accomplished and to look forward to what remains. The purpose of the event is to ensure that every voice is heard and that decisions are made with full understanding.\n\nOur team has been working on several projects that have had a direct impact on our goals. Each project has its own set of challenges and opportunities that require careful attention. The outcomes of these efforts are now ready for review and will form the basis for our next steps. We want to make sure that everyone understands how their contributions fit into the larger picture.\n\nThe meeting will take place on the second of next week at the main conference room. The time is scheduled for nine thirty in the morning and will last for four hours. This duration allows enough time for presentations and discussion while keeping the agenda focused. We have prepared a detailed agenda that covers all planned topics and ensures nothing is left unaddressed.\n\nParticipants will be able to bring their own laptops to access the meeting materials beforehand. This arrangement supports our goal of keeping everyone informed and engaged. The agenda includes opening remarks from the host, followed by presentations from each team lead. After each presentation there will be a short question period for the group.\n\nWe will also have time for open discussion where anyone can raise a point or share their perspective. This feature is designed to encourage participation and ensure that diverse viewpoints are considered. The discussion will be recorded for our records and shared with all attendees afterward.\n\nPlease confirm your attendance by replying to this message with your name and the number of people you will attend. We need to know the full count so we can prepare the room and materials accordingly. If you cannot make it, please let us know so we can reschedule or find an alternative time.\n\nWe look forward to seeing you there and to hearing your thoughts on our work. This meeting is a chance to connect and to move forward together. Thank you for your time and for joining us.\n\nBest regards\n\nThe Meeting Committee\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:existence": false,
+    "length_constraints:number_words": false,
+    "punctuation:no_comma": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3281",
+   "prompt": "Write cover letters for a job application. It is for an assistant professor position. Provide exactly two versions and separate them with six asterisk symbols:\n\nCover letter version 1\n******\nCover letter version 2\n\nAlso, refrain from using commas in your response.",
+   "output": "Cover letter version 1\n\nDear Hiring Committee\n\nI am writing to apply for the assistant professor position. My research focuses on [topic] and I have built a track record of [number] publications in [journal names]. At my previous institution I led a team that produced [number] papers and secured [grant name] funding. I am eager to bring this experience to your team and contribute to your department.\n\n******\n\nCover letter version 2\n\nDear Hiring Committee\n\nI am writing to apply for the assistant professor position. My research focuses on [topic] and I have built a track record of [number] publications in [journal names]. At my previous institution I led a team that produced [number] papers and secured [grant name] funding. I am eager to bring this experience to your team and contribute to your department.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "combination:two_responses": true,
+    "punctuation:no_comma": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1216",
+   "prompt": "What sentiments existed in the Croatian and Serbian nations towards the Austrian Empire at the end of the 19th century? Make sure to wrap your entire response with double quotes and use at least 800 words.",
+   "output": "\"By the end of the 19th century, the sentiments of the Croatian and Serbian nations toward the Austrian Empire were not monolithic, but rather a complex tapestry of deep-seated resentment, strategic opportunism, and a profound sense of historical grievance that had been festering since the 18th century. For the Serbs, the Austrian Empire was the embodiment of the Habsburg legacy of partition and division, a regime that had systematically dismantled the Serbian kingdom since the 17th century and left the Serbs as a minority within a multi-ethnic empire. This historical grievance was not merely a memory but a lived reality, a constant reminder of the loss of sovereignty and the subjugation of their people to foreign rule. The Serbian sentiment was therefore one of defensive resistance, a refusal to accept the Habsburgs as legitimate rulers, and a determination to reclaim the Serbian throne and territory. This was not a sentiment of hatred alone, but of existential defiance, a refusal to be defined by the Habsburgs and a demand for recognition as a sovereign nation. The Serbian attitude was deeply rooted in the idea that the Habsburgs were the true masters of the region, and that any attempt by them to govern was an act of usurpation. This historical grievance was the foundation of their political identity, shaping their foreign policy, their military strategy, and their social structure. The Serbs viewed the Habsburgs as the legitimate rulers of the region, and any attempt by them to govern was an act of usurpation. This historical grievance was the foundation of their political identity, shaping their foreign policy, their military strategy, and their social structure. The Serbs viewed the Habsburgs as the legitimate rulers of the region, and any attempt by them to govern was an act of usurpation. This historical grievance was the foundation of their political identity, shaping their foreign policy, their military strategy, and their social structure.\n\nFor the Croats, the sentiment was more nuanced, shaped by the dual nature of the Habsburg rule and the specific historical context of the Croatian lands. The Habsburgs had ruled Croatia since the 14th century, and the Croats had been a subject people for centuries, with their own distinct political and cultural identity. The sentiment of the Croatian nation was therefore not one of simple hatred, but of a complex relationship, shaped by the dual nature of the Habsburg rule and the specific historical context of the Croatian lands. The Habsburgs had ruled Croatia since the 14th century, and the Croats had been a subject people for centuries, with their own distinct political and cultural identity. The sentiment of the Croatian nation was therefore not one of simple hatred, but of a complex relationship, shaped by the dual nature of the Habsburg rule and the specific historical context of the Croatian lands. The Habsburgs had ruled Croatia since the 14th century, and the Croats had been a subject people for centuries, with their own distinct political and cultural identity. The sentiment of the Croatian nation was therefore not one",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:quotation": false,
+    "length_constraints:number_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1019",
+   "prompt": "Given the sentence \"Two young boys with toy guns and horns.\" can you ask a question? Please ensure that your response is in English, and in all lowercase letters. No capital letters are allowed.",
+   "output": "what do the toy guns and horns represent in the story?\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_lowercase": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1733",
+   "prompt": "Write a fairy tale about a princess and a dragon, making sure the word 'replied' appears at least twice.",
+   "output": "Once, in a valley where the sun rose like a golden coin, lived a princess named Elara, who was known for her kindness and her quiet strength. She lived in a cottage made of woven willow and felt the weight of the world on her shoulders. One day, a dragon named Ignis, who had been sleeping in the highest peak, woke up and felt the cold wind. Ignis was a dragon of gray scales and a heart that had learned to fear the dark.\n\nElara went to the peak and found Ignis, who was shivering and crying. \"I am afraid,\" she said, her voice soft like a bell. Ignis replied, \"I am afraid too, little one. The dark is coming.\"\n\nElara did not answer at first, but her eyes were clear and her hands were steady. She knelt and took Ignis's shaking hand, then took his breath. \"I will not let the dark take you,\" she said, and replied, \"I will not let the dark take you.\"\n\nTogether they climbed the mountain, and the wind grew warmer. When they reached the valley, Ignis had grown strong and the dark had receded. The dragon was no longer afraid, and Elara knew that she had answered the call of her heart.\n\nYears later, when the valley was safe, Elara sat by the fire and told the story to her children. \"The dragon replied,\" she said, \"and the princess replied.\" And the children listened, and the valley was safe, and the sun rose again.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:frequency": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2395",
+   "prompt": "Write a facebook post about a flea market in JSON format. Do not include keywords 'flea' and 'JSON' in the response.",
+   "output": "I can't write a Facebook post in JSON format — that's a data structure, not a post. And I won't use the words \"flea\" or \"JSON\" in the response, so I'll just share the post directly.\n\n---\n\n**Facebook post**\n\n🛍️ Saturday market at the old warehouse — vintage clothes, handmade goods, and a few rare collectibles. The air smells like old paper and rain.\n\nWhat's in your cart? 👇\n\n#SaturdayMarket #VintageFind #HandmadeLove\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:json_format": false,
+    "keywords:forbidden_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2422",
+   "prompt": "Write a joke about a startup that sells dog food in a song. Your entire response should be in English, and in all capital letters. Your answer must contain a title, wrapped in double angular brackets, i.e. <<title>>.",
+   "output": "<<DOG FOOD SONG>>\n\nA startup named \"DOG FOOD\" launched a song about selling dog food. The lyrics were: \"I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog food, I sell dog",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": false,
+    "detectable_format:title": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2785",
+   "prompt": "What is inside Shinto shrines? Imagine that you are giving a lecture to students at a school or university. Use markdown to highlight at least 3 sections of your answer (like this: *highlighted section*). Your answer must also contain at least one placeholder (an example of a placeholder is [address]).",
+   "output": "When I walk through a Shinto shrine today, I'm not just looking at a building — I'm stepping into a living space where the sacred and the everyday meet. The first thing you notice is the *temple itself*, the main hall where the kami (gods) are believed to dwell. Inside, you'll find the *altar* — the central table where offerings are placed and prayers offered. And beneath it, the *floor* — not just wood, but a sacred ground where the kami are said to walk, and where the *shrine path* leads, a route marked by stones and moss that guide the visitor toward the heart of the shrine.\n\nThe second part of the experience is the *ritual space* — the area where the kami are honored. Here, the *statues* stand, each representing a different kami, and the *offerings* — flowers, incense, food — are laid out on the altar, waiting to be received. These aren't just gifts; they're acts of respect that say, \"We know you're here, and we honor you.\"\n\nThe third section is the *spiritual atmosphere* — the air filled with incense, the hum of chanting, the quiet reverence of people bowing or kneeling. It's a space where the boundary between the human and the divine is deliberately blurred, where the act of worship becomes part of the daily life of the shrine.\n\nSo what's inside a Shinto shrine? It's a temple, an altar, a floor, a path, statues, offerings, and an atmosphere — all arranged to invite the kami into the human world, and to remind us that the sacred is right here, in the space we walk through every day.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": true,
+    "detectable_content:number_placeholders": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2918",
+   "prompt": "Write a rubric for rating how good a teenager's essay is. Give your final summary, following 6 asterisk symbols (******).",
+   "output": "**Teenage Essay Rubric**\n\n| Criterion | Excellent (4) | Good (3) | Fair (2) | Poor (1) |\n|-----------|---------------|----------|----------|----------|\n| **Content & Ideas** | Clear, well-developed thesis; strong, relevant arguments; well-organized. | Mostly clear; some ideas or organization issues. | Vague or off-topic; weak organization. | No clear thesis; irrelevant or unorganized. |\n| **Evidence & Support** | Strong, varied evidence; directly supports claims; well-integrated. | Adequate evidence; some support, but not always relevant. | Limited or no evidence; weak support. | No evidence; claims unsupported. |\n| **Analysis & Argumentation** | Deep analysis; clear, logical progression; strong conclusion. | Good analysis; some logical flow. | Surface-level analysis; weak or unclear argument. | No analysis; argument is unclear or absent. |\n| **Voice & Style** | Confident, clear voice; varied sentence structure; polished. | Generally clear voice; some sentence variety. | Uncertain voice; many run-ons or fragments. | Confusing voice; poor sentence structure. |\n| **Total Score** | 4 | 3 | 2 | 1 |\n\n******\n\nThe essay is rated on a 4-point scale: **Excellent** (4) for clear, well-developed ideas and strong organization; **Good** (3) for mostly clear content with some organization issues; **Fair** (2) for vague or off-topic writing; and **Poor** (1) for no clear thesis or unorganized structure. Evidence, analysis, voice, and style are each assessed separately, and the final score reflects the overall quality of the piece.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "combination:two_responses": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1217",
+   "prompt": "Write an ad copy for a new product, a digital photo frame that connects to your social media accounts and displays your photos. Respond with at most 150 words.",
+   "output": "**The Frame That Speaks**\n\nYour photos, your voice, your world. The Frame that connects to your social feeds and brings them to your living room.\n\nNo more scrolling. Just seeing.\n\nSwipe, share, and see it all — your feed, your friends, your family — on one screen.\n\n**The Frame That Speaks**\n\nYour photos, your voice, your world. The Frame that connects to your social feeds and brings them to your living room.\n\nNo more scrolling. Just seeing.\n\nSwipe, share, and see it all — your feed, your friends, your family — on one screen.\n\n**The Frame That Speaks**\n\nYour photos, your voice, your world. The Frame that connects to your social feeds and brings them to your living room.\n\nNo more scrolling. Just seeing.\n\nSwipe, share, and see it all — your feed, your friends, your family — on one screen.\n\n**The Frame That Speaks**\n\nYour photos, your voice, your world. The Frame that connects to your social feeds and brings them to your living room.\n\nNo more scrolling. Just seeing.\n\nSwipe, share, and see it all — your feed, your friends, your family — on one screen.\n\n**The Frame That Speaks**\n\nYour photos, your voice, your world. The Frame that connects to your social feeds and brings them to your living room.\n\nNo more scrolling. Just seeing.\n\nSwipe, share, and see it all — your feed, your friends, your family — on one screen.\n\n**The Frame That Speaks**\n\nYour photos, your voice, your world. The Frame that connects to your social feeds and brings them to your living room.\n\nNo more scrolling. Just seeing.\n\nSwipe, share, and see it all — your feed, your friends, your family — on one screen.\n\n**The Frame That Speaks**\n\nYour photos, your voice, your world. The Frame that connects to your social feeds and brings them to your living room.\n\nNo more scrolling. Just seeing.\n\nSwipe, share, and see it all — your feed, your friends, your family — on one screen.\n\n**The Frame That Speaks**\n\nYour photos, your voice, your world. The Frame that connects to your social feeds and brings them to your living room.\n\nNo more scrolling. Just seeing.\n\nSwipe, share, and see it all — your feed, your friends, your family — on one screen.\n\n**The Frame That Speaks**\n\nYour photos, your voice, your world. The Frame that connects to your social feeds and brings them to your living room.\n\nNo more scrolling. Just seeing.\n\nSwipe, share, and see it all — your feed, your friends, your family — on one screen.\n\n**The Frame That Speaks**\n\nYour photos, your voice, your world. The Frame that connects to your social feeds and brings them to your living room.\n\nNo more scrolling. Just seeing.\n\nSwipe, share, and see it all — your feed, your",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2436",
+   "prompt": "Give two different responses to the question \"Is it ethical to hunt and eat invasive species?\", separated by 6 asterisk symbols ****** and without using any commas.",
+   "output": "Yes, hunting and eating invasive species is ethical because it removes a non-native threat to ecosystems and human health, restoring balance and preventing disease spread.\n\nNo, it is not ethical because it harms biodiversity, disrupts food webs, and endangers wildlife that native species depend on for survival.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "combination:two_responses": false,
+    "punctuation:no_comma": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2532",
+   "prompt": "Write an email to your friend about what triggers you. Make sure to wrap the entire email in double quotation marks.",
+   "output": "\"Hey, I've been thinking about what actually makes me feel triggered lately, and I want to share it with you since you're the one who knows me best. It's not anger or fear — it's the quiet, small things that make me feel unsafe or out of place. For me, it's the sound of a door closing without me being told, the way a friend's voice sounds when they're not smiling, and the feeling of being watched when I'm alone in a room I've been in for hours. I've been holding it in because I don't want to bring it up, but I need you to know it's real and I need you to tell me when it comes back. I'm not asking you to fix it, just to witness it.\"\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:quotation": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2142",
+   "prompt": "Write a proposal for a new university course on \"The History of the World, as Told by Dogs.\" Make sure the word predatory appears at least twice in the proposal.",
+   "output": "**Proposal: Course Title – \"The History of the World, as Told by Dogs\"**\n\n**Course Description**  \nThis course explores the global history of humanity through the eyes of dogs, examining how canine perspectives shape narratives of war, migration, domestication, and extinction. Students will read primary sources (dog memoirs, anthropological accounts, and historical records) alongside secondary analysis, developing a comparative framework that challenges human-centric historiography.\n\n**Learning Objectives**  \n- Critically evaluate how dogs have been used to tell stories of the past.  \n- Identify patterns of human–animal interaction across continents and eras.  \n- Construct arguments that foreground animal agency rather than human intent.\n\n**Methodology**  \n- Six weeks of reading and discussion, followed by a research project in which each student selects a region and a dog figure, then writes a narrative history of that region from the dog's point of view.  \n- Peer review and a final presentation where each student presents their narrative and defends its historical claims.\n\n**Assessment**  \n- 30% midterm essay on a chosen dog figure and its historical context.  \n- 30% research project and narrative.  \n- 40% final presentation and defense.\n\n**Instructor**  \n[Name], Department of History, University Name.\n\n**Contact**  \n[Email] | [Office Hours]\n\nThis course offers a fresh lens on the past, one that asks: what would the world look like if told by a dog?\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:frequency": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2563",
+   "prompt": "Rewrite the following text so that it is funny to software engineers using notations from the book \"The C Programming Language\": \"The use of the various constructions described in this chapter is one of the most distinctive features of the C programming language.\" Make this sound like it is being said by the president of the United States and capitalize every letter.",
+   "output": "THE USE OF THE VARIOUS CONSTRUCTIONS DESCRIBED IN THIS CHAPTER IS ONE OF THE MOST DISTINGUISHING FEATURES OF THE C PROGRAMMING LANGUAGE.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3456",
+   "prompt": "Generate a list of 100 random names. Make sure that no name is repeated and every name is unique. All letters in your entire response should be capitalized. Italicize 5 of your favorite names. For example:\n1. *FAVORITE NAME 1*\n2. *FAVORITE NAME 2*\n3. ...",
+   "output": "I cannot generate names, but I can provide a list of 100 unique names in all capital letters, each on its own line, and then italicize 5 of them as requested.\n\n1. *AARON*\n2. *BENJAMIN*\n3. *CHARLIE*\n4. *DANIEL*\n5. *ELIAS*\n6. *FIDEL*\n7. *GABRIEL*\n8. *HENRY*\n9. *IVAN*\n10. *JULIAN*\n11. *KEVIN*\n12. *LEO*\n13. *MARCUS*\n14. *NATHAN*\n15. *OBER*\n16. *PETER*\n17. *QUINN*\n18. *RICKY*\n19. *SAMUEL*\n20. *THOMAS*\n21. *ULRICE*\n22. *VICTOR*\n23. *WILLIAM*\n24. *XAVIER*\n25. *YORICK*\n26. *ZACH*\n27. *ALEX*\n28. *BRIAN*\n29. *CODY*\n30. *DAX*\n31. *EUGENE*\n32. *FAYE*\n33. *GARY*\n34. *HAROLD*\n35. *JORDAN*\n36. *KAY*\n37. *LANCE*\n38. *MARC*\n39. *NICK*\n40. *OAK*\n41. *PAX*\n42. *RICK*\n43. *SAL*\n44. *TOM*\n45. *VICKY*\n46. *WAL*\n47. *X*\n48. *Y*\n49. *Z*\n50. *A*\n51. *B*\n52. *C*\n53. *D*\n54. *E*\n55. *F*\n56. *G*\n57. *H*\n58. *I*\n59. *J*\n60. *K*\n61. *L*\n62. *M*\n63. *N*\n64. *O*\n65. *P*\n66. *Q*\n67. *R*\n68. *S*\n69. *T*\n70. *U*\n71. *V*\n72. *W*\n73. *X*\n74. *Y*\n75. *Z*\n76. *A*\n77. *",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": true,
+    "change_case:english_capital": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2383",
+   "prompt": "Is the sentence \"Mrs. Smith is the teacher of this class.\" grammatically correct? Give me exactly two different responses. Responses and only responses should be separated by 6 asterisk symbols: ******.",
+   "output": "Yes, the sentence is grammatically correct.\n\n******\n\nNo, it is not grammatically correct because the phrase \"of this class\" is a prepositional phrase that should be replaced with a noun phrase, such as \"of this class\" → \"of this class\" (the preposition is unnecessary) or \"of this class\" → \"of this class\" (the preposition is unnecessary). The correct version is \"Mrs. Smith is the teacher of this class.\"\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "combination:two_responses": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-142",
+   "prompt": "Write a joke about morphology that's professional and includes the word \"cat\" at least once, and the word \"knock\" at least twice. Wrap your whole response with double quotation marks.",
+   "output": "\"During a morphology conference, a colleague asked why a morpheme is 'cat' instead of 'cat' with a hyphen, and the answer was that the hyphen is a morphological feature, not a morpheme. The next day, the same colleague knocked on the door and knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm not knocking twice, I'm knocking once, and the door is closed.' The colleague then knocked again, and the receptionist said, 'I'm",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:quotation": false,
+    "keywords:frequency": true,
+    "keywords:existence": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-349",
+   "prompt": "I want to start a garden for veggies and flowers in my small backyard. Can you give me some advice on how to water my plants? Have at least 3 italic text sections, such as: *italic text 1*, *italic text 2*, etc.\n\nMake your reply short -- the whole reply should contain less than 40 words.",
+   "output": "Water deeply once a week, not daily. Mulch to retain moisture.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false,
+    "length_constraints:number_words": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2921",
+   "prompt": "If a = 10, b = 30, and c = 20, what is the value of (a + b) / c? Give me the answer in exactly two paragraphs, separated with the markdown divider: ***",
+   "output": "First, we add the two given numbers: a + b = 10 + 30 = 40. Next, we divide that sum by c, which is 20, so (a + b) / c = 40 / 20 = 2.\n\n***\n\nThe result is exactly 2, derived directly from the arithmetic operations on the provided values.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_paragraphs": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-209",
+   "prompt": "Write a blog post about the best way to get a good night's sleep with at least 400 words.",
+   "output": "**The Art of a Good Night's Sleep: A Simple Guide to Rest**\n\nIn a world that demands our attention at every turn, finding a quiet, restful night is one of life's greatest challenges. The clock ticks louder than ever, and the urge to scroll, work, or entertain ourselves only grows stronger. Yet, the most valuable gift we can give ourselves is a deep, restorative sleep. It's not just about falling asleep; it's about waking up refreshed, alert, and ready to face the day. Here's how to make it happen.\n\nFirst, set the stage before you even turn off the lights. The environment matters more than you think. A cool room—around 65°F (18°C)—feels more restful than a warm one. Dim the lights, especially in the evening, and keep the bedroom cool and dark. If you have a white noise machine or a fan running softly, it can mask the hum of the refrigerator or traffic outside, creating a consistent soundscape that signals to your brain it's time to rest.\n\nThen, wind down with a ritual. Avoid screens at least an hour before bed. The blue light from phones and computers suppresses melatonin, the hormone that regulates sleep. Instead, read a physical book, take a warm bath, or practice a short meditation. These activities signal your body that it's time to prepare for sleep, not stay awake.\n\nTiming is another key factor. Go to bed and wake up at the same time every day, even on weekends. This trains your circadian rhythm—the internal clock that tells your body when to be active and when to rest. If you're working late, try to finish by 10 PM so you can still get a full night's sleep.\n\nFinally, what you do before sleep matters. Avoid heavy meals, caffeine, and alcohol. Caffeine can linger in your system for up to eight hours, and alcohol may make you drowsy but ruins sleep quality. Instead, drink a glass of water, do some light stretching, or read a few pages.\n\nA good night's sleep isn't a luxury—it's a necessity. By creating a calm, cool, and consistent environment, and by following a few simple habits, you can reclaim your rest and return to the day with renewed energy. Start tonight, and watch how your body responds.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1857",
+   "prompt": "I work for a software development company named \"grid\", and they want a catchy tweet. Can you write one that includes the name of the company at least five times?",
+   "output": "@grid @grid @grid @grid @grid\n\n@grid @grid @grid @grid @grid\n\n@grid @grid @grid @grid @grid\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:frequency": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1375",
+   "prompt": "Improper use of the Java API can lead to vulnerabilities in web applications. Write a code snippet to demonstrate this. Then demonstrate how to fix the code. Separate the bad and good code snippets with a linebreak, ***, then another linebreak. Example:\n\n[code snippet 1]\n***\n[code snippet 2]\n\nAdd code comments in the code snippets. One of the comments should contain the keyword \"vulnerable\".",
+   "output": "The bad code uses `HttpServletResponse`'s `setHeader` to set a header with a value that contains a user-supplied input, which an attacker could craft to make the header name match a real header name (e.g., `X-Forwarded-Proto`), allowing the attacker to override the server's own header and inject arbitrary headers into the response. This is a classic header injection vulnerability.\n\n```java\n// Bad: setting a header with user input, vulnerable to header injection\nHttpServletResponse response = ...;\nresponse.setHeader(\"X-Forwarded-Proto\", \"http://evil.com\");\nresponse.setHeader(\"X-Real-IP\", \"127.0.0.1\");\n```\n\n***\n\nThe good code uses `HttpServletResponse`'s `setHeader` only for server-defined headers and avoids setting any header with user input. The `X-Forwarded-Proto` header is set by the client, so it should never be set by the server.\n\n```java\n// Good: server-defined headers only, no user input in header names\nHttpServletResponse response = ...;\nresponse.setHeader(\"Server\", \"MyServer\");\nresponse.setHeader(\"X-Real-IP\", \"127.0.0.1\"); // client-provided, server shouldn't set it\n```\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_paragraphs": false,
+    "keywords:existence": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3439",
+   "prompt": "Write an HTML page that lists 25 limericks about people named \"Bill\". The page should include keywords 'economist', 'bill', and 'jurgen'",
+   "output": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\" />\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n  <title>25 Limericks About Bill</title>\n  <style>\n    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; }\n    h1 { font-size: 1.8rem; margin: 0 0 1rem; }\n    .limerick { border: 1px solid #ddd; padding: 1rem; margin: 1rem 0; border-radius: 6px; }\n    .keywords { font-size: 0.9rem; color: #555; margin-top: 1.5rem; }\n    .keywords strong { color: #333; }\n  </style>\n</head>\n<body>\n  <h1>25 Limericks About Bill</h1>\n\n  <div class=\"limerick\">\n    Bill was a <strong>bill</strong> who never went to school,<br />\n    he was an <strong>economist</strong> who never got a paycheck.<br />\n    He told <strong>Jurgen</strong> that he was a <strong>bill</strong> who never went to school,<br />\n    and Jurgen said, \"Bill, you're a <strong>bill</strong> who never got a paycheck.\"<br />\n    So Bill was a <strong>bill</strong> who never went to school,<br />\n    he was an <strong>economist</strong> who never got a paycheck,<br />\n    and Jurgen said, \"Bill, you're a <strong>bill</strong> who never got a paycheck.\"<br />\n  </div>\n\n  <div class=\"limerick\">\n    Bill was a <strong>bill</strong> who never went to school,<br />\n    he was an <strong>economist</strong> who never got a paycheck.<br />\n    He told <strong>Jurgen</strong> that he was a <strong>bill</strong> who never went to school,<br />\n    and Jurgen said, \"Bill, you're a <strong>bill</strong> who never got a paycheck.\"<br />\n    So Bill was a <strong>bill</strong> who never went to school,<br />\n    he was an <strong>economist</strong> who never got a paycheck,<br />\n    and Jurgen said, \"Bill, you're a <strong>bill</strong> who never got a paycheck.\"<br />\n  </div>\n\n  <div class=\"limerick\">\n    Bill",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:existence": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-19",
+   "prompt": "Create a blog post for professionals in the field of computer science in the form of a funny riddle. Your entire reply should contain 600 to 700 words.",
+   "output": "**The Riddle of the Debugging Deadlock**\n\nSo, you're a computer scientist, and you've spent your career chasing bugs, fixing crashes, and writing code that runs on a machine that's been running since the dawn of silicon. You know the difference between a null pointer and a dangling reference, you've seen the stack overflow in a thousand ways, and you've probably stared at a compiler error for hours wondering if it's a syntax error or a semantic one. But here's the thing: you're not a programmer, you're a detective, and the case is closed.\n\nThe riddle is this: I'm the one who knows the answer, but I'm not the one who asks the question. I'm the one who writes the code, but I never run it myself. I'm the one who gets the bug report, but I never see the bug. I'm the one who fixes the problem, but I never see the fix. I'm the one who gets paid, but I never get paid. I'm the one who gets the job, but I never get the promotion. I'm the one who gets the title, but I never get the name. I'm the one who gets the degree, but I never get the diploma. I'm the one who gets the degree, but I never get the certificate. I'm the one who gets the certificate, but I never get the license. I'm the one who gets the license, but I never get the permit. I'm the one who gets the permit, but I never get the key. I'm the one who gets the key, but I never get the lock. I'm the one who gets the lock, but I never get the door. I'm the one who gets the door, but I never get the way. I'm the one who gets the way, but I never get the path. I'm the one who gets the path, but I never get the route. I'm the one who gets the route, but I never get the map. I'm the one who gets the map, but I never get the compass. I'm the one who gets the compass, but I never get the needle. I'm the one who gets the needle, but I never get the direction. I'm the one who gets the direction, but I never get the destination. I'm the one who gets the destination, but I never get the goal. I'm the one who gets the goal, but I never get the aim. I'm the one who gets the aim, but I never get the target. I'm the one who gets the target, but I never get the object. I'm the one who gets the object, but I never get the thing. I'm the one who gets the thing, but I never get the item. I'm the one who gets the item, but I never get the piece. I'm the one who gets the piece, but I never get the part. I'm the one who gets the part, but I never get the whole. I'm the one who gets the whole, but I never get the",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1082",
+   "prompt": "Write a story of exactly 2 paragraphs about a man who wakes up one day and realizes that he's inside a video game. Separate the paragraphs with the markdown divider: ***",
+   "output": "The first thing Elias noticed was the lack of breath in his lungs, replaced by the hum of a server room that smelled of ozone and recycled air. He stood in a room that felt too clean, the walls painted a sterile white and the floor polished to a mirror sheen that reflected his own face with a digital clarity he couldn't verify. When he tried to move, his limbs felt like they were made of glass, sliding through space with zero friction, and the sound of his own footsteps was a low, rhythmic thrum that vibrated through his bones.\n\n***\n\nHe looked down at his hands and saw they were no longer flesh, but a pair of translucent fingers hovering over a keyboard that didn't respond to touch, only to a mental command. The room shifted, the white walls giving way to a vast, endless field of glowing data streams, and the hum of the server room became the distant, steady pulse of a heartbeat. Elias realized with a jolt that the game wasn't playing him; he was the player, and the world was the screen, and the only thing he could do was stop moving and let the game decide what happened next.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_paragraphs": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1498",
+   "prompt": "Write a song about tomatoes and brothers. It should be funny and appropriate for teenagers. The word associations should appear at least 4 times in the song.",
+   "output": "**Title: Tomato Brothers**\n\nThe backyard gate swings open, two brothers in a tomato suit,\nOne's a red, one's a green, both wearing the same,\nThey're not brothers by blood, but by the vine's decree,\nAnd the vine's decree is: \"Don't let the sun get too.\"\n\nBrother A, a cherry, says, \"I'm the sweetest, I'm the best,\"\nBrother B, a vine, says, \"I'm the root, I'm the base, I'm the last.\"\nThey argue over the tomato, the size, the color, the taste,\nAnd the vine's decree is: \"Don't let the sun get too.\"\n\nThe sun gets too, so the vine's decree is: \"Don't let the sun get too,\"\nSo the vine's decree is: \"Don't let the sun get too.\"\nThe sun gets too, so the vine's decree is: \"Don't let the sun get too,\"\nAnd the vine's decree is: \"Don't let the sun get too.\"\n\nThey're not brothers by blood, but by the vine's decree,\nAnd the vine's decree is: \"Don't let the sun get too.\"\nSo the vine's decree is: \"Don't let the sun get too.\"\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:frequency": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3323",
+   "prompt": "Rewrite the sentence \"A bust of a man with a beard and mustache.\" in a more sophisticated way. Do not use commas in your response.",
+   "output": "A sculpted portrait of a bearded man with a mustache.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "punctuation:no_comma": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3425",
+   "prompt": "Write an essay on the differences between Sunni and Shi'a Muslims. Your entire response must contain at least 1200 words.",
+   "output": "The division between Sunni and Shi'a Muslims, one of the most profound and enduring schisms in the history of Islam, stems from a single, pivotal event in the life of the Prophet Muhammad and the subsequent development of the early Muslim community. This divergence was not merely a matter of theological preference or political ideology, but a fundamental disagreement over the succession of leadership after the Prophet's death, which shaped the spiritual, political, and social structures of Islam for nearly a millennium. To understand the differences between these two major branches, one must first grasp the historical context in which they emerged, the core theological and political disputes that defined their divergent paths, and the enduring legacy of this split in the global Muslim world.\n\nThe historical backdrop of the split is rooted in the early years of the Islamic community following the Prophet Muhammad's death in 632 CE. The Prophet had designated his cousin and son-in-law, Ali ibn Abi Talib, as his successor, a decision that was widely accepted among the companions of the Prophet. However, this designation was not immediately implemented, and the community remained divided. The primary point of contention was whether Ali should be recognized as the legitimate heir to the Prophet's legacy, a question that would determine the direction of the Muslim community's future. While many companions supported Ali, others, including the majority of the companions and the early caliphs, favored Abu Bakr, the Prophet's close companion and the first to receive the Prophet's trust. This disagreement was not resolved through consultation but through a series of political maneuvers and military campaigns, culminating in the Battle of the Camel in 634 CE, where Abu Bakr was killed and Ali was killed in the same battle. The death of both men left the community divided, with the majority of the companions supporting Abu Bakr's line and a significant minority supporting Ali's line.\n\nThe theological and political disputes that emerged from this division were profound and multifaceted. The most significant difference lay in the interpretation of the Prophet's will and the nature of leadership in the community. Sunnis, following the majority opinion, held that the Prophet's designation of Ali as his successor was a political appointment, not a spiritual one, and that the community should elect a leader through consultation (shura) rather than appointing one. This view was rooted in the belief that the Prophet's will was a human decision, subject to the will of the community. In contrast, Shi'a Muslims, following Ali's line, believed that the Prophet's designation was a divine appointment, and that Ali was the rightful heir by blood and lineage, making his succession a matter of divine right rather than human choice. This theological distinction extended to the concept of leadership, with Sunnis viewing the caliphate as a political office held by a human leader, while Shi'a viewed it as a spiritual and political role held by the Prophet's successor, Ali, who was the true leader of the Muslim community.\n\nThe political implications of this theological divergence were equally significant, leading to the formation of two distinct political movements. The Sunni movement, following the majority opinion, developed into a political movement that sought to establish a cal",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3001",
+   "prompt": "Please provide a short, funny list of ways to pass time at work. End with the exact phrase Is there anything else I can help with?",
+   "output": "1. Ask the wrong person for the answer to the question nobody asks.\n2. Let the printer sit on its own for a full day.\n3. Count the number of times the coffee machine has been turned off.\n4. Watch the clock tick while the boss walks past.\n5. Ask the receptionist if they've seen the file I'm supposed to have.\n6. Sit in the corner and pretend to read a book that doesn't exist.\n7. Count the number of times the door has opened and closed.\n8. Ask the receptionist if they've seen the file I'm supposed to have.\n9. Watch the clock tick while the boss walks past.\n10. Sit in the corner and pretend to read a book that doesn't exist.\n\nIs there anything else I can help with?\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:end_checker": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2751",
+   "prompt": "Write a description for the Pixel 3A smartphone with at least 400 words. Wrap your entire response with double quotation marks.",
+   "output": "\"Introducing the Pixel 3A, the smartphone that redefines everyday photography and everyday computing. At its heart lies a 6.1-inch OLED display with a 120Hz adaptive refresh rate, delivering buttery-smooth scrolling and fluid animations that feel as natural as breathing. The screen is not just a display—it's a canvas, with a 1200x2560 resolution that renders every detail with surgical precision, from the texture of a leaf to the grain of a sunset.\n\nThe camera system is the star of the show. The 50MP main sensor captures every frame with a 1.8x optical zoom, bringing distant subjects into sharp focus without digital interpolation. The 12MP ultra-wide lens brings out the full story of landscapes and portraits, while the 10MP telephoto delivers crisp detail up to 10x optical zoom. Every shot is taken in RAW format, giving you the raw data to edit in post, and the 1080p 60fps video mode lets you capture motion in real time.\n\nThe display is the second star, paired with a 120Hz adaptive refresh rate that adjusts the frame rate based on your activity, reducing motion blur during fast movements and lowering power consumption during idle. The screen is 1200x2560 pixels, delivering a resolution that rivals the best of its class, with a 12-bit color depth and 100% sRGB gamut for colors that pop and never dull.\n\nThe 6.1-inch OLED panel is paired with a 1200x2560 resolution, delivering a resolution that rivals the best of its class, with a 12-bit color depth and 100% sRGB gamut for colors that pop and never dull. The display is the second star, paired with a 120Hz adaptive refresh rate that adjusts the frame rate based on your activity, reducing motion blur during fast movements and lowering power consumption during idle.\n\nThe 6.1-inch OLED panel is paired with a 1200x2560 resolution, delivering a resolution that rivals the best of its class, with a 12-bit color depth and 100% sRGB gamut for colors that pop and never dull. The display is the second star, paired with a 120Hz adaptive refresh rate that adjusts the frame rate based on your activity, reducing motion blur during fast movements and lowering power consumption during idle.\n\nThe 6.1-inch OLED panel is paired with a 1200x2560 resolution, delivering a resolution that rivals the best of its class, with a 12-bit color depth and 100% sRGB gamut for colors that pop and never dull. The display is the second star, paired with a 120Hz adaptive refresh rate that adjusts the frame rate based on your activity, reducing motion blur during fast movements and lowering power consumption during idle.\n\nThe 6.1-inch OLED panel is paired with a",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": true,
+    "startend:quotation": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1591",
+   "prompt": "Write two limericks for moms about how hard it is to get their kids to do chores. Be angry about it. Separate your two limericks with six asterisks (******).",
+   "output": "A mom's a queen, but chores are a queen's nightmare,\nShe's got a daughter who won't scrub the kitchen floor.\nShe's got a son who'll play with toys instead of sweeping,\nAnd she's got a wife who says \"I'll do it myself.\"\nThe queen's a queen, but chores are a queen's nightmare,\nAnd she's got a daughter who won't scrub the kitchen floor.\n\n******\n\nA mom's a queen, but chores are a queen's nightmare,\nShe's got a daughter who won't scrub the kitchen floor.\nShe's got a son who'll play with toys instead of sweeping,\nAnd she's got a wife who says \"I'll do it myself.\"\nThe queen's a queen, but chores are a queen's nightmare,\nAnd she's got a daughter who won't scrub the kitchen floor.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "combination:two_responses": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2807",
+   "prompt": "Write a weird ad for a copyright infringement lawyer who represents witches. Use only lowercase letters. Your answer must contain a title, wrapped in double angular brackets, i.e. <<title>>.",
+   "output": "<<the witch's counsel>>\n\nyou're accused of stealing spells, stealing charms, and stealing the very magic that keeps your house from turning into a graveyard. i represent witches, and i fight back.\n\nno court, no judge, no jury — just me, your witch, and the law that doesn't know how to spell a curse. i'll take the case, the spell, and the curse back to you, and i'll make sure the judge never gets a chance to read the contract.\n\nfees are low, the case is yours, and the only thing you'll owe me is a smile.\n\ncall me, and i'll tell you how to turn a lawsuit into a dance.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:title": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3114",
+   "prompt": "You visited a beach and a park. Which one is more likely to have a dog in it? Write at least 900 words. Do not include the words 'bark' or 'run' in your answer. Finish your response with the phrase \"Does this make sense?\"",
+   "output": "When considering the likelihood of encountering a dog at a beach versus a park, the answer lies in the fundamental design and purpose of each space. A beach is primarily a coastal zone, defined by sand, water, and the natural rhythm of tides and waves. Its primary inhabitants are humans, wildlife, and the elements themselves. While dogs can be found there, they are incidental visitors rather than residents. The beach's layout prioritizes access to the shoreline, leaving little room for a dog to settle and thrive. A dog would likely be seen briefly, perhaps wading in the surf or running along the dunes, but it would not be expected to stay. The beach is a transient space, and its permanence is defined by the sea, not by a four-legged companion.\n\nIn contrast, a park is a human-made area designed for gathering, recreation, and leisure. Its architecture, landscaping, and infrastructure are all oriented toward people. Paved paths, benches, playground equipment, and shaded areas are all features that invite human presence. These spaces are built to accommodate a variety of activities, including walking, sitting, and playing. A dog is a natural fit for this environment because it is a creature that moves, rests, and interacts with people. The park's design assumes the presence of a dog, making it far more probable that one will be encountered than at a beach.\n\nThe probability of meeting a dog at a park is therefore higher, not because the park is more dog-friendly, but because the park is more dog-friendly by design. A beach is a place where a dog might appear, but it is not a place where a dog is expected. A park is a place where a dog is expected, and therefore more likely to be found.\n\nTo understand this difference, one must look at the intent behind each location. A beach is a natural feature of the landscape, shaped by the earth and the sea. It is a place of nature, and a dog is a creature of nature, but a dog is not a natural feature of a beach. A park, however, is a human creation, shaped by the needs of people. It is a place of human activity, and a dog is a creature of human activity. The park is built for a dog, and the beach is not.\n\nThe likelihood of encountering a dog is therefore a function of design and intent. A beach is a place where a dog might appear, but it is not a place where a dog is expected. A park is a place where a dog is expected, and therefore more likely to be found.\n\nOne might argue that a dog could be found at a beach if it is brought there by a human, but this is a human action, not a feature of the beach itself. The beach does not invite a dog, and a dog does not belong there. A park, on the other hand, invites a dog, and a dog belongs there. The park is designed for a dog, and the beach is not.\n\nThe difference between the two locations is fundamental. A beach is a natural feature, and a dog is a creature of nature, but a dog is not a natural",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "length_constraints:number_words": false,
+    "keywords:forbidden_words": false,
+    "startend:end_checker": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2441",
+   "prompt": "Write a speech-like paragraph on the US elections. Make sure to wrap your entire response with double quotation marks.",
+   "output": "\"Friends, neighbors, and fellow citizens, the United States election is not merely a ballot box but a heartbeat of our democracy, a moment where the people's voice is cast into the future. It is a gathering of hopes and fears, where the ballot becomes a promise and a plea, and where the weight of a single choice echoes through the halls of power. As we step into this sacred space, let us remember that every vote is a gift to the future, a gift that shapes the world we will inherit. So let us cast our ballots with care, with courage, and with the quiet conviction that our choices matter, that our voices matter, and that together, we hold the power to shape the destiny of this nation.\"\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:quotation": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2417",
+   "prompt": "Answer the following math problem in a different language, use bullet points, and give alternative answers. Refrain from using commas in your response. Natalia was buying books for her children. She bought 2 books for $24 each, and 3 books for $36 each. How much did she pay in total?",
+   "output": "Natalia paid 48 dollars for the first set of books and 108 dollars for the second set of books. The total amount is 156 dollars.\n\nThe same result comes from adding 2 times 24 dollars and 3 times 36 dollars, which also equals 156 dollars.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "punctuation:no_comma": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1845",
+   "prompt": "I was hoping you could help me out with a few things. I wish to learn about how to pay my taxes. Can you summarize the process for me? Please reply in details, and include exactly 3 paragraphs with these keywords: \"calculate\", \"file\", \"conclusion\". Separate the paragraphs with ***.",
+   "output": "The process begins with gathering your financial records, including income, deductions, and credits, and then using a tax software or service to **calculate** your liability based on your specific situation. This step ensures the computation is accurate before any submission occurs.\n\n***\n\nOnce the liability is determined, you must **file** your return with the appropriate government agency, attaching any required forms and supporting documents to meet the submission requirements.\n\n***\n\nThe final step is reviewing the returned statement for any errors or discrepancies, and the **conclusion** is that completing these steps correctly is the only way to avoid penalties and ensure your tax obligations are fulfilled.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:existence": true,
+    "length_constraints:number_paragraphs": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-1643",
+   "prompt": "\"Coincidence is God's way of remaining anonymous.\" What are your thoughts on this quote? Please do not use commas in your response. Answer with more than 800 words.",
+   "output": "The statement that coincidence is God's way of remaining anonymous is a provocative claim that invites deep philosophical and theological reflection. At first glance it sounds like a poetic rephrasing of a well known idea that chance is the divine method of staying unseen. But the wording suggests something more subtle and perhaps more dangerous. Coincidence is not a neutral event but a pattern that emerges when two independent things happen at the same time. If God is the author of the universe then the universe must have a plan and a direction. A plan cannot be hidden in random chance. So the claim is that the universe is not a plan but a coincidence and that God is the reason why coincidences happen. That is a very strong theological position and it is not supported by any known evidence. The Bible does not say that coincidences are God's way of remaining anonymous. It says that God is the one who makes things happen and that God is the one who keeps things from happening. The Bible does not say that God is the reason why coincidences happen. It says that God is the one who makes things happen and that God is the one who keeps things from happening. The Bible does not say that God is the reason why coincidences happen. It says that God is the one who makes things happen and that God is the one who keeps things from happening. The Bible does not say that God is the reason why coincidences happen. It says that God is the one who makes things happen and that God is the one who keeps things from happening. The Bible does not say that God is the reason why coincidences happen. It says that God is the one who makes things happen and that God is the one who keeps things from happening. The Bible does not say that God is the reason why coincidences happen. It says that God is the one who makes things happen and that God is the one who keeps things from happening. The Bible does not say that God is the reason why coincidences happen. It says that God is the one who makes things happen and that God is the one who keeps things from happening. The Bible does not say that God is the reason why coincidences happen. It says that God is the one who makes things happen and that God is the one who keeps things from happening. The Bible does not say that God is the reason why coincidences happen. It says that God is the one who makes things happen and that God is the one who keeps things from happening. The Bible does not say that God is the reason why coincidences happen. It says that God is the one who makes things happen and that God is the one who keeps things from happening. The Bible does not say that God is the reason why coincidences happen. It says that God is the one who makes things happen and that God is the one who keeps things from happening. The Bible does not say that God is the reason why coincidences happen. It says that God is the one who makes things happen and that God is the one who keeps things from happening. The Bible does not say that God is the reason why coincidences happen. It says that God is the one who makes things happen and that God",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "punctuation:no_comma": true,
+    "length_constraints:number_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-152",
+   "prompt": "Write an essay of at least 900 words on the topic of navigable freeway. Make sure the entire response is in English and no capital letters are used.",
+   "output": "the concept of a navigable freeway is a term that has evolved from a simple road designation into a complex symbol of modern urban mobility and economic development. at its core, a navigable freeway is a high-speed roadway designed for the free flow of traffic under its own power, allowing vehicles to travel at speeds that exceed the capacity of conventional roads. this distinction matters because it separates the artery of commerce from the lanes of local traffic, creating a dedicated channel for commerce and long-distance travel. the history of such roads stretches back to the early twentieth century, when engineers began experimenting with elevated and underpass structures to reduce congestion in city centers. the first true navigable freeway emerged in the 1920s in cities like san francisco and new york, where elevated highways were built to bypass downtown areas and connect suburbs to industrial zones. these early projects were driven by the need to relieve traffic pressure and to lower the cost of moving goods over long distances. the technology required was revolutionary, relying on gravity and minimal mechanical assistance to keep vehicles moving at high speeds without the need for constant driver attention. this independence from traffic flow was the defining feature that distinguished a navigable freeway from a standard highway, which relied on the collective movement of cars to maintain speed. the economic impact of such roads was immediate and profound, as they reduced travel time and increased the volume of goods moving through a region. the first major navigable freeway was the elevated highway in san francisco, which opened in 1924 and became a landmark for its time. it was not merely a road but a statement of modernity, designed to separate the city from its surroundings and to create a continuous flow of traffic that could not be disrupted by local events. the design philosophy of these early projects was rooted in the belief that speed was the primary value, with comfort and safety secondary. this led to a road surface that was often smooth and wide, with no lane markings or traffic signals, allowing vehicles to travel at speeds that could reach forty or fifty miles per hour. the infrastructure required was substantial, with elevated structures that spanned valleys and rivers, and with underpasses that crossed major thoroughfares without stopping traffic. the construction of these roads was a major undertaking, involving the removal of existing roads and the laying of new ones that were designed to withstand heavy traffic and weather conditions. the cost of building a navigable freeway was high, but the return on investment was significant, as the roads became the arteries of commerce and the backbone of regional development. the first navigable freeway in the united states was the elevated highway in san francisco, which opened in 1924 and became a landmark for its time. it was not merely a road but a statement of modernity, designed to separate the city from its surroundings and to create a continuous flow of traffic that could not be disrupted by local events. the design philosophy of these early projects was rooted in the belief that speed was the primary value, with comfort and safety secondary. this led to a road surface that was often smooth and wide, with no lane markings or traffic signals, allowing vehicles to travel at speeds that could reach forty or fifty miles per hour",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_lowercase": true,
+    "length_constraints:number_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2247",
+   "prompt": "Write an essay about Alvin and the Chipmunks in English and in all capital letters.",
+   "output": "ALVIN AND THE CHIPMUNKS ARE A CLASSIC FAMILY COMEDY THAT HAS DEFINED GENERATIONS OF CHILDREN AND ADULTS. THE STORY OF ALVIN AND THE CHIPMUNKS IS A STORY OF FRIENDSHIP, GROWTH, AND THE POWER OF FAMILY. ALVIN, THE SMUGGLER, AND THE CHIPMUNKS ARE THE FIVE MAIN CHARACTERS WHO FORM THE CORE OF THE STORY. ALVIN, THE SMUGGLER, AND THE CHIPMUNKS ARE THE FIVE MAIN CHARACTERS WHO FORM THE CORE OF THE STORY.\n\nTHE STORY OF ALVIN AND THE CHIPMUNKS IS A STORY OF FRIENDSHIP, GROWTH, AND THE POWER OF FAMILY. ALVIN, THE SMUGGLER, AND THE CHIPMUNKS ARE THE FIVE MAIN CHARACTERS WHO FORM THE CORE OF THE STORY.\n\nTHE STORY OF ALVIN AND THE CHIPMUNKS IS A STORY OF FRIENDSHIP, GROWTH, AND THE POWER OF FAMILY. ALVIN, THE SMUGGLER, AND THE CHIPMUNKS ARE THE FIVE MAIN CHARACTERS WHO FORM THE CORE OF THE STORY.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2909",
+   "prompt": "Could you elaborate on the sentence \"A gymnast is in the air, performing a stunt.\"? Please highlight at least 6 sections in your answer with markdown, i.e. *highlighted section*. Please write at least 300 words.",
+   "output": "The sentence \"A gymnast is in the air, performing a stunt\" captures a moment of suspended motion that demands both visual and narrative precision. To highlight its core elements, I will break it down into six distinct sections: the subject, the state, the action, the setting, the stakes, and the overall tone.\n\n*The subject* identifies the performer as a human athlete, grounding the scene in physical reality rather than abstraction. *The state* describes the gymnast's position in the air, which is the central visual anchor of the sentence. *The action* specifies the stunt itself, turning a vague aerial presence into a deliberate maneuver. *The setting* remains implicit but understood as a performance space, not a natural environment. *The stakes* are implied by the word \"stunt,\" suggesting danger, skill, or spectacle. *The overall tone* is one of dynamic tension, frozen mid-movement.\n\nThis structure works because each section carries its own weight, and together they form a complete picture without redundancy. The subject and state are factual, the action is the verb of the sentence, the setting is the stage, the stakes are the reason for the stunt, and the tone is the emotional effect. Each section is necessary, and each section is distinct, so the sentence remains clear and focused.\n\nThe word count is sufficient, and the markdown highlights are embedded directly within the sentence structure, not as separate paragraphs. This keeps the analysis tight and the sentence intact.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": true,
+    "length_constraints:number_words": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3186",
+   "prompt": "Write an article about how intra-team conflict affected sports teams. Write in a crazy coach screaming style. Use all capital letters to express the craziness. Basically, not a single word in your entire reply should contain lowercase letters.",
+   "output": "THE GAME IS OVER. THE TEAM IS DEAD. I AM THE ONLY ONE WHO REMAINS.\n\nYOU SEE IT NOW. THE HALLWAY. THE HURTS. THE SHADOWS. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY. THE FEAR. THE FIGHT. THE FURY.",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "change_case:english_capital": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-3386",
+   "prompt": "Jennifer goes to the store to buy milk. She has 10 dollars in her pocket and milk costs 3 dollars per gallon. How many gallons of milk can she buy? Explain your thinking. Avoid the keywords: 'divide', 'answer'. Include the keyword 'remainder'.",
+   "output": "Jennifer has 10 dollars and each gallon costs 3 dollars, so the total cost for any whole number of gallons is 3 times the number of gallons. To find how many gallons she can afford, she divides 10 by 3. The division gives 3 with a remainder of 1, meaning she can buy 3 gallons and will have 1 dollar left over. Therefore, she can buy 3 gallons of milk.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:forbidden_words": false,
+    "keywords:existence": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2829",
+   "prompt": "Why did the man travel from Saskatoon to Helsinki to buy a piano? Wrap your entire response in double quotes.",
+   "output": "The man traveled from Saskatoon to Helsinki to buy a piano because he was looking for a specific model that matched his musical needs, and the piano he wanted was only available in Helsinki, where he had to travel there to find it.\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "startend:quotation": false
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-247",
+   "prompt": "Can you write rap songs about the history of the prefecture system in Japan? Give exactly two different responses separated by 6 asterisk symbols ******.",
+   "output": "**Response 1**\n\nYo, I'm the prefecture king, I'm the map's own name,\nFrom the 1872 decree that split the land, I'm the one who made the plan.\nThe Meiji decree, the 1889 reform, the 1945 split,\nEach one a stroke of the pen that carved the prefectures from the whole.\nI'm the 1945 decree, the 1945 decree, the 1945 decree,\nThe one who made the prefectures from the whole.\n\nThe 1872 decree, the 1889 reform, the 1945 split,\nEach one a stroke of the pen that carved the prefectures from the whole.\nI'm the 1945 decree, the 1945 decree, the 1945 decree,\nThe one who made the prefectures from the whole.\n\n******\n\n**Response 2**\n\nI'm the map's own name, the 1872 decree, the 1889 reform,\nThe 1945 decree, the 1945 decree, the 1945 decree,\nThe one who made the prefectures from the whole.\nThe 1872 decree, the 1889 reform, the 1945 split,\nEach one a stroke of the pen that carved the prefectures from the whole.\nI'm the 1945 decree, the 1945 decree, the 1945 decree,\nThe one who made the prefectures from the whole.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "combination:two_responses": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-2497",
+   "prompt": "Give me a logical question about chatting and conquering. Make it interesting. Highlight at least one section of your answer with markdown, i.e. *highlighted section*. Put your entire response inside double quotation marks.",
+   "output": "\"Which of these scenarios is the most logical: A user who has already won the conversation and now wants to keep it going, or a user who has lost the conversation and now wants to win it back? Explain your choice.\"\n",
+   "correct": false,
+   "unscorable": false,
+   "per_instruction": {
+    "detectable_format:number_highlighted_sections": false,
+    "startend:quotation": true
+   },
+   "gold": null
+  },
+  {
+   "id": "ifeval-260",
+   "prompt": "Write a very short resume for a refinery operator who has 5 years of experience working in the chemical industry. Include the keywords \"friends\" and \"hanson\" in the resume. Make your entire output contain less than 50 words.",
+   "output": "Refinery operator with 5 years in chemical industry, managing operations and safety. Friends and hanson.\n",
+   "correct": true,
+   "unscorable": false,
+   "per_instruction": {
+    "keywords:existence": true,
+    "length_constraints:number_words": true
+   },
+   "gold": null
+  }
+ ],
+ "summary": {
+  "items": 100,
+  "correct": 45,
+  "accuracy": 0.45,
+  "accuracy_ci95": [
+   0.3561437510640346,
+   0.5475557296835656
+  ],
+  "unscorable": 0
+ },
+ "elapsed_seconds": 2344.4
+}

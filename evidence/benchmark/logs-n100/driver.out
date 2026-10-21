@@ -1,0 +1,7 @@
+[2026-10-21T12:41:08+08:00] preflight: gpu free 23560 MiB, used 549 MiB
+[2026-10-21T12:41:08+08:00] preflight ok: limit=100, adapter=5be6a2f387520259
+[2026-10-21T13:20:19+08:00] phase base done: gsm8k rc=0 ifeval rc=0
+[2026-10-21T13:59:37+08:00] phase adapter done: gsm8k rc=0 ifeval rc=0
+gsm8k   base 73/100 =  73.0%  adapter 76/100 =  76.0%  delta   3.0%  paired CI [ -6.0%,  12.0%]  drops 10 gains 13  McNemar p=0.678  min detectable drop   5.0% (McNemar) /   4.0% (interval)
+ifeval  base 57/100 =  57.0%  adapter 45/100 =  45.0%  delta -12.0%  paired CI [-22.0%,  -3.0%]  drops 19 gains 7  McNemar p=0.029  min detectable drop   5.0% (McNemar) /   4.0% (interval)
+[2026-10-21T13:59:40+08:00] analyse rc=0

@@ -1,0 +1,19 @@
+[2026-10-21T12:41:08+08:00] preflight: gpu free 23560 MiB, used 549 MiB
+[2026-10-21T12:41:08+08:00] preflight ok: limit=100, adapter=5be6a2f387520259
+[2026-10-21T13:20:19+08:00] phase base done: gsm8k rc=0 ifeval rc=0
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `fused_recurrent_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+gsm8k   base-gsm8k           acc=0.7300 ci95=[0.6357,0.8073] n=100 unscorable=0 2324s -> /home/z/vibe/nomos/evidence/benchmark/base-gsm8k.json
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `fused_recurrent_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+ifeval  base-ifeval          acc=0.5700 ci95=[0.4722,0.6627] n=100 unscorable=0 2214s -> /home/z/vibe/nomos/evidence/benchmark/base-ifeval.json
+[2026-10-21T13:59:37+08:00] phase adapter done: gsm8k rc=0 ifeval rc=0
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `fused_recurrent_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+gsm8k   adapter-gsm8k        acc=0.7600 ci95=[0.6677,0.8331] n=100 unscorable=0 1408s -> /home/z/vibe/nomos/evidence/benchmark/adapter-gsm8k.json
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `fused_recurrent_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+ifeval  adapter-ifeval       acc=0.4500 ci95=[0.3561,0.5476] n=100 unscorable=0 2344s -> /home/z/vibe/nomos/evidence/benchmark/adapter-ifeval.json
+gsm8k   base 73/100 =  73.0%  adapter 76/100 =  76.0%  delta   3.0%  paired CI [ -6.0%,  12.0%]  drops 10 gains 13  McNemar p=0.678  min detectable drop   5.0% (McNemar) /   4.0% (interval)
+ifeval  base 57/100 =  57.0%  adapter 45/100 =  45.0%  delta -12.0%  paired CI [-22.0%,  -3.0%]  drops 19 gains 7  McNemar p=0.029  min detectable drop   5.0% (McNemar) /   4.0% (interval)
+[2026-10-21T13:59:40+08:00] analyse rc=0
