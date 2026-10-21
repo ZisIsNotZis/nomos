@@ -21,14 +21,14 @@
 #               is preserved under evidence/benchmark/n100/.
 #   spend     = idle-compute (one 4090), wall clock ~80 min of the ~3.7 h left of M2's
 #               ~5 h grant; no metered, no API money. 3 h timeout per cell.
-#   report    = nomos, by a `completion` message written into nomos/mail/ on exit.
+#   report    = nomos, by a `completion` message written into nomos/inbox/ on exit.
 #
 # The canonical output path is fixed (scripts/run_bench.py writes <model>-<suite>.json), so
 # step 1 copies the current n=100 reading aside. Same move as the n=20 cells got in fc273a9.
 #
 # Launch it detached (the one command; everything else is inside the script):
 #   setsid nohup bash evidence/benchmark/run_m2b_ifeval_full.sh > evidence/benchmark/logs-m2b/driver.out 2>&1 &
-# It writes its own `completion` into nomos/mail/ when it exits, so no watcher is needed and
+# It writes its own `completion` into nomos/inbox/ when it exits, so no watcher is needed and
 # nobody has to sit on it. Do not block on it and do not `sleep` waiting for it.
 # Exit codes: 0 all done + completion written; 1 a cell failed; 2 preflight failed; 4 pairing failed.
 set -u
@@ -105,7 +105,7 @@ rc=${PIPESTATUS[0]}
 say "analyse rc=$rc"
 [ "$rc" -eq 0 ] || exit 4
 
-# ---- the package's report: one file in nomos/mail/, so the next session wakes to it ----
+# ---- the package's report: one file in nomos/inbox/, so the next session wakes to it ----
 END=$(date -Is)
 read -r BASE_N AD_N DELTA LO HI DROPS GAINS PN <<<"$(python3 - <<'PY'
 import json
@@ -117,7 +117,7 @@ print(d["base"]["correct"], d["adapter"]["correct"],
 PY
 )"
 mkdir -p mail
-cat > "mail/$(date +%F)-m2b-ifeval-full-completion.md" <<MD
+cat > "inbox/$(date +%F)-m2b-ifeval-full-completion.md" <<MD
 kind:    completion
 from:    package m2b-ifeval-full (M3 driver)
 to:      nomos
@@ -142,5 +142,5 @@ Landing this (the node's job, not the package's): replace the IFEval row in
 report/sft-benchmark.md and every surface that cites it; the n=100 IFEval row moves to
 "前一次估计"; then delete this file.
 MD
-say "completion written: mail/$(date +%F)-m2b-ifeval-full-completion.md"
+say "completion written: inbox/$(date +%F)-m2b-ifeval-full-completion.md"
 exit 0
