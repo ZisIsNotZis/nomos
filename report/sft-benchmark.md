@@ -148,7 +148,7 @@ n=100 那一轮的整体墙钟：`12:41:08` 预检 → `13:59:40` analyse → **
 | adapter IFEval | 295 | ≈ 140 min | ≈ 115 min |
 | 全部四个单元 | 990 | **≈ 4.5–5 h** | **≈ 3.2 h**（GSM8K 路 79+48 min、IFEval 路 109+115 min，取长的那条） |
 
-**花费对账（相对派发时的授权）**：派发时按 ≈5 小时墙钟给了 `idle-compute`（单卡 4090，不碰 metered、不花 API 钱）。实测 **1.31 小时**（4713 s，包了预检、两相四格与 analyse），用了授权的 **26%**；四格生成时间合计 2.3 GPU 小时（两路并行）。所以这一轮的花费类是 `idle-compute`，金额是 **¥0**，剩下 ≈3.7 小时未用。计账在 [`report/measurements.md`] 的「本机 GPU（不计钱）」一节。
+**花费对账（相对派发时的授权）**：派发时按 ≈5 小时墙钟给了 `idle-compute`（单卡 4090，不碰 metered、不花 API 钱）。实测 **1.31 小时**（4713 s，包了预检、两相四格与 analyse），用了授权的 **26%**；四格生成时间合计 2.3 GPU 小时（两路并行）。所以这一轮的花费类是 `idle-compute`，金额是 **¥0**，剩下 ≈3.7 小时未用。计账在 [`report/measurements.md`](measurements.md) 的「本机 GPU（不计钱）」一节。
 
 慢的成因：transformers 警告 `flash-linear-attention` 与 `causal_conv1d` 未安装，回落到 reference PyTorch 实现（四次运行都警告）。上一轮把这个归因与「卡上还有另一个任务」攪在一起，n=100 那一轮把两者分开了：预检时卡上 23560 MiB 全空，单条仍然要 14.1–23.4 s，所以主要原因是未编译的 kernel，不是并发。没有装这两个包（需要网络，本机 PyPI 不可达），也没有改量化、没有加 batch——改了就不是同一把尺子，base 与 adapter 的对比会失去意义。
 
