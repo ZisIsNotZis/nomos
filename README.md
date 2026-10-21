@@ -48,7 +48,7 @@ n_pairs 148/242（覆盖率 0.612）；两侧都齐全 242/242；参照物可用
 
 ## 报告问题
 
-<https://github.com/ZisIsNotZis/nomos/issues>。仓库的公开可见性未在本机验证，若打不开请直接联系作者。
+<https://github.com/ZisIsNotZis/nomos/issues>。仓库公开可读：2026-10-21 在本机匿名（不带任何凭据）跑 `curl -sI https://github.com/ZisIsNotZis/nomos | head -1`，返回 `HTTP/2 200`；私有或不存在的仓库在这条命令下返回 404。若打不开请直接联系作者。
 
 ## 读什么
 
