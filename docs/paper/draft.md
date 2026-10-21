@@ -16,7 +16,7 @@
 
 ## 1 主张与刻度
 
-主张（[设计](../method/design.md) §1）：一个 2B 模型能在没有法条原文的上下文里做出接近「带法 DeepSeek」的下一步判断，同时通用与 agentic 能力不跌出自身噪声带。
+主张（[设计](../method/design.md) §1）：一个 2B 模型能在没有法条原文的上下文里做出接近「带法 DeepSeek」的下一步判断，同时通用与 agentic 能力不跌出自身噪声带。前半句是本文测的；后半句的通用能力一侧只测到 n=20（§4.7），**agentic 一侧本轮没有测**：四个候选套件各被一个具名的缺失依赖挡住（离线不可得、缺 `pyarrow`、判分 harness 成本），选型表与逐条原因在 [`report/sft-benchmark.md`](../../report/sft-benchmark.md)「选型」。所以那半句话目前不可证伪，不是被验证过。
 
 刻度原设计是 `X_d = (qwen_d − base_d) / (deepseek_d − base_d)`，逐维度算。本研究中段发现两件事，刻度因此被改写而不是被引用：
 
