@@ -282,6 +282,7 @@ M3 那一轮的整体墙钟：`14:07:46` 预检 → `15:50:56` completion → **
 | `scripts/bench_suites.py` | 两套件的 prompt 构造、答案抽取、判分、Wilson 区间 |
 | `scripts/run_bench.py` | `--suite {gsm8k,ifeval,all}`、`--model {base,adapter}`、`--limit`、`--stub`（自检用，不占卡） |
 | `scripts/bench_selftest.py` | 无 GPU 自检，落 `evidence/benchmark/selftest.json` |
+| `scripts/number_words_reading.py` | 只读：40 个带 `length_constraints:number_words` 的题上两侧各多少条在这一条指令上通过（逐槽重算，不信 `per_instruction` 的同名覆盖） |
 
 采样规则：候选 id 按 `sha256("<seed>:<id>")` 升序排，取前缀；与源文件行序无关，故同一 seed 复现同一样本，`--limit` 小的那次是大那次的前缀（n=20 ⊂ n=100 ⊂ n=295，三层都实测可核：后两层的前缀逐字节相同）。seed 固定为 0，写在 `sources.json` 里，`run_bench.py --seed` 与它不一致即报错。解码贪心（`do_sample=False`）。
 
