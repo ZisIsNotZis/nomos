@@ -81,5 +81,5 @@ python3 scripts/train_sft.py --epochs 3 --grad-accum 8 --lora-r 16 --lora-alpha 
 
 ## 许可与引用
 
-- 适配器是 Apache-2.0 基座的衍生权重，随基座继承 Apache-2.0 的义务：再分发时须带上许可文本、保留版权与署名声明、并标注改动。该 HF 快照里没有单独的 NOTICE 文件，所以没有额外的 NOTICE 义务可继承。
-- 本仓库自身代码与文档的许可尚未由作者指定，因此当前不授予复用许可；这一条是待决项，不是默示授权。
+- 适配器是 **Apache-2.0** 基座 `Qwen/Qwen3.5-2B`（revision `15852e8c16360a2fea060d615a32b45270f8a8fc`）的衍生权重，随基座继承 Apache-2.0 的义务：再分发时须带上许可文本、保留版权与署名声明、并标注改动。该 HF 快照里没有单独的 NOTICE 文件，所以没有额外的 NOTICE 义务可继承。基座许可的核对方式见本卡「基座」表的许可行：本机快照的 `LICENSE` 是 Apache License 2.0 全文，同目录 `README.md` 头部写 `license: apache-2.0`。
+- 本仓库自身代码与文档的许可是 **AGPL-3.0-only**（作者 2026-10-21 指定，SPDX 标识符 `AGPL-3.0-only`，原文 <https://www.gnu.org/licenses/agpl-3.0.txt>）。两条并行不冲突：AGPL-3.0-only 覆盖本仓库的代码与文档，适配器权重随基座走 Apache-2.0，AGPL 不改变权重的许可。

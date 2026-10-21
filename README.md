@@ -44,7 +44,7 @@ n_pairs 148/242（覆盖率 0.612）；两侧都齐全 242/242；参照物可用
 - 适配器是 `Qwen/Qwen3.5-2B` 的衍生权重，随基座继承 **Apache-2.0**（本机 HF 快照里的 `LICENSE` 与 `README.md` 头部的 `license: apache-2.0` 核对过）；再分发时基座的 LICENSE/NOTICE 义务一并带上。
 - 随仓库分发的第三方数据：`data/bench/gsm8k.jsonl` 是 GSM8K（MIT），`data/bench/ifeval.jsonl` 是 IFEval（Apache-2.0）。许可原文落 `licenses/`，来源、引用、改动声明与冻结件 sha256 见 [THIRD-PARTY.md](THIRD-PARTY.md)。
 - 处境与回答来自法条作者本人的私有会话（已脱敏，见[数据卡](docs/data-card.md)），DeepSeek 的回答受其服务条款约束。
-- 本仓库自身的代码与文档**尚未声明许可**（作者未指定），因此当前不授予复用许可。这一条是待决项。
+- 本仓库自身的代码与文档许可是 **AGPL-3.0-only**（作者 2026-10-21 指定，SPDX 标识符 `AGPL-3.0-only`，原文 <https://www.gnu.org/licenses/agpl-3.0.txt>）；复用、修改、再分发按该许可的条款。适配器权重不在这一条里：它是 `Qwen/Qwen3.5-2B` 的衍生权重，随基座走 **Apache-2.0**（上一条与[模型卡](docs/model-card.md)「许可与引用」）。
 
 ## 报告问题
 
