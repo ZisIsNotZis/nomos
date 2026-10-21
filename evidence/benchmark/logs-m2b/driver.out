@@ -1,3 +1,7 @@
 [2026-10-21T14:07:46+08:00] preflight: gpu free 23111 MiB, used 998 MiB
 [2026-10-21T14:07:46+08:00] preflight ok: limit=295, adapter=5be6a2f387520259
 [2026-10-21T14:07:46+08:00] preserved n=100 artefacts in evidence/benchmark/n100
+[2026-10-21T15:50:50+08:00] cells done: base rc=0 adapter rc=0
+ifeval  base 184/295 =  62.4%  adapter 148/295 =  50.2%  delta -12.2%  paired CI [-17.6%,  -6.8%]  drops 54 gains 18  McNemar p=0.000  min detectable drop   1.7% (McNemar) /   1.4% (interval)
+[2026-10-21T15:50:56+08:00] analyse rc=0
+[2026-10-21T15:50:56+08:00] completion written: mail/2026-10-21-m2b-ifeval-full-completion.md

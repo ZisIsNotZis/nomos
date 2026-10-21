@@ -1,31 +1,31 @@
 {
  "suite": "ifeval",
  "status": "ran",
- "n": 100,
+ "n": 295,
  "base": {
-  "correct": 57,
-  "accuracy": 0.57,
+  "correct": 184,
+  "accuracy": 0.6237288135593221,
   "ci95_wilson": [
-   0.4721521169586435,
-   0.6626686099947162
+   0.5671885059619012,
+   0.6770880606205293
   ]
  },
  "adapter": {
-  "correct": 45,
-  "accuracy": 0.45,
+  "correct": 148,
+  "accuracy": 0.5016949152542373,
   "ci95_wilson": [
-   0.3561437510640346,
-   0.5475557296835656
+   0.44498356718796644,
+   0.5583626871487791
   ]
  },
- "delta_adapter_minus_base": -0.12,
+ "delta_adapter_minus_base": -0.12203389830508475,
  "delta_ci95_paired_bootstrap": [
-  -0.22,
-  -0.03
+  -0.17627118644067796,
+  -0.06779661016949153
  ],
  "paired": {
-  "drops": 19,
-  "gains": 7,
+  "drops": 54,
+  "gains": 18,
   "drop_ids": [
    "ifeval-1372",
    "ifeval-2752",
@@ -45,7 +45,42 @@
    "ifeval-2417",
    "ifeval-2909",
    "ifeval-3386",
-   "ifeval-2829"
+   "ifeval-2829",
+   "ifeval-1107",
+   "ifeval-2245",
+   "ifeval-3709",
+   "ifeval-2825",
+   "ifeval-127",
+   "ifeval-1237",
+   "ifeval-1132",
+   "ifeval-2069",
+   "ifeval-2583",
+   "ifeval-3109",
+   "ifeval-1658",
+   "ifeval-3615",
+   "ifeval-2292",
+   "ifeval-3084",
+   "ifeval-3569",
+   "ifeval-2649",
+   "ifeval-1746",
+   "ifeval-1147",
+   "ifeval-2324",
+   "ifeval-2136",
+   "ifeval-1713",
+   "ifeval-1645",
+   "ifeval-1644",
+   "ifeval-340",
+   "ifeval-2398",
+   "ifeval-2683",
+   "ifeval-1927",
+   "ifeval-3743",
+   "ifeval-2372",
+   "ifeval-3350",
+   "ifeval-1220",
+   "ifeval-3287",
+   "ifeval-2691",
+   "ifeval-1436",
+   "ifeval-1075"
   ],
   "gain_ids": [
    "ifeval-2246",
@@ -54,27 +89,38 @@
    "ifeval-2602",
    "ifeval-2534",
    "ifeval-1591",
-   "ifeval-247"
+   "ifeval-247",
+   "ifeval-2010",
+   "ifeval-1897",
+   "ifeval-1691",
+   "ifeval-122",
+   "ifeval-1203",
+   "ifeval-2662",
+   "ifeval-164",
+   "ifeval-3518",
+   "ifeval-2243",
+   "ifeval-2386",
+   "ifeval-1092"
   ],
-  "unchanged": 74,
-  "mcnemar_exact_p": 0.028959274291992188
+  "unchanged": 223,
+  "mcnemar_exact_p": 2.568720337924735e-05
  },
  "detectable": {
   "smallest_drop_items_with_no_gains": 5,
-  "smallest_drop_pp_with_no_gains": 0.05,
+  "smallest_drop_pp_with_no_gains": 0.01694915254237288,
   "smallest_drop_items_by_paired_interval": 4,
-  "smallest_drop_pp_by_paired_interval": 0.04,
+  "smallest_drop_pp_by_paired_interval": 0.013559322033898305,
   "alpha": 0.05
  },
  "harness": {
-  "limit": 100,
+  "limit": 295,
   "seed": 0,
   "frozen_sha256": "0cc0fb5726c3aa6ec9053aec2bfc8615ed631150e54cee492c0f2f963dcdf71e",
   "decoding": "greedy",
   "adapter_dir": "/home/z/vibe/nomos/.tmp/sft/adapter-narrow"
  },
  "elapsed_seconds": {
-  "base": 2213.5,
-  "adapter": 2344.4
+  "base": 5436.8,
+  "adapter": 6172.5
  }
 }
