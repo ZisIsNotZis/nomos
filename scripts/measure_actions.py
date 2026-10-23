@@ -55,7 +55,12 @@ MODELS = ("base", "post")  # 训练前基座 / 窄版适配器（report/sft-trai
 DRAWS = 3
 TEMPERATURE = 0.7
 TOP_P = 0.95
-MAX_NEW_TOKENS = 320  # 与 evidence/qwen-base 同一上限，够 120 词的两倍余量
+# economy.output_cap（agent-policy b33e7fd）：上限是防止回答失控的保险阀，不是回答结束的地方；
+# 取该调用合法产出最长长度的十倍。合法回答 = 自己停下来的那些：已落盘的 1452 条本地生成里
+# 1422 条 finish_reason: eos，最长 311；另外 30 条在旧的 320 处被截断，它们只给出「≥ 320」的
+# 下界，量不出本来多长，所以不进这个最长值。模型自身的输出上限远高于 3110，未触及。
+LONGEST_LEGITIMATE_OUTPUT = 311
+MAX_NEW_TOKENS = 10 * LONGEST_LEGITIMATE_OUTPUT  # 最长 311 的十倍
 SEED = 20261031
 BOOTSTRAP = 2000
 SITUATIONS = 242
@@ -159,6 +164,22 @@ def done_keys():
     return {(row["model"], row["situation"], row["draw"]) for row in load_jsonl(ANSWERS)}
 
 
+def cap_recorded(rows):
+    """已落盘回答实际跑的上限：分析/元数据描述的是已经发生的那批生成，不是常量今天的取值。
+
+    economy.output_cap 把本机上限从 320 抬到「最长合法输出的十倍」（3110）以后，已落盘的 1452 条
+    仍是 320 下的生成，按 person 2026-10-23 的决定不重抽。这里从行本身读回上限——新行记
+    max_new_tokens，旧行由撞上限的行反推（transformer 在撞上限时 completion_tokens 正好等于上限）
+    ——所以 --analyse 仍逐字节复现 summary.json，也不会把历史生成写成今天的新上限。
+    没有可读的行（一批新生成还没跑）时才回落到常量。
+    """
+    caps = {row["max_new_tokens"] for row in rows if row.get("max_new_tokens") is not None}
+    caps.update(row["completion_tokens"] for row in rows if row.get("truncated"))
+    if len(caps) > 1:
+        raise SystemExit(f"已落盘回答用了不止一个上限 {sorted(caps)}，分析要写清是哪一版")
+    return caps.pop() if caps else MAX_NEW_TOKENS
+
+
 def load_pair():
     # torch / transformers 只在生成时导入（--analyse / --check 是纯本地统计，不碰 GPU）
     import torch
@@ -247,6 +268,7 @@ def run_generate():
                     "action_signature": signatures["signature"],
                     "coarse_signature": signatures["coarse"],
                     **{key: out[key] for key in ("prompt_tokens", "completion_tokens", "finish_reason", "truncated")},
+                    "max_new_tokens": MAX_NEW_TOKENS,
                     "prompt_sha256": item["prompt_sha256"],
                     "temperature": TEMPERATURE,
                     "top_p": TOP_P,
@@ -735,7 +757,7 @@ def text_judgement(per_situation):
     }
 
 
-def summarise(per_situation, situations_total):
+def summarise(per_situation, situations_total, cap):
     """把逐处境行汇总成终版或预备版的结果。X 用两侧都齐全的处境配对算。"""
     used = [row for row in per_situation if row["reference_usable"]]
     paired = [row for row in used if row["base"] is not None and row["post"] is not None]
@@ -783,7 +805,7 @@ def summarise(per_situation, situations_total):
         "n_pairs_insufficient": len(paired) < MIN_CONCLUSIVE_PAIRS,
         "n_pairs_insufficient_below": MIN_CONCLUSIVE_PAIRS,
         "draws_per_model": DRAWS,
-        "decoding": {"temperature": TEMPERATURE, "top_p": TOP_P, "max_new_tokens": MAX_NEW_TOKENS},
+        "decoding": {"temperature": TEMPERATURE, "top_p": TOP_P, "max_new_tokens": cap},
         "models": {"base": str(BASE_MODEL), "post": str(ADAPTER)},
         "reference": {
             "source": "evidence/densify/answers.jsonl 的 law 条件",
@@ -832,7 +854,7 @@ def analyse(answers_rows, densify_rows, ids, preliminary):
     text_references = text_reference_table(densify_rows, ids)
     grouped, duplicates = group_answers(answers_rows)
     per_situation, mismatches = situation_rows(grouped, ids, references, text_references)
-    summary = summarise(per_situation, len(ids))
+    summary = summarise(per_situation, len(ids), cap_recorded(answers_rows))
     summary.update(
         {
             "status": "preliminary" if preliminary else "final",
