@@ -11,3 +11,5 @@ cmd: scripts/measure_anchor.py --analyse
 analyse: 处境 148 条，每处境每侧用 3 条抽样（要求 3 条），落 evidence/measure/anchor-matched/per-situation.jsonl
 cmd: scripts/measure_anchor.py --analyse
 analyse: 处境 148 条，每处境每侧用 3 条抽样（要求 3 条），落 evidence/measure/anchor-matched/per-situation.jsonl
+cmd: scripts/measure_anchor.py --analyse
+analyse: 处境 148 条，每处境每侧用 3 条抽样（要求 3 条），落 evidence/measure/anchor-matched/per-situation.jsonl
