@@ -132,6 +132,9 @@ def main():
                     help="must match data/bench/sources.json; change it by re-running bench_prep")
     ap.add_argument("--stub", choices=["gold", "wrong", "garbage"], default=None,
                     help="fixed-output model instead of the GPU model (self-test only)")
+    ap.add_argument("--tag", default="",
+                    help="override the output tag (default <model>-<suite>); a trial run must not "
+                         "overwrite a landed artefact, so it gives its own tag")
     args = ap.parse_args()
 
     manifest = json.load(open(os.path.join(BENCH_DIR, "sources.json"), encoding="utf-8"))
@@ -162,7 +165,7 @@ def main():
             "decoding": "greedy",
             **run,
         }
-        tag = f"{args.model}{'-stub-' + args.stub if args.stub else ''}-{suite}"
+        tag = args.tag or f"{args.model}{'-stub-' + args.stub if args.stub else ''}-{suite}"
         path = os.path.join(OUT_DIR, f"{tag}.json")
         with open(path, "w", encoding="utf-8") as f:
             json.dump(payload, f, ensure_ascii=False, indent=1)

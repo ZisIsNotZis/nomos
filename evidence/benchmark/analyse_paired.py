@@ -82,8 +82,9 @@ def smallest_drop_by_interval(n):
     return None
 
 
-def compare(suite):
-    base, adapter = load(f"base-{suite}.json"), load(f"adapter-{suite}.json")
+def compare(suite, adapter_tag=None):
+    adapter_name = adapter_tag or f"adapter-{suite}"
+    base, adapter = load(f"base-{suite}.json"), load(f"{adapter_name}.json")
     if base is None or adapter is None:
         missing = "base" if base is None else "adapter"
         return {"suite": suite, "status": f"unrun: {missing} side has no evidence file"}
@@ -131,10 +132,21 @@ def pct(x):
 
 
 def main():
-    suites = sys.argv[1:] or list(SUITES)
+    argv = sys.argv[1:]
+    adapter_tag = None
+    out_tag = None
+    while argv and argv[0].startswith("--"):
+        flag = argv.pop(0)
+        if flag == "--adapter-tag":
+            adapter_tag = argv.pop(0)          # read <tag>.json instead of adapter-<suite>.json
+        elif flag == "--out-tag":
+            out_tag = argv.pop(0)              # write <out-tag>.json instead of paired-<suite>.json
+        else:
+            raise SystemExit(f"unknown flag {flag}")
+    suites = argv or list(SUITES)
     out = []
     for suite in suites:
-        result = compare(suite)
+        result = compare(suite, adapter_tag)
         out.append(result)
         if result["status"] != "ran":
             print(f"{suite:7s} {result['status']}")
@@ -148,7 +160,8 @@ def main():
               f"  drops {p['drops']} gains {p['gains']}  McNemar p={p['mcnemar_exact_p']:.3f}"
               f"  min detectable drop {pct(result['detectable']['smallest_drop_pp_with_no_gains'])} (McNemar)"
               f" / {pct(result['detectable']['smallest_drop_pp_by_paired_interval'])} (interval)")
-        with open(os.path.join(HERE, f"paired-{suite}.json"), "w", encoding="utf-8") as f:
+        out_name = out_tag or f"paired-{suite}"
+        with open(os.path.join(HERE, f"{out_name}.json"), "w", encoding="utf-8") as f:
             json.dump(result, f, ensure_ascii=False, indent=1)
             f.write("\n")
     unrun = [r["suite"] for r in out if r["status"] != "ran"]
