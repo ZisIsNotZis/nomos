@@ -16,6 +16,18 @@
 
 ### 里程碑
 
+**M6（预登记，2026-10-23 起跑，跑着）：2-epoch 重训，回答「IFEval 的 −12.2pp 有多大部分来自第三个 epoch」——这是那条唯一实测到的退化上最便宜的一根杠杆。**
+
+- **为什么是这一根杠杆**：训练记录已经在手上——第三个 epoch 只把验证 PPL 从 6.069 压到 6.033（0.037，落在「验证集 78 条、差 0.03 在噪声量级」这句自己写的噪声里），训练侧同期还在降 0.087。也就是说**第三个 epoch 买的已被自己的记录判为噪声内**，而 IFEval 的 −12.2pp [−17.6, −6.8] 是目前唯一实测到、区间不含 0 的退化。两者之间没有因果证据，只有一条可试的假设；试它的代价是 idle GPU ≈2 h、零 metered、适配器可重生成，所以按 `trial` 那条法条写成预登记试验，而不是开一个新方向。
+- **假设**：第三个 epoch 是 −12.2pp 的来源之一。预测：2-epoch 适配器在同一批 295 条上的配对掉幅显著小于 3-epoch。
+- **方法（除 epoch 数外一律不动）**：`python3 scripts/train_sft.py --epochs 2 --grad-accum 8 --lora-r 16 --lora-alpha 32 --lora-targets narrow --run-name e2 --adapter-dir .tmp/sft/adapter-e2`（同一 seed 0、同一 lr 与暖机、同一数据与按会话切分；只有步数 36 而不是 54，因此线性衰减的总步数随之变短，这是唯一的耦合，写在结果里）。然后 `scripts/run_bench.py --model adapter --adapter-dir .tmp/sft/adapter-e2 --tag adapter-e2-<suite>` 跑 IFEval `--limit 295` 与 GSM8K `--limit 100`，与**已落盘的同一批 base 记录**配对（同一冻结前缀 `0cc0fb57…71e`、同一贪心解码、同一判分代码）。
+- **继续 / 停止（先写死，看到数之前不动）**：
+  1. 观测量是 `evidence/benchmark/paired-e2-ifeval.json` 的 Δ 与配对区间。**Δ ≤ −10.0pp** → 第三个 epoch 不是来源（改善 < 2.2pp，n=295 的检出下限 1.4–1.7pp 之内，读作「没动」）；记负结果，下一根杠杆是**数据混合**，不是继续调 epoch。
+  2. **Δ ≥ −8.0pp** → 第三个 epoch 是来源之一（掉幅至少减掉 4.2pp，即 34%）；下一包是 2-epoch 适配器的**全量政策测量**（242 条处境 × 3 条，`measure_split.py` 同口径拆 seen/held-out），测完才谈 adopt。
+  3. **−10.0pp < Δ < −8.0pp** → 这次读数判不了，只记区间与「要多大 n 才判得了」，不进入下一包。
+- **不做（不是漏掉）**：本轮**不 adopt** 任何新适配器——政策效果没重测，换交付物就是无证据换；不改验收线（「没有好几处性能退化」在 person 手里）；不换套件、不改数据与切分、不动 lr/rank/targets；不额外花钱（本轮 metered ¥0）。
+- 花费：`idle-compute`，预计 ≈2 h 墙钟（训练 ≈9 min + IFEval 295 与 GSM8K 100 两格并行 ≈1 h 45 m），零 metered、零 GPU 租金。
+
 **M5（已落地，2026-10-23）：把 §1 收窄到实测的两轴，回答「agentic 这半句是窄化还是补测」——按 root 下放的判定权，答「窄化」。**
 
 - 观测（决定它成没成）：`python3 scripts/check_axes_claim.py` 退出码 0。它逐句检查 6 个发布面（`README.md`、`docs/model-card.md`、`docs/paper/draft.md`、`docs/method/design.md`、`docs/method/limits.md`、`report/sft-benchmark.md`）：**提到 `agentic` 的每一句必须同句写明它没测**；并且两处主张段（`docs/method/design.md` §1、`docs/paper/draft.md` §1）必须点名 `GSM8K` 与 `IFEval`。改前 **4 句违规 + 1 处主张段缺轴（退出码 1）**，改后 **0 处（退出码 0）**，命令一次打出这两行读数。
@@ -49,6 +61,7 @@
 
 ### 工作包（我自己执行，不报告）
 
+- **WP-6（已完成，2026-10-23）**：三点测量的 242 条处境**全部**是造 SFT 数据的同一批处境（191 条在训练集、51 条按会话留出），而报告的头行（post_mean 0.0968、X 0.0948）在全部 148 条配对上算，读不出「内联进去了」与「背下来了」的区别。`scripts/measure_split.py`（新增、只读、同一套重采样代码与种子，`paired_all` 与 `summary.json` 的头行字段逐字段相等为断言）把它拆成两半，落 `evidence/measure/seen-heldout.json`：**见过 113 条配对** Δ +0.1091 [0.0678, 0.1593]、**留出 35 条配对** Δ +0.0476 [0.0095, 0.0857]；可数对照（有没有可解析动作）两半都到 0.74 / 0.80，所以**格式学会了，决策只学到了一半**。见 [`report/sft-measurement.md`](report/sft-measurement.md)「见过 / 留出」。
 - **WP-2（已完成，2026-10-23）**：README 的「约 3.3 秒」是一个读者一计时就能反驳的单点声明。改法不是换一个更宽的猜数，而是把 9 次实测摆出来：2026-10-23 在同一台机器上再量五次 **3.25 / 3.33 / 3.24 / 3.23 / 3.17 s**，加上原有工作树 3.28 / 3.33 s 与全新 clone 3.19 / 3.33 s，**区间 3.17–3.33 s**，README 与 `docs/plan/plan.md`「发布准备」同时写这个区间与测的条件（Python 3.12.3、12 核、纯 CPU、不联网、只用标准库、`/usr/bin/time -f '%e'` 含解释器启动）。**机器被别的作业压满时的读数本轮没量过，所以两处都不给上界**，也不写「约 3 秒」这种读者一压就破的口径。跑完 `evidence/measure/summary.json` 的 sha256 仍是 `0e10e6f4…`、`git status --short` 空。
 - **WP-3（F1）**：`constitution/lock.yaml` 的 `upstream:` 还指向一个已经不存在的路径；改成法当前的家 `agent-policy/`，并在同一次提交里写一句「冻结副本仍按 sha256 校验，所以旧路径不伤害任何东西」。**限定条件**：只在下一个碰到这个 lock 的改动里做，不单独为它开一次提交去碰冻结区。
 - **WP-4（已完成）**：M2 的四格新读数同步进引用面。
