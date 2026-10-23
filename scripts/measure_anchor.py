@@ -7,6 +7,11 @@ top_p 0.95、max_new_tokens 320、prompt 是「excerpt + 续写指令」的单�
 于是「post 0.0968 对不带法 0.3502」跨了两套解码，不是同一把尺子。本脚本按 base/post 那一套
 参数重抽 DeepSeek 的带法/不带法两侧，给出同协议的不带法刻度。
 
+输出上限是唯一一处有意不一致的地方：base/post 的 320 是本地模型的上限，按原样搬到 DeepSeek 上
+砍掉了 42 条回答（2664 条里，1.6%），按 person 2026-10-23 的决定不重画、那 42 行按原样进统计并
+写「未测」。以后的调用按 economy.output_cap 取「最长合法输出的十倍」（现 3170），所以增量抽样
+不再被 320 砍；已落盘的行里记着自己的 320，`--analyse` 读回行里的值，不读常量。
+
   --pilot      20 条处境 × 2 条件 × 3 条抽样 = 120 次调用，验证参数确实生效（记录 usage 与
                finish_reason），写 pilot.json；--generate 没有通过的 pilot 就不跑。
   --generate   148 条参照物可用的处境 × 2 条件 × 3 条抽样（含 pilot 已落盘的），落
@@ -64,7 +69,13 @@ DRAWS = 3
 # 那边的常量是生成本地模型用的，这里要显式在同一行里让两套参数可对照。
 TEMPERATURE = 0.7
 TOP_P = 0.95
-MAX_TOKENS = 320
+# economy.output_cap（agent-policy b33e7fd）：上限是防止回答失控的保险阀，不是把付过钱的
+# 回答截断的地方；取该调用合法产出最长长度的十倍。合法回答 = 自己停下来的那些：已落盘的
+# 2664 条 completion（anchor-matched 888 + anchor-draws9 1776）里 2622 条 finish_reason: stop，
+# 最长 317（原批 317、追加批 316）；另外 42 条在旧的 320 处被截断，它们只给出「≥ 320」的下界，
+# 量不出自己本来有多长，所以不进这个最长值。模型自身的输出上限远高于 3170，未触及。
+LONGEST_LEGITIMATE_OUTPUT = 317
+MAX_TOKENS = 10 * LONGEST_LEGITIMATE_OUTPUT  # 最长 317 的十倍
 PILOT_SITUATIONS = 20
 WORKERS = 8
 MAX_CNY = 4.0
@@ -191,6 +202,19 @@ def done_keys(target_draws):
     return {(row["situation"], row["arm"], row["draw"]) for row in stored_answers(target_draws)}
 
 
+def cap_recorded(rows):
+    """已落盘抽样实际发出去的上限：分析/元数据描述的是已经发生的那批调用，不是常量今天的取值。
+
+    economy.output_cap 把 MAX_TOKENS 从 320 抬到「最长合法输出的十倍」以后，已落盘的 2664 条
+    仍然是 320 下的调用；这里读回行里记的 max_tokens，所以 --analyse 仍逐字节复现 summary.json，
+    也不会把历史调用写成今天的新上限。没有已落盘的行（新批次还没跑）时才回落到常量。
+    """
+    caps = sorted({row["max_tokens"] for row in rows if row.get("max_tokens") is not None})
+    if len(caps) > 1:
+        raise SystemExit(f"已落盘抽样用了不止一个上限 {caps}，分析要写清是哪一版")
+    return caps[0] if caps else MAX_TOKENS
+
+
 def run_calls(situation_ids, law, tag, target_draws=DRAWS, cap_cny=MAX_CNY):
     paths = extended(target_draws)
     target = ANSWERS if target_draws == DRAWS else paths["answers"]
@@ -286,7 +310,9 @@ def run_pilot():
         "prompt_matches_base_post": prompt_matches,
         "draw_diversity": {"matched": f"{diverse}/{len(grouping)}", "old_temp_0": f"{old_diverse}/{len(old_grouping)}"},
         "checks": {
-            "max_tokens_respected": max(completions) <= MAX_TOKENS,
+            # 撞到上限就是那条回答被砍了（已付钱、回答没了），所以这里问的是「有没有一条撞上」，
+            # 不是「有没有超过」——后者会把撞上限当成正常。
+            "no_completion_hits_cap": max(completions) < MAX_TOKENS,
             "usage_on_every_call": all(row["usage"].get("completion_tokens") is not None for row in rows),
             "finish_reason_on_every_call": all(row["finish_reason"] in ("stop", "length") for row in rows),
             "prompt_identical_to_base_post": prompt_matches == len(rows),
@@ -294,7 +320,10 @@ def run_pilot():
             "law_has_system": all(row["system_chars"] > 0 for row in rows if row["arm"] == "law"),
         },
         "note": "API 不回显 temperature 与 top_p，所以这两项只能证明发送成功（无报错）并且在请求体里；"
-                "max_tokens 有可观测的上界证据（completion_tokens ≤ 320）",
+                f"max_tokens = {MAX_TOKENS}（最长合法输出 {LONGEST_LEGITIMATE_OUTPUT} 的十倍，economy.output_cap），"
+                "它只是保险阀，没有「completion_tokens ≤ MAX_TOKENS」这种可当结论的上界；"
+                "有证据的是「没有任何一条 completion 撞到上限」",
+        "max_tokens": MAX_TOKENS,
     }
     passed = all(pilot["checks"].values())
     pilot["passed"] = passed
@@ -419,7 +448,8 @@ def run_analyse(target_draws=DRAWS, allow_partial=False):
     action.update({
         "what": "口径一（动作签名一致率）的不带法刻度：与带法多数签名吻合的抽样比例",
         "old_protocol": {"temperature": 0.0, "max_tokens": 600, "draws": "3–4", "law_in": "system"},
-        "matched_protocol": {"temperature": TEMPERATURE, "top_p": TOP_P, "max_tokens": MAX_TOKENS,
+        "matched_protocol": {"temperature": TEMPERATURE, "top_p": TOP_P,
+                             "max_tokens": cap_recorded(stored_answers(target_draws)),
                              "draws": draws_used, "draws_requested": target_draws,
                              "law_in": "system"},
         "law_matched_self_agreement": measure.mean([row["law_matched"] for row in rows]),
@@ -512,7 +542,7 @@ def run_analyse(target_draws=DRAWS, allow_partial=False):
         meta = {
             "what": f"匹配锚点每处境每侧 {target_draws} 条的追加抽样：本次花了多少钱、抽了多少条、用了什么参数",
             "model": lib.MODEL,
-            "protocol": {"temperature": TEMPERATURE, "top_p": TOP_P, "max_tokens": MAX_TOKENS,
+            "protocol": {"temperature": TEMPERATURE, "top_p": TOP_P, "max_tokens": cap_recorded(extra_rows),
                          "thinking": "disabled", "law_in": "system",
                          "bare_system_chars": 0, "law_system_chars": len(ra.law_text())},
             "situations": len(rows),

@@ -14,8 +14,11 @@
               与 `evidence/slice-contrast/answers.jsonl` 记下的 request_sha256 逐条
               比对，366 条全中才说明新批次与老批次是同一条提示，否则停。
   --generate  每条处境四次调用：law 抽一次、bare 抽一次、law 再抽一次、bare 再抽
-              一次。模型、温度、thinking、max_tokens、INSTRUCTION 全部导入老批次
-              的定义，不复制。落在 `evidence/grow/answers.jsonl`。
+              一次。模型、温度、thinking、INSTRUCTION 全部导入老批次的定义，不复制。
+              max_tokens 是唯一例外：老批次是 600，新调用按 economy.output_cap 取 5340
+              （推导见 `scripts/resample_actions.py` 的常量旁）。已落盘的 236 条里
+              自己停下来的最长 493，所以那个上限对这批回答不会截。
+              落在 `evidence/grow/answers.jsonl`。
   --analyse   纯 Python：复用 `scripts/filter_pairs.py` 的实质相同/截断/复读/回显
               判据与 `scripts/resample_actions.py` 的动作签名，把新处境筛成稳定对，
               与老 66 条合并写 `data/pairs-stable-v2.jsonl`（每行记 batch）。
@@ -290,6 +293,7 @@ def run_generate():
     spend = sum(row["cost"]["cny"] for row in rows)
     GENERATE_META.write_text(json.dumps({
         "model": lib.MODEL, "temperature": ra.TEMPERATURE, "max_tokens": ra.MAX_TOKENS,
+        "max_tokens_note": "这次调用发出去的上限；economy.output_cap 前落盘的抽样是 600，已落盘的行不重抽",
         "thinking": "disabled", "arms": {"law": "整部 AGENTS.md 作 system 消息", "bare": "无 system 消息"},
         "draws_per_arm": 2, "law_commit": ra.LAW_COMMIT, "law_sha256": ra.LAW_SHA256,
         "instruction_sha256": sha(INSTRUCTION),
@@ -661,7 +665,8 @@ def write_report(summary):
         f"与 `evidence/slice-contrast/answers.jsonl` 记录的 {pool['request_gate']['requests_checked']} 条"
         f"逐条相同，不一致 {pool['request_gate']['mismatches']} 条；法条原文是 agent-policy "
         f"{pool['request_gate']['law_commit']} 上的 AGENTS.md，sha256 `{pool['request_gate']['law_sha256']}`。"
-        "模型 deepseek-flash、温度 0.0、thinking 关闭、max_tokens 600 全部导入老批次的定义。",
+        "模型 deepseek-flash、温度 0.0、thinking 关闭全部导入老批次的定义（max_tokens 600）；"
+        "按 economy.output_cap 以后的调用取 5340，本批已落盘的 236 条仍是 600 下的抽样。",
         "",
         "bare 条件有单独的硬检查：请求必须没有 system 消息，且正文里不出现法条原文的首尾片段，"
         "否则生成直接停（`evidence/grow/generate-meta.json` 的 `bare_arm_gate`）。",

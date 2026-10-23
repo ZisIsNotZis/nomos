@@ -13,8 +13,8 @@
 
 重采样必须与存下来的批次同条件，否则比的不是抖动：
 
-- 模型 deepseek-flash、温度 0.0、thinking 关闭、max_tokens 600，与 evidence/slice-contrast
-  的生成批次一致；
+- 模型 deepseek-flash、温度 0.0、thinking 关闭、与 evidence/slice-contrast 的生成批次一致；
+  max_tokens 是唯一例外：老批次是 600，新调用按 economy.output_cap 取 5340（前十倍的推导见常量旁）；
 - 请求正文就是 `pairs-filtered.jsonl` 的 excerpt 加上 evidence/slice-contrast/common.py 的
   INSTRUCTION（直接导入，不复制），law 条件放整部法的原文，bare 条件不放 system 消息；
 - 法的原文取自 workspace 的 agent-policy 仓库在 5eafb2e 上的 AGENTS.md（sha256 见 LAW_SHA256），
@@ -61,7 +61,13 @@ LAW_SHA256 = "325f8b3e2d868f91fb43c24dd088ae6e735386c6d5e2aacfc7496d6ff2726ab6"
 ARMS = ("law", "bare")
 SOURCE_ARM = {"law": "full", "bare": "bare"}  # probe 4 called the law arm "full"
 TEMPERATURE = 0.0
-MAX_TOKENS = 600
+# economy.output_cap（agent-policy b33e7fd）：上限取该调用合法产出最长长度的十倍，它不是省钱开关，
+# 而是在上限处截断一条已付钱的回答的弹簧阀。用同一个常量的四个批次已落盘：resample 348 条（自己停的
+# 最长 369）、densify 1470 条（最长 534）、slice-contrast 549 条（最长 509）、grow 236 条（最长 493），
+# 取家族最长的 534，所以上限 5340。旧值 600 在 densify 砍掉了 6 条、slice-contrast 2 条、resample 1 条。
+# 那 9 条按原样进统计，压制幅度未测；已落盘的行里记着自己的 600，改这里不影响任何已跑的读数。
+LONGEST_LEGITIMATE_OUTPUT = 534
+MAX_TOKENS = 10 * LONGEST_LEGITIMATE_OUTPUT  # 最长 534 的十倍
 WORKERS = 6
 MAX_CNY = 5.0
 

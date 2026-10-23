@@ -51,7 +51,16 @@ RUN_META = EVIDENCE / "run-meta.json"
 ENDPOINT = "https://api.deepseek.com/v1/chat/completions"
 MODEL = "deepseek-flash"
 TEMPERATURE = 0.0
-MAX_TOKENS = 400
+# economy.output_cap（agent-policy b33e7fd）：上限是保险阀，取该调用合法产出最长长度的十倍。
+# 两类调用分开算，因为它们的合法回答长度差一个量级：
+#   选规则（--max-tags 打开）：已落盘 353 次（coverage 176 + coverage-cap8 177），自己停下来
+#   的最长回答 149 token（coverage-cap8），所以 1490；旧值 400 没截断过任何一条，但也不是依法取的。
+#   不收窄（--max-tags 关闭）：已落盘 197 次（coverage-uncapped），自己停下来的最长 1469 token，
+#   所以 14690；旧值 2000 在那一批里截断了 23 条，那 23 条按原样进统计，压制幅度未测。
+LONGEST_LEGITIMATE_OUTPUT = 149
+MAX_TOKENS = 10 * LONGEST_LEGITIMATE_OUTPUT  # 最长 149 的十倍，只用于 --max-tags
+LONGEST_LEGITIMATE_OUTPUT_FULL = 1469
+MAX_TOKENS_FULL = 10 * LONGEST_LEGITIMATE_OUTPUT_FULL  # 最长 1469 的十倍
 WORKERS = 4
 MAX_CNY = 5.0
 
@@ -184,7 +193,7 @@ def annotate(situation, system, allowed, calls_path, max_tags, attempt_budget=3)
     request_sha = sha(json.dumps(messages, ensure_ascii=False))
     last_error = ""
     for attempt in range(1, attempt_budget + 1):
-        budget = MAX_TOKENS if max_tags else 2000
+        budget = MAX_TOKENS if max_tags else MAX_TOKENS_FULL
         body = {"model": MODEL, "messages": messages, "temperature": TEMPERATURE,
                 "max_tokens": budget, "thinking": {"type": "disabled"}}
         response, latency = post(body)
@@ -275,7 +284,7 @@ def main():
     if todo:
         meta_path.write_text(json.dumps({
             "model": MODEL, "endpoint": ENDPOINT, "temperature": TEMPERATURE, "thinking": "disabled",
-            "max_tokens": MAX_TOKENS if args.max_tags else 2000,
+            "max_tokens": MAX_TOKENS if args.max_tags else MAX_TOKENS_FULL,
             "max_tags": args.max_tags, "system_message_sha256": sha(system),
             "rules_block_sha256": sha(rules_block(nodes)), "rules": len(nodes),
             "pairs_sha256": sha(PAIRS.read_text(encoding="utf-8")),

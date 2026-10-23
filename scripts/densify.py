@@ -19,6 +19,9 @@ DPO 学到的多是噪声。改法不是调参，是标签：每条处境每个�
 max_tokens、INSTRUCTION、system 消息的构造全部直接导入 scripts/resample_actions.py
 与 evidence/slice-contrast/common.py，不复制；法的原文由 resample_actions.law_text()
 从 agent-policy 5eafb2e 取并按 sha256 核对。
+max_tokens 跟着 ``ra.MAX_TOKENS`` 走，所以 economy.output_cap 把那个常量从 600 抬到 5340 时，
+本脚本也自动跟上：这一批 1470 条里 6 条被 600 截断、最长自己停下来的 534，新上限不会截；
+已落盘的行不重抽，它们的 600 记在行里。
 
 用法：
   python3 scripts/densify.py --generate
