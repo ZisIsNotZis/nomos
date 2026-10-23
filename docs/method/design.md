@@ -4,7 +4,8 @@
 
 ## 1 主张
 
-一个 2B 模型能在**没有法条原文的上下文**里，做出接近"带法 DeepSeek"的下一步判断，同时通用与 agentic 能力不跌出自身噪声带。
+一个 2B 模型能在**没有法条原文的上下文**里，做出接近"带法 DeepSeek"的下一步判断，同时**通用能力**不跌出自身噪声带。
+这条主张只覆盖**实测的两条轴**——GSM8K（推理，n=100）与 IFEval（指令合规，n=295）。**agentic 能力不在这条主张里**：本轮一个候选套件也没跑，四个各被一个具名的缺失依赖挡住（选型表与逐条原因见 [`report/sft-benchmark.md`](../../report/sft-benchmark.md)「选型」），所以本研究不声称它没跌，也不把它当已测来讲。
 
 ## 2 刻度
 
@@ -47,7 +48,7 @@
 
 ## 6 通用能力
 
-开源 benchmark，先测 headroom：base 落在 30–70% 区间才有判别力，贴地板或天花板一律换掉。优先 agentic 与编程。
+开源 benchmark，先测 headroom：base 落在 30–70% 区间才有判别力，贴地板或天花板一律换掉。优先 agentic 与编程；本轮实测的是 GSM8K（推理）与 IFEval（指令合规）两条轴，**agentic 与编程都没测**（选型与逐条原因见 [`report/sft-benchmark.md`](../../report/sft-benchmark.md)「选型」）。
 
 ## 7 停止规则
 
