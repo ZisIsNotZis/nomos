@@ -1,0 +1,5 @@
+start 2026-10-23T13:42:03Z epochs=2 adapter=.tmp/sft/adapter-e2
+train rc=0 2026-10-23T13:47:58Z
+bench rc ifeval=0 gsm8k=0 2026-10-23T15:38:35Z
+paired rc=1 2026-10-23T15:38:42Z
+done 2026-10-23T15:38:43Z

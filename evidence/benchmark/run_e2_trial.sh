@@ -9,7 +9,7 @@ set -u
 cd "$(dirname "$0")/../.." || exit 1
 REPO=$(pwd)
 LOGS="$REPO/evidence/benchmark/logs-e2"
-mkdir -p "$LOGS" "$REPO/.tmp/sft"
+mkdir -p "$LOGS" "$REPO/.tmp/sft" "$REPO/inbox"
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 echo "start $(date -u +%FT%TZ) epochs=2 adapter=.tmp/sft/adapter-e2" | tee "$LOGS/driver.log"

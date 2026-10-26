@@ -1,0 +1,5 @@
+ifeval  base 184/295 =  62.4%  adapter 148/295 =  50.2%  delta -12.2%  paired CI [-17.6%,  -6.8%]  drops 54 gains 18  McNemar p=0.000  min detectable drop   1.7% (McNemar) /   1.4% (interval)
+--adapter-tag unrun: base side has no evidence file
+adapter-e2-ifeval unrun: base side has no evidence file
+--out-tag unrun: base side has no evidence file
+paired-e2-ifeval unrun: base side has no evidence file

@@ -12,6 +12,11 @@ that interval in the tree. Exact McNemar is written here because nothing else ne
 Usage:
   python3 evidence/benchmark/analyse_paired.py            # both suites, exit 1 if a cell is unrun
   python3 evidence/benchmark/analyse_paired.py ifeval     # one suite
+  python3 evidence/benchmark/analyse_paired.py ifeval --adapter-tag adapter-e2-ifeval \
+      --out-tag paired-e2-ifeval                          # trial cell, leaves the landed pair alone
+
+Flags may appear before or after the suite names; anything else starting with -- is an error
+rather than a suite name (a mis-ordered call used to be read as four unrun suites).
 """
 
 import importlib.util
@@ -135,15 +140,18 @@ def main():
     argv = sys.argv[1:]
     adapter_tag = None
     out_tag = None
-    while argv and argv[0].startswith("--"):
-        flag = argv.pop(0)
-        if flag == "--adapter-tag":
-            adapter_tag = argv.pop(0)          # read <tag>.json instead of adapter-<suite>.json
-        elif flag == "--out-tag":
-            out_tag = argv.pop(0)              # write <out-tag>.json instead of paired-<suite>.json
+    suites = []
+    while argv:                            # flags may sit before or after the suite names
+        arg = argv.pop(0)
+        if arg == "--adapter-tag":
+            adapter_tag = argv.pop(0)      # read <tag>.json instead of adapter-<suite>.json
+        elif arg == "--out-tag":
+            out_tag = argv.pop(0)          # write <out-tag>.json instead of paired-<suite>.json
+        elif arg.startswith("--"):
+            raise SystemExit(f"unknown flag {arg}")
         else:
-            raise SystemExit(f"unknown flag {flag}")
-    suites = argv or list(SUITES)
+            suites.append(arg)
+    suites = suites or list(SUITES)
     out = []
     for suite in suites:
         result = compare(suite, adapter_tag)

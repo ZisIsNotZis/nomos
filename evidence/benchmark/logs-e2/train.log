@@ -1,0 +1,36 @@
+token stats {'prompt': {'p50': 589, 'p95': 901, 'max': 968, 'mean': 548.9}, 'target': {'p50': 119, 'p95': 217, 'max': 385, 'mean': 119.0}, 'prompt_plus_target': {'p50': 698, 'p95': 1056, 'max': 1201, 'mean': 667.9}}
+max_length 1088 (p95), free 22.5 GiB
+truncated 8/288 train rows (prompt head only)
+Loading weights:   0%|          | 0/617 [00:00<?, ?it/s]Loading weights:   0%|          | 1/617 [00:00<01:24,  7.26it/s]Loading weights:   4%|▍         | 25/617 [00:00<00:04, 125.29it/s]Loading weights:  13%|█▎        | 78/617 [00:00<00:01, 294.16it/s]Loading weights:  22%|██▏       | 133/617 [00:00<00:01, 384.78it/s]Loading weights:  31%|███▏      | 194/617 [00:00<00:00, 461.95it/s]Loading weights:  41%|████      | 252/617 [00:00<00:00, 496.65it/s]Loading weights:  50%|████▉     | 307/617 [00:00<00:00, 511.03it/s]Loading weights:  72%|███████▏  | 446/617 [00:00<00:00, 782.11it/s]Loading weights:  99%|█████████▊| 609/617 [00:00<00:00, 1042.58it/s]Loading weights: 100%|██████████| 617/617 [00:00<00:00, 642.60it/s] 
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+/home/z/.venv/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py:1548: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. Starting in PyTorch 2.9, calling checkpoint without use_reentrant will raise an exception. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+LoRA modules 96 = {'down_proj': 24, 'gate_proj': 24, 'k_proj': 6, 'o_proj': 6, 'q_proj': 6, 'up_proj': 24, 'v_proj': 6}; 18 linear-attention layers x 5 projections + 6 full-attention layers x 4 + 24 MLP x 3
+steps/epoch 12, total 24
+baseline val loss 2.4279 ppl 11.34
+mask check: first valid label index 656 == prompt_len 656 | masked prompt tail '死吗？<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n' | first target tokens '先更正：上一条我说“正在发车”是错的，' | target tokens scored 159
+LoRA grads after first backward: 96/192 tensors, 6193152 nonzero entries
+step 10/24 loss 1.9145 (96s)
+epoch 1: train loss 1.8298 ppl 6.23 | val loss 1.8923 ppl 6.63
+step 20/24 loss 1.6125 (230s)
+epoch 2: train loss 1.7173 ppl 5.57 | val loss 1.8508 ppl 6.37
+{
+  "steps": 24,
+  "epochs": 2,
+  "max_length": 1088,
+  "train_rows": 288,
+  "val_rows": 78,
+  "train_loss": 1.717312,
+  "train_ppl": 5.5695,
+  "val_loss": 1.850842,
+  "val_ppl": 6.3652,
+  "baseline_val_loss": 2.427909,
+  "baseline_val_ppl": 11.3352,
+  "adapter_sha256": "ca9b38ffd2747ea4f2432d9d9a14e54e308a5c3afeb5983a348d61e0f6f2b35a",
+  "adapter_size_bytes": 43675104,
+  "peak_allocated_gib": 11.041,
+  "peak_reserved_gib": 13.367,
+  "wall_clock_s": 341.4
+}

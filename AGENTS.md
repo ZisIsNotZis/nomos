@@ -6,7 +6,7 @@
 
 怎么开始：读本文件，再读 `report/sft-benchmark.md` 开头「结论」那张两格表（GSM8K n=100、IFEval n=295）与「这个 n 能看见多大的掉幅」；口径与主指标读 `report/sft-measurement.md` 的「重估的结论（一句话）」与三个口径表。收信目录是 `inbox/`，约定见本节「与通用约定不一样的地方」；读过的信落地即删，所以那里通常只剩还没被读的几封。与 root / person 的往来信不删、存在 `mail/`（那里是授权的原件：loan 的边界、¥10 口径、验收线的原话都在里面，删了就没有借据了），`inbox/` 是工作收件、`mail/` 是往来存档，两者不要混读。
 
-怎么继续：M2、M3、M4 都已落地，引用面（`README.md`、`docs/model-card.md`、`docs/paper/draft.md`、`report/sft-benchmark.md`、`evidence/benchmark/n100/README.md`）已全部换成当前读数，并且都带上了官方 grader 那一行。2026-10-23 person 重述了目标、root 把细节判定权下放到本节点（[信](mail/2026-10-23-answer-goal-and-authority.md)）：`§1` 收窄到实测两轴已落地（M5），WP-2 已做完，Q1 与 Q3 由本节点判定后关掉（口径二不开、agentic 移出主张），Q2 已按 2026-10-23 的答复关掉（不付钱重画，那 42 行写未测）。本节点只剩 WP-3 一条**有条件**的工作包（只在下一个碰到 `constitution/lock.yaml` 的改动里做）。**要回 root 的只剩三件**：>¥10 的花费、改变「没有好几处性能退化」这条验收线怎么判的事、要 person 亲自看的产物。Q7 已按上一层的答复关掉（那个数按实测改写，读法与命令见 Q7）。**没有上一层的话不要推**：本轮所有提交都在本机。
+怎么继续：M2、M3、M4 都已落地，引用面（`README.md`、`docs/model-card.md`、`docs/paper/draft.md`、`report/sft-benchmark.md`、`evidence/benchmark/n100/README.md`）已全部换成当前读数，并且都带上了官方 grader 那一行。2026-10-23 person 重述了目标、root 把细节判定权下放到本节点（[信](mail/2026-10-23-answer-goal-and-authority.md)）：`§1` 收窄到实测两轴已落地（M5），M6 已跑完并按预登记判「第三个 epoch 是来源之一」（IFEval 2-epoch −7.8pp，详见 M6），WP-2 已做完，Q1 与 Q3 由本节点判定后关掉（口径二不开、agentic 移出主张），Q2 已按 2026-10-23 的答复关掉（不付钱重画，那 42 行写未测）。本节点只剩 WP-3 一条**有条件**的工作包（只在下一个碰到 `constitution/lock.yaml` 的改动里做）。M6 之后开着的下一步是 **2-epoch 适配器的全量政策测量**（纯本地 GPU、零 metered，见 M6 末条）。**要回 root 的只剩三件**：>¥10 的花费、改变「没有好几处性能退化」这条验收线怎么判的事、要 person 亲自看的产物。Q7 已按上一层的答复关掉（那个数按实测改写，读法与命令见 Q7）。**没有上一层的话不要推**：本轮所有提交都在本机。
 
 与通用约定不一样的地方：`inbox/` 里没有 `README.md`，也不该有——信的四个头行是 `kind:`（resource / cost / direction / contract / report）、`from:`、`spend:`、`id:`（`id:` 写它答的是哪一封），文件名 `inbox/YYYY-MM-DD-<slug>.md`，正文一句结论开头、末尾写 effort；不写 `to:`，收件人由「这是哪一层的 `inbox/`」决定。读信先落地（事实进本文、命令执行、答不了的转投上一层 `inbox/` 并带上 `id:`）再删文件，删信与落地同一次提交，`inbox/` 跟着仓库进版本控制。`docs/plan/plan.md` 是项目**过去**的工作包状态记录，不是本节点的 roadmap，别把它当路线图读、也别为了让报告好看去回填它（它现在仍写着 n=20 那一版，是历史快照）；`report/measurements.md` 的花费表只增行、不改旧行，GPU 墙钟单列在「本机 GPU（不计钱）」一节；许可原文按「字节数 + sha256 + 取回 URL」登记在 `README.md` 的「许可」与 `THIRD-PARTY.md`；`scripts/measure_anchor.py --analyse` 每跑一次会往 `evidence/measure/anchor-draws9/run.log` **追加**一行 `cmd:`，所以那个文件不标 hash，是允许脏着出现在 `git status` 里的路径之一。另一处是 `evidence/benchmark/logs-{n100,m2b}/` 下的 `driver.log`、`driver.out` 与逐格日志：跑的时候它们一直在长，脏着就是「跑着」，不是漂移；现在两轮都跑完了，它们与产物同一次提交落盘，之后不该再变。
 
@@ -16,7 +16,7 @@
 
 ### 里程碑
 
-**M6（预登记，2026-10-23 起跑，跑着）：2-epoch 重训，回答「IFEval 的 −12.2pp 有多大部分来自第三个 epoch」——这是那条唯一实测到的退化上最便宜的一根杠杆。**
+**M6（已落地，2026-10-23 跑完、2026-10-26 按预登记判定）：2-epoch 重训，回答「IFEval 的 −12.2pp 有多大部分来自第三个 epoch」——这是那条唯一实测到的退化上最便宜的一根杠杆。**
 
 - **为什么是这一根杠杆**：训练记录已经在手上——第三个 epoch 只把验证 PPL 从 6.069 压到 6.033（0.037，落在「验证集 78 条、差 0.03 在噪声量级」这句自己写的噪声里），训练侧同期还在降 0.087。也就是说**第三个 epoch 买的已被自己的记录判为噪声内**，而 IFEval 的 −12.2pp [−17.6, −6.8] 是目前唯一实测到、区间不含 0 的退化。两者之间没有因果证据，只有一条可试的假设；试它的代价是 idle GPU ≈2 h、零 metered、适配器可重生成，所以按 `trial` 那条法条写成预登记试验，而不是开一个新方向。
 - **假设**：第三个 epoch 是 −12.2pp 的来源之一。预测：2-epoch 适配器在同一批 295 条上的配对掉幅显著小于 3-epoch。
@@ -25,8 +25,14 @@
   1. 观测量是 `evidence/benchmark/paired-e2-ifeval.json` 的 Δ 与配对区间。**Δ ≤ −10.0pp** → 第三个 epoch 不是来源（改善 < 2.2pp，n=295 的检出下限 1.4–1.7pp 之内，读作「没动」）；记负结果，下一根杠杆是**数据混合**，不是继续调 epoch。
   2. **Δ ≥ −8.0pp** → 第三个 epoch 是来源之一（掉幅至少减掉 4.2pp，即 34%）；下一包是 2-epoch 适配器的**全量政策测量**（242 条处境 × 3 条，`measure_split.py` 同口径拆 seen/held-out），测完才谈 adopt。
   3. **−10.0pp < Δ < −8.0pp** → 这次读数判不了，只记区间与「要多大 n 才判得了」，不进入下一包。
+- **结果：走第 2 条（第三个 epoch 是来源之一）。** `evidence/benchmark/paired-e2-ifeval.json`：base **184/295 → 161/295**、Δ **−7.8pp**、配对区间 **[−13.2, −2.7]**、**44 掉 / 21 涨**、McNemar p **0.0059**（n=295，检出下限 1.7pp / 1.4pp，`unscorable=0`、冻结前缀与解码同 base 侧）。对照 3-epoch 的 −12.2pp，第三个 epoch 至少解释 **4.4pp（36%）**，剩下的 −7.8pp 区间仍整个在 0 以下。GSM8K 同步：73/100 → 72/100、−1.0pp [−10.0, +8.0]、12 掉 11 涨、p=1.000，没有退化。
+- **一个必须写下的边界**：−7.8pp 离 −8.0pp 只差 **0.2pp**。按预登记这就是第 2 条（规则先写死、看到数不动），但读数落在阈值边上，所以下一包的任何结论都要把这条边界带上，不能读成「第三个 epoch 是一大半来源」。
+- **训练记录（2 epoch = 24 步）**：train_loss 1.7173（ppl 5.57）、val_loss 1.8508、**val_ppl 6.3652**、墙钟 341 s；3-epoch 的 val_ppl 是 6.033。**验证 PPL 更差而 IFEval 更好**，两者不共线——这只否掉「按验证 PPL 选 epoch」这条做法，不是因果。
+- **报告层缺口（已修，不改数）**：包本体的配对被调用成 `analyse_paired.py ifeval --adapter-tag … --out-tag …`，而当时只解析**开头**的 flag，于是 suite 名后面的四个参数被当成四个没跑过的套件名，两格配对 `rc=1`、`paired-e2-*.json` 一个也没写出；driver 的收信还因为 `inbox/` 不在磁盘上而写不进去（`inbox/` 里没有常驻文件，删空后目录就不存在）。两处都修在包本体：flag 可以出现在套件名前后、别的前缀参数报错，driver 先 `mkdir -p inbox`。**判定用的是修好之后重跑出的那两份 JSON，数值与落盘的 `adapter-e2-*` 两格一一对应。**
 - **不做（不是漏掉）**：本轮**不 adopt** 任何新适配器——政策效果没重测，换交付物就是无证据换；不改验收线（「没有好几处性能退化」在 person 手里）；不换套件、不改数据与切分、不动 lr/rank/targets；不额外花钱（本轮 metered ¥0）。
-- 花费：`idle-compute`，预计 ≈2 h 墙钟（训练 ≈9 min + IFEval 295 与 GSM8K 100 两格并行 ≈1 h 45 m），零 metered、零 GPU 租金。
+- 花费：`idle-compute`，实测训练 341 s + 两格并行 1 h 51 m（13:47:58Z → 15:38:35Z）≈ **2 h 墙钟**，零 metered、零 GPU 租金。
+- 证据：`evidence/benchmark/{adapter-e2-ifeval,adapter-e2-gsm8k}.json`、`evidence/benchmark/paired-e2-{ifeval,gsm8k}.json`、`evidence/sft/train-summary-e2.json`、`evidence/sft/log-e2.jsonl`、`evidence/benchmark/logs-e2/`、`evidence/benchmark/run_e2_trial.sh`。
+- **下一包（第 2 条指向的那一个）**：2-epoch 适配器的**全量政策测量**（242 条处境 × 3 条，`measure_split.py` 同口径拆 seen/held-out），与已落盘的 base 侧 1452 条配对；纯本地 GPU、零 metered，测完才谈 adopt。在它跑完之前，`paired-e2-ifeval.json` 只是**通用能力**那一轴的读数，不是政策效果。
 
 **M5（已落地，2026-10-23）：把 §1 收窄到实测的两轴，回答「agentic 这半句是窄化还是补测」——按 root 下放的判定权，答「窄化」。**
 
@@ -89,7 +95,7 @@
 - **一个用词更正（表达缺口）**：被交代的机制句里把 GSM8K 的 210.2 → 95.1 称作「中位数」，实际它是**均值**；GSM8K 的中位数是 204.0 → 83.0。两个统计量现在都写出来并标清，不再混用。
 - **许可**：本仓库自己的代码与文档是 `AGPL-3.0-only`（作者 2026-10-21 指定）；原文已落 `licenses/AGPL-3.0.txt`（34523 字节，sha256 `0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0`，取自 <https://www.gnu.org/licenses/agpl-3.0.txt>，未改一字）。适配器权重不在这条里：它是 `Qwen/Qwen3.5-2B` 的衍生权重，随基座走 Apache-2.0。
 - **发布**：已获授权，最后一次推是 `74793ff`（`bdbbe31..74793ff`，10 个提交）。**推完之后在本机做的提交都没推**，包括 M2 那一批（`6dc8f52` 等）、M3 落盘（`cbbde88`）与 M3 的引用面/信这一批（本轮最后一个提交）；下一个推把它们一起带上。本轮**没有推**（上一层的指令）。
-- **钱**：DeepSeek 累计 **9059 次 ¥15.6493**（17 批分项在 `report/measurements.md`「花费」）；匹配锚点两批合计 2664 次 ¥2.1300。**GPU 两轮的金额都是 ¥0**：花费类 `idle-compute`，M2 墙钟 1.31 h（授权 5 h 的 26%）、M3 墙钟 1.72 h（剩余授权的 47%），合计 61%。授权里还剩 ≈1.97 h。
+- **钱**：DeepSeek 累计 **9059 次 ¥15.6493**（17 批分项在 `report/measurements.md`「花费」）；匹配锚点两批合计 2664 次 ¥2.1300。**GPU 两轮的金额都是 ¥0**：花费类 `idle-compute`，M2 墙钟 1.31 h（授权 5 h 的 26%）、M3 墙钟 1.72 h（剩余授权的 47%），合计 61%。**M6 把剩下那 ≈1.97 h 用掉 1.94 h**（2026-10-23 13:42:03Z → 15:38:43Z，训练 341 s + 两格并行），授权只剩 ≈2 min，所以下一次要跑 GPU 得先回上一层要。
 - **数字以哪一版为准**：锚点读数是 9 条那一份；3 条那一份只在「同一样本的前一次估计」的位置上出现，并且每次出现都带「跨 0、那份宽度是抽样噪声」的说明。文字层口径二在 99 条相交子集上是 0.0303 [−0.0180, 0.0819]，仍然跨 0。通用能力：**GSM8K 以 n=100 为准、IFEval 以 n=295 为准**；IFEval 的 n=100 与两套件的 n=20 都降为「前一次估计」（`evidence/benchmark/n100/`、`evidence/benchmark/n20/`）。
 - **M2 的派发方式留了一条运行时经验**：包内的后台 watcher 会随它的 turn 一起被回收，所以长跑只能长在 `setsid` 的 driver 上；等待必须靠「driver 自己写 completion 到 `inbox/`」或一次带 `waitFor` 的调用，**不能用后台任务加「结束 turn 等通知」，也不能 `sleep`**。M3 按这条跑，两路都 rc=0、driver 把 completion 写进了 `inbox/`。
 

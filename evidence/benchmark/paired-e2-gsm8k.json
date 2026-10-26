@@ -1,0 +1,77 @@
+{
+ "suite": "gsm8k",
+ "status": "ran",
+ "n": 100,
+ "base": {
+  "correct": 73,
+  "accuracy": 0.73,
+  "ci95_wilson": [
+   0.6356769977376873,
+   0.8073053908233518
+  ]
+ },
+ "adapter": {
+  "correct": 72,
+  "accuracy": 0.72,
+  "ci95_wilson": [
+   0.6251178763865427,
+   0.7986044083240164
+  ]
+ },
+ "delta_adapter_minus_base": -0.01,
+ "delta_ci95_paired_bootstrap": [
+  -0.1,
+  0.08
+ ],
+ "paired": {
+  "drops": 12,
+  "gains": 11,
+  "drop_ids": [
+   "gsm8k-test-170",
+   "gsm8k-test-694",
+   "gsm8k-test-242",
+   "gsm8k-test-589",
+   "gsm8k-test-276",
+   "gsm8k-test-972",
+   "gsm8k-test-927",
+   "gsm8k-test-692",
+   "gsm8k-test-1083",
+   "gsm8k-test-644",
+   "gsm8k-test-606",
+   "gsm8k-test-304"
+  ],
+  "gain_ids": [
+   "gsm8k-test-292",
+   "gsm8k-test-1013",
+   "gsm8k-test-1046",
+   "gsm8k-test-861",
+   "gsm8k-test-239",
+   "gsm8k-test-1228",
+   "gsm8k-test-383",
+   "gsm8k-test-583",
+   "gsm8k-test-322",
+   "gsm8k-test-840",
+   "gsm8k-test-1198"
+  ],
+  "unchanged": 77,
+  "mcnemar_exact_p": 1.0
+ },
+ "detectable": {
+  "smallest_drop_items_with_no_gains": 5,
+  "smallest_drop_pp_with_no_gains": 0.05,
+  "smallest_drop_items_by_paired_interval": 4,
+  "smallest_drop_pp_by_paired_interval": 0.04,
+  "alpha": 0.05
+ },
+ "harness": {
+  "limit": 100,
+  "seed": 0,
+  "frozen_sha256": "def2e3a03b1893d9bfddd792cf5e8eed7fa62db2a0ba3662882a5af0f986c1d3",
+  "decoding": "greedy",
+  "adapter_dir": ".tmp/sft/adapter-e2"
+ },
+ "elapsed_seconds": {
+  "base": 2324.1,
+  "adapter": 1642.9
+ }
+}

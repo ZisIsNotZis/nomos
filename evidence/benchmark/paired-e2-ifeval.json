@@ -1,0 +1,119 @@
+{
+ "suite": "ifeval",
+ "status": "ran",
+ "n": 295,
+ "base": {
+  "correct": 184,
+  "accuracy": 0.6237288135593221,
+  "ci95_wilson": [
+   0.5671885059619012,
+   0.6770880606205293
+  ]
+ },
+ "adapter": {
+  "correct": 161,
+  "accuracy": 0.5457627118644067,
+  "ci95_wilson": [
+   0.4887194291158826,
+   0.6016294379762491
+  ]
+ },
+ "delta_adapter_minus_base": -0.07796610169491526,
+ "delta_ci95_paired_bootstrap": [
+  -0.13220338983050847,
+  -0.02711864406779661
+ ],
+ "paired": {
+  "drops": 44,
+  "gains": 21,
+  "drop_ids": [
+   "ifeval-2752",
+   "ifeval-2391",
+   "ifeval-2374",
+   "ifeval-2844",
+   "ifeval-2871",
+   "ifeval-3376",
+   "ifeval-1928",
+   "ifeval-3619",
+   "ifeval-2918",
+   "ifeval-3456",
+   "ifeval-3001",
+   "ifeval-3386",
+   "ifeval-1107",
+   "ifeval-3263",
+   "ifeval-2245",
+   "ifeval-2253",
+   "ifeval-2825",
+   "ifeval-1132",
+   "ifeval-2069",
+   "ifeval-3109",
+   "ifeval-1658",
+   "ifeval-3615",
+   "ifeval-2292",
+   "ifeval-3084",
+   "ifeval-2649",
+   "ifeval-1147",
+   "ifeval-1098",
+   "ifeval-2324",
+   "ifeval-321",
+   "ifeval-2136",
+   "ifeval-1713",
+   "ifeval-1645",
+   "ifeval-2683",
+   "ifeval-1927",
+   "ifeval-3743",
+   "ifeval-3350",
+   "ifeval-2616",
+   "ifeval-218",
+   "ifeval-322",
+   "ifeval-1646",
+   "ifeval-2691",
+   "ifeval-2304",
+   "ifeval-1436",
+   "ifeval-1075"
+  ],
+  "gain_ids": [
+   "ifeval-2790",
+   "ifeval-1393",
+   "ifeval-3380",
+   "ifeval-2602",
+   "ifeval-2534",
+   "ifeval-1591",
+   "ifeval-2497",
+   "ifeval-3156",
+   "ifeval-1691",
+   "ifeval-122",
+   "ifeval-1203",
+   "ifeval-2957",
+   "ifeval-3091",
+   "ifeval-164",
+   "ifeval-3445",
+   "ifeval-2941",
+   "ifeval-296",
+   "ifeval-2997",
+   "ifeval-2386",
+   "ifeval-1092",
+   "ifeval-3479"
+  ],
+  "unchanged": 230,
+  "mcnemar_exact_p": 0.005918433252619309
+ },
+ "detectable": {
+  "smallest_drop_items_with_no_gains": 5,
+  "smallest_drop_pp_with_no_gains": 0.01694915254237288,
+  "smallest_drop_items_by_paired_interval": 4,
+  "smallest_drop_pp_by_paired_interval": 0.013559322033898305,
+  "alpha": 0.05
+ },
+ "harness": {
+  "limit": 295,
+  "seed": 0,
+  "frozen_sha256": "0cc0fb5726c3aa6ec9053aec2bfc8615ed631150e54cee492c0f2f963dcdf71e",
+  "decoding": "greedy",
+  "adapter_dir": ".tmp/sft/adapter-e2"
+ },
+ "elapsed_seconds": {
+  "base": 5436.8,
+  "adapter": 6625.9
+ }
+}
