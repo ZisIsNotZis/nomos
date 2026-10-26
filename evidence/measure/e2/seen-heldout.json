@@ -1,0 +1,147 @@
+{
+ "what": "三点测量的主指标按「适配器训练时见过 / 按会话留出」拆开：与 --analyse 同一套重采样代码、同一组种子，重抽单位是处境；子集只保留参照物可用且两侧齐全的处境",
+ "source": {
+  "per_situation": "evidence/measure/e2/per-situation.jsonl",
+  "summary": "evidence/measure/e2/summary.json",
+  "train": "data/sft-train.jsonl",
+  "val": "data/sft-val.jsonl"
+ },
+ "situation_counts": {
+  "total": 242,
+  "seen_in_training": 191,
+  "held_out_by_session": 51
+ },
+ "paired_all": {
+  "situations_paired": 148,
+  "status": "defined",
+  "base_mean": 0.0022522522522522522,
+  "base_ci": [
+   0.0,
+   0.006756756756756757
+  ],
+  "post_mean": 0.0945945945945946,
+  "post_ci": [
+   0.05405405405405406,
+   0.13963963963963963
+  ],
+  "delta": 0.09234234234234234,
+  "delta_ci": [
+   0.05405405405405406,
+   0.13513513513513514
+  ],
+  "decomposition": {
+   "format_part": 0.06237820759147773,
+   "decision_part": 0.02996413475086461,
+   "interaction_part": 0.053224883651423936,
+   "format_share": 0.6755103456247833
+  },
+  "format_part_ci": [
+   0.030847715185064583,
+   0.11268373636794692
+  ],
+  "decision_part_ci": [
+   -0.022469367763485407,
+   0.06755686803192741
+  ],
+  "X": 0.09255079006772009,
+  "X_status": "defined",
+  "X_ci": [
+   0.05405405405405406,
+   0.13738738738738737
+  ],
+  "X_replicates_undefined": 0,
+  "countable_control": {
+   "base_emits_action": 0.0563063063063063,
+   "post_emits_action": 0.9504504504504504
+  }
+ },
+ "paired_seen": {
+  "situations_paired": 113,
+  "status": "defined",
+  "base_mean": 0.0029498525073746312,
+  "base_ci": [
+   0.0,
+   0.008849557522123894
+  ],
+  "post_mean": 0.11209439528023599,
+  "post_ci": [
+   0.06489675516224189,
+   0.16519174041297935
+  ],
+  "delta": 0.10914454277286136,
+  "delta_ci": [
+   0.061946902654867256,
+   0.16519174041297935
+  ],
+  "decomposition": {
+   "format_part": 0.07791563036227274,
+   "decision_part": 0.031228912410588623,
+   "interaction_part": 0.055864036863516306,
+   "format_share": 0.7138756403462286
+  },
+  "format_part_ci": [
+   0.03705412888864759,
+   0.14197921056328136
+  ],
+  "decision_part_ci": [
+   -0.038750850918992504,
+   0.08056225976579959
+  ],
+  "X": 0.10946745562130178,
+  "X_status": "defined",
+  "X_ci": [
+   0.05899705014749262,
+   0.1627218934911243
+  ],
+  "X_replicates_undefined": 0,
+  "countable_control": {
+   "base_emits_action": 0.05309734513274336,
+   "post_emits_action": 0.9528023598820059
+  }
+ },
+ "paired_held_out": {
+  "situations_paired": 35,
+  "status": "defined",
+  "base_mean": 0.0,
+  "base_ci": [
+   0.0,
+   0.0
+  ],
+  "post_mean": 0.03809523809523809,
+  "post_ci": [
+   0.0,
+   0.08571428571428572
+  ],
+  "delta": 0.0380952380952381,
+  "delta_ci": [
+   0.0,
+   0.08571428571428572
+  ],
+  "decomposition": {
+   "format_part": 0.017700817700817703,
+   "decision_part": 0.020394420394420396,
+   "interaction_part": 0.035401635401635406,
+   "format_share": 0.46464646464646464
+  },
+  "format_part_ci": [
+   0.0,
+   0.04134453781512605
+  ],
+  "decision_part_ci": [
+   0.0,
+   0.0459499263622975
+  ],
+  "X": 0.03809523809523809,
+  "X_status": "defined",
+  "X_ci": [
+   0.0,
+   0.08571428571428572
+  ],
+  "X_replicates_undefined": 0,
+  "countable_control": {
+   "base_emits_action": 0.06666666666666665,
+   "post_emits_action": 0.9428571428571428
+  }
+ },
+ "caveat": "两半都是同一批落盘回答的子集，不是两次独立读数；held-out 一侧的配对处境少，区间宽，点估计只能读方向。held-out 是按会话切分的（12 个会话），不是随机 20% 处境。"
+}

@@ -1,0 +1,4 @@
+paired_all      n=148 base=0.0023 post=0.0946 delta=+0.0923 ci95=[+0.0541,+0.1351] X=0.0926    emits 0.056->0.950
+paired_seen     n=113 base=0.0029 post=0.1121 delta=+0.1091 ci95=[+0.0619,+0.1652] X=0.1095    emits 0.053->0.953
+paired_held_out n= 35 base=0.0000 post=0.0381 delta=+0.0381 ci95=[+0.0000,+0.0857] X=0.0381    emits 0.067->0.943
+situation_counts {'total': 242, 'seen_in_training': 191, 'held_out_by_session': 51} -> /home/z/vibe/nomos/evidence/measure/e2/seen-heldout.json

@@ -111,10 +111,12 @@ EOF
 | M2 `m2-n100`（2026-10-21T12:41:08 → 13:59:41） | GSM8K/IFEval × base/adapter | 400 | 78 min 32 s（4713 s） | 8290 s（两路并行） | ≈5 h `idle-compute` | **26%** |
 | M3 `m3-ifeval-295`（2026-10-21T14:07:46 → 15:50:56） | IFEval × base/adapter | 590 | **1 h 43 min 10 s（6190 s）** | 11609 s（两路并行） | M2 剩下的 ≈3.7 h | **47%** |
 | M6 `e2`（2026-10-23T13:42:03Z → 15:38:43Z） | 训 2-epoch + IFEval 295 / GSM8K 100 × adapter | 395 | **1 h 56 min 40 s（7000 s）** | 训练 341.4 s + 6625.9 s（两格并行；GSM8K 1642.9 s 在影子内） | M3 剩下的 ≈1.97 h | **98%** |
+| M6 政策 `e2`（2026-10-26T12:24:20Z → 13:08:07Z） | 2-epoch 政策测量 × post | 726 | **43 min 47 s（2627 s）** | 2622 s（单进程，含加载基座；base 侧 726 条是拷入的落盘行，不重生成） | 用户 2026-10-26 的「go」给的 ≈1 h | **73%** |
 
 - 起止取自 `evidence/benchmark/logs-n100/driver.log` 的两行时间戳（`preflight ok` 与 `analyse rc=0`），不是估的；`driver.pid` 记的 pid 91165 在 `analyse` 之后退出，watcher 的退出通知在当时的收信目录里（已落地并删信；那个目录现在叫 `inbox/`）。
 - 逐格 `elapsed_seconds` 在 `evidence/benchmark/paired-*.json`，单条 14.1–23.4 s；n=100 比 n=20 那一轮的 23.3–35.9 s 快，因为跑的时候卡上是空的（预检 23560 MiB 空闲）。
 - 剩 ≈3.7 小时未用。这一轮 **没有 metered 调用**，所以上表的 `TOTAL 9059 44 ¥15.6493` 不变。
+- M6 政策那一行：起止取自 `evidence/measure/e2/logs/driver-first-run.log`（第一次跑的 driver.log 被收信失败后的重跑覆盖，那份原文按后台输出的五行补齐；重跑只重算分析与拆分，生成 0 秒）；生成 726 条、21 条撞 320 上限。
 - M6 那一行：起止取自 `evidence/benchmark/logs-e2/driver.log` 的 `start` 与 `done` 两行；`train rc=0` 与 `bench rc=…` 把训练（341.4 s，`evidence/sft/train-summary-e2.json`）与两格并行（`adapter-e2-*.json` 的 `elapsed_seconds`）分开。**跑完之后授权只剩 ≈2 min**，所以再要 GPU 得先回上一层要一份新授权。
 - M3 那一行先在派发时落账（2026-10-21T14:07:46，`evidence/benchmark/logs-m2b/driver.log` 第一行），跑完后按同一份 log 补完：起止取 `preflight` 与 `completion written` 两行时间戳，逐格耗时取 `paired-ifeval.json` 的 `elapsed_seconds`（base 5436.8 s、adapter 6172.5 s）。两轮合计 3.03 h，是那次 5 h `idle-compute` 授权的 61%。未定就写未定，不填零也不按预估充数——这一次是实测填的，不是预估。
 

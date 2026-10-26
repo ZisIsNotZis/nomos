@@ -1,0 +1,8 @@
+start 2026-10-26T13:08:41Z adapter=.tmp/sft/adapter-e2 out=evidence/measure/e2
+generate rc=0 2026-10-26T13:08:42Z
+analyse rc=0 2026-10-26T13:08:45Z
+summary.models.post /home/z/vibe/nomos/.tmp/sft/adapter-e2
+meta rc=0 2026-10-26T13:08:45Z
+split rc=0 2026-10-26T13:08:47Z
+completion written
+done 2026-10-26T13:08:47Z

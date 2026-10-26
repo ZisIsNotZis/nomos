@@ -1175,6 +1175,30 @@ def main():
         action="store_true",
         help="生成没跑满时也写终版，只在两侧齐全的处境子集上算（输出强制带 n_pairs 与覆盖率）",
     )
+    parser.add_argument(
+        "--adapter-dir",
+        default=None,
+        help="post 侧用哪个适配器（默认 .tmp/sft/adapter-narrow）；试验件用自己的目录，不覆盖落盘件",
+    )
+    parser.add_argument(
+        "--answers",
+        default=None,
+        help="读写哪份回答文件（默认 evidence/measure/answers.jsonl）；试验件另开一份",
+    )
+    parser.add_argument(
+        "--out-dir",
+        default=None,
+        help="summary/per-situation 写到哪个目录（默认 evidence/measure）；试验件另开一个目录",
+    )
+    parser.add_argument(
+        "--max-new-tokens",
+        type=int,
+        default=None,
+        help=(
+            "这次生成的上限；要与对照侧同一上限时显式给值。落盘的 1452 条是 320 下的生成，"
+            "所以一个要与它配对的新侧也跑 320（新套件不配对时才用默认的最长合法输出十倍）"
+        ),
+    )
     args = parser.parse_args()
     chosen = [name for name in ("generate", "analyse", "check") if getattr(args, name)]
     if len(chosen) != 1:
@@ -1183,6 +1207,21 @@ def main():
         raise SystemExit("--preliminary 只跟 --analyse 一起用")
     if args.allow_partial_pairs and not args.analyse:
         raise SystemExit("--allow-partial-pairs 只跟 --analyse 一起用")
+    # 路径与上限按参数改写模块全局量：下面每个函数读的都是这些名字，所以没有第二套取值。
+    global ADAPTER, ANSWERS, EVIDENCE, SUMMARY, PER_SITUATION
+    global PRELIMINARY, PRELIMINARY_PER_SITUATION, MAX_NEW_TOKENS
+    if args.adapter_dir:
+        ADAPTER = Path(args.adapter_dir).resolve()
+    if args.answers:
+        ANSWERS = Path(args.answers).resolve()
+    if args.out_dir:
+        EVIDENCE = Path(args.out_dir).resolve()
+        SUMMARY = EVIDENCE / "summary.json"
+        PER_SITUATION = EVIDENCE / "per-situation.jsonl"
+        PRELIMINARY = EVIDENCE / "preliminary.json"
+        PRELIMINARY_PER_SITUATION = EVIDENCE / "preliminary-per-situation.jsonl"
+    if args.max_new_tokens is not None:
+        MAX_NEW_TOKENS = args.max_new_tokens
     if args.generate:
         run_generate()
     elif args.check:

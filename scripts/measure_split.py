@@ -113,10 +113,10 @@ def build():
             "同一组种子，重抽单位是处境；子集只保留参照物可用且两侧齐全的处境"
         ),
         "source": {
-            "per_situation": "evidence/measure/per-situation.jsonl",
-            "summary": "evidence/measure/summary.json",
-            "train": "data/sft-train.jsonl",
-            "val": "data/sft-val.jsonl",
+            "per_situation": str(PER_SITUATION.relative_to(REPO)),
+            "summary": str(SUMMARY.relative_to(REPO)),
+            "train": str(TRAIN.relative_to(REPO)),
+            "val": str(VAL.relative_to(REPO)),
         },
         "situation_counts": {
             "total": len(measured),
@@ -165,7 +165,17 @@ def build():
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true", help="compare against the landed file instead of writing")
+    parser.add_argument("--per-situation", default=None, help="默认 evidence/measure/per-situation.jsonl")
+    parser.add_argument("--summary", default=None, help="默认 evidence/measure/summary.json")
+    parser.add_argument("--out", default=None, help="默认 evidence/measure/seen-heldout.json")
     args = parser.parse_args()
+    global PER_SITUATION, SUMMARY, OUT
+    if args.per_situation:
+        PER_SITUATION = Path(args.per_situation).resolve()
+    if args.summary:
+        SUMMARY = Path(args.summary).resolve()
+    if args.out:
+        OUT = Path(args.out).resolve()
     payload = build()
     if args.check:
         if not OUT.exists():

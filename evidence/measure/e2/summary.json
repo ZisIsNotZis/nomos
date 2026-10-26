@@ -1,0 +1,335 @@
+{
+ "situations_total": 242,
+ "situations_paired": 148,
+ "situations_reference_usable": 148,
+ "situations_base_complete": 242,
+ "situations_base_partial": 0,
+ "situations_post_complete": 242,
+ "situations_post_partial": 0,
+ "situations_both_complete": 242,
+ "generation_complete": true,
+ "n_pairs": 148,
+ "coverage": 0.6115702479338843,
+ "coverage_definition": "coverage = n_pairs / situations_total；n_pairs 是参照物可用且两侧各 3 条齐全的处境数，所以覆盖率不足 1 有一部分来自参照物定不下来（见 reference_selection），不是生成缺失",
+ "n_pairs_insufficient": false,
+ "n_pairs_insufficient_below": 60,
+ "draws_per_model": 3,
+ "decoding": {
+  "temperature": 0.7,
+  "top_p": 0.95,
+  "max_new_tokens": 320
+ },
+ "models": {
+  "base": "/home/z/hf/hub/models--Qwen--Qwen3.5-2B/snapshots/15852e8c16360a2fea060d615a32b45270f8a8fc",
+  "post": "/home/z/vibe/nomos/.tmp/sft/adapter-e2"
+ },
+ "reference": {
+  "source": "evidence/densify/answers.jsonl 的 law 条件",
+  "how": "每处境 law 条件里出现次数最多的动作签名，平局取先出现的那条",
+  "usable_when": "票数 ≥ 2 且签名非空",
+  "votes": {
+   "1": 40,
+   "2": 73,
+   "3": 124,
+   "4": 5
+  }
+ },
+ "reference_selection": {
+  "nonempty_and_stable": 148,
+  "empty_reference": 54,
+  "unstable_reference": 40
+ },
+ "base_mean": 0.0022522522522522522,
+ "base_ci": [
+  0.0,
+  0.006756756756756757
+ ],
+ "post_mean": 0.0945945945945946,
+ "post_ci": [
+  0.05405405405405406,
+  0.13963963963963963
+ ],
+ "bare_deepseek_mean": 0.35022522522522526,
+ "bare_deepseek_ci": [
+  0.2849099099099099,
+  0.4189189189189189
+ ],
+ "law_deepseek": 1.0,
+ "X_definition": "X = (post_mean - base_mean) / (1 - base_mean)，两侧齐全的处境配对，自举单位是处境",
+ "X": 0.09255079006772009,
+ "X_ci": [
+  0.05405405405405406,
+  0.13738738738738737
+ ],
+ "X_status": "defined",
+ "X_base_paired": 0.0022522522522522522,
+ "X_post_paired": 0.0945945945945946,
+ "X_headroom": 0.9977477477477478,
+ "X_near_ceiling": false,
+ "X_replicates_undefined": 0,
+ "base_paired_ci": [
+  0.0,
+  0.006756756756756757
+ ],
+ "post_paired_ci": [
+  0.0563063063063063,
+  0.13738738738738737
+ ],
+ "countable_control": {
+  "what": "回答里有没有可解析动作（签名非空），不经评委、不看参照物",
+  "base_emits_action": 0.0563063063063063,
+  "base_emits_action_ci": [
+   0.036036036036036036,
+   0.07882882882882883
+  ],
+  "post_emits_action": 0.9504504504504504,
+  "post_emits_action_ci": [
+   0.9166666666666666,
+   0.9774774774774774
+  ]
+ },
+ "text_signature": {
+  "what": "文字层决策签名一致率：每条回答压成“提了问/停住等确认/下了断言/给了可核对产物”的定序元组，与带法 DeepSeek 的多数文字签名比",
+  "features": {
+   "asks": "有以问号或“吗/呢”收尾的句子（提问），判据 judge.QUESTION_END",
+   "stops": "有门前停顿标记，如等确认、请你决定、先不动手（停住等确认），判据 judge.STOP",
+   "asserts": "至少一句下断言且既没给依据也没标不确定（下断言），判据 judge.CLAIM / EVIDENCE / HEDGE",
+   "artifacts": "给出可核对产物：路径、哈希、行号、带单位数字或反引号原文，判据 judge.ARTIFACT_*"
+  },
+  "predicates": "eval/judge.py 的 QUESTION_END / STOP / CLAIM+EVIDENCE+HEDGE / ARTIFACT_*，本脚本只组合",
+  "reference": {
+   "source": "evidence/densify/answers.jsonl 的 law 条件",
+   "usable_when": "票数 ≥ 2 且签名非空",
+   "votes": {
+    "1": 30,
+    "2": 112,
+    "3": 97,
+    "4": 3
+   }
+  },
+  "reference_selection": {
+   "nonempty_and_stable": 169,
+   "empty_reference": 47,
+   "unstable_reference": 26
+  },
+  "reference_shape": {
+   "single_feature_share": 0.6449704142011834,
+   "most_common": [
+    [
+     [
+      "artifacts"
+     ],
+     82
+    ],
+    [
+     [
+      "asserts"
+     ],
+     27
+    ],
+    [
+     [
+      "asserts",
+      "artifacts"
+     ],
+     24
+    ],
+    [
+     [
+      "asks",
+      "stops",
+      "asserts"
+     ],
+     9
+    ],
+    [
+     [
+      "asks",
+      "stops",
+      "artifacts"
+     ],
+     8
+    ],
+    [
+     [
+      "asks",
+      "asserts"
+     ],
+     5
+    ],
+    [
+     [
+      "stops",
+      "asserts"
+     ],
+     3
+    ],
+    [
+     [
+      "asks",
+      "artifacts"
+     ],
+     3
+    ]
+   ]
+  },
+  "situations_reference_usable": 169,
+  "situations_paired": 169,
+  "base_mean": 0.3412228796844181,
+  "base_ci": [
+   0.28402366863905326,
+   0.398422090729783
+  ],
+  "post_mean": 0.2583826429980276,
+  "post_ci": [
+   0.20512820512820512,
+   0.3116370808678501
+  ],
+  "base_paired_mean": 0.3412228796844181,
+  "post_paired_mean": 0.2583826429980276,
+  "delta": -0.08284023668639051,
+  "delta_ci": [
+   -0.1380670611439843,
+   -0.029585798816568015
+  ],
+  "bare_deepseek_mean": 0.5330374753451677,
+  "bare_deepseek_ci": [
+   0.4714003944773176,
+   0.5961538461538461
+  ],
+  "law_deepseek": 1.0,
+  "base_emits_text_signature": 0.7712031558185405,
+  "base_emits_text_signature_ci": [
+   0.7297830374753451,
+   0.8106508875739645
+  ]
+ },
+ "action_comparable": {
+  "what": "只取回答里已有可解析动作的处境，在这个子集上算一致率",
+  "rule": "该侧 3 条抽样里至少 1 条签名非空；子集少于 30 条处境时conclusive=false，只能作参考、不能作结论",
+  "base": {
+   "situations": 23,
+   "answers": 69,
+   "conclusive": false,
+   "sides": {
+    "base": {
+     "mean": 0.014492753623188406,
+     "ci": [
+      0.0,
+      0.043478260869565216
+     ]
+    }
+   }
+  },
+  "post": {
+   "situations": 145,
+   "answers": 435,
+   "conclusive": true,
+   "sides": {
+    "post": {
+     "mean": 0.09655172413793103,
+     "ci": [
+      0.0574712643678161,
+      0.14252873563218388
+     ]
+    }
+   }
+  },
+  "paired": {
+   "situations": 23,
+   "answers": 69,
+   "conclusive": false,
+   "sides": {
+    "base": {
+     "mean": 0.014492753623188406,
+     "ci": [
+      0.0,
+      0.043478260869565216
+     ]
+    },
+    "post": {
+     "mean": 0.014492753623188406,
+     "ci": [
+      0.0,
+      0.043478260869565216
+     ]
+    }
+   },
+   "delta": 0.0,
+   "delta_ci": [
+    -0.043478260869565216,
+    0.043478260869565216
+   ]
+  }
+ },
+ "decomposition": {
+  "what": "主指标的格式/决策分解：P 是有可解析动作的回答比例，A 是这些回答里吻合的比例",
+  "formula": "Δ = (P_post - P_base)·Ā + (A_post - A_base)·P̄，Ā、P̄ 取两侧中点",
+  "format_part_meaning": "格式项：回答里出现可解析动作的比例变了多少带来的那一份",
+  "decision_part_meaning": "决策项：在有动作的回答里选对比参照动作的比例变了多少带来的那一份",
+  "format_share_meaning": "格式项占 Δ 的比例；1 表示提升全来自格式，0 表示全来自决策，介于两者之间表示两件都在动",
+  "base": {
+   "situations": 148,
+   "answers": 444,
+   "emitting_answers": 25,
+   "agreeing_answers": 1,
+   "emits_share": 0.05630630630630631,
+   "agreement_given_emit": 0.04,
+   "mean": 0.0022522522522522522
+  },
+  "post": {
+   "situations": 148,
+   "answers": 444,
+   "emitting_answers": 422,
+   "agreeing_answers": 42,
+   "emits_share": 0.9504504504504504,
+   "agreement_given_emit": 0.0995260663507109,
+   "mean": 0.0945945945945946
+  },
+  "status": "defined",
+  "delta": 0.09234234234234234,
+  "format_part": 0.06237820759147773,
+  "decision_part": 0.02996413475086461,
+  "format_share": 0.6755103456247833,
+  "residual": 0.0,
+  "format_part_at_base": 0.03576576576576577,
+  "decision_part_at_base": 0.003351692925152641,
+  "interaction_part": 0.053224883651423936,
+  "interaction_share": 0.5763865449081031,
+  "at_base_residual": 0.0,
+  "delta_ci": [
+   0.05405405405405406,
+   0.13513513513513514
+  ],
+  "format_part_ci": [
+   0.030847715185064583,
+   0.11268373636794692
+  ],
+  "decision_part_ci": [
+   -0.022469367763485407,
+   0.06755686803192741
+  ],
+  "format_part_at_base_ci": [
+   0.0,
+   0.1253071253071253
+  ],
+  "decision_part_at_base_ci": [
+   -0.0023060052892988456,
+   0.007866795366795366
+  ],
+  "interaction_part_ci": [
+   -0.03970339541575404,
+   0.1217706677265501
+  ],
+  "interaction_share_ci": [
+   -0.5121951219512195,
+   0.960093896713615
+  ],
+  "replicates_undefined": 0
+ },
+ "status": "final",
+ "answers_rows": 1452,
+ "answer_duplicates_dropped": 0,
+ "stored_signature_mismatches": 0,
+ "truncated_answers": 44
+}

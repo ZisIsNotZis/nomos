@@ -1,0 +1,8 @@
+# 第一次跑（2026-10-26）的 driver.log 原文：driver 的 start 行当时用 `tee` 而不是 `tee -a`，
+# 所以收信失败后那次重跑把这一份覆盖了。五行取自那次后台调用的输出，逐字未改。
+start 2026-10-26T12:24:20Z adapter=.tmp/sft/adapter-e2 out=evidence/measure/e2
+拷入 base 侧 726 行 -> /home/z/vibe/nomos/evidence/measure/e2/answers.jsonl（sha256 ad8188cbe0c0d480）
+generate rc=0 2026-10-26T13:08:02Z
+analyse rc=0 2026-10-26T13:08:05Z
+split rc=0 2026-10-26T13:08:07Z
+done 2026-10-26T13:08:07Z
