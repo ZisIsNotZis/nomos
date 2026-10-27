@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" role="img" aria-label="nomos">
+  <!-- mark: a written rule (bordered tablet with clauses) being measured by a probe line -->
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="8" width="22" height="24" rx="4"/>
+    <path d="M12 15h9M12 20h6M12 25h9"/>
+    <path d="M20 20h14"/>
+    <path d="M28 14v12" opacity="0.45"/>
+  </g>
+  <circle cx="36" cy="20" r="2.6" fill="currentColor"/>
+  <text x="50" y="27.5" fill="currentColor"
+        font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="21" font-weight="600" letter-spacing="0.4">nomos</text>
+</svg>
