@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check that the conflict audit partitions the node index exactly and disjointly.
 
-`docs/method/conflicts.md` carries a machine-readable `partition:` block: every
+`constitution/conflicts.md` carries a machine-readable `partition:` block: every
 leaf of `constitution/nodes.json` lands either in an examined cluster or in a
 named "no candidate pair" bucket, and no leaf lands in two places. This script
 parses that block, sums it, and exits nonzero unless the partition is exact and
@@ -20,7 +20,7 @@ import yaml
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 NODES = HERE / "nodes.json"
-CONFLICTS = ROOT / "docs" / "method" / "conflicts.md"
+CONFLICTS = ROOT / "constitution" / "conflicts.md"
 
 SUMMARY_RE = re.compile(
     r"审计计数：叶子 (\d+) = 已检查簇成员 (\d+) \+ 无候选对成员 (\d+)[。；]"
@@ -37,7 +37,7 @@ def load_partition(text):
         data = yaml.safe_load(candidate)
         if isinstance(data, dict) and "partition" in data:
             return data["partition"]
-    raise SystemExit("no ```yaml partition block in docs/method/conflicts.md")
+    raise SystemExit("no ```yaml partition block in constitution/conflicts.md")
 
 
 def main():

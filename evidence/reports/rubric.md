@@ -1,6 +1,6 @@
 # rubric 与分辨力
 
-类型：结果。所有者：主代理。上游：[设计](../docs/method/design.md) 第 4、5、7 节，[计划](../docs/plan/plan.md) 第七步。
+类型：结果。所有者：主代理。上游：[设计](../../docs/5_PRODUCT.md) 第 4、5、7 节，[计划](../../docs/0_ROADMAP.md) 第七步。
 
 ## 结论
 

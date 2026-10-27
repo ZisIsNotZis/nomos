@@ -1,6 +1,6 @@
 # 数据卡：nomos SFT 数据集（366 条样本）
 
-类型：产物。所有者：主代理。上游：[设计](method/design.md)、[数据报告](../report/sft-data.md)、[构建脚本](../scripts/build_sft.py)。
+类型：产物。所有者：主代理。上游：[设计](../docs/5_PRODUCT.md)、[数据报告](../evidence/reports/sft-data.md)、[构建脚本](../scripts/build_sft.py)。
 
 一句话：366 条「一条处境 → 一条带法回答」的样本，来自法条作者本人的 51 个真实会话，用来教一个 2B 模型在没有法条原文的上下文里怎么动手。
 
@@ -25,10 +25,10 @@
 | `law`（带法） | 整部 `AGENTS.md`（93 670 字符）原文 | SFT 的 target；测量里的参照物 |
 | `bare`（不带法） | 无 system 消息 | 参照量表的刻度（不带法强模型）；DPO 的 rejected |
 
-- **双答批次**（`data/pairs.jsonl`）：183 条处境各一对 law/bare，筛掉两侧同动作 6 条与坏件 3 条后 174 条入账，是 DPO 用过的偏好对（[`report/data-quality.md`](../report/data-quality.md)）。
+- **双答批次**（`data/pairs.jsonl`）：183 条处境各一对 law/bare，筛掉两侧同动作 6 条与坏件 3 条后 174 条入账，是 DPO 用过的偏好对（[`evidence/reports/data-quality.md`](../evidence/reports/data-quality.md)）。
 - **加密抽样批次**（SFT 用，`evidence/densify/answers.jsonl`）：242 条处境 × 2 条件 × 3.04 次 = **1470 次调用**（233 条处境每条件 3 条、9 条每条件 4 条），花费 ¥1.253，无失败。其中 `law` 条件的 **735 条**是 SFT 的候选 target。
-- **解码**：`temperature 0.0`、`max_tokens 600`、`thinking` 关闭。温度 0 下同一提示重发仍有约 42–51% 的动作差异，这是服务端非确定性，也是整套数据的噪声地板（[`report/resample.md`](../report/resample.md)）。
-- **prompt**：处境原文 `excerpt` 接一句续写指令（`INSTRUCTION`），**不含任何法条原文**；构建时用 175 条法条短语逐条查过，命中 0 即通过（[`report/sft-data.md`](../report/sft-data.md) 的「运行时断言」）。
+- **解码**：`temperature 0.0`、`max_tokens 600`、`thinking` 关闭。温度 0 下同一提示重发仍有约 42–51% 的动作差异，这是服务端非确定性，也是整套数据的噪声地板（[`evidence/reports/resample.md`](../evidence/reports/resample.md)）。
+- **prompt**：处境原文 `excerpt` 接一句续写指令（`INSTRUCTION`），**不含任何法条原文**；构建时用 175 条法条短语逐条查过，命中 0 即通过（[`evidence/reports/sft-data.md`](../evidence/reports/sft-data.md) 的「运行时断言」）。
 
 ## 筛到什么程度
 

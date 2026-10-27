@@ -1,6 +1,6 @@
 # rubric 的诊断：分不开是仪器看不见，还是两侧本来就近
 
-类型：结果。所有者：主代理。上游：[rubric](rubric.md) 的分辨力结果、[设计](../docs/method/design.md) 第 4、5、7 节、[计划](../docs/plan/plan.md) 第七步。
+类型：结果。所有者：主代理。上游：[rubric](rubric.md) 的分辨力结果、[设计](../../docs/5_PRODUCT.md) 第 4、5、7 节、[计划](../../docs/0_ROADMAP.md) 第七步。
 
 ## 结论
 
@@ -112,7 +112,7 @@ n 小于 129 的是缺值口径：四个与变更动作有关的子项只在回�
 - 51 个会话切半约 25/26，同会话内的处境高度相关，所以一次切分并不等于 200 个独立样本；但"0 通过"这个结果对切分方式不敏感。
 - 子项是文本启发式，词表与正则就是判据；退化项的判断（恒为 1、两侧逐值相同）是对本批 348 条计数的直接统计，不是对判据设计的推测。
 - 本诊断不回答"法有没有用"，只回答"这套仪器能不能测出这个差"。
-- `report/rubric.md` 与 `report/measurements.md` 里那批 64 组分辨力数字是重算之前的，与 `evidence/rubric/summary.json` 不一致，由这两份文档的所有者按新值更新。
+- `evidence/reports/rubric.md` 与 `evidence/reports/measurements.md` 里那批 64 组分辨力数字是重算之前的，与 `evidence/rubric/summary.json` 不一致，由这两份文档的所有者按新值更新。
 
 ## 证据与复算
 

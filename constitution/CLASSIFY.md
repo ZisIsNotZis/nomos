@@ -1,6 +1,6 @@
 # 叶子分类的判定程序
 
-类型：方法（审计判据）。所有者：主代理。上游：[实验规格 §2](../docs/method/spec.md)、[固定件节点索引](nodes.json)。
+类型：方法（审计判据）。所有者：主代理。上游：[产品边界](../docs/5_PRODUCT.md)、[固定件节点索引](nodes.json)。
 
 本文把一个叶子的原文映射到 `behavior` / `definitional` / `conceptual` 之一，`constitution/classification.json` 是逐条判定记录，`constitution/nodes.json` 由它生成。
 

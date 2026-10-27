@@ -23,7 +23,7 @@
 ## 冲突审计
 
 - 比对 68 对，**真冲突 0**；优先级处境 10，平衡点 4，其余为无关；172 个叶子论证为不碰撞。
-- 证据：`docs/method/conflicts.md`。
+- 证据：`constitution/conflicts.md`。
 
 ## 评委可靠性
 

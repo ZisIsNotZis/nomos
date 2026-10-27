@@ -7,7 +7,7 @@
 A. 任何一句提到 `agentic` 的话，同一句里必须有一个「没测」类标记
    （未测 / 没测 / 没有测 / 不测 / 未验证 / 不可证伪 / 不声称 / 不在这条主张里）。
    只读发布面，不读证据、脚本、vendor 与 `mail/`。
-B. 主张面（`docs/method/design.md` §1、`docs/paper/draft.md` §1）必须点名
+B. 主张面（`docs/5_PRODUCT.md`「主张」、`paper/draft.md` §1）必须点名
    本轮实测的两条轴（GSM8K、IFEval）。
 
 这个检查是给「§1 收窄成实测的两轴」那条决定用的：它失败时会指出具体哪一句
@@ -23,11 +23,10 @@ ROOT = Path(__file__).resolve().parent.parent
 # 发布面：读者会当成「本研究的主张」来读的文本。
 SURFACES = [
     "README.md",
-    "docs/model-card.md",
-    "docs/paper/draft.md",
-    "docs/method/design.md",
-    "docs/method/limits.md",
-    "report/sft-benchmark.md",
+    "card/model-card.md",
+    "paper/draft.md",
+    "docs/5_PRODUCT.md",
+    "evidence/reports/sft-benchmark.md",
 ]
 
 # 一句里出现任何一个，就算这一句说清了状态。
@@ -37,8 +36,8 @@ AXIS = "agentic"
 
 # (文件, 主张段起始行前缀, 主张段结束行前缀)
 CLAIM_SECTIONS = [
-    ("docs/method/design.md", "## 1 ", "## 2 "),
-    ("docs/paper/draft.md", "## 1 ", "## 2 "),
+    ("docs/5_PRODUCT.md", "### 主张（发布文本里唯一被允许的说法）", "### 不是什么"),
+    ("paper/draft.md", "## 1 ", "## 2 "),
 ]
 
 MEASURED_AXES = ("GSM8K", "IFEval")

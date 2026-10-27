@@ -1,14 +1,14 @@
 # 冲突与优先级审计
 
-类型：方法（审计）。所有者：主代理。上游：[设计](design.md)、[计划](../plan/plan.md)、[固定件节点索引](../../constitution/nodes.json)。
+类型：方法（审计）。所有者：主代理。上游：[设计](../docs/5_PRODUCT.md)、[计划](../docs/0_ROADMAP.md)、[固定件节点索引](nodes.json)。
 
-对象是 `constitution/AGENTS.yaml` 的 264 个叶子节点；节点原文、分类与可训练标记以 [constitution/nodes.json](../../constitution/nodes.json) 为唯一事实来源，本文只引用，不复述。判定程序见 [constitution/CLASSIFY.md](../../constitution/CLASSIFY.md)。
+对象是 `constitution/AGENTS.yaml` 的 264 个叶子节点；节点原文、分类与可训练标记以 [constitution/nodes.json](nodes.json) 为唯一事实来源，本文只引用，不复述。判定程序见 [constitution/CLASSIFY.md](CLASSIFY.md)。
 
 本文的结论只覆盖它实际比较过的对：264 个叶子全部被划分进一个已检查簇或一个"无候选对"桶，本文给出每对的判定，并对每个无候选对的桶给出"成员为何不会相撞"的理由。哪些叶子只是被论证不会相撞、没有被逐对比较，见[结论的支撑范围](#结论的支撑范围)。
 
 ## 需要用户裁决
 
-无真冲突。按[规格 §2.6](design.md) 的定义，真冲突指两条规则对同一动作给出相反要求且没有优先级路径可走；本次审计比较的 68 对候选里没有一对满足该条件。这个结论的范围见[结论的支撑范围](#结论的支撑范围)。
+无真冲突。按[规格 §2.6](../docs/5_PRODUCT.md) 的定义，真冲突指两条规则对同一动作给出相反要求且没有优先级路径可走；本次审计比较的 68 对候选里没有一对满足该条件。这个结论的范围见[结论的支撑范围](#结论的支撑范围)。
 
 ## 优先级处境
 
@@ -1063,7 +1063,7 @@ partition:
 
 本节是第一次独立复核者对该修订之前的 `537bb53` 的只读意见原文，其中的 231/9/24/62/202 等计数属于那个修订；对它的处置见[第二次复核的处置](#第二次复核的处置)。
 
-独立复核者，fresh context。抽样而非全读：读了 `docs/method/spec.md`、`docs/plan/m1.md`、`docs/method/limits.md`、`README.md`、`docs/method/conflicts.md` 全文；`constitution/nodes.json` 只按点路径读，覆盖 laws、intent.decisions/risk、resources.efficiency/scheduling、attention.delivery/phases、change.entries/shape、proof.review/process 约 45 个叶子，占 264 的约 17%。`build_nodes.py` 的 `CLASSIFICATION` 字典作为分类的“答案键”被读取。**起点分诊的 208/33/16 逐节点表不可读**（m1 自述“绑定旧修订、不可读”），故问题 2 的“旧 conceptual → 今 behavior”选取只能用当前 behavior 叶子代替逐条旧表；这是审计限制，不是遗漏。
+独立复核者，fresh context。抽样而非全读：读了 `docs/method/spec.md`、`docs/plan/m1.md`、`docs/5_PRODUCT.md`、`README.md`、`constitution/conflicts.md` 全文；`constitution/nodes.json` 只按点路径读，覆盖 laws、intent.decisions/risk、resources.efficiency/scheduling、attention.delivery/phases、change.entries/shape、proof.review/process 约 45 个叶子，占 264 的约 17%。`build_nodes.py` 的 `CLASSIFICATION` 字典作为分类的“答案键”被读取。**起点分诊的 208/33/16 逐节点表不可读**（m1 自述“绑定旧修订、不可读”），故问题 2 的“旧 conceptual → 今 behavior”选取只能用当前 behavior 叶子代替逐条旧表；这是审计限制，不是遗漏。
 
 引用校验：抽样 16 条裁决条款（`turn`、`silent_advance` 的例外句、`repair_on_sight`、`decide_as_user`、`resume`、`source_order`、`high_risk`“all require consent”、`authority`、`fixed_milestones`、`hard_metric_end`、`gates_hold`、`ship_at_gate`、`blocked`、`wind_down`“Told to stop”、`align`“urgent or absent”、`untrack`“only with his explicit permission”）逐条 `grep` 原文，**全部是 nodes.json 的逐字子串**。未发现需要机械修复的破引。
 

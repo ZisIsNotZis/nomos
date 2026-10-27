@@ -1,7 +1,7 @@
 # n=100 cells (2026-10-21, superseded as the canonical reading by M3's IFEval n=295)
 
 These are the four capability cells at `--limit 100` and the two paired comparisons derived
-from them — the reading `report/sft-benchmark.md` carried between M2 and M3. They were
+from them — the reading `evidence/reports/sft-benchmark.md` carried between M2 and M3. They were
 copied here before M3's IFEval run at `--limit 295` overwrote the canonical
 `../<model>-<suite>.json` path, because `scripts/run_bench.py` and
 `evidence/benchmark/analyse_paired.py` write fixed filenames.
@@ -34,4 +34,4 @@ they stand after M3:
 
 The n=295 reading that supersedes this one for IFEval: 184/295 → 148/295, −12.2pp
 [−17.6, −6.8], 54 drops / 18 gains, McNemar p=2.57e-5, floors 5 items / 1.7pp (McNemar) and
-4 items / 1.4pp (interval), `unscorable=0`. See report/sft-benchmark.md.
+4 items / 1.4pp (interval), `unscorable=0`. See evidence/reports/sft-benchmark.md.

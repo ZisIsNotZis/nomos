@@ -1,6 +1,6 @@
 # DPO 训练诊断：实现三项检查干净，失败在目标尺度与步数
 
-类型：结果。所有者：主代理。上游：[训练结果](training.md)、[计划](../docs/plan/plan.md) 第五步。证据：`evidence/training/diag/`。
+类型：结果。所有者：主代理。上游：[训练结果](training.md)、[计划](../../docs/0_ROADMAP.md) 第五步。证据：`evidence/training/diag/`。
 
 ## 结论
 
@@ -37,7 +37,7 @@ prompt 单独贡献 −2227 nat，被完整排除。全 91 对（182 条序列�
 - 全 91 对没有一对跨过 `max_length=1280`（最长 prompt+completion 1205），因此没有 completion 被截断。审计里"计分 token 数 != completion token 数"的序列数为 0；截断若发生会同时出现在这两个计数上，所以这个计数也是截断检测器。
 - 顺序：`combined` 按 `chosen` 再 `rejected` 逐对追加，`dpo_step` 取 `pol_c, pol_r = policy_lp[:n], policy_lp[n:]`。用一次 4 条序列的批（2 对）逐条独立重算 logp 验证索引：index 0 = 第 1 对 chosen，index n = 第 1 对 rejected，逐条差最大 1.18 nat（相对 −720 是 0.16%，是 4-bit 量化与 bf16 批内差异的量级；调换会差几百 nat）。
 - 同一条代码路径重算 SIT085 的四个 logp，与 `log.jsonl` 里 `final_eval.val` 记录的该对相差 0.60 / 1.28 / 0.30 / 0.67 nat（0.1–0.3%）：说明这里复现的就是那次训练跑出来的模型与数值。
-- 因此"chosen 被当成 rejected 打分"这条假设排除。数据里是否存在方向错误的对子仍是另一回事（`report/stable-pairs.md`：39/91 对没有动作差信号），那是数据侧缺陷，不是实现缺陷。
+- 因此"chosen 被当成 rejected 打分"这条假设排除。数据里是否存在方向错误的对子仍是另一回事（`evidence/reports/stable-pairs.md`：39/91 对没有动作差信号），那是数据侧缺陷，不是实现缺陷。
 
 ## 检查三：手算 DPO loss 与实现一致
 
@@ -89,7 +89,7 @@ prompt 单独贡献 −2227 nat，被完整排除。全 91 对（182 条序列�
 
 ## 被取代的数字
 
-没有数字被取代：三项检查没有发现需要修复的缺陷，主跑没有重跑，`report/training.md` 的 76 步结果、PPL 与内存表继续有效。新增的是诊断事实：掩码逐 token 审计、标签顺序复核、手算 loss 对照，以及 28 步的三配置扫描。
+没有数字被取代：三项检查没有发现需要修复的缺陷，主跑没有重跑，`evidence/reports/training.md` 的 76 步结果、PPL 与内存表继续有效。新增的是诊断事实：掩码逐 token 审计、标签顺序复核、手算 loss 对照，以及 28 步的三配置扫描。
 
 ## 需要什么才可能学会
 

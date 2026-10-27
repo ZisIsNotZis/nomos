@@ -12,7 +12,7 @@
 python3 scripts/measure_actions.py --analyse
 ```
 
-在本机实测 **3.17–3.33 秒**（9 次计时，Python 3.12.3、12 核、纯 CPU、不碰 GPU、不联网、只用标准库；工作树与全新 `git clone` 都落在这一区间）。机器被别的作业压满时会更慢，那种条件下这条命令本轮没量过，所以这里只给实测过的区间，不给上界。逐次读数与环境记在 [`docs/plan/plan.md`](docs/plan/plan.md) 的「发布准备」。它从仓库里已提交的证据重算主指标，并打印第一行：
+在本机实测 **3.17–3.33 秒**（9 次计时，Python 3.12.3、12 核、纯 CPU、不碰 GPU、不联网、只用标准库；工作树与全新 `git clone` 都落在这一区间）。机器被别的作业压满时会更慢，那种条件下这条命令本轮没量过，所以这里只给实测过的区间，不给上界。逐次读数与环境记在 [`evidence/reports/plan-historical.md`](evidence/reports/plan-historical.md) 的「发布准备」。它从仓库里已提交的证据重算主指标，并打印第一行：
 
 ```
 n_pairs 148/242（覆盖率 0.612）；两侧都齐全 242/242；参照物可用 148 条；文字层参照物可用 169 条
@@ -38,14 +38,14 @@ n_pairs 148/242（覆盖率 0.612）；两侧都齐全 242/242；参照物可用
 - IFEval 那一格与公开数值不可比：抽样是 541 条里的 295 条，而且同一批输出的分数取决用哪把尺子——官方 strict 是 66.4% → 54.2%，本仓库那把是 62.4% → 50.2%，差值的区间两边一样。官方 grader 不钉 `langdetect` 种子时自己也不可复现（±1 条）。
 - 尺子量的是「离参照物多远」而不是「补上了几成法」：同协议下带法 0.3198、不带法 0.2605，差 0.0593 [0.0263, 0.0923] 不含 0（每处境每侧 9 条）；3 条时同一条差是 0.0496 [−0.0068, 0.1059]、跨 0，那份宽度是抽样噪声（区间宽按 1/√3 收缩）。参照物自身只有 0.32 的自洽度，文字层口径二仍跨 0（0.0303 [−0.0180, 0.0819]）。
 - 权重不在 git 里（`.tmp/` 是可删临时区），只有 sha256 与重生成命令登记在 [`artifacts.tsv`](artifacts.tsv)。
-- 完整清单：[`docs/method/limits.md`](docs/method/limits.md)、[模型卡](docs/model-card.md) 的「已知限制」。
+- 完整清单：[`docs/5_PRODUCT.md`](docs/5_PRODUCT.md) 的「边界」、[模型卡](card/model-card.md) 的「已知限制」。
 
 ## 许可
 
 - 适配器是 `Qwen/Qwen3.5-2B` 的衍生权重，随基座继承 **Apache-2.0**（本机 HF 快照里的 `LICENSE` 与 `README.md` 头部的 `license: apache-2.0` 核对过）；再分发时基座的 LICENSE/NOTICE 义务一并带上。
 - 随仓库分发的第三方数据：`data/bench/gsm8k.jsonl` 是 GSM8K（MIT），`data/bench/ifeval.jsonl` 是 IFEval（Apache-2.0）。许可原文落 `licenses/`，来源、引用、改动声明与冻结件 sha256 见 [THIRD-PARTY.md](THIRD-PARTY.md)。
-- 处境与回答来自法条作者本人的私有会话（已脱敏，见[数据卡](docs/data-card.md)），DeepSeek 的回答受其服务条款约束。
-- 本仓库自身的代码与文档许可是 **AGPL-3.0-only**（作者 2026-10-21 指定，SPDX 标识符 `AGPL-3.0-only`），原文 <https://www.gnu.org/licenses/agpl-3.0.txt>，本仓库副本 [`licenses/AGPL-3.0.txt`](licenses/AGPL-3.0.txt)（34523 字节，sha256 `0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0`，2026-10-21 取回，未改一字）；复用、修改、再分发按该许可的条款。适配器权重不在这一条里：它是 `Qwen/Qwen3.5-2B` 的衍生权重，随基座走 **Apache-2.0**（上一条与[模型卡](docs/model-card.md)「许可与引用」）。
+- 处境与回答来自法条作者本人的私有会话（已脱敏，见[数据卡](card/data-card.md)），DeepSeek 的回答受其服务条款约束。
+- 本仓库自身的代码与文档许可是 **AGPL-3.0-only**（作者 2026-10-21 指定，SPDX 标识符 `AGPL-3.0-only`），原文 <https://www.gnu.org/licenses/agpl-3.0.txt>，本仓库副本 [`licenses/AGPL-3.0.txt`](licenses/AGPL-3.0.txt)（34523 字节，sha256 `0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0`，2026-10-21 取回，未改一字）；复用、修改、再分发按该许可的条款。适配器权重不在这一条里：它是 `Qwen/Qwen3.5-2B` 的衍生权重，随基座走 **Apache-2.0**（上一条与[模型卡](card/model-card.md)「许可与引用」）。
 
 ## 报告问题
 
@@ -55,17 +55,21 @@ n_pairs 148/242（覆盖率 0.612）；两侧都齐全 242/242；参照物可用
 
 | 路径 | 内容 |
 |---|---|
-| [模型卡](docs/model-card.md) | 基座与许可、适配器加载、结果摘要、已知限制 |
-| [数据卡](docs/data-card.md) | 242 条处境的来源、双答与抽样生成、筛除、脱敏、能说什么 |
-| [preprint 草稿](docs/paper/draft.md) | 主张、方法、数据、结果、限制、结论，每个数字指回报告 |
-| [设计](docs/method/design.md) / [计划](docs/plan/plan.md) | 主张、刻度、数据、rubric、噪声、停止规则；六个工作包与验收 |
-| [边界](docs/method/limits.md) | 法不覆盖什么、本研究不能声称什么 |
-| [测量结果](report/sft-measurement.md) | 三点测量：三个口径、格式/决策分解、同协议锚点 |
-| [训练](report/sft-training.md) / [宽版对照](report/sft-training-wide.md) | 4-bit QLoRA、PPL 11.34 → 6.03、显存与序列长度的实测 |
-| [SFT 数据](report/sft-data.md) | 366 条样本怎么筛出来、切分、覆盖、限制 |
-| [benchmark](report/sft-benchmark.md) | GSM8K 73.0% → 76.0%（+3.0pp，跨 0，n=100）、**IFEval 62.4% → 50.2%（−12.2pp，[−17.6, −6.8]，n=295）**；p=2.57e-5（Bonferroni α=0.025 下过线）；**Google 官方 grader 重算同一批 590 份输出：strict 66.4% → 54.2%（−12.2pp，[−17.6, −6.8]，p=3.38e-5）、lax −11.2pp**，结论不换；前一次估计：n=100 时 IFEval −12.0pp [−22.0, −3.0]、19 掉/7 涨、p=0.029 |
-| [数据质量](report/data-quality.md) / [rubric](report/rubric.md) | DPO 批次的筛除与覆盖；rubric 的分辨力（分不开两侧） |
-| [法的冻结件](constitution/) | 264 个叶子、节点索引、分类判定、形状检查 |
+| [问题](docs/1_PROBLEM.md) / [目标](docs/2_GOAL.md) | 为什么做；验收线与当前读数（数值只在这一处） |
+| [需求](docs/3_REQUIREMENT.md) / [用例](docs/4_USECASE.md) | 功能、非功能、约束；五种使用流程与验收 |
+| [产品](docs/5_PRODUCT.md) | 主张、边界、判定树、要 person 判的那一件事 |
+| [架构](docs/6_ARCHITECTURE.md) / [接口](docs/7_INTERFACE.md) | 子系统与质量手段；数据格式与命令行契约 |
+| [细节](docs/8_DETAIL.md) / [实施](docs/9_IMPLEMENTATION.md) | 算法与判据；环境、命令、测试、记账、仓库布局 |
+| [路线图](docs/0_ROADMAP.md) | 里程碑 M1–M6、工作包、闸与开销 |
+| [模型卡](card/model-card.md) | 基座与许可、适配器加载、结果摘要、已知限制 |
+| [数据卡](card/data-card.md) | 242 条处境的来源、双答与抽样生成、筛除、脱敏、能说什么 |
+| [preprint 草稿](paper/draft.md) | 主张、方法、数据、结果、限制、结论，每个数字指回证据 |
+| [测量结果](evidence/reports/sft-measurement.md) | 三点测量：三个口径、格式/决策分解、同协议锚点、见过/留出、2-epoch |
+| [训练](evidence/reports/sft-training.md) / [宽版对照](evidence/reports/sft-training-wide.md) | 4-bit QLoRA、PPL 11.34 → 6.03、显存与序列长度的实测 |
+| [SFT 数据](evidence/reports/sft-data.md) | 366 条样本怎么筛出来、切分、覆盖、限制 |
+| [benchmark](evidence/reports/sft-benchmark.md) | GSM8K 73.0% → 76.0%（+3.0pp，跨 0，n=100）、**IFEval 62.4% → 50.2%（−12.2pp，[−17.6, −6.8]，n=295）**；p=2.57e-5（Bonferroni α=0.025 下过线）；**Google 官方 grader 重算同一批 590 份输出：strict 66.4% → 54.2%（−12.2pp，[−17.6, −6.8]，p=3.38e-5）、lax −11.2pp**，结论不换；前一次估计：n=100 时 IFEval −12.0pp [−22.0, −3.0]、19 掉/7 涨、p=0.029 |
+| [数据质量](evidence/reports/data-quality.md) / [rubric](evidence/reports/rubric.md) | DPO 批次的筛除与覆盖；rubric 的分辨力（分不开两侧） |
+| [法的冻结件](constitution/) | 264 个叶子、节点索引、分类判定、形状检查与冲突审计 |
 
 ## 目录
 
@@ -73,9 +77,11 @@ n_pairs 148/242（覆盖率 0.612）；两侧都齐全 242/242；参照物可用
 |---|---|
 | `constitution/` | 冻结的法、节点索引、分类判定程序、形状检查 |
 | `data/` | 处境、正负样本、SFT 样本（366/288/78）、规则覆盖标注、benchmark 冻结样本 |
-| `docs/` | 模型卡、数据卡、方法、计划、论文草稿 |
+| `docs/` | 知识库：`0_STAGING`、`0_ROADMAP`、`1_PROBLEM` … `9_IMPLEMENTATION` |
+| `card/`、`paper/` | 模型卡与数据卡；preprint 草稿 |
+| `mail/`、`inbox/` | 与 root / person 的往来信原件；工作收件 |
 | `eval/` | 四维 rubric 评测器与分辨力统计 |
 | `evidence/` | 每次测量的原始输出与复算脚本（`evidence/measure/summary.json` 是主结果） |
 | `mining/` | 从会话档案抽处境的脚本、脱敏门与计数 |
-| `report/` | 结果汇总 |
+| `evidence/reports/` | 推导与逐条明细（证明，不是层文档） |
 | `scripts/` | 构建、训练、测量、benchmark 的可重跑脚本 |

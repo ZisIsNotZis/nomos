@@ -11,6 +11,6 @@ overwrote the canonical `../<model>-<suite>.json` path.
 - `*.log`: the four runs' stdout, as they were produced.
 
 The 20 items are the first 20 of the same seed-0 frozen prefix the n=100 runs use, so these
-records are a prefix of the n=100 records, not a different sample. `report/sft-benchmark.md`
+records are a prefix of the n=100 records, not a different sample. `evidence/reports/sft-benchmark.md`
 states which numbers are current and cites this directory where the older estimate is kept
 because it is "the previous estimate of the same sample".

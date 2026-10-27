@@ -1,9 +1,9 @@
 # 2-epoch 适配器的政策测量（M6 第 2 条指向的那一包）
 
 同一把尺子（三点测量的 242 条处境、同一 prompt、同一套解码、同一份带法参照物），
-只有 post 侧换成了 2-epoch 适配器。读法与注意事项在 `report/sft-measurement.md`
+只有 post 侧换成了 2-epoch 适配器。读法与注意事项在 `evidence/reports/sft-measurement.md`
 的「2-epoch 适配器：同一把尺子上的第二个 post」；IFEval / GSM8K 那一轴在
-`report/sft-benchmark.md` 与 `AGENTS.md` 的 M6。
+`evidence/reports/sft-benchmark.md` 与 `AGENTS.md` 的 M6。
 
 ## 怎么重跑
 

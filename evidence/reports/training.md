@@ -1,12 +1,12 @@
 # DPO 训练：跑通了，但没有学会偏好
 
-类型：结果。所有者：主代理。上游：[计划](../docs/plan/plan.md) 第四、五步。数据：`data/pairs-stable-v2.jsonl`（91 对）。诊断：[训练诊断](training-diagnosis.md)。
+类型：结果。所有者：主代理。上游：[计划](../../docs/0_ROADMAP.md) 第四、五步。数据：`data/pairs-stable-v2.jsonl`（91 对）。诊断：[训练诊断](training-diagnosis.md)。
 
 ## 结论
 
-QLoRA DPO 在 Qwen3.5-2B 上跑完 76 步，loss 全程有限、LoRA 梯度确实接在计算图上，但**这一版没有把偏好学进去**：留出集上 chosen 与 rejected 的隐式准确率 0.444（18 对里 8 对 chosen 得分更高），训练前后都低于 0.5；训练集上 margin 改善了 1.17 nat，留出集上反而退化了 0.10 nat，这是在小样本上记住了 direction 之外的噪声，不是学到偏好。按 [计划](../docs/plan/plan.md) 第五步的验收"证明的是数学上跑通了，不是学会了"，**数学跑通这一条成立，学会这一条不成立**。
+QLoRA DPO 在 Qwen3.5-2B 上跑完 76 步，loss 全程有限、LoRA 梯度确实接在计算图上，但**这一版没有把偏好学进去**：留出集上 chosen 与 rejected 的隐式准确率 0.444（18 对里 8 对 chosen 得分更高），训练前后都低于 0.5；训练集上 margin 改善了 1.17 nat，留出集上反而退化了 0.10 nat，这是在小样本上记住了 direction 之外的噪声，不是学到偏好。按 [计划](../../docs/0_ROADMAP.md) 第五步的验收"证明的是数学上跑通了，不是学会了"，**数学跑通这一条成立，学会这一条不成立**。
 
-按 [设计](../docs/method/design.md) 第 7 节的停止规则，训练本来被评委尺子分不开两个已知水平挡住；这次是硬预算内的可行性验证，不是"DPO 能让法进权重"的证据。
+按 [设计](../../docs/5_PRODUCT.md) 第 7 节的停止规则，训练本来被评委尺子分不开两个已知水平挡住；这次是硬预算内的可行性验证，不是"DPO 能让法进权重"的证据。
 
 **诊断已完成**：[training-diagnosis.md](training-diagnosis.md) 逐 token 核对了 prompt 掩码（正确排除）、chosen/rejected 顺序与截断（无调换、无截断）、手算 DPO loss（差 3.3e-6），三项都干净；失败在目标尺度——**求和 margin 让 β=0.1 等效逐 token β≈15–35，logsigmoid 饱和**。本文下面的 76 步数字继续有效，没有数字被取代。
 
@@ -42,7 +42,7 @@ QLoRA DPO 在 Qwen3.5-2B 上跑完 76 步，loss 全程有限、LoRA 梯度确�
 - 11 条句子级法条片段（"Each node here is a law"、"Reasoning is the scarcest budget" 等，清单见 `log.jsonl` `setup.law_phrases_checked`）在 91 条 excerpt 里命中 0 次。片段只取句子长度，因为 `SSOT`、`projection` 这类词在本用户自己的轮次里是正常词汇，拿它当判据会误报（实测 1 条 excerpt 含 "Single source of truth"，是用户自己在说话）。
 - `chosen != rejected`，两侧都非空，且两侧的 prompt token 序列逐 token 相同（`encode_pair` 里断言前缀一致）。
 
-**能断言的与不能断言的**：上述检查排除的是"prompt 里夹带法条"，以及"同一对的两条回答来自两个不同 prompt"。它**不能**从文件本身证明 chosen/rejected 没有被调换——`data/pairs-stable-v2.jsonl` 里没有逐条的方向性证据，能追到的只有 `signatures` 与 `cross_condition_differs`，而 91 对里有 39 对两侧动作签名都为空、跨条件相同（`report/stable-pairs.md` 记过：这批对子本身没有偏好信号）。这批 39 对仍进了训练，是这一版的已知缺陷。
+**能断言的与不能断言的**：上述检查排除的是"prompt 里夹带法条"，以及"同一对的两条回答来自两个不同 prompt"。它**不能**从文件本身证明 chosen/rejected 没有被调换——`data/pairs-stable-v2.jsonl` 里没有逐条的方向性证据，能追到的只有 `signatures` 与 `cross_condition_differs`，而 91 对里有 39 对两侧动作签名都为空、跨条件相同（`evidence/reports/stable-pairs.md` 记过：这批对子本身没有偏好信号）。这批 39 对仍进了训练，是这一版的已知缺陷。
 
 ## 超参
 

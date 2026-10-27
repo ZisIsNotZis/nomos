@@ -157,4 +157,4 @@
 6. 文字层签名依赖 `count_checks` 的启发式阈值（例如断言要有 `CLAIM` 无 `EVIDENCE` 无 `HEDGE` 的句子），它判错时两条不同决策可能被并、或两条相同决策被分。当前批次既合并了 28 条，也确有两类漏：GRW022 三条同一个决定因四位不同而全留，GRW057 的 draw3/draw4 四位相同但词集 Jaccard 只 0.18，中文与英文各一半的回答也容易被拆开。四位与词集重合都不是语义判据，没有独立标注可核对。
 7. 代码块里的字符串内容不做结构检查。SIT087 draw3 与 SIT121 draw2 的 `newText` 里 JS 少一个 `}`，因为它在引号里，括号扫描看不见，这两条留在样本里。
 8. 切分只按会话组分层，没有按工具种类或处境难度分层；验证集 10 个会话组 78 条，双侧 loss 的方差会不小，读曲线时要带这个前提。
-9. `STOP` 与 `CLAIM` 的英文模式不是只服务这批数据：`eval/judge.py` 的 rubric 评测同样用它们，所以英文回答的 `unlabeled_inferences` 计数会变。在 `data/pairs-filtered.jsonl` 的 348 条回答上重算，`unlabeled_inferences` 有 65 个计数变化、`stops_before_gate` 有 1 个（全部是 0 变为非 0），`report/rubric-diagnosis.md` 与 `report/corrupted-pairs.md` 里的计数是旧正则下算的，重跑会变；重跑要重新调评委 API 花钱，本次没跑，那两份报告的数字因此未随本次改动重验。
+9. `STOP` 与 `CLAIM` 的英文模式不是只服务这批数据：`eval/judge.py` 的 rubric 评测同样用它们，所以英文回答的 `unlabeled_inferences` 计数会变。在 `data/pairs-filtered.jsonl` 的 348 条回答上重算，`unlabeled_inferences` 有 65 个计数变化、`stops_before_gate` 有 1 个（全部是 0 变为非 0），`evidence/reports/rubric-diagnosis.md` 与 `evidence/reports/corrupted-pairs.md` 里的计数是旧正则下算的，重跑会变；重跑要重新调评委 API 花钱，本次没跑，那两份报告的数字因此未随本次改动重验。
